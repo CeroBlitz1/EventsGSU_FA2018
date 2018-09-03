@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace EventsGSU_FA2018.Payment
+namespace EventsGSU_FA2018
 {
-    public partial class Payment_Info : System.Web.UI.Page
+    public partial class Admin_user_management : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

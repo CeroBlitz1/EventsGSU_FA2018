@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EventsGSU_FA2018.Payment
+namespace EventsGSU_FA2018
 {
 
 
-    public partial class Payment_Info
+    public partial class Admin_user_management
     {
     }
 }

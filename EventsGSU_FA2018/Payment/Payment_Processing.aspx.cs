@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace EventsGSU_FA2018.Payment
 {
-    public partial class Payment_success : System.Web.UI.Page
+    public partial class Payment_Processing : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

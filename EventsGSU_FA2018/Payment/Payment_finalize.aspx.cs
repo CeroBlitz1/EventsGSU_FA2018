@@ -13,5 +13,10 @@ namespace EventsGSU_FA2018.Payment
         {
 
         }
+
+        protected void Button_Proceed_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Payment_Processing.aspx");
+        }
     }
 }

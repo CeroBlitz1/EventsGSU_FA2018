@@ -49,6 +49,15 @@ namespace EventsGSU_FA2018.Account {
         protected global::System.Web.UI.WebControls.TextBox TextBox_password;
         
         /// <summary>
+        /// Button_login control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button_login;
+        
+        /// <summary>
         /// LinkButton_Forgot control.
         /// </summary>
         /// <remarks>
