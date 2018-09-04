@@ -22,13 +22,13 @@ namespace EventsGSU_FA2018 {
         protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
         
         /// <summary>
-        /// TextBox_seach control.
+        /// TextBox_Search control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox_seach;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_Search;
         
         /// <summary>
         /// DropDownList_search control.

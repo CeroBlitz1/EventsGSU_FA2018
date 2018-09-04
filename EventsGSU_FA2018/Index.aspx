@@ -16,12 +16,12 @@
         <tr>
             <td>&nbsp;</td>
             <td>
-                <asp:TextBox ID="TextBox_seach" runat="server" Width="171px"></asp:TextBox>
+                <asp:TextBox ID="TextBox_Search" runat="server"></asp:TextBox>
                 &nbsp;<asp:DropDownList ID="DropDownList_search" runat="server">
                 </asp:DropDownList>
                 &nbsp;<asp:DropDownList ID="DropDownList_Search_2" runat="server">
                 </asp:DropDownList>
-            &nbsp;<asp:Button ID="Button_search" runat="server" Text="Seach" />
+            &nbsp;<asp:Button ID="Button_search" runat="server" Text="Search" />
             </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
