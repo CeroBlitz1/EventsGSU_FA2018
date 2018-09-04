@@ -1,6 +1,6 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="EventsGSU_FA2018.SiteMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.Master.cs" Inherits="EventsGSU_FA2018.Site1" %>
 
-<!DOCTYPE html>
+<<!DOCTYPE html>
 
 <html lang="en">
 <head runat="server">
@@ -51,10 +51,10 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/Events/AllEvents.aspx">Browse Events</a></li>
-                        <li><a runat="server" href="~/Events/OrganizeEvent">Organize Events</a></li>
-                        <li><a runat="server" href="~/Account/Login.aspx">Login</a></li>
-                        <li><a runat="server" href="~/Account/Registration.aspx">Sign up</a></li>
+                        <li><a runat="server" href="~/Admin/admin_event_manage.aspx">Manage Events</a></li>
+                        <li><a runat="server" href="~/Admin/admin_payment_info.aspx">Users Payment Info</a></li>
+                        <li><a runat="server" href="~/Admin/admin_user_management.aspx">Manage Users</a></li>
+                        
                     </ul>
                 </div>
             </div>

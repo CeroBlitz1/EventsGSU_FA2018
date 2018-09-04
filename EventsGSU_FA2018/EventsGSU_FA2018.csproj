@@ -138,7 +138,7 @@
     <Content Include="Account\ManageTicket.aspx" />
     <Content Include="Account\MyProfile.aspx" />
     <Content Include="Account\Registration.aspx" />
-    <Content Include="Admin\Admin_user_management.aspx" />
+    <Content Include="Admin\admin_user_management.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -147,7 +147,7 @@
     <Content Include="Content\main.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\util.css" />
-    <Content Include="Admin\admin_Event_manage.aspx" />
+    <Content Include="Admin\admin_event_manage.aspx" />
     <Content Include="Events\AllEvents.aspx" />
     <Content Include="Events\Event_Pages\Event_1.aspx" />
     <Content Include="Events\OrganizeEvent.aspx" />
@@ -167,8 +167,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Home.Master" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Admin\Admin_payment_info.aspx" />
+    <Content Include="Admin\admin_payment_info.aspx" />
     <Content Include="Payment\Payment_finalize.aspx" />
     <Content Include="Payment\Payment_Processing.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -236,12 +237,12 @@
     <Compile Include="Account\Registration.aspx.designer.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Admin_user_management.aspx.cs">
-      <DependentUpon>Admin_user_management.aspx</DependentUpon>
+    <Compile Include="Admin\admin_user_management.aspx.cs">
+      <DependentUpon>admin_user_management.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Admin_user_management.aspx.designer.cs">
-      <DependentUpon>Admin_user_management.aspx</DependentUpon>
+    <Compile Include="Admin\admin_user_management.aspx.designer.cs">
+      <DependentUpon>admin_user_management.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
@@ -259,12 +260,12 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\admin_Event_manage.aspx.cs">
-      <DependentUpon>admin_Event_manage.aspx</DependentUpon>
+    <Compile Include="Admin\admin_event_manage.aspx.cs">
+      <DependentUpon>admin_event_manage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\admin_Event_manage.aspx.designer.cs">
-      <DependentUpon>admin_Event_manage.aspx</DependentUpon>
+    <Compile Include="Admin\admin_event_manage.aspx.designer.cs">
+      <DependentUpon>admin_event_manage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Events\AllEvents.aspx.cs">
       <DependentUpon>AllEvents.aspx</DependentUpon>
@@ -294,6 +295,13 @@
     <Compile Include="Events\user_manage_events.aspx.designer.cs">
       <DependentUpon>user_manage_events.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Home.Master.cs">
+      <DependentUpon>Home.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.Master.designer.cs">
+      <DependentUpon>Home.Master</DependentUpon>
+    </Compile>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -304,12 +312,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Admin_payment_info.aspx.cs">
-      <DependentUpon>Admin_payment_info.aspx</DependentUpon>
+    <Compile Include="Admin\admin_payment_info.aspx.cs">
+      <DependentUpon>admin_payment_info.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Admin_payment_info.aspx.designer.cs">
-      <DependentUpon>Admin_payment_info.aspx</DependentUpon>
+    <Compile Include="Admin\admin_payment_info.aspx.designer.cs">
+      <DependentUpon>admin_payment_info.aspx</DependentUpon>
     </Compile>
     <Compile Include="Payment\Payment_finalize.aspx.cs">
       <DependentUpon>Payment_finalize.aspx</DependentUpon>
@@ -340,6 +348,13 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -355,6 +370,7 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Admin.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

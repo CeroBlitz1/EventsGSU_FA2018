@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyProfile.aspx.cs" Inherits="EventsGSU_FA2018.Account.MyProfile" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="MyProfile.aspx.cs" Inherits="EventsGSU_FA2018.Account.MyProfile" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div><h1>My Profile</h1>
         <table class="nav-justified">
@@ -59,5 +59,5 @@
                 </td>
             </tr>
         </table>
-    </div>
+</div>
 </asp:Content>

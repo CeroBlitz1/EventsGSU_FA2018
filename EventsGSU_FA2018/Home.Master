@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="EventsGSU_FA2018.SiteMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Home.master.cs" Inherits="EventsGSU_FA2018.Home" %>
 
 <!DOCTYPE html>
 
@@ -53,8 +53,10 @@
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/Events/AllEvents.aspx">Browse Events</a></li>
                         <li><a runat="server" href="~/Events/OrganizeEvent">Organize Events</a></li>
-                        <li><a runat="server" href="~/Account/Login.aspx">Login</a></li>
-                        <li><a runat="server" href="~/Account/Registration.aspx">Sign up</a></li>
+                        <li><a runat="server" href="~/Account/MyProfile.aspx">My Profile</a></li>
+                        <li><a runat="server" href="~/Account/ManageTicket.aspx">Tickets</a></li>
+                        
+                        
                     </ul>
                 </div>
             </div>
