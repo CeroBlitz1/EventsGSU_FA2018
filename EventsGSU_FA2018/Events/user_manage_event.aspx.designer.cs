@@ -10,7 +10,7 @@
 namespace EventsGSU_FA2018.Events {
     
     
-    public partial class user_manage_events {
+    public partial class user_manage_event {
         
         /// <summary>
         /// Label1 control.

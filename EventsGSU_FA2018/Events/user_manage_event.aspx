@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="user_manage_events.aspx.cs" Inherits="EventsGSU_FA2018.Events.user_manage_events" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="user_manage_event.aspx.cs" Inherits="EventsGSU_FA2018.Events.user_manage_event" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <table class="nav-justified">
         <tr>

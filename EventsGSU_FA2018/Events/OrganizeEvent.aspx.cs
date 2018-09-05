@@ -18,5 +18,10 @@ namespace EventsGSU_FA2018.Events
         {
 
         }
+
+        protected void TextBox_quanti_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

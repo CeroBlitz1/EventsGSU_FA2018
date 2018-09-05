@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EventsGSU_FA2018.Payment {
+namespace EventsGSU_FA2018 {
     
     
-    public partial class Payment_Processing {
+    public partial class Pay {
         
         /// <summary>
-        /// Image1 control.
+        /// MainContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
     }
 }

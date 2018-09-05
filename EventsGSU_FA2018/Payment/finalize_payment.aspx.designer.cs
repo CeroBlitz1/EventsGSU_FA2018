@@ -10,7 +10,7 @@
 namespace EventsGSU_FA2018.Payment {
     
     
-    public partial class Payment {
+    public partial class finalize_payment {
         
         /// <summary>
         /// ImageButton1 control.
@@ -22,6 +22,15 @@ namespace EventsGSU_FA2018.Payment {
         protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
         
         /// <summary>
+        /// Label_description control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label_description;
+        
+        /// <summary>
         /// Label_amount control.
         /// </summary>
         /// <remarks>
@@ -31,102 +40,102 @@ namespace EventsGSU_FA2018.Payment {
         protected global::System.Web.UI.WebControls.Label Label_amount;
         
         /// <summary>
-        /// TextBox_CardName control.
+        /// TextBox_Pay_Name control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox_CardName;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_Pay_Name;
         
         /// <summary>
-        /// TextBox_cardNo control.
+        /// TextBox_pay_cardno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox_cardNo;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_pay_cardno;
         
         /// <summary>
-        /// TextBox_ExpDate control.
+        /// TextBox_pay_cardexp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox_ExpDate;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_pay_cardexp;
         
         /// <summary>
-        /// TextBox_CVV control.
+        /// TextBox_pay_cvv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox_CVV;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_pay_cvv;
         
         /// <summary>
-        /// TextBox_BillName control.
+        /// TextBox_pay_bill_name control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox_BillName;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_pay_bill_name;
         
         /// <summary>
-        /// TextBox_BillEmail control.
+        /// TextBox_pay_bill_email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox_BillEmail;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_pay_bill_email;
         
         /// <summary>
-        /// TextBox_BillAddr control.
+        /// TextBox_pay_bill_addr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox_BillAddr;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_pay_bill_addr;
         
         /// <summary>
-        /// TextBox_BillCity control.
+        /// TextBox_pay_bill_city control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox_BillCity;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_pay_bill_city;
         
         /// <summary>
-        /// TextBox_BillZip control.
+        /// TextBox_pay_bill_zip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox_BillZip;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_pay_bill_zip;
         
         /// <summary>
-        /// DropDownList_State control.
+        /// DropDownList_state control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList_State;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList_state;
         
         /// <summary>
-        /// Button_Proceed control.
+        /// Button_proceed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button_Proceed;
+        protected global::System.Web.UI.WebControls.Button Button_proceed;
     }
 }

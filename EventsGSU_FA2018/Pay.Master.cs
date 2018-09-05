@@ -5,18 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace EventsGSU_FA2018.Payment
+namespace EventsGSU_FA2018
 {
-    public partial class Payment : System.Web.UI.Page
+    public partial class Pay : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-
-        protected void Button_Proceed_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Payment_Processing.aspx");
         }
     }
 }
