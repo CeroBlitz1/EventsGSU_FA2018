@@ -7,135 +7,108 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EventsGSU_FA2018.Events {
+namespace EventsGSU_FA2018.Payment {
     
     
-    public partial class OrganizeEvent {
+    public partial class Organizer_payment {
         
         /// <summary>
-        /// Label_Email control.
+        /// TextBox_Pay_Name control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_Email;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_Pay_Name;
         
         /// <summary>
-        /// TextBox1 control.
+        /// TextBox_pay_cardno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_pay_cardno;
         
         /// <summary>
-        /// Label1 control.
+        /// TextBox_pay_cardexp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_pay_cardexp;
         
         /// <summary>
-        /// Button1 control.
+        /// TextBox_pay_cvv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_pay_cvv;
         
         /// <summary>
-        /// Label2 control.
+        /// TextBox_pay_bill_name control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_pay_bill_name;
         
         /// <summary>
-        /// TextBox2 control.
+        /// TextBox_pay_bill_email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_pay_bill_email;
         
         /// <summary>
-        /// Label3 control.
+        /// TextBox_pay_bill_addr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_pay_bill_addr;
         
         /// <summary>
-        /// TextBox3 control.
+        /// TextBox_pay_bill_city control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_pay_bill_city;
         
         /// <summary>
-        /// Label4 control.
+        /// TextBox_pay_bill_zip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_pay_bill_zip;
         
         /// <summary>
-        /// TextBox_evntdesc control.
+        /// DropDownList_state control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox_evntdesc;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList_state;
         
         /// <summary>
-        /// TextBox_ticketname control.
+        /// Button_proceed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox_ticketname;
-        
-        /// <summary>
-        /// TextBox_quanti control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox_quanti;
-        
-        /// <summary>
-        /// Buttoon_Upload_Image control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Buttoon_Upload_Image;
-        
-        /// <summary>
-        /// Button_Createevnt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button_Createevnt;
+        protected global::System.Web.UI.WebControls.Button Button_proceed;
     }
 }
