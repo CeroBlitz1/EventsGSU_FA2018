@@ -9,7 +9,7 @@
         </tr>
         <tr>
             <td>
-                <asp:ImageButton ID="EventButton_1" runat="server" Height="149px" Width="172px"  />
+                <asp:ImageButton ID="EventButton_1" runat="server" Height="149px" Width="172px" ImageUrl="~/Site Images/GSUlogo.png"  />
             </td>
             <td>
                 <asp:ImageButton ID="EventButton_2" runat="server" Height="149px" Width="172px" />

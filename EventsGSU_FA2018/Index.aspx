@@ -8,7 +8,7 @@
         <tr>
             <td>&nbsp;</td>
             <td>
-                <asp:ImageButton ID="ImageButton1" runat="server" Height="96px" Width="1241px" />
+                <asp:ImageButton ID="ImageButton1" runat="server" Height="96px" Width="1241px" ImageUrl="~/Site Images/GSUlogo.png" />
             </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -41,11 +41,11 @@
         <tr>
             <td>&nbsp;</td>
             <td>
-                <asp:ImageButton ID="ImageButton2" runat="server" Height="218px" Width="291px" />
+                <asp:ImageButton ID="ImageButton2" runat="server" Height="218px" Width="291px" ImageUrl="~/Site Images/GSUlogo.png" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:ImageButton ID="ImageButton3" runat="server" Height="218px" Width="291px" />
+                <asp:ImageButton ID="ImageButton3" runat="server" Height="218px" Width="291px" ImageUrl="~/Site Images/GSUlogo.png" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:ImageButton ID="ImageButton4" runat="server" Height="218px" Width="291px" />
+                <asp:ImageButton ID="ImageButton4" runat="server" Height="218px" Width="291px" ImageUrl="~/Site Images/GSUlogo.png" />
             </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>

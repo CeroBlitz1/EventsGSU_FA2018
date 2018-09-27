@@ -1,112 +1,130 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Registration.aspx.cs" Inherits="EventsGSU_FA2018.Account.Registration" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <table class="nav-justified">
-         
-    <tr>
-        <td></td>
-        <td><h1>Registration Page</h1></td>
-        <td></td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>
-            <asp:Label ID="Label_Name" runat="server" Text="Name :"></asp:Label>
-&nbsp;&nbsp;<br />
-            <asp:TextBox ID="TextBox_Name" runat="server" CssClass="text-left">Please Enter Name</asp:TextBox>
-        </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>
-            <asp:Label ID="Label_Email" runat="server" Text="E-Mail :"></asp:Label>
-&nbsp;&nbsp;<br />
-            <asp:TextBox ID="TextBox_Email" runat="server" CssClass="text-left">Please Enter Email</asp:TextBox>
-        </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>
-            <asp:Label ID="Label_PhNo" runat="server" Text="Phone Number :"></asp:Label>
-&nbsp;
-            <br />
-            <asp:TextBox ID="TextBox_PhNo" runat="server" CssClass="text-left" Width="254px" TextMode="Number">Please Enter Phone Number</asp:TextBox>
-        </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            <asp:Button ID="Button_register" runat="server" CssClass="btn focus" Text="Register" />
-        </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-</table>
+   <div class="col-md-10 col-md-offset-1">
+       <div class="well">
+           <table class="table table-bordered">
+               
+               <thead>
+                   <tr class="Success">
+                       <td colspan="3">
+                           Registration Page
+                       </td>
+
+                   </tr>
+               </thead>
+               <tbody>
+                   <tr>
+                       <td>User Name</td>
+                       <td>
+                           <input type="text" id="txtUserName" placeholder="User Name" />
+                       </td>
+                   </tr>
+                   <tr>
+                       <td>Email</td>
+                       <td>
+                           <input type="text" id="txtEmail" placeholder="Email" />
+                       </td>
+                   </tr>
+                   <tr>
+                       <td>Password</td>
+                       <td>
+                           <input type="password" id="txtPassword" placeholder="Password" />
+                       </td>
+                   </tr>
+                   <tr>
+                       <td>Phone Number</td>
+                       <td>
+                           <input type="text" id="txtPhoneNumber" placeholder="Phone Number" />
+                       </td>
+                   </tr>
+                   <tr class="Success">
+                       <td colspan="3">
+                           <input id="btnRegister" class="btn btn-success" type="button" value="Register" />
+                       </td>
+                   </tr>
+               </tbody>
+           </table>
+           <div class="modal fade" tabindex="-1" id="successmodal"
+               data-keyboard="false" data-bakcdrop="static">
+               <div class="modal-dialouge modal-sm">
+                   <div class="modal-content">
+                       <div class="modal-header">
+                           <button type="button" class="close" data-dismiss="modal">
+                               &times;
+                               <h3>Success</h3>
+                           </button>
+                       </div>
+                       <div class="modal-body">
+                           <h2>Registration successful</h2>
+                       </div>
+                       <div class ="modal-footer">
+                           <button type="button" data-dismiss="modal" class="btn btn-danger">
+                               Close
+                           </button>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div id="error" class="alert alert-danger collapse">
+               <a id="Close" class="close" href="#">&times;</a>
+               <div id="ErrorText"></div>
+           </div>
+       </div>
+   </div>
+    <script src="../Scripts/jquery-3.3.1.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Close').click(function(){
+
+                $('#error').hide('fade');
+            });
+            $('#btnRegister').click(function () {
+
+
+                //$.ajax({
+                //    url: 'http://localhost/EventsGSUBusinessLibrary/api/account/Register',
+                //    method: 'POST',
+                //    data: {
+                //        username: $('#txtUserName').val()
+                //        email: $('#txtEmail').val(),
+                //        password: $('#txtPassword').val(),
+                //        confirmPassword: $('#txtConfirmPassword').val()
+                //    },
+                //    success: function () {
+                //         $('#successmodal').modal(PopOut_Show);
+                //    },
+                //    error: function (jqXHR) {
+                //        $('#ErrorText').text(jqXHR.responseText);
+                //        $('#error').show('fade');
+
+                //    }
+                   
+                //});
+
+
+                $.ajax({
+                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/register',
+                    method: 'POST',
+                    data: {
+                        username: $('#txtUserName').val(),
+                        useremail: $('#txtEmail').val(),
+                        userpassword: $('#txtPassword').val(),
+                        userphonenumber: $('#txtPhoneNumber').val()
+                    },
+                    success: function (s) {
+                        $('#successmodal').modal(s);
+                        
+                    },
+                    error: function (jqXHR) {
+                        $('#ErrorText').text(jqXHR.responseText);
+                        $('#error').show('fade');
+
+                    }
+                   
+                });
+                
+            });
+        });
+    </script>
 </asp:Content>

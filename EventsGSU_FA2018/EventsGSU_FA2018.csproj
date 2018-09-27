@@ -254,7 +254,7 @@
     <Compile Include="Admin\admin_user_management.aspx.designer.cs">
       <DependentUpon>admin_user_management.aspx</DependentUpon>
     </Compile>
-    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
