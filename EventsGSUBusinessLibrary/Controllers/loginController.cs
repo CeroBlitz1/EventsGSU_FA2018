@@ -15,10 +15,10 @@ namespace EventsGSUBusinessLibrary.Controllers
 
         public string RegisterLogin(UserModel model)
         {
-            var Val = "d";
+            var Val = "";
             try
             {
-                var uval = new Login().SaveUsers(model);
+                var uval = new Users().UserLogin(model);
             }
             catch (Exception ex)
             {

@@ -58,5 +58,29 @@ namespace EventsGSUDataAccessLayer
         //    }
         //    return retVal;
         //}
+
+
+        //GsuEventsDBEntities g = new GsuEventsDBEntities();
+        public bool UserLogin(UserModel model)
+        {
+            var retVal = false;
+            try
+            {
+
+                var usr = g.UserTables.Where(s => s.UserName == model.UserName).FirstOrDefault();
+
+                if (usr != null && usr.UserPassword == model.UserPassword)
+                {
+                    retVal = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                string d = ex.Message;
+            }
+            return retVal;
+        }
+        
     }
 }

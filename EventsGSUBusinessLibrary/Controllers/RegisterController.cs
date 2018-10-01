@@ -12,12 +12,12 @@ using EventsGSUDataAccessLayer.Models;
 
 namespace EventsGSUBusinessLibrary.Controllers
 {
-   [RoutePrefix("api/account")]
+   [RoutePrefix("api/register")]
     public class RegisterController : ApiController
     {
         GsuEventsDBEntities g = new GsuEventsDBEntities();
 
-
+        [Route("Register")]
         public string Register(UserModel model)
         {
             var retVal = "";
@@ -52,21 +52,21 @@ namespace EventsGSUBusinessLibrary.Controllers
             }
             return retVal;
         }
-        
-        //public string RegisterLogin(UserModel model)
-        //{
-        //    var Val = "";
-        //    try
-        //    {
-        //        var uval = new Login().SaveUsers(model);
-        //    }
-        //    catch (Exception ex)
-        //    {
+        [Route("UserLogin")]
+        public bool UserLogin(UserModel model)
+        {
+            var retVal = false;
+            try
+            {
+                retVal = new Users().UserLogin(model);
+            }
+            catch (Exception ex)
+            {
 
-        //        Val = ex.Message;
-        //    }
-        //    return Val;
-        //}
+                var val = ex.Message;
+            }
+            return retVal;
+        }
 
         //public string EventRegister(EventModel model)
         //{
