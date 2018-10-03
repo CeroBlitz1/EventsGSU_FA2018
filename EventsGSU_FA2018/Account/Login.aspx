@@ -16,7 +16,7 @@
                    <tr>
                        <td>User Name</td>
                        <td>
-                           <asp:TextBox ID="TextBoxUser" runat="server"></asp:TextBox>
+                           <%--<asp:TextBox ID="TextBoxUser" runat="server"></asp:TextBox>--%>
                            <input type="text" id="txtUserName" placeholder="User Name" />
                        </td>
                    </tr>
@@ -24,7 +24,7 @@
                    <tr>
                        <td style="height: 39px">Password</td>
                        <td style="height: 39px">
-                           <asp:TextBox ID="TextBoxPassword" runat="server"></asp:TextBox>
+                           <%--<asp:TextBox ID="TextBoxPassword" runat="server"></asp:TextBox>--%>
                            <input type="password" id="txtPassword" placeholder="Password" />
                        </td>
                    </tr>
@@ -32,9 +32,9 @@
                    <tr class="Success">
                        <td colspan="3">
                            &nbsp;
-                           <asp:CheckBox ID="CheckBoxrem" runat="server" Text="Remember me?" />
+                           <%--<asp:CheckBox ID="CheckBoxrem" runat="server" Text="Remember me?" />--%>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                           <asp:Button ID="ButtonLogin" runat="server" CssClass="btn-success" Height="46px" Text="Login" Width="96px" OnClick="ButtonLogin_Click" />
+                           <%--<asp:Button ID="ButtonLogin" runat="server" CssClass="btn-success" Height="46px" Text="Login" Width="96px" OnClick="ButtonLogin_Click" />--%>
                            <input id="btnLogin" class="btn btn-success" type="button" value="Login" />
 &nbsp;</td>
                    </tr>
@@ -107,13 +107,21 @@
                         username: $('#txtUserName').val(),
                         userpassword: $('#txtPassword').val(),
                     },
-                    success: function (jqXHR) {
-                        $('#successmodal').text(jqXHR.responseText);
-                        $("#error").show('fade');
-                        window.location.href ="http://localhost/EventsGSU_FA2018/Index" ;
+                    success: function (response) {
+                        if (response.UFlag) {
+                            window.location.href = "http://localhost/EventsGSU_FA2018/Index";
+                        }
+                        else
+                        {
+                            $('#ErrorText').text(response.UMessage);
+                            $('#error').show('fade');
+                        }
+                        //$('#successmodal').text(response.UserEmail);
+                        //$("#error").show('fade');
+                       
                     },
-                    error: function (jqXHR) {
-                        $('#ErrorText').text(jqXHR.responseText);
+                    error: function (error) {
+                        $('#ErrorText').text(error.responseText);
                         $('#error').show('fade');
 
                     }

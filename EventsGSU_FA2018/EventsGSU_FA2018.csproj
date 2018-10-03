@@ -150,6 +150,7 @@
     <Content Include="Content\util.css" />
     <Content Include="Admin\admin_event_manage.aspx" />
     <Content Include="Events\AllEvents.aspx" />
+    <Content Include="Events\Event.aspx" />
     <Content Include="Events\Event_Pages\Event_1.aspx" />
     <Content Include="Events\OrganizeEvent.aspx" />
     <Content Include="Events\user_manage_event.aspx" />
@@ -283,6 +284,13 @@
     </Compile>
     <Compile Include="Events\AllEvents.aspx.designer.cs">
       <DependentUpon>AllEvents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Events\Event.aspx.cs">
+      <DependentUpon>Event.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Events\Event.aspx.designer.cs">
+      <DependentUpon>Event.aspx</DependentUpon>
     </Compile>
     <Compile Include="Events\Event_Pages\Event_1.aspx.cs">
       <DependentUpon>Event_1.aspx</DependentUpon>

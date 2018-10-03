@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\Events.cs" />
+    <Compile Include="DataAccess\Payment.cs" />
     <Compile Include="EventDetail.cs">
       <DependentUpon>GSUEntities.tt</DependentUpon>
     </Compile>
@@ -73,7 +74,7 @@
     </Compile>
     <Compile Include="Models\EventDetailsModel.cs" />
     <Compile Include="Models\EventModel.cs" />
-    <Compile Include="DataAccess\Login.cs" />
+    <Compile Include="Models\PaymentModel.cs" />
     <Compile Include="Models\TicketModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="PaymentHistoryTable.cs">

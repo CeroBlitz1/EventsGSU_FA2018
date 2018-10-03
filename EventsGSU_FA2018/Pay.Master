@@ -51,8 +51,9 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - GSU Events</p>
+                
                 <ul class="nav navbar-nav">
+                    <p>&copy; <%: DateTime.Now.Year %> - GSU Events</p>
                     <li><a runat="server" href="~/About.aspx">About</a></li>
                     <li><a runat="server" href="~/Contact.aspx">Contact us</a></li>
                     <li><a runat="server" href="~/Contact.aspx">Help?</a></li>

@@ -4,28 +4,35 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+//using EventsGSUBusinessLibrary.Models;
+//using EventsGSUBusinessLibrary.Models;
 using EventsGSUDataAccessLayer;
 using EventsGSUDataAccessLayer.DataAccess;
 using EventsGSUDataAccessLayer.Models;
+
 namespace EventsGSUBusinessLibrary.Controllers
 {
-    public class loginController : ApiController
+    [RoutePrefix("api/payment")]
+    public class PaymentController : ApiController
     {
         GsuEventsDBEntities g = new GsuEventsDBEntities();
-
-        public string RegisterLogin(UserModel model)
+        [Route("PaymentV")]
+        public string PaymentV(PaymentModel model)
         {
-            var Val = "";
+            var retVal = "";
             try
             {
-                var uval = new Users().UserLogin(model);
+
+
+                var rVal = new Payment().SavePayment(model);
+
+
             }
             catch (Exception ex)
             {
-
-                Val = ex.Message;
+                retVal = ex.Message;
             }
-            return Val;
+            return retVal;
         }
     }
 }

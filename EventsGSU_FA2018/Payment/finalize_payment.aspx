@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pay.Master" AutoEventWireup="true" CodeBehind="finalize_payment.aspx.cs" Inherits="EventsGSU_FA2018.Payment.finalize_payment" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>Finalize Payment</h1>
     <div>
         &nbsp;&nbsp;&nbsp;<table class="nav-justified">
             <tr>
@@ -47,88 +46,153 @@
                 <td></td>
             </tr>
         </table>
-&nbsp;<div><h3>Payment Info</h3></div>
-    </div>
-    <table class="nav-justified">
-        <tr>
-            <td>Name on the card:<br />
-                <asp:TextBox ID="TextBox_Pay_Name" runat="server"></asp:TextBox>
-            </td>
-            
-        </tr>
-        <tr>
-            <td style="height: 20px">Card Number:<br />
-                <asp:TextBox ID="TextBox_pay_cardno" runat="server"></asp:TextBox>
-            </td>
-            
-        </tr>
-        <tr>
-            <td>Card Expiration Date:<br />
-                <asp:TextBox ID="TextBox_pay_cardexp" runat="server" TextMode="Date"></asp:TextBox>
-            </td>
-            
-        </tr>
-        <tr>
-            <td>CVV:<br />
-                <asp:TextBox ID="TextBox_pay_cvv" runat="server" TextMode="Password"></asp:TextBox>
-            </td>
-            
-        </tr>
-        <tr>
-            <td><h3>Billing address</h3></td>
-            
-        </tr>
-        <tr>
-            <td>Name:<br />
-                <asp:TextBox ID="TextBox_pay_bill_name" runat="server"></asp:TextBox>
-            </td>
-            
-        </tr>
-        <tr>
-            <td>Email:<br />
-                <asp:TextBox ID="TextBox_pay_bill_email" runat="server" TextMode="Email"></asp:TextBox>
-            </td>
-            
-        </tr>
-        <tr>
-            <td style="height: 20px">Address:<br />
-                <asp:TextBox ID="TextBox_pay_bill_addr" runat="server"></asp:TextBox>
-            </td>
-           
-        </tr>
-        <tr>
-            <td>City:<br />
-                <asp:TextBox ID="TextBox_pay_bill_city" runat="server"></asp:TextBox>
-            </td>
-            
-        </tr>
-        <tr>
-            <td>Zip Code:<br />
-                <asp:TextBox ID="TextBox_pay_bill_zip" runat="server"></asp:TextBox>
-            </td>
-            
-        </tr>
-        <tr>
-            <td>State :<br />
-                <asp:DropDownList ID="DropDownList_state" runat="server">
-                </asp:DropDownList>
-            </td>
-            
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            
-        </tr>
-        <tr>
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Button ID="Button_proceed" runat="server" CssClass="btn-success" Height="64px" Text="PROCEED TO CEHCKOUT" Width="664px" />
-                &nbsp;</td>
-            
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            
-        </tr>
-    </table>
+</div>
+  <div class="col-md-10 col-md-offset-1">
+       <div class="well">
+           <table class="table table-bordered">
+               
+               <thead>
+                   <tr class="Success">
+                       <td colspan="3">
+                           <h2>Finalize Your Payment</h2>
+                       </td>
+
+                   </tr>
+               </thead>
+               <tbody>
+                   <tr>
+                       <td>First Name</td>
+                       <td>
+                           <input type="text" id="txtFN" placeholder="First Name" />
+                       </td>
+                   </tr>
+                   <tr>
+                       <td>Last name</td>
+                       <td>
+                           <input type="text" id="txtLN" placeholder="Last Name" />
+                       </td>
+                   </tr>
+                   <tr>
+                       <td>Card Number</td>
+                       <td>
+                           <input type="text" id="txtCardNumber" placeholder =" Card Number" />
+                       </td>
+                   </tr>
+                   <tr>
+                       
+                   <td>Card CVV</td>
+                       <td>
+                           <input type="password" id="txtCVV" placeholder="Please enter Card CVV"   />
+                       </td>
+                     </tr>
+                   <tr>
+                       <td>Email</td>
+                       <td>
+                           <input type="email" id="txtEmail" placeholder="Email"  />
+                       </td>
+                   </tr>
+                   <tr>
+                       <td>Phone Number</td>
+                       <td>
+                           <input type="text" id="txtPhNo" placeholder="Enter Phone number" />
+                       </td>
+
+                   </tr>
+                    <tr>
+                       <td>Address</td>
+                       <td>
+                           <input type="text" id="txtAddress" placeholder="Please Enter Address" />
+                       </td>
+
+                   </tr>
+                    <tr>
+                       <td>Zip code</td>
+                       <td>
+                           <input type="text" id="txtzip" placeholder="Please Enter zipcode" />
+                       </td>
+
+                   </tr>
+                    <tr>
+                       <td>State</td>
+                       <td>
+                           <input type="text" id="txtstate" placeholder="Please Enter state" />
+                       </td>
+
+                   </tr>
+                   <tr class="Success">
+                       
+                       <td colspan="3">
+                           <input id="btnPayment" class="btn btn-success" type="button" value="Finalize Payment" />
+                       </td>
+                   </tr>
+               </tbody>
+           </table>
+           <div class="modal fade" tabindex="-1" id="successmodal"
+               data-keyboard="false" data-bakcdrop="static">
+               <div class="modal-dialouge modal-sm">
+                   <div class="modal-content">
+                       <div class="modal-header">
+                           <button type="button" class="close" data-dismiss="modal">
+                               &times;
+                               <h3>Success</h3>
+                           </button>
+                       </div>
+                       <div class="modal-body">
+                           <h2>Payment successful</h2>
+                       </div>
+                       <div class ="modal-footer">
+                           <button type="button" data-dismiss="modal" class="btn btn-danger">
+                               Close
+                           </button>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div id="error" class="alert alert-danger collapse">
+               <a id="Close" class="close" href="#">&times;</a>
+               <div id="ErrorText"></div>
+           </div>
+       </div>
+   </div>
+     <script src="../Scripts/jquery-3.3.1.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Close').click(function(){
+
+                $('#error').hide('fade');
+            });
+            $('#btnPayment').click(function () {
+
+                $.ajax({
+                    url: 'http://localhost/EventsGSUBusinessLibrary/api/payment/paymentv',
+                    method: 'POST',
+                    data: {
+                        firstname: $('#txtFN').val(),
+                        lastname: $('#txtLN').val(),
+                        useremail: $('#txtEmail').val(),
+                        userphonenumber: $('#txtPhNo').val(),
+                        usercardnumber: $('#txtCardNumber').val(),
+                        usercardcvv: $('#txtCVV').val(),
+                        useraddress: $('#txtAddress').val(),
+                        userzipcode: $('#txtzip').val(),
+                        userstate: $('#txtstate').val(),
+                        userpaymentpaid : $('#Label_description').val()
+                    },
+                    success: function (s) {
+                        $('#successmodal').modal(s);
+                        
+                    },
+                    error: function (jqXHR) {
+                        $('#ErrorText').text(jqXHR.responseText);
+                        $('#error').show('fade');
+
+                    }
+                   
+                });
+                
+            });
+        });
+    </script>
 </asp:Content>
 

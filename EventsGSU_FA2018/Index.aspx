@@ -8,7 +8,7 @@
         <tr>
             <td>&nbsp;</td>
             <td>
-                <asp:ImageButton ID="ImageButton1" runat="server" Height="96px" Width="1241px" ImageUrl="~/Site Images/GSUlogo.png" />
+                <asp:ImageButton ID="ImageButton1" runat="server" Height="96px" Width="1241px" ImageUrl="~/Site Images/GSUlogo.png"  />
             </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>

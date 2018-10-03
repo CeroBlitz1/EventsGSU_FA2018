@@ -61,26 +61,56 @@ namespace EventsGSUDataAccessLayer
 
 
         //GsuEventsDBEntities g = new GsuEventsDBEntities();
-        public bool UserLogin(UserModel model)
+        //public bool UserLogin(UserModel model)
+        //{
+        //    var retVal = false;
+        //    try
+        //    {
+
+        //        var usr = g.UserTables.Where(s => s.UserName == model.UserName).FirstOrDefault();
+
+        //        if (usr != null && usr.UserPassword == model.UserPassword)
+        //        {
+        //            retVal = true;
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        string d = ex.Message;
+        //    }
+        //    return retVal;
+        //}
+
+
+        public UserModel UserLogin(UserModel model)
         {
-            var retVal = false;
+            var um = new UserModel
+            {
+                UMessage = "Success",
+                UFlag = false,
+                ReturnUrl = ""//applicationpath +"index"
+            };
             try
             {
-
                 var usr = g.UserTables.Where(s => s.UserName == model.UserName).FirstOrDefault();
 
                 if (usr != null && usr.UserPassword == model.UserPassword)
                 {
-                    retVal = true;
+                    um.UserTypeID = usr.UserTypeID;
+                    um.UFlag = true;
                 }
-
+                else
+                {
+                    um.UMessage = "Unable to Login!!";
+                }
             }
             catch (Exception ex)
             {
-                string d = ex.Message;
+                um.UMessage = ex.Message;
             }
-            return retVal;
+            return um;
         }
-        
+
     }
 }

@@ -52,18 +52,42 @@ namespace EventsGSUBusinessLibrary.Controllers
             }
             return retVal;
         }
+        //[Route("UserLogin")]
+        //public bool UserLogin(UserModel model)
+        //{
+        //    var retVal = false;
+        //    try
+        //    {
+        //        retVal = new Users().UserLogin(model);
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        var val = ex.Message;
+        //    }
+        //    return retVal;
+        //}
         [Route("UserLogin")]
-        public bool UserLogin(UserModel model)
+        public UserModel UserLogin(UserModel model)
         {
-            var retVal = false;
+            return new Users().UserLogin(model);
+        }
+
+        [Route("Create")]
+        public string Create(EventModel model)       
+        {
+            var retVal = "";
             try
             {
-                retVal = new Users().UserLogin(model);
+
+
+                var rVal = new Events().SaveEvents(model);
+
+
             }
             catch (Exception ex)
             {
-
-                var val = ex.Message;
+                retVal = ex.Message;
             }
             return retVal;
         }
