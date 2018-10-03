@@ -73,6 +73,18 @@ namespace EventsGSUBusinessLibrary.Controllers
             return new Users().UserLogin(model);
         }
 
+        [Route("GetEvents")]
+        public List<EventModel> GetEvents(EventModel model)
+        {
+            return new Events().GetEvents(model);
+        }
+
+        //[Route("GetEvents")]
+        //public EventModel GetEvents(EventModel model)
+        //{
+        //    return new EventModel();
+        //}
+
         [Route("Create")]
         public string Create(EventModel model)       
         {

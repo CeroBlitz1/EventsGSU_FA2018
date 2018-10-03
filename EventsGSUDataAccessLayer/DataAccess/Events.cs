@@ -42,5 +42,31 @@ namespace EventsGSUDataAccessLayer.DataAccess
             }
             return retVal;
         }
+
+        public List<EventModel> GetEvents(EventModel model)
+        {
+            var eventObj = new List<EventModel>();
+
+            try
+            {
+                //var et = g.EventsTables.OrderByDescending(i => i).Take(3).ToList();
+                var et = g.EventsTables.Take(3).ToList();
+                foreach (var e in et)
+                {
+                    var eModel = new EventModel();
+                    eModel.EventImage = e.EventImage;
+                    eModel.EventTitle = e.EventTitle;
+                    eModel.EventDate = e.CreatedDate.ToString();
+                    eModel.EventLocation = e.EventLocation;
+
+                    eventObj.Add(eModel);
+                }
+            }
+            catch (Exception ex)
+            {
+                string d = ex.Message;
+            }
+            return eventObj;
+        }
     }
 }
