@@ -22,7 +22,7 @@ namespace EventsGSUDataAccessLayer
     
         public int TicketID { get; set; }
         public Nullable<int> TicketQuantity { get; set; }
-        public Nullable<int> TicketPrice { get; set; }
+        public int TicketPrice { get; set; }
         public Nullable<int> EventID { get; set; }
         public string TicketImage { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }

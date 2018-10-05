@@ -15,7 +15,7 @@ namespace EventsGSUBusinessLibrary.Controllers
    [RoutePrefix("api/register")]
     public class RegisterController : ApiController
     {
-        GsuEventsDBEntities g = new GsuEventsDBEntities();
+        //GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
 
         [Route("Register")]
         public string Register(UserModel model)
@@ -77,6 +77,12 @@ namespace EventsGSUBusinessLibrary.Controllers
         public List<EventModel> GetEvents(EventModel model)
         {
             return new Events().GetEvents(model);
+        }
+
+        [Route("GetEventDetails")]
+        public List<EventDetailsModel> GetEventDetails(EventDetailsModel model)
+        {
+            return new Events().GetEventDetails(model);
         }
 
         //[Route("GetEvents")]

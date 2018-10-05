@@ -15,7 +15,7 @@ namespace EventsGSUBusinessLibrary.Controllers
     [RoutePrefix("api/payment")]
     public class PaymentController : ApiController
     {
-        GsuEventsDBEntities g = new GsuEventsDBEntities();
+        GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
         [Route("PaymentV")]
         public string PaymentV(PaymentModel model)
         {

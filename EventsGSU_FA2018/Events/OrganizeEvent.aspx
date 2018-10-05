@@ -46,11 +46,11 @@
                    </tr>
                    <tr>
                        
-                   <%--<td>Event Description</td>
+                   <td>Event Description</td>
                        <td>
                            <input type="text" id="txtEventDesc" placeholder="Please enter Description" size="700"   />
                        </td>
-                     </tr>--%>
+                     </tr>
               <thead>
                    <tr class="Success">
                        <td colspan="3">
@@ -147,10 +147,12 @@
                         eventtype: $('#txtEventType').val(),
                         ticketimage: $('#imgTicket').val(),
                         ticketprice: $('#txtTicketPrice').val(),
-                        ticketquantity: $('#TicketQuantity').val()
+                        ticketquantity: $('#TicketQuantity').val(),
+                        eventsdescription : $('#txtEventDesc').val()
                     },
                     success: function (s) {
                         $('#successmodal').modal(s);
+                        alert("Event Created");
                         
                     },
                     error: function (jqXHR) {

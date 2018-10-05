@@ -1,6 +1,7 @@
 ﻿using EventsGSUDataAccessLayer.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace EventsGSUDataAccessLayer
 {
     public class Users
     {
-        GsuEventsDBEntities g = new GsuEventsDBEntities();
+        GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
         public bool SaveUsers(UserModel model)
         {
             var retVal = false;
@@ -89,7 +90,7 @@ namespace EventsGSUDataAccessLayer
             {
                 UMessage = "Success",
                 UFlag = false,
-                ReturnUrl = ""//applicationpath +"index"
+                ReturnUrl = System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName)
             };
             try
             {

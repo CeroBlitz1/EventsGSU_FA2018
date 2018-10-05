@@ -15,10 +15,10 @@ namespace EventsGSUDataAccessLayer
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class GsuEventsDBEntities : DbContext
+    public partial class GsuEventsDBEntities1 : DbContext
     {
-        public GsuEventsDBEntities()
-            : base("name=GsuEventsDBEntities")
+        public GsuEventsDBEntities1()
+            : base("name=GsuEventsDBEntities1")
         {
         }
     
@@ -325,6 +325,19 @@ namespace EventsGSUDataAccessLayer
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> spAuthenticateUser(string userName, string userPassword)
+        {
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var userPasswordParameter = userPassword != null ?
+                new ObjectParameter("UserPassword", userPassword) :
+                new ObjectParameter("UserPassword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spAuthenticateUser", userNameParameter, userPasswordParameter);
         }
     }
 }

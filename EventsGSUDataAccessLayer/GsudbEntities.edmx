@@ -14,6 +14,7 @@
           <Property Name="UserID" Type="int" />
           <Property Name="CreatedDate" Type="date" />
           <Property Name="ModifiedDate" Type="date" />
+          <Property Name="EventID" Type="int" />
         </EntityType>
         <EntityType Name="EventsTable">
           <Key>
@@ -104,6 +105,18 @@
           <Property Name="CreatedDate" Type="date" />
           <Property Name="ModifiedDate" Type="date" />
         </EntityType>
+        <Association Name="FK_EventDetails_EventsTable">
+          <End Role="EventsTable" Type="Self.EventsTable" Multiplicity="0..1" />
+          <End Role="EventDetails" Type="Self.EventDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventsTable">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="EventDetails">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_EventDetails_UserTable">
           <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
           <End Role="EventDetails" Type="Self.EventDetails" Multiplicity="*" />
@@ -293,6 +306,10 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spAuthenticateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserPassword" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="GsuEventsDBModelStoreContainer">
           <EntitySet Name="EventDetails" EntityType="Self.EventDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventsTable" EntityType="Self.EventsTable" Schema="dbo" store:Type="Tables" />
@@ -302,6 +319,10 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TicketsTable" EntityType="Self.TicketsTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EventDetails_EventsTable" Association="Self.FK_EventDetails_EventsTable">
+            <End Role="EventsTable" EntitySet="EventsTable" />
+            <End Role="EventDetails" EntitySet="EventDetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_EventDetails_UserTable" Association="Self.FK_EventDetails_UserTable">
             <End Role="UserTable" EntitySet="UserTable" />
             <End Role="EventDetails" EntitySet="EventDetails" />
@@ -353,6 +374,8 @@
           <Property Name="UserID" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Precision="0" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+          <Property Name="EventID" Type="Int32" />
+          <NavigationProperty Name="EventsTable" Relationship="Self.FK_EventDetails_EventsTable" FromRole="EventDetails" ToRole="EventsTable" />
           <NavigationProperty Name="UserTable" Relationship="Self.FK_EventDetails_UserTable" FromRole="EventDetails" ToRole="UserTable" />
         </EntityType>
         <EntityType Name="EventsTable">
@@ -367,6 +390,7 @@
           <Property Name="UserID" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Precision="0" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="EventDetails" Relationship="Self.FK_EventDetails_EventsTable" FromRole="EventsTable" ToRole="EventDetails" />
           <NavigationProperty Name="UserTable" Relationship="Self.FK_EventsTable_UserTable" FromRole="EventsTable" ToRole="UserTable" />
           <NavigationProperty Name="PaymentTables" Relationship="Self.FK_PaymentTable_EventsTable" FromRole="EventsTable" ToRole="PaymentTable" />
           <NavigationProperty Name="TicketsTables" Relationship="Self.FK_TicketsTable_EventsTable" FromRole="EventsTable" ToRole="TicketsTable" />
@@ -461,6 +485,18 @@
           <NavigationProperty Name="PaymentTables" Relationship="Self.FK_PaymentTable_UserTable" FromRole="UserTable" ToRole="PaymentTable" />
           <NavigationProperty Name="RoleTable" Relationship="Self.FK_UserTable_RoleTable" FromRole="UserTable" ToRole="RoleTable" />
         </EntityType>
+        <Association Name="FK_EventDetails_EventsTable">
+          <End Role="EventsTable" Type="Self.EventsTable" Multiplicity="0..1" />
+          <End Role="EventDetails" Type="Self.EventDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventsTable">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="EventDetails">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_EventDetails_UserTable">
           <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
           <End Role="EventDetails" Type="Self.EventDetail" Multiplicity="*" />
@@ -569,7 +605,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="GsuEventsDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="GsuEventsDBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="EventDetails" EntityType="Self.EventDetail" />
           <EntitySet Name="EventsTables" EntityType="Self.EventsTable" />
           <EntitySet Name="PaymentHistoryTables" EntityType="Self.PaymentHistoryTable" />
@@ -578,6 +614,10 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TicketsTables" EntityType="Self.TicketsTable" />
           <EntitySet Name="UserTables" EntityType="Self.UserTable" />
+          <AssociationSet Name="FK_EventDetails_EventsTable" Association="Self.FK_EventDetails_EventsTable">
+            <End Role="EventsTable" EntitySet="EventsTables" />
+            <End Role="EventDetails" EntitySet="EventDetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_EventDetails_UserTable" Association="Self.FK_EventDetails_UserTable">
             <End Role="UserTable" EntitySet="UserTables" />
             <End Role="EventDetails" EntitySet="EventDetails" />
@@ -694,6 +734,10 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="spAuthenticateUser" ReturnType="Collection(Int32)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="UserPassword" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -711,7 +755,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="GsuEventsDBModelStoreContainer" CdmEntityContainer="GsuEventsDBEntities">
+        <EntityContainerMapping StorageEntityContainer="GsuEventsDBModelStoreContainer" CdmEntityContainer="GsuEventsDBEntities1">
           <EntitySetMapping Name="EventDetails">
             <EntityTypeMapping TypeName="GsuEventsDBModel.EventDetail">
               <MappingFragment StoreEntitySet="EventDetails">
@@ -720,6 +764,7 @@
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -847,6 +892,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="GsuEventsDBModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="GsuEventsDBModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="spAuthenticateUser" FunctionName="GsuEventsDBModel.Store.spAuthenticateUser" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

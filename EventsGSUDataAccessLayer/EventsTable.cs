@@ -11,14 +11,13 @@ namespace EventsGSUDataAccessLayer
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Web;
-
+    
     public partial class EventsTable
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public EventsTable()
         {
+            this.EventDetails = new HashSet<EventDetail>();
             this.PaymentTables = new HashSet<PaymentTable>();
             this.TicketsTables = new HashSet<TicketsTable>();
         }
@@ -32,6 +31,8 @@ namespace EventsGSUDataAccessLayer
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EventDetail> EventDetails { get; set; }
         public virtual UserTable UserTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PaymentTable> PaymentTables { get; set; }
