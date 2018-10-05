@@ -130,6 +130,7 @@
                 alert("I am here");
                 var clickItemImageEle = document.getElementById("indexImage1");
                 var eventServerID = clickItemImageEle.getAttribute("data-eventID");
+
                 
 
                 window.location.href = "http://localhost/EventsGSU_FA2018/Events/Event.aspx?eventServerID=" + eventServerID;
