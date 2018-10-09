@@ -127,33 +127,33 @@
             $('#indexImage1').click(function () {
 
 
-                alert("I am here");
+                //alert("I am here");
                 var clickItemImageEle = document.getElementById("indexImage1");
-                var eventServerID = clickItemImageEle.getAttribute("data-eventID");
+                var eventID = clickItemImageEle.getAttribute("data-eventID");
 
                 
 
-                window.location.href = "http://localhost/EventsGSU_FA2018/Events/Event.aspx?eventServerID=" + eventServerID;
+                window.location.href = "http://localhost/EventsGSU_FA2018/Events/Event.aspx?eventID=" + eventID;
             });
              $('#indexImage2').click(function () {
 
 
-                alert("I am here");
+                //alert("I am here");
                 var clickItemImageEle = document.getElementById("indexImage2");
-                var eventServerID = clickItemImageEle.getAttribute("data-eventID");
+                var eventID = clickItemImageEle.getAttribute("data-eventID");
                 
 
-                window.location.href = "http://localhost/EventsGSU_FA2018/Events/Event.aspx?eventServerID=" + eventServerID;
+                window.location.href = "http://localhost/EventsGSU_FA2018/Events/Event.aspx?eventID=" + eventID;
             });
              $('#indexImage3').click(function () {
 
 
-                alert("I am here");
+                //alert("I am here");
                 var clickItemImageEle = document.getElementById("indexImage3");
-                var eventServerID = clickItemImageEle.getAttribute("data-eventID");
+                var eventID = clickItemImageEle.getAttribute("data-eventID");
                 
 
-                window.location.href = "http://localhost/EventsGSU_FA2018/Events/Event.aspx?eventServerID=" + eventServerID;
+                window.location.href = "http://localhost/EventsGSU_FA2018/Events/Event.aspx?eventID=" + eventID;
                  });
 
                 
@@ -217,7 +217,7 @@
                     firstItemImageEle.setAttribute("data-eventID", response[0].EventID); 
                     $('#indexEventID').data('eventId', response[0].EventID);
 
-                     $('#indexImage2')[0].src = 'http://localhost/EventsGSU_FA2018/' + response[1].EventImage;
+                    $('#indexImage2')[0].src = 'http://localhost/EventsGSU_FA2018/' + response[1].EventImage;
                     $('#event2Date').text(response[1].EventDate);
                     $('#event2Location').text(response[1].EventLocation);
                     $('#event2Title').text(response[1].EventTitle);
