@@ -6,8 +6,8 @@
                 <td>
                     <asp:ImageButton ID="ImageButton1" runat="server" Height="127px" Width="187px" />
                 </td>
-                <td>Description:
-                    <asp:Label ID="Label_description" runat="server" Text="Description_Label"></asp:Label>
+                <td>Description:<div id="eventDesc"></div>
+                    <%--<asp:Label ID="Label_description" runat="server" Text="Description_Label"></asp:Label>--%>
                 </td>
                 <td>&nbsp;</td>
                 <td></td>
@@ -32,7 +32,7 @@
                 <td style="height: 20px">Total</td>
                 <td style="height: 20px"></td>
                 <td style="height: 20px">&nbsp;</td>
-                <td style="height: 20px">$<asp:Label ID="Label_amount" runat="server" Text="Amunt_label"></asp:Label>
+                <td style="height: 20px">$<div id="ticketamount"></div><%--<asp:Label ID="Label_amount" runat="server" Text="Amunt_label"></asp:Label>--%>
                 &nbsp;</td>
             </tr>
             <tr>
@@ -157,42 +157,124 @@
      <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
     <script type="text/javascript">
+        function getQueryParams(queryString) {
+            var query = (queryString || window.location.search).substring(1);
+            if (!query) {
+                return false;
+            }
+            return _
+                .chain(query.split('&'))
+                .map(function (params) {
+                    var p = params.split('=');
+                    return [p[0], decodeURIComponent(p[1])];
+                })
+                .object()
+                .value();
+        }
         $(document).ready(function () {
-            $('#Close').click(function(){
+            $(function () {
+                $(document).ready(function () {
+                    console.log('window.location: ', window.location);
+                    console.log('window.location.search: ', window.location.search);
 
-                $('#error').hide('fade');
+
+                    var queryParams = getQueryParams();
+                    console.log('queryParams: ', queryParams);
+
+                });
             });
-            $('#btnPayment').click(function () {
+
+            GetEventDetails();
+
+
+            function GetEventDetails() {
+
+
+                var queryParams = getQueryParams();
 
                 $.ajax({
-                    url: 'http://localhost/EventsGSUBusinessLibrary/api/payment/paymentv',
-                    method: 'POST',
+                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/getdetailsbyid?eventId=' + queryParams.eventID,
+                    method: 'GET',
                     data: {
-                        firstname: $('#txtFN').val(),
-                        lastname: $('#txtLN').val(),
-                        useremail: $('#txtEmail').val(),
-                        userphonenumber: $('#txtPhNo').val(),
-                        usercardnumber: $('#txtCardNumber').val(),
-                        usercardcvv: $('#txtCVV').val(),
-                        useraddress: $('#txtAddress').val(),
-                        userzipcode: $('#txtzip').val(),
-                        userstate: $('#txtstate').val(),
-                        userpaymentpaid : $('#Label_description').val()
+                        EventLocation: "",
+                        EventImage: ""
                     },
-                    success: function (s) {
-                        $('#successmodal').modal(s);
-                        
+
+
+                    success: function (response) {
+                        debugger;
+
+                        $('#indexImage1')[0].src = 'http://localhost/EventsGSU_FA2018/' + response[0].EventImage;
+                        $('#event1Date').text(response[0].EventDate);
+                        $('#event1Location').text(response[0].EventLocation);
+                        $('#event1Title').text(response[0].EventTitle);
+                        $('#indexEventID').text(response[0].EventID);
+                        $('#Indexdescription').text(response[1].EventsDescription);
+                        $('#btnpayment').text(response[2].TicketPrice);
+                        $('#indexTicketid').val(response[2].TicketID);
+                        var firstItemImageEle = document.getElementById("eventTicketID");
+                        firstItemImageEle.setAttribute("data-ticketID", response[2].TicketID);
+                        $('#indexTicketid').data('ticketID', response[2].TicketID);
+
+                        $('#btnpayment').click(function () {
+
+
+
+                            var clickItemImageEle = document.getElementById("eventTicketID");
+                            var TicketID = clickItemImageEle.getAttribute("data-ticketID");
+
+
+
+                            window.location.href = "http://localhost/EventsGSU_FA2018/Payment/finalize_payment.aspx?TicketID=" + TicketID;
+                        });
                     },
-                    error: function (jqXHR) {
-                        $('#ErrorText').text(jqXHR.responseText);
+                    error: function (error) {
+                        $('#ErrorText').text(error.responseText);
                         $('#error').show('fade');
 
                     }
-                   
+
                 });
-                
-            });
+
+            }
         });
+        
+        //$(document).ready(function () {
+        //    $('#Close').click(function(){
+
+        //        $('#error').hide('fade');
+        //    });
+        //    $('#btnPayment').click(function () {
+
+        //        $.ajax({
+        //            url: 'http://localhost/EventsGSUBusinessLibrary/api/payment/paymentv',
+        //            method: 'POST',
+        //            data: {
+        //                firstname: $('#txtFN').val(),
+        //                lastname: $('#txtLN').val(),
+        //                useremail: $('#txtEmail').val(),
+        //                userphonenumber: $('#txtPhNo').val(),
+        //                usercardnumber: $('#txtCardNumber').val(),
+        //                usercardcvv: $('#txtCVV').val(),
+        //                useraddress: $('#txtAddress').val(),
+        //                userzipcode: $('#txtzip').val(),
+        //                userstate: $('#txtstate').val(),
+        //                userpaymentpaid : $('#ticketamount').val()
+        //            },
+        //            success: function (s) {
+        //                $('#successmodal').modal(s);
+                        
+        //            },
+        //            error: function (jqXHR) {
+        //                $('#ErrorText').text(jqXHR.responseText);
+        //                $('#error').show('fade');
+
+        //            }
+                   
+        //        });
+                
+        //    });
+        //});
     </script>
 </asp:Content>
 

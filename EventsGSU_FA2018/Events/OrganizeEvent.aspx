@@ -64,7 +64,7 @@
                        <td>Ticket Type</td>
                        <td>
                             
-                           <input type="text" id="txtTicketType" placeholder="Please enter Type of Event" size="400" />
+                           <input type="text" id="txtTicketType" placeholder="Please enter Type of ticket" size="400" />
                        </td>
 
                    </tr>
