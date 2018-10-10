@@ -26,8 +26,9 @@
                 <td></td>
 
             </tr>
-    </div>
-    </table>
+    
+         </table>
+        </div>
         <div class="Well">
             <div class="row">
 
@@ -36,7 +37,7 @@
                 </div>
                 <div class="column col-xs-3" id="sidebar">
                     <div id="Indexdescription"></div>
-                    <div id="eventTicketID"></div><button id="btnpayment" type="button" class="btn btn-success btn-lg"></button>
+                    <div id="indexEventID"></div><button id="btnpayment" type="button" class="btn btn-success btn-lg"></button>
                 </div>
             </div>
 
@@ -66,8 +67,20 @@
                     //console.log('window.location: ', window.location);
                     //console.log('window.location.search: ', window.location.search);
 
+                    //var urlParams = new URLSearchParams(window.location.search);
+                    $.urlParam = function (name) {
+                        var results = new RegExp('[\?&]' + name + '=([^&#]*)')
+                            .exec(window.location.href);
+                        if (results == null) {
+                            return 0;
+                        }
+                        return results[1] || 0;
+                    }
+                    debugger;
+                    console.log($.urlParam('eventID')); //edit
 
-                    var queryParams = getQueryParams();
+
+                    //var queryParams = getQueryParams();
                     //console.log('queryParams: ', queryParams);
 
                 });
@@ -98,48 +111,24 @@
                         $('#event1Location').text(response[0].EventLocation);
                         $('#event1Title').text(response[0].EventTitle);
                         $('#indexEventID').text(response[0].EventID);
-                        $('#Indexdescription').text(response[1].EventsDescription);
-                        $('#btnpayment').text(response[2].TicketPrice);
-                        $('#indexTicketid').val(response[2].TicketID);
-                        var firstItemImageEle = document.getElementById("eventTicketID");
-                        firstItemImageEle.setAttribute("data-ticketID", response[2].TicketID);
-                        $('#indexTicketid').data('ticketID', response[2].TicketID);
+                        $('#Indexdescription').text(response[0].EventsDescription);
+                        $('#btnpayment').text(response[0].TicketPrice);
+                        $('#indexEventID').val(response[0].EventID);
+                        var firstItemImageEle = document.getElementById("indexEventID");
+                        firstItemImageEle.setAttribute("data-eventID", response[0].EventID); 
+                        $('#indexEventID').data('eventId', response[0].EventID);
 
                         $('#btnpayment').click(function () {
 
 
 
-                            var clickItemImageEle = document.getElementById("eventTicketID");
-                            var TicketID = clickItemImageEle.getAttribute("data-ticketID");
+                            var clickItemImageEle = document.getElementById("indexEventID");
+                            var eventID = clickItemImageEle.getAttribute("data-eventID");
 
 
 
-                            window.location.href = "http://localhost/EventsGSU_FA2018/Payment/finalize_payment.aspx?TicketID=" + TicketID;
+                            window.location.href = "http://localhost/EventsGSU_FA2018/Payment/finalize_payment.aspx?eventID=" + eventID;
                         });
-
-
-
-                        //$('#indexImage2')[0].src = 'http://localhost/EventsGSU_FA2018/' + response[1].EventImage;
-                        //$('#event2Date').text(response[1].EventDate);
-                        //$('#event2Location').text(response[1].EventLocation);
-                        //$('#event2Title').text(response[1].EventTitle);
-                        //$('#indexEventID1').val(response[1].EventID);
-
-                        //$('#indexImage3')[0].src = 'http://localhost/EventsGSU_FA2018/' + response[2].EventImage;
-                        //$('#event3Date').text(response[2].EventDate);
-                        //$('#event3Location').text(response[2].EventLocation);
-                        //$('#event3Title').text(response[2].EventTitle);
-                        //$('#indexEventID2').val(response[2].EventID);
-                        //if (response.EFlag) {
-                        //    window.location.href = "http://localhost/EventsGSU_FA2018/Events/Event.aspx";
-                        //}
-                        //else {
-                        //    $('#ErrorText').text(response.UMessage);
-                        //    $('#error').show('fade');
-                        //}
-                        //$('#successmodal').text(response.UserEmail);
-                        //$("#error").show('fade');
-
 
                     },
                     error: function (error) {

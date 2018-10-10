@@ -35,7 +35,7 @@
                        <td>Event Date</td>
                        <td>
                            <input type="date" id="EventDate"  />
-                       </td>
+                       </td>    
                    </tr>--%>
                    <tr>
                        <td>Event location</td>
@@ -82,7 +82,7 @@
                        <td>Ticket Quantity</td>
                        <td>
                             
-                           <input type="number" id="TicketQuantity"  size="222" />
+                           <input type="number" id="TicketQuantity" />
                        </td>
 
                    </tr>

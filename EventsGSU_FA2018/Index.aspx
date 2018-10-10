@@ -89,7 +89,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <div id="indexEventID2"></div><img id="indexImage3" src="Images/img3.jpg" style="width: 350px" /></td>
+                                    <div id="indexEventID2" class='Iamstupidclss'></div><img id="indexImage3" src="Images/img3.jpg" style="width: 350px" /></td>
                             </tr>
                             <tr>
                                 <td><div id="event3Date"></div></td>

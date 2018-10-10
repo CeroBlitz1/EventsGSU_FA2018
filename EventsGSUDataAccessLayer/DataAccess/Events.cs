@@ -89,49 +89,92 @@ namespace EventsGSUDataAccessLayer.DataAccess
         }
         public List<EventDetailsModel> GetDetailsById(int? eventID)
         {
-            var eventObj = new List<EventDetailsModel>();
+            var eventdetailslist = new List<EventDetailsModel>();
 
-            
+
 
             try
             {
-                var ed = g.EventDetails.Where(s => s.EventID == eventID).ToList(); 
-                var et = g.EventsTables.Where(s => s.EventID == eventID).ToList();
-                var tic = g.TicketsTables.Where(s => s.EventID == eventID).ToList();
+                //var ed = g.EventDetails.Where(s => s.EventID == eventID).ToList();
+                //var et = g.EventsTables.Where(s => s.EventID == eventID).ToList();
+                //var tic = g.TicketsTables.Where(s => s.EventID == eventID).ToList();
+
+
+
+             
+               
                 
-                foreach (var e in et)
+                var obj1 = (from e in g.EventsTables
+                            join edd in g.EventDetails on e.EventID equals edd.EventID
+                            join tt in g.TicketsTables on e.EventID equals tt.EventID
+
+                            where e.EventID == eventID
+                            select new
+                            {
+                                e.EventImage,
+                                e.EventTitle,
+                                e.CreatedDate,
+                                e.EventID
+                            ,
+                                edd.EventsDescription,
+                                tt.TicketID,
+                                tt.TicketPrice
+                            }
+                             ).ToList();
+
+
+                foreach (var item in obj1)
                 {
-                    var eModel = new EventDetailsModel();
-                    eModel.EventImage = e.EventImage;
-                    eModel.EventTitle = e.EventTitle;
-                    eModel.EventDate = e.CreatedDate.ToString();
-                    eModel.EventID = e.EventID;
-                    eventObj.Add(eModel);
+                    var eventdetailsobject = new EventDetailsModel(); // eventObject
+
+                    eventdetailsobject.EventID = item.EventID;
+                    eventdetailsobject.EventTitle = item.EventTitle;
+                    eventdetailsobject.EventImage = item.EventImage;
+                    eventdetailsobject.TicketID = item.TicketID;
+                    eventdetailsobject.TicketPrice = item.TicketPrice;
+                    eventdetailsobject.EventsDescription = item.EventsDescription;
+                    eventdetailsobject.EventDate = item.CreatedDate.ToString();
+                    eventdetailslist.Add(eventdetailsobject);
                 }
-                foreach(var e in ed)
-                {
-                    var eModel1 = new EventDetailsModel();
-                    eModel1.EventsDescription = e.EventsDescription;
-                    eventObj.Add(eModel1);
-                }
-                foreach(var e in tic)
-                {
-                    var eModel2 = new EventDetailsModel();
-                    eModel2.TicketID = e.TicketID;
-                    eModel2.TicketPrice = e.TicketPrice;
-                    eventObj.Add(eModel2);
-                    
-                }
-                
-                
+                //return eventObj2;
+
+
+
+
+                //foreach (var e in et)
+                //{
+                //    var eModel = new EventDetailsModel();
+                //    eModel.EventImage = e.EventImage;
+                //    eModel.EventTitle = e.EventTitle;
+                //    eModel.EventDate = e.CreatedDate.ToString();
+                //    eModel.EventID = e.EventID;
+                //    eventObj.Add(eModel);
+                //}
+                //foreach (var e in ed)
+                //{
+                //    var eModel1 = new EventDetailsModel();
+                //    eModel1.EventsDescription = e.EventsDescription;
+                //    eventObj.Add(eModel1);
+                //}
+                //foreach (var e in tic)
+                //{
+                //    var eModel2 = new EventDetailsModel();
+                //    eModel2.TicketID = e.TicketID;
+                //    eModel2.TicketPrice = e.TicketPrice;
+                //    eventObj.Add(eModel2);
+
+                //}
+
+
 
             }       
             catch(Exception ex)
             {
                 string d = ex.Message;
             }
-            return eventObj;
+            return eventdetailslist;
         }
+
         public List<EventDetailsModel> GetEventDetails(EventDetailsModel model)
         {
             var eventObj = new List<EventDetailsModel>();
