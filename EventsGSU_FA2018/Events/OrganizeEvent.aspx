@@ -31,12 +31,12 @@
                            <input type="file" id="fileimg" />
                        </td>
                    </tr>
-                   <%--<tr>
+                   <tr>
                        <td>Event Date</td>
                        <td>
                            <input type="date" id="EventDate"  />
                        </td>    
-                   </tr>--%>
+                   </tr>
                    <tr>
                        <td>Event location</td>
                        <td>
@@ -127,9 +127,23 @@
            </div>
        </div>
    </div>
-     <script src="../Scripts/jquery-3.3.1.min.js"></script>
+  <%--  <script src="../Scripts/jQuery.FileUpload/jquery.fileupload.js"></script>
+    <script src="../Scripts/jQuery.FileUpload/jquery.iframe-transport.js"></script> --%>
+    <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
     <script type="text/javascript">
+        //$(function () {
+        //    $("#fileimg").fileupload({
+        //        'uploader': '../Uploadify/uploader.swf',
+        //        'cancelImg': '../Uploadify/cancel.png',
+        //        'buttonText': 'Browse Files',
+        //        'script': '/Home/Index/',
+        //        'folder': 'Images',
+        //        'fileDesc': 'Image Files',
+        //        'fileExt': '*.jpg;*.jpeg;*.gif;*.png',
+        //        'multi': true,
+        //        'auto': true
+        //    });
         $(document).ready(function () {
             $('#Close').click(function(){
 
@@ -138,10 +152,11 @@
             $('#btnCreateEvent').click(function () {
 
                 $.ajax({
-                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/Create',
+                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/CreateEvent',
                     method: 'POST',
                     data: {
                         eventtitle: $('#txtTitle').val(),
+                        eventdate: $('EventDate').val(),
                         eventlocation: $('#txtEventLocation').val(),
                         eventimage: $('#fileimg').val(),
                         eventtype: $('#txtEventType').val(),
@@ -164,6 +179,8 @@
                 });
                 
             });
+            
         });
+        //});
     </script>
 </asp:Content>

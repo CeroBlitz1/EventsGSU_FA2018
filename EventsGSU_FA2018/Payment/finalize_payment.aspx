@@ -201,13 +201,21 @@
         $(document).ready(function () {
             $(function () {
                 $(document).ready(function () {
-                    console.log('window.location: ', window.location);
-                    console.log('window.location.search: ', window.location.search);
+                   
+
+                    $.urlParam = function (name) {
+                        var results = new RegExp('[\?&]' + name + '=([^&#]*)')
+                            .exec(window.location.href);
+                        if (results == null) {
+                            return 0;
+                        }
+                        return results[1] || 0;
+                    }
+                    debugger;
+                    console.log($.urlParam('eventID'));
 
 
-                    var queryParams = getQueryParams();
-                    console.log('queryParams: ', queryParams);
-
+   
                 });
             });
             GetEventDetails();
@@ -233,29 +241,15 @@
                         $('#event1Location').text(response[0].EventLocation);
                         $('#event1Title').text(response[0].EventTitle);
                         $('#indexEventID').text(response[0].EventID);
-                        $('#eventDesc').text(response[1].EventsDescription);
-                        $('#ticketAmount').text(response[2].TicketPrice);
-                        $('#indexTicketid').val(response[2].TicketID);
-                        //var firstItemImageEle = document.getElementById("eventTicketID");
-                        //firstItemImageEle.setAttribute("data-ticketID", response[2].TicketID);
-                        //$('#indexTicketid').data('ticketID', response[2].TicketID);
-
-                        //$('#btnpayment').click(function () {
-
-
-
-                        //    var clickItemImageEle = document.getElementById("eventTicketID");
-                        //    var TicketID = clickItemImageEle.getAttribute("data-ticketID");
-
-
-
-                        //    window.location.href = "http://localhost/EventsGSU_FA2018/Payment/finalize_payment.aspx?TicketID=" + TicketID;
-                        //});
+                        $('#eventDesc').text(response[0].EventsDescription);
+                        $('#ticketAmount').text(response[0].TicketPrice);
+                        $('#indexTicketid').val(response[0].TicketID);
 
                     },
                     error: function (error) {
                         $('#ErrorText').text(error.responseText);
                         $('#error').show('fade');
+
                         $(document).ready(function () {
                             $('#Close').click(function () {
 
@@ -276,7 +270,7 @@
                                         useraddress: $('#txtAddress').val(),
                                         userzipcode: $('#txtzip').val(),
                                         userstate: $('#txtstate').val(),
-                                        userpaymentpaid: $('#Label_description').val()
+                                        userpaymentpaid: $('#ticketAmount').val()
                                     },
                                     success: function (s) {
                                         $('#successmodal').modal(s);

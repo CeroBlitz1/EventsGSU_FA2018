@@ -112,8 +112,18 @@
                         userpassword: $('#txtPassword').val(),
                         userphonenumber: $('#txtPhoneNumber').val()
                     },
-                    success: function (s) {
-                        $('#successmodal').modal(s);
+                    success: function (response) {
+                        //$('#successmodal').modal(s);
+                        if (response.UFlag) {
+                            $('#ErrorText').text(response.UMessage);
+                             $('#error').show('fade');
+                            //window.location.href = "http://localhost/EventsGSU_FA2018/Account/login.aspx";
+                        }
+                        else
+                        {
+                            $('#ErrorText').text(response.UMessage);
+                            $('#error').show('fade');
+                        }
                         
                     },
                     error: function (jqXHR) {

@@ -18,39 +18,9 @@ namespace EventsGSUBusinessLibrary.Controllers
         //GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
 
         [Route("Register")]
-        public string Register(UserModel model)
+        public  UserModel Register(UserModel model)
         {
-            var retVal = "";
-            try
-            {
-              
-                #region Test Code
-                //var userObj = new UserTable();
-
-
-                ////userObj.UserID
-                //userObj.UserPassword = "12345";
-                //userObj.UserName = model.UserName;
-                //userObj.UserEmail = "shd@gmail.com";
-                //userObj.UserPhoneNumber = 12;
-                //userObj.isActive = "Y";
-                //userObj.UserTypeID = 2;
-                //userObj.CreatedDate = DateTime.Now;
-                //userObj.ModifiedDate = DateTime.Now;
-
-                //g.UserTables.Add(userObj);
-                //g.SaveChanges();
-                #endregion
-
-                var rVal = new Users().SaveUsers(model);
-
-
-            }
-            catch (Exception ex)
-            {
-                retVal = ex.Message;
-            }
-            return retVal;
+            return new Users().SaveUsers(model);
         }
         //[Route("UserLogin")]
         //public bool UserLogin(UserModel model)
@@ -90,6 +60,11 @@ namespace EventsGSUBusinessLibrary.Controllers
         {
             return new Events().GetDetailsById(eventID);
         }
+        [Route("GetAllEvents")]
+        public List<EventModel> GetAllEvents(EventModel model)
+        {
+            return new Events().GetAllEvents(model); 
+        }
 
         //[Route("GetEvents")]
         //public EventModel GetEvents(EventModel model)
@@ -97,8 +72,8 @@ namespace EventsGSUBusinessLibrary.Controllers
         //    return new EventModel();
         //}
 
-        [Route("Create")]
-        public string Create(EventModel model)       
+        [Route("CreateEvent")]
+        public string CreateEvent(EventModel model)       
         {
             var retVal = "";
             try
@@ -130,6 +105,12 @@ namespace EventsGSUBusinessLibrary.Controllers
         //    }
         //    return Val; ;
         //}
+
+        [Route ("GetPaymentHistoryadmin")]
+        public List<AdminModel> GetPaymentHistoryadmin(AdminModel model)
+        {
+            return new Admin().GetPaymentHistoryadmin(model);
+        }
 
     }
 }

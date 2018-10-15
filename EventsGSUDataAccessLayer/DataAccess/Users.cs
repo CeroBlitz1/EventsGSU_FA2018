@@ -10,41 +10,70 @@ namespace EventsGSUDataAccessLayer
 {
     public class Users
     {
-        GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
-        public bool SaveUsers(UserModel model)
+        GsuEventsDBEntities g = new GsuEventsDBEntities();
+        public UserModel SaveUsers(UserModel model)
         {
-            var retVal = false;
+
+
+            var um = new UserModel
+            {
+                UMessage = "Success Please proceed for login",
+                UFlag = false,
+                
+            };
             try
             {
-                var userObj = new UserTable();
-
-                userObj.UserPassword = model.UserPassword;
-                userObj.UserName = model.UserName;
-                userObj.UserEmail = model.UserEmail;
-                userObj.UserPhoneNumber = model.UserPhoneNumber;
-                userObj.isActive = "Y";
-                userObj.UserTypeID = 1;
-                userObj.CreatedDate = DateTime.Now;
-                userObj.ModifiedDate = DateTime.Now;
-
-               // var s = model.UserEmail;
-
+                var usr = g.UserTables.Where(s => s.UserName == model.UserName).FirstOrDefault();
                 
-                
-                g.UserTables.Add(userObj);
-                g.SaveChanges();
+                    var usersObj = new UserTable();
 
-                retVal = true;
+                    usersObj.UserPassword = model.UserPassword;
+                    usersObj.UserName = model.UserName;
+                    usersObj.UserEmail = model.UserEmail;
+                    usersObj.UserPhoneNumber = model.UserPhoneNumber;
+                    usersObj.isActive = "Y";
+                    usersObj.UserTypeID = 1;
+                    usersObj.CreatedDate = DateTime.Now;
+                    usersObj.ModifiedDate = DateTime.Now;
+                    g.UserTables.Add(usersObj);
+
+                if (usr == null)
+                {
+                    g.SaveChanges();
+                    um.UFlag = true;
+                }
+                else
+                {
+                    um.UMessage = "Username/Email already Exists";
+                }
+                
             }
             catch (Exception ex)
             {
-                string d = ex.Message;
+                um.UMessage = ex.Message;
+
             }
-            return retVal;
+            return um;
         }
 
 
+
         //public bool SaveUsers()
+        //var usersObj = new UserTable();
+
+        //usersObj.UserPassword = model.UserPassword;
+        //usersObj.UserName = model.UserName;
+        //usersObj.UserEmail = model.UserEmail;
+        //usersObj.UserPhoneNumber = model.UserPhoneNumber;
+        //usersObj.isActive = "Y";
+        //usersObj.UserTypeID = 1;
+        //usersObj.CreatedDate = DateTime.Now;
+        //usersObj.ModifiedDate = DateTime.Now;
+        //g.UserTables.Add(usersObj);
+
+        //g.SaveChanges();
+        //Um.UMessage = "Success";
+        //Uflag = true;
         //{
         //    var retVal = false;
         //    try

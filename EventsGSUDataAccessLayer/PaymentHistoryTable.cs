@@ -15,7 +15,7 @@ namespace EventsGSUDataAccessLayer
     public partial class PaymentHistoryTable
     {
         public int PaymentHistoryID { get; set; }
-        public string UserPaymentCode { get; set; }
+        public string UserTypeID { get; set; }
         public Nullable<int> UserID { get; set; }
         public Nullable<int> PaymentID { get; set; }
     

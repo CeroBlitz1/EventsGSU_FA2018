@@ -49,69 +49,62 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\Admin.cs" />
     <Compile Include="DataAccess\Events.cs" />
     <Compile Include="DataAccess\Payment.cs" />
     <Compile Include="EventDetail.cs">
-      <DependentUpon>GsudbEntities.tt</DependentUpon>
+      <DependentUpon>GsuDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="EventsTable.cs">
-      <DependentUpon>GsudbEntities.tt</DependentUpon>
+      <DependentUpon>GsuDBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="GsudbEntities.Context.cs">
+    <Compile Include="GsuDBEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GsudbEntities.Context.tt</DependentUpon>
+      <DependentUpon>GsuDBEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="GsudbEntities.cs">
+    <Compile Include="GsuDBEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GsudbEntities.tt</DependentUpon>
+      <DependentUpon>GsuDBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="GsudbEntities.Designer.cs">
+    <Compile Include="GsuDBEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GsudbEntities.edmx</DependentUpon>
+      <DependentUpon>GsuDBEntities.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminModel.cs" />
     <Compile Include="Models\EventDetailsModel.cs" />
     <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\PaymentModel.cs" />
     <Compile Include="Models\TicketModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="PaymentHistoryTable.cs">
-      <DependentUpon>GsudbEntities.tt</DependentUpon>
+      <DependentUpon>GsuDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="PaymentTable.cs">
-      <DependentUpon>GsudbEntities.tt</DependentUpon>
+      <DependentUpon>GsuDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataAccess\Users.cs" />
     <Compile Include="RoleTable.cs">
-      <DependentUpon>GsudbEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>GsudbEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>GsudbEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>GsudbEntities.tt</DependentUpon>
+      <DependentUpon>GsuDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TicketsTable.cs">
-      <DependentUpon>GsudbEntities.tt</DependentUpon>
+      <DependentUpon>GsuDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="UserTable.cs">
-      <DependentUpon>GsudbEntities.tt</DependentUpon>
+      <DependentUpon>GsuDBEntities.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="GsudbEntities.edmx">
+    <EntityDeploy Include="GsuDBEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>GsudbEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>GsuDBEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="GsudbEntities.edmx.diagram">
-      <DependentUpon>GsudbEntities.edmx</DependentUpon>
+    <None Include="GsuDBEntities.edmx.diagram">
+      <DependentUpon>GsuDBEntities.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -119,15 +112,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GsudbEntities.Context.tt">
+    <Content Include="GsuDBEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GsudbEntities.edmx</DependentUpon>
-      <LastGenOutput>GsudbEntities.Context.cs</LastGenOutput>
+      <DependentUpon>GsuDBEntities.edmx</DependentUpon>
+      <LastGenOutput>GsuDBEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="GsudbEntities.tt">
+    <Content Include="GsuDBEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GsudbEntities.edmx</DependentUpon>
-      <LastGenOutput>GsudbEntities.cs</LastGenOutput>
+      <DependentUpon>GsuDBEntities.edmx</DependentUpon>
+      <LastGenOutput>GsuDBEntities.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

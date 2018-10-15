@@ -24,15 +24,15 @@ namespace EventsGSUDataAccessLayer
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserEmail { get; set; }
-        public Nullable<int> UserPhoneNumber { get; set; }
-        public Nullable<int> UserCardNumber { get; set; }
-        public Nullable<System.DateTime> UserCardExpiration { get; set; }
-        public Nullable<int> UserCardCVV { get; set; }
+        public string UserPhoneNumber { get; set; }
+        public string UserCardNumber { get; set; }
+        public DateTime UserCardExpiration { get; set; }
+        public int UserCardCVV { get; set; }
         public string UserAddress { get; set; }
-        public Nullable<int> UserZipCode { get; set; }
+        public string UserZipCode { get; set; }
         public string UserState { get; set; }
-        public Nullable<int> UserPaymentPaid { get; set; }
-        public string UserTypeCode { get; set; }
+        public string UserPaymentPaid { get; set; }
+        public Nullable<int> UserTypeID { get; set; }
         public Nullable<int> TicketID { get; set; }
         public Nullable<int> UserID { get; set; }
         public Nullable<int> EventID { get; set; }

@@ -9,7 +9,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
 {
     public class Payment
     {
-        GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
+        GsuEventsDBEntities g = new GsuEventsDBEntities();
         public bool SavePayment(PaymentModel model)
         {
             var retVal = false;

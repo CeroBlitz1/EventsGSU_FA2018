@@ -4,15 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="97a09fe8797e43d9af540396a7769c25" Name="Diagram1">
-        <EntityTypeShape EntityType="GsuEventsDBModel.EventDetail" Width="1.5" PointX="7.5" PointY="7.75" IsExpanded="true" />
+      <Diagram DiagramId="dda71afc60ca438788394ac7a3b995fa" Name="Diagram1">
+        <EntityTypeShape EntityType="GsuEventsDBModel.EventDetail" Width="1.5" PointX="7.5" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GsuEventsDBModel.EventsTable" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GsuEventsDBModel.PaymentHistoryTable" Width="1.5" PointX="12" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="GsuEventsDBModel.PaymentTable" Width="1.5" PointX="9.75" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GsuEventsDBModel.RoleTable" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GsuEventsDBModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GsuEventsDBModel.PaymentHistoryTable" Width="1.5" PointX="12" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GsuEventsDBModel.PaymentTable" Width="1.5" PointX="9.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GsuEventsDBModel.RoleTable" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="GsuEventsDBModel.TicketsTable" Width="1.5" PointX="7.5" PointY="15.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="GsuEventsDBModel.UserTable" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GsuEventsDBModel.UserTable" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
         <AssociationConnector Association="GsuEventsDBModel.FK_EventDetails_EventsTable" ManuallyRouted="false" />
         <AssociationConnector Association="GsuEventsDBModel.FK_EventDetails_UserTable" ManuallyRouted="false" />
         <AssociationConnector Association="GsuEventsDBModel.FK_EventsTable_UserTable" ManuallyRouted="false" />
