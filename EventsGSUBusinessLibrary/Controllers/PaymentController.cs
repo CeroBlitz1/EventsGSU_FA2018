@@ -19,14 +19,11 @@ namespace EventsGSUBusinessLibrary.Controllers
         [Route("PaymentV")]
         public string PaymentV(PaymentModel model)
         {
-            var retVal = "";
+            var retVal = "Fail";
             try
             {
-
-
                 var rVal = new Payment().SavePayment(model);
-
-
+                retVal = "Success";
             }
             catch (Exception ex)
             {

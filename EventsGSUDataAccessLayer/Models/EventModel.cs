@@ -8,6 +8,7 @@ namespace EventsGSUDataAccessLayer.Models
 {
    public class EventModel
     {
+        public int UserId { get; set; }
         public int EventID { get; set; }
         public string EventLocation { get; set; }
         public string EventType { get; set; }

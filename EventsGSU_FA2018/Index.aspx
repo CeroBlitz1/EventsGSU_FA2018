@@ -117,11 +117,11 @@
     <script src="Scripts/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-
+            
             GetEvents();
 
 
-
+            $('#globalUserId').val("sdfsdf");
 
 
             $('#indexImage1').click(function () {
@@ -208,7 +208,8 @@
                 success: function (response) {
                     debugger;
 
-                    $('#indexImage1')[0].src = 'http://localhost/EventsGSU_FA2018/' + response[0].EventImage;
+                    //$('#indexImage1')[0].src = 'http://localhost/EventsGSU_FA2018/' + response[0].EventImage;
+                    $('#indexImage1')[0].src = 'http://localhost/EventsGSUBusinessLibrary/' + 'UploadedFiles/img4.jpg';
                     $('#event1Date').text(response[0].EventDate);
                     $('#event1Location').text(response[0].EventLocation);
                     $('#event1Title').text(response[0].EventTitle);

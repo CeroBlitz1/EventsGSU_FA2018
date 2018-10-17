@@ -109,6 +109,9 @@
                     },
                     success: function (response) {
                         if (response.UFlag) {
+                            //Set Global UserId Here
+                            $('#globalUserId').val(response.UserID);
+                            //
                             window.location.href = "http://localhost/EventsGSU_FA2018/Index";
                         }
                         else

@@ -56,11 +56,13 @@
                         <li><a runat="server" href="~/Account/Login.aspx">Login</a></li>
                         <li><a runat="server" href="~/Account/Registration.aspx">Sign up</a></li>
                     </ul>
+                    
                 </div>
             </div>
         </div>
-        <div class="container body-content">
+        <div class="container body-content">            
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
@@ -76,5 +78,6 @@
         </div>
 
     </form>
+    <input id="globalUserId" type="hidden"/>
 </body>
 </html>

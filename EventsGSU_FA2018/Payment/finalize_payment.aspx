@@ -202,6 +202,9 @@
             $(function () {
                 $(document).ready(function () {
                    
+                    GetEventDetails();
+
+
 
                     $.urlParam = function (name) {
                         var results = new RegExp('[\?&]' + name + '=([^&#]*)')
@@ -218,7 +221,7 @@
    
                 });
             });
-            GetEventDetails();
+            
             function GetEventDetails() {
 
 
@@ -250,12 +253,14 @@
                         $('#ErrorText').text(error.responseText);
                         $('#error').show('fade');
 
-                        $(document).ready(function () {
-                            //$('#Close').click(function () {
+                       
+                    }
 
-                            //    $('#error').hide('fade');
-                            //});
-                            $('#btnPayment').click(function () {
+                });
+
+            }
+
+            $('#btnPayment').click(function () {
 
                                 $.ajax({
                                     url: 'http://localhost/EventsGSUBusinessLibrary/api/payment/paymentv',
@@ -285,12 +290,6 @@
                                 });
 
                             });
-                        });
-                    }
-
-                });
-
-            }
         });
     </script>
 </asp:Content>

@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
-//using EventsGSUBusinessLibrary.Models;
-//using EventsGSUBusinessLibrary.Models;
 using EventsGSUDataAccessLayer;
 using EventsGSUDataAccessLayer.DataAccess;
 using EventsGSUDataAccessLayer.Models;
+using Newtonsoft.Json;
 
 namespace EventsGSUBusinessLibrary.Controllers
 {
@@ -118,5 +119,53 @@ namespace EventsGSUBusinessLibrary.Controllers
         {
             return new Admin().GetUserHistoryadmin(model);
         }
+
+        [HttpPost]
+        public void UploadFile()
+        {
+            try
+            {
+
+
+                if (HttpContext.Current.Request.Files.AllKeys.Any())
+                {
+                    // Get the uploaded image from the Files collection
+                    var httpPostedFile = HttpContext.Current.Request.Files["UploadedImage"];
+
+                    //var eventG = HttpContext.Current.Request.Form["g"];
+
+                    //EventModel eventData1 = HttpContext.Current.Request.Form["h"] as EventModel;
+
+                    //var j = JsonConvert.DeserializeObject<List<EventModel>>(HttpContext.Current.Request.Form.Get("h"));
+                    //Dictionary<string, Dictionary<string, string>> jsonDictionary = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(HttpContext.Current.Request.Params["h"].ToString());
+                    Dictionary<string, string> jsonDictionary = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(HttpContext.Current.Request.Params["h"].ToString());
+
+                    var eventlocation = jsonDictionary["eventlocation"];
+
+
+                    var qr = HttpContext.Current.Request.QueryString["b"];
+
+                    if (httpPostedFile != null)
+                    {
+                        // Validate the uploaded image(optional)
+
+                        // Get the complete file path
+                        var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/UploadedFiles"), httpPostedFile.FileName);
+
+                        // Save the uploaded file to "UploadedFiles" folder
+                        //httpPostedFile.SaveAs("C:\\AH\\Images");
+                        httpPostedFile.SaveAs(fileSavePath);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                var s = "";
+            }
+        }
+
+
     }
 }

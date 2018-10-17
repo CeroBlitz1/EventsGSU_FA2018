@@ -18,37 +18,44 @@ namespace EventsGSUDataAccessLayer.DataAccess
             var retVal = false;
             try
             {
-                var userObj = new EventsTable();
-                var userObj1 = new TicketsTable();
-                var userObj2 = new EventDetail();
+                var et = new EventsTable();
+                var tt = new TicketsTable();
+                var ed = new EventDetail();
                 
 
                 //userObj.EventID
-                userObj.EventLocation =model.EventLocation;
-                userObj.EventDate = model.EventDate;
-                userObj.EventType = model.EventType;
-                userObj.EventImage = model.EventImage;
-                userObj.EventTitle = model.EventTitle;
-                userObj1.TicketImage = model.TicketImage;
-                userObj1.TicketPrice = model.TicketPrice;
-                userObj1.TicketQuantity = model.TicketQuantity;
-                userObj2.EventsDescription = model.EventsDescription;
+                et.EventLocation =model.EventLocation;
+                et.EventDate = model.EventDate;
+                et.EventType = model.EventType;
+                et.EventImage = model.EventImage;
+                et.EventTitle = model.EventTitle;
+                et.UserID = model.UserId;
+
+                tt.TicketImage = model.TicketImage;
+                tt.TicketPrice = model.TicketPrice;
+                tt.TicketQuantity = model.TicketQuantity;
+                tt.UserID = model.UserId;
+                tt.EventID = et.EventID;
+
+                ed.EventID = et.EventID;
+                ed.EventsDescription = model.EventsDescription;
+                ed.UserID = model.UserId;
 
 
 
 
 
-                g.EventsTables.Add(userObj);
 
-                userObj1.EventID = userObj.EventID;
-                g.TicketsTables.Add(userObj1);
+
+                g.EventsTables.Add(et);
+
+                
+                g.TicketsTables.Add(tt);
                 g.SaveChanges();
 
-                userObj2.EventID = userObj.EventID;
-               
-                //userObj2.UserID = 2;
+                
 
-                g.EventDetails.Add(userObj2);
+                g.EventDetails.Add(ed);
                 g.SaveChanges();
 
 
@@ -116,8 +123,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
                                 e.EventImage,
                                 e.EventTitle,
                                 e.EventDate,
-                                e.EventID
-                            ,
+                                e.EventID,
                                 edd.EventsDescription,
                                 tt.TicketID,
                                 tt.TicketPrice

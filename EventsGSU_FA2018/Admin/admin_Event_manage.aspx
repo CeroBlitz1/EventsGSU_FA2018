@@ -37,7 +37,7 @@
         });
         $('#btnLoadEvents').click(function () {
             $.ajax({
-                url: 'http://localhost/EventsGSUBusinessLibrary/api/admin/GetEventHistoryadmin',
+                url: 'http://localhost/EventsGSUBusinessLibrary/api/register/GetEventHistoryadmin',
                 method: 'GET',
                 data: {
                     EventLocation: "",

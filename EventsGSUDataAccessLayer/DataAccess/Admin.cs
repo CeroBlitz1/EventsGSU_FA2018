@@ -115,22 +115,20 @@ namespace EventsGSUDataAccessLayer.DataAccess
             var getalleventlist = new List<AdminModel>();
             try
             {
-                var getEventsObj = (from e in g.UserTables
-                                   join ev in g.EventsTables on e.UserID equals ev.UserID
-                                   join tt in g.TicketsTables on e.UserID equals tt.UserID
-                                   join ed in g.EventDetails on e.UserID equals ed.UserID
-
-                                   
+                var getEventsObj = (from u in g.UserTables
+                                   join et in g.EventsTables on u.UserID equals et.UserID
+                                   join tt in g.TicketsTables on u.UserID equals tt.UserID
+                                   join ed in g.EventDetails on u.UserID equals ed.UserID                                   
                                    select new
                                    {
-                                       e.UserID,
-                                       e.UserName,
-                                       e.UserTypeID,
-                                       ev.EventID,
-                                       ev.EventImage,
-                                       ev.EventTitle,
-                                       ev.EventType,
-                                       ev.EventLocation,
+                                       u.UserID,
+                                       u.UserName,
+                                       u.UserTypeID,
+                                       et.EventID,
+                                       et.EventImage,
+                                       et.EventTitle,
+                                       et.EventType,
+                                       et.EventLocation,
                                        ed.EventsDescription,
                                        tt.TicketID,
                                        tt.TicketImage,

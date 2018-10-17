@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="OrganizeEvent.aspx.cs" Inherits="EventsGSU_FA2018.Events.OrganizeEvent" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="OrganizeEvent.aspx.cs" Inherits="EventsGSU_FA2018.Events.OrganizeEvent" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
    <div class="col-md-10 col-md-offset-1">
        <div class="well">
@@ -35,7 +35,12 @@
                        <td>Event Date</td>
                        <td>
                            <input type="date" id="EventDate"  />
-                       </td>    
+                       </td>  
+                       <td>
+                           <div><label for="fileUpload"/>Select File to Upload: <input id="fileUpload" type="file" />
+
+                            <input id="btnUploadFile" type="button" value="Upload File" /></div>
+                       </td> 
                    </tr>
                    <tr>
                        <td>Event location</td>
@@ -151,22 +156,24 @@
             });
             $('#btnCreateEvent').click(function () {
 
+                debugger;
                 $.ajax({
                     url: 'http://localhost/EventsGSUBusinessLibrary/api/register/CreateEvent',
                     method: 'POST',
                     data: {
-                        eventtitle: $('#txtTitle').val(),
-                        eventdate: $('EventDate').val(),
-                        eventlocation: $('#txtEventLocation').val(),
-                        eventimage: $('#fileimg').val(),
-                        eventtype: $('#txtEventType').val(),
-                        ticketimage: $('#imgTicket').val(),
-                        ticketprice: $('#txtTicketPrice').val(),
-                        ticketquantity: $('#TicketQuantity').val(),
-                        eventsdescription : $('#txtEventDesc').val()
+                        //eventtitle: $('#txtTitle').val(),
+                        //eventdate: $('#EventDate').val(),
+                        //eventlocation: $('#txtEventLocation').val(),
+                        //eventimage: $('#fileimg').val(),
+                        //eventtype: $('#txtEventType').val(),
+                        //ticketimage: $('#imgTicket').val(),
+                        //ticketprice: $('#txtTicketPrice').val(),
+                        //ticketquantity: $('#TicketQuantity').val(),
+                        //eventsdescription: $('#txtEventDesc').val(),
+                        //userID: $('#globalUserId').val()
                     },
                     success: function (s) {
-                        $('#successmodal').modal(s);
+                        //$('#successmodal').modal(s);
                         alert("Event Created");
                         
                     },
@@ -179,8 +186,96 @@
                 });
                 
             });
-            
+
+
+            //////////////////////////
+
+            $('#btnUploadFile').on('click', function () {
+                debugger;
+                var data = new FormData();
+
+                var files = $("#fileUpload").get(0).files;
+
+                // Add the uploaded image content to the form data collection
+                if (files.length > 0) {
+                    data.append("UploadedImage", files[0]);
+                }
+
+             
+
+                
+
+
+                var eventData= {
+                        eventtitle: $('#txtTitle').val(),
+                        eventlocation: $('#txtEventLocation').val(),
+                        eventimage:  'UploadedFiles/'+files[0].name, //$('#fileimg').val(),
+                        eventtype: $('#txtEventType').val(),
+                        ticketimage: $('#imgTicket').val(),
+                        ticketprice: $('#txtTicketPrice').val(),
+                        ticketquantity: $('#TicketQuantity').val(),
+                        eventsdescription : $('#txtEventDesc').val()
+                };
+                
+
+                //data.append("g", "aa");
+                //var jsonData = {};
+                //jsonData['mm'] = eventData;
+                var stringifyEventData = JSON.stringify(eventData);
+                //var stringifyEventData = JSON.stringify(data1);
+                data.append("h", stringifyEventData);
+                ///
+
+
+
+
+                // Make Ajax request with the contentType = false, and procesDate = false
+                var ajaxRequest = $.ajax({
+                    type: "POST",
+                    //url: "/api/fileupload/uploadfile",
+                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/UploadFile?a=1&b=2',
+                    contentType: false,
+                    processData: false,
+                    data: data
+                }).done(function (result) {
+                    alert(result);
+                }).fail(function (a, b, c) {
+                    console.log(a, b, c);
+                });
+
+
+                //$.ajax({
+                //    type: 'post',
+                //    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/UploadFile&b=2',
+                //    data: data,
+                //    dataType: 'json',
+                //    contentType: false,
+                //    processData: false,
+                //    success: function (response) {
+                //        alert('succes!!');
+                //    },
+                //    error: function (error) {
+                //        alert("errror");
+                //    }
+                //});
+                //ajaxRequest.done(function (xhr, textStatus) {
+
+                //    debugger;
+                //});
+            });
+
+
+
+            ////////////////////
+
+
         });
+
+
+
+
+
+
         //});
     </script>
 </asp:Content>
