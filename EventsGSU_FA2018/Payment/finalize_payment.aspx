@@ -251,10 +251,10 @@
                         $('#error').show('fade');
 
                         $(document).ready(function () {
-                            $('#Close').click(function () {
+                            //$('#Close').click(function () {
 
-                                $('#error').hide('fade');
-                            });
+                            //    $('#error').hide('fade');
+                            //});
                             $('#btnPayment').click(function () {
 
                                 $.ajax({

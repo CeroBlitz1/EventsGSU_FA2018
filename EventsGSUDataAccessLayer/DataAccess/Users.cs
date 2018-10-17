@@ -128,6 +128,7 @@ namespace EventsGSUDataAccessLayer
                 if (usr != null && usr.UserPassword == model.UserPassword)
                 {
                     um.UserTypeID = usr.UserTypeID;
+                    um.UserID = usr.UserID;
                     um.UFlag = true;
                 }
                 else

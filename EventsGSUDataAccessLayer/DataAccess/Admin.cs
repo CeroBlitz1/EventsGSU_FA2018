@@ -69,7 +69,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
             {
                 var getusersObj = (from e in g.UserTables
                                    join ev in g.EventsTables on e.UserID equals ev.UserID
-                                   join tt in g.TicketsTables on e.UserID equals tt.UserID
+                                   join ht in g.PaymentHistoryTables on e.UserID equals ht.UserID
                                      select new
                                      {
                                          e.UserEmail,
@@ -109,6 +109,60 @@ namespace EventsGSUDataAccessLayer.DataAccess
                 string d = ex.Message;
             }
             return getallUserslist;
+        }
+        public List<AdminModel> GetEventHistoryadmin(AdminModel model)
+        {
+            var getalleventlist = new List<AdminModel>();
+            try
+            {
+                var getEventsObj = (from e in g.UserTables
+                                   join ev in g.EventsTables on e.UserID equals ev.UserID
+                                   join tt in g.TicketsTables on e.UserID equals tt.UserID
+                                   join ed in g.EventDetails on e.UserID equals ed.UserID
+
+                                   
+                                   select new
+                                   {
+                                       e.UserID,
+                                       e.UserName,
+                                       e.UserTypeID,
+                                       ev.EventID,
+                                       ev.EventImage,
+                                       ev.EventTitle,
+                                       ev.EventType,
+                                       ev.EventLocation,
+                                       ed.EventsDescription,
+                                       tt.TicketID,
+                                       tt.TicketImage,
+                                       tt.TicketPrice,
+                                       tt.TicketQuantity,
+                                   }).ToList();
+
+                foreach (var item in getEventsObj)
+                {
+                    var getallEventssobj = new AdminModel();
+
+                    getallEventssobj.UserName = item.UserName;
+                    getallEventssobj.UserID = item.UserID;
+                    getallEventssobj.UserTypeID = item.UserTypeID;
+                    getallEventssobj.EventID = item.EventID;
+                    getallEventssobj.EventImage = item.EventImage;
+                    getallEventssobj.EventTitle = item.EventTitle;
+                    getallEventssobj.EventType = item.EventType;
+                    getallEventssobj.EventsDescription = item.EventsDescription;
+                    getallEventssobj.TicketID = item.TicketID;
+                    getallEventssobj.TicketImage = item.TicketImage;
+                    getallEventssobj.TicketPrice = item.TicketPrice;
+                    getallEventssobj.TicketQuantity = item.TicketQuantity;
+
+                    getalleventlist.Add(getallEventssobj);
+                }
+            }
+            catch (Exception ex)
+            {
+                string d = ex.Message;
+            }
+            return getalleventlist;
         }
     }
 }

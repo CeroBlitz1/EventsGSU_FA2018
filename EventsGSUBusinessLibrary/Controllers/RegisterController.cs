@@ -106,11 +106,17 @@ namespace EventsGSUBusinessLibrary.Controllers
         //    return Val; ;
         //}
 
-        [Route ("GetPaymentHistoryadmin")]
-        public List<AdminModel> GetPaymentHistoryadmin(AdminModel model)
-        {
-            return new Admin().GetPaymentHistoryadmin(model);
-        }
+       
 
+        [Route("GetEventHistoryadmin")]
+        public List<AdminModel> GetEventHistoryadmin(AdminModel model)
+        {
+            return new Admin().GetEventHistoryadmin(model);
+        }
+        [Route("GetUserHistoryadmin")]
+        public List<AdminModel> GetUserHistoryadmin(AdminModel model)
+        {
+            return new Admin().GetUserHistoryadmin(model);
+        }
     }
 }
