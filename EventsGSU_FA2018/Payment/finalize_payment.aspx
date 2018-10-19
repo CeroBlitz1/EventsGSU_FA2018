@@ -56,10 +56,11 @@
             <tr>
                 <td style="height: 20px">Total</td>
                 <td style="height: 20px"></td>
-                <td style="height: 20px">&nbsp;</td>
-                <td style="height: 20px">$<div id="ticketAmount"></div>
+                <td style="height: 20px"></td>
+                <td style="height: 20px">
+                    <div>$</div><div id="ticketAmount"></div><div id="indexTicketid"></div>
                     <%--<asp:Label ID="Label_amount" runat="server" Text="Amunt_label"></asp:Label>--%>
-                &nbsp;</td>
+                </td>
             </tr>
             <tr>
                 <td>
@@ -201,7 +202,7 @@
         $(document).ready(function () {
             $(function () {
                 $(document).ready(function () {
-                   
+
                     GetEventDetails();
 
 
@@ -216,12 +217,14 @@
                     }
                     debugger;
                     console.log($.urlParam('eventID'));
+                    
 
 
-   
+
+
                 });
             });
-            
+
             function GetEventDetails() {
 
 
@@ -246,50 +249,72 @@
                         $('#indexEventID').text(response[0].EventID);
                         $('#eventDesc').text(response[0].EventsDescription);
                         $('#ticketAmount').text(response[0].TicketPrice);
-                        $('#indexTicketid').val(response[0].TicketID);
+                        $('#indexTicketid').text(response[0].TicketID);
 
                     },
                     error: function (error) {
                         $('#ErrorText').text(error.responseText);
                         $('#error').show('fade');
 
-                       
+
                     }
 
                 });
 
             }
+            var output = {};
+            function getCookies() {
+                var userCookie = document.cookie;// "referer=example.com/post?id=22;bcomID=8075; subreturn=example&fuzzy=true&ct=null&autobounce=true; JSESSIONID=6D20570E1EB; mbox=session";
+
+                userCookie.split(/\s*;\s*/).forEach(function (pair) {
+                    pair = pair.split(/\s*=\s*/);
+                    output[pair[0]] = pair.splice(1).join('=');
+                });
+            }
 
             $('#btnPayment').click(function () {
 
-                                $.ajax({
-                                    url: 'http://localhost/EventsGSUBusinessLibrary/api/payment/paymentv',
-                                    method: 'POST',
-                                    data: {
-                                        firstname: $('#txtFN').val(),
-                                        lastname: $('#txtLN').val(),
-                                        useremail: $('#txtEmail').val(),
-                                        userphonenumber: $('#txtPhNo').val(),
-                                        usercardnumber: $('#txtCardNumber').val(),
-                                        usercardcvv: $('#txtCVV').val(),
-                                        useraddress: $('#txtAddress').val(),
-                                        userzipcode: $('#txtzip').val(),
-                                        userstate: $('#txtstate').val(),
-                                        userpaymentpaid: $('#ticketAmount').val()
-                                    },
-                                    success: function (s) {
-                                        $('#successmodal').modal(s);
+                getCookies()
+                {
+                    var utID = output["UserTypeID"];
+                    var uID = output["UserID"];
+                };
 
-                                    },
-                                    error: function (jqXHR) {
-                                        $('#ErrorText').text(jqXHR.responseText);
-                                        $('#error').show('fade');
+                debugger;
 
-                                    }
 
-                                });
+                $.ajax({
+                    url: 'http://localhost/EventsGSUBusinessLibrary/api/payment/paymentv',
+                    method: 'POST',
+                    data: {
+                        firstname: $('#txtFN').val(),
+                        lastname: $('#txtLN').val(),
+                        useremail: $('#txtEmail').val(),
+                        userphonenumber: $('#txtPhNo').val(),
+                        usercardnumber: $('#txtCardNumber').val(),
+                        usercardcvv: $('#txtCVV').val(),
+                        useraddress: $('#txtAddress').val(),
+                        userzipcode: $('#txtzip').val(),
+                        userstate: $('#txtstate').val(),
+                        userpaymentpaid: $('#ticketAmount').text(),
+                        eventid: $('#indexEventID').text(),
+                        ticketid: $('#indexTicketid').text(),
+                        userid: uID,
+                        usertypeid: utID
+                    },
+                    success: function (s) {
+                        $('#successmodal').modal(s);
 
-                            });
+                    },
+                    error: function (jqXHR) {
+                        $('#ErrorText').text(jqXHR.responseText);
+                        $('#error').show('fade');
+
+                    }
+
+                });
+
+            });
         });
     </script>
 </asp:Content>

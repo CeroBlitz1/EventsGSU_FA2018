@@ -115,13 +115,14 @@
     
     <script src="Scripts/jquery-3.3.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/jquery.cookie-1.4.1.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             
             GetEvents();
 
 
-            $('#globalUserId').val("sdfsdf");
+            $('#globalUserId').val("");
 
 
             $('#indexImage1').click(function () {
@@ -217,6 +218,7 @@
                     var firstItemImageEle = document.getElementById("indexImage1");
                     firstItemImageEle.setAttribute("data-eventID", response[0].EventID); 
                     $('#indexEventID').data('eventId', response[0].EventID);
+                    
 
                     $('#indexImage2')[0].src = 'http://localhost/EventsGSU_FA2018/' + response[1].EventImage;
                     $('#event2Date').text(response[1].EventDate);

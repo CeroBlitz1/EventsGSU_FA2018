@@ -15,25 +15,27 @@ namespace EventsGSUDataAccessLayer.DataAccess
             var retVal = false;
             try
             {
-                var userObj = new PaymentTable();
+                var paymentObj = new PaymentTable();
+                var eventobject = new EventsTable();
+                var TicketObj = new TicketsTable();
 
-                userObj.FirstName = model.FirstName;
-                userObj.LastName = model.LastName;
-                userObj.UserEmail = model.UserEmail;
-                userObj.UserPhoneNumber = model.UserPhoneNumber;
-                userObj.UserCardNumber = model.UserCardNumber;
-                userObj.UserCardExpiration = model.UserCardExpiration;
-                userObj.UserCardCVV = model.UserCardCVV;
-                userObj.UserAddress = model.UserAddress;
-                userObj.UserZipCode = model.UserZipCode;
-                userObj.UserState = model.UserState;
-                userObj.UserPaymentPaid = model.UserPaymentPaid;
+                paymentObj.FirstName = model.FirstName;
+                paymentObj.LastName = model.LastName;
+                paymentObj.UserEmail = model.UserEmail;
+                paymentObj.UserPhoneNumber = model.UserPhoneNumber;
+                paymentObj.UserCardNumber = model.UserCardNumber;
+                paymentObj.UserCardExpiration = model.UserCardExpiration;
+                paymentObj.UserCardCVV = model.UserCardCVV;
+                paymentObj.UserAddress = model.UserAddress;
+                paymentObj.UserZipCode = model.UserZipCode;
+                paymentObj.UserState = model.UserState;
+                paymentObj.UserPaymentPaid = model.UserPaymentPaid;
+                paymentObj.UserID = model.UserID;
+                paymentObj.UserTypeID = model.UserTypeID;
+                paymentObj.EventID = model.EventID;
+                paymentObj.TicketID = model.TicketID;
 
-                
-
-
-
-                g.PaymentTables.Add(userObj);
+                g.PaymentTables.Add(paymentObj);
                 g.SaveChanges();
 
                 retVal = true;

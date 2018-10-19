@@ -29,7 +29,7 @@ namespace EventsGSUDataAccessLayer
         public string UserEmail { get; set; }
         public string UserPhoneNumber { get; set; }
         public string isActive { get; set; }
-        public Nullable<int> UserTypeID { get; set; }
+        public int UserTypeID { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     

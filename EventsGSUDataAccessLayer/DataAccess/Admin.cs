@@ -67,18 +67,18 @@ namespace EventsGSUDataAccessLayer.DataAccess
             var getallUserslist = new List<AdminModel>();
             try
             {
-                var getusersObj = (from e in g.UserTables
-                                   join ev in g.EventsTables on e.UserID equals ev.UserID
-                                   join ht in g.PaymentHistoryTables on e.UserID equals ht.UserID
+                var getusersObj = (from u in g.UserTables
+                                   join et in g.EventsTables on u.UserID equals et.UserID
+                                   join ph in g.PaymentHistoryTables on u.UserID equals ph.UserID
                                      select new
                                      {
-                                         e.UserEmail,
-                                         e.UserID,
-                                         e.UserName,
-                                         e.UserTypeID,
-                                         e.UserPhoneNumber,
-                                         e.UserPassword,
-                                         e.isActive,
+                                         u.UserEmail,
+                                         u.UserID,
+                                         u.UserName,
+                                         u.UserTypeID,
+                                         u.UserPhoneNumber,
+                                         u.UserPassword,
+                                         u.isActive,
 
 
 

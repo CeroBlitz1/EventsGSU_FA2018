@@ -20,7 +20,9 @@ namespace EventsGSUDataAccessLayer.Models
         public string UserZipCode { get; set; }
         public string UserState { get; set; }
         public string UserPaymentPaid { get; set; }
-        public string UserTypeCode { get; set; }
+        public int UserTypeID { get; set; }
         public int UserID { get; set; }
+        public int TicketID { get; set; }
+        public int EventID { get; set; }
     }
 }

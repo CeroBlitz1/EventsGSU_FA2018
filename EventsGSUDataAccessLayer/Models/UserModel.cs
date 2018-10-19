@@ -13,7 +13,7 @@ namespace EventsGSUDataAccessLayer.Models
         public string UserName { get; set; }
         public string UserEmail { get; set; }
         public string UserPhoneNumber { get; set; }
-        public int? UserTypeID { get; set; }
+        public int UserTypeID { get; set; }
         public string UMessage { get; set; }
         public bool UFlag { get; set; }
         public string ReturnUrl { get; set; }

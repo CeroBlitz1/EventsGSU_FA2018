@@ -24,11 +24,11 @@ namespace EventsGSUDataAccessLayer
     
         public int EventID { get; set; }
         public string EventLocation { get; set; }
-        public System.DateTime EventDate { get; set; }
+        public DateTime EventDate { get; set; }
         public string EventType { get; set; }
         public string EventImage { get; set; }
         public string EventTitle { get; set; }
-        public Nullable<int> UserID { get; set; }
+        public int UserID { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     

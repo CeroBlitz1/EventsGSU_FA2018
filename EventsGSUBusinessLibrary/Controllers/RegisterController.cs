@@ -123,10 +123,10 @@ namespace EventsGSUBusinessLibrary.Controllers
         [HttpPost]
         public void UploadFile()
         {
+            
             try
             {
-
-
+                
                 if (HttpContext.Current.Request.Files.AllKeys.Any())
                 {
                     // Get the uploaded image from the Files collection
@@ -140,8 +140,53 @@ namespace EventsGSUBusinessLibrary.Controllers
                     //Dictionary<string, Dictionary<string, string>> jsonDictionary = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(HttpContext.Current.Request.Params["h"].ToString());
                     Dictionary<string, string> jsonDictionary = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(HttpContext.Current.Request.Params["h"].ToString());
 
-                    var eventlocation = jsonDictionary["eventlocation"];
+                    GsuEventsDBEntities g = new GsuEventsDBEntities();
 
+
+                    var EventLocation = jsonDictionary["eventlocation"];
+                    var EventTitle = jsonDictionary["eventtitle"];
+                    var EventImage = jsonDictionary["eventimage"];
+                    var EventType = jsonDictionary["eventtype"];
+                    var TicketImage = jsonDictionary["ticketimage"];
+                    var TicketPrice = jsonDictionary["ticketprice"];
+                    var TicketQuantity = jsonDictionary["ticketquantity"];
+                    var EventsDescription = jsonDictionary["eventsdescription"];
+                    var EventDate = jsonDictionary["eventdate"];
+                    var UserID = jsonDictionary["userID"];
+
+                    var et = new EventsTable();
+                    var tt = new TicketsTable();
+                    var ed = new EventDetail();
+
+
+
+
+                    ////userObj.EventID
+                    //et.EventID = model.EventID;
+                    et.EventLocation = EventLocation;
+                    et.EventType = EventType;
+                    et.EventImage = EventImage;
+                    et.EventTitle = EventTitle;
+                    et.EventDate = Convert.ToDateTime(EventDate);
+
+                    et.UserID = Convert.ToInt16(UserID);
+
+                    g.EventsTables.Add(et);
+
+                    tt.TicketImage = TicketImage;
+                    tt.TicketPrice = TicketPrice;
+                    tt.TicketQuantity = TicketQuantity;
+                    tt.UserID = Convert.ToInt16(UserID);
+                    tt.EventID = et.EventID;
+                    g.TicketsTables.Add(tt);
+
+                    ed.EventID = et.EventID;
+                    ed.EventsDescription = EventsDescription;
+                    ed.UserID = Convert.ToInt16(UserID);
+
+                    g.EventDetails.Add(ed);
+
+                    g.SaveChanges();
 
                     var qr = HttpContext.Current.Request.QueryString["b"];
 
@@ -155,6 +200,8 @@ namespace EventsGSUBusinessLibrary.Controllers
                         // Save the uploaded file to "UploadedFiles" folder
                         //httpPostedFile.SaveAs("C:\\AH\\Images");
                         httpPostedFile.SaveAs(fileSavePath);
+
+                        g.SaveChanges();
                     }
                 }
 

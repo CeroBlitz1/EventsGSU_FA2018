@@ -21,25 +21,26 @@ namespace EventsGSUDataAccessLayer.DataAccess
                 var et = new EventsTable();
                 var tt = new TicketsTable();
                 var ed = new EventDetail();
-                
+
 
                 //userObj.EventID
+                et.EventID = model.EventID;
                 et.EventLocation =model.EventLocation;
                 et.EventDate = model.EventDate;
                 et.EventType = model.EventType;
                 et.EventImage = model.EventImage;
                 et.EventTitle = model.EventTitle;
-                et.UserID = model.UserId;
+                //et.UserID = model.UserId;
 
                 tt.TicketImage = model.TicketImage;
                 tt.TicketPrice = model.TicketPrice;
                 tt.TicketQuantity = model.TicketQuantity;
-                tt.UserID = model.UserId;
+                //tt.UserID = model.UserId;
                 tt.EventID = et.EventID;
 
                 ed.EventID = et.EventID;
                 ed.EventsDescription = model.EventsDescription;
-                ed.UserID = model.UserId;
+                //ed.UserID = model.UserId;
 
 
 

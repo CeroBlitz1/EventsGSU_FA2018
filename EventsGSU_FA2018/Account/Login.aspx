@@ -70,6 +70,7 @@
    </div>
      <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/jquery.cookie-1.4.1.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#Close').click(function(){
@@ -110,7 +111,9 @@
                     success: function (response) {
                         if (response.UFlag) {
                             //Set Global UserId Here
-                            $('#globalUserId').val(response.UserID);
+                            //$('#globalUserId').val(response.UserID);
+                            $.cookie('UserID',response.UserID,{ expires: 2, path: '/' });
+                            $.cookie('UserTypeID',response.UserTypeID,{ expires: 2, path: '/' });
                             //
                             window.location.href = "http://localhost/EventsGSU_FA2018/Index";
                         }
