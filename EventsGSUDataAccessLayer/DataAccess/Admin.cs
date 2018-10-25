@@ -17,20 +17,23 @@ namespace EventsGSUDataAccessLayer.DataAccess
             var getallPaymentlist = new List<AdminModel>();
             try
             {
-                var getpaymentObj = (from e in g.PaymentTables
+                //join tt in g.TicketsTables on e.EventID equals tt.EventID
+                var getpaymentObj = (from pt in g.PaymentTables
+                                     join ph in  g.PaymentHistoryTables on pt.PaymentID equals ph.PaymentID
+
                                     select new
                                     {
-                                        e.PaymentID,
-                                        e.FirstName,
-                                        e.LastName,
-                                        e.UserEmail,
-                                        e.UserPhoneNumber,
-                                        e.UserState,
-                                        e.UserZipCode,
-                                        e.UserCardNumber,
-                                        e.UserCardExpiration,
-                                        e.UserCardCVV,
-                                        e.UserPaymentPaid
+                                        pt.PaymentID,
+                                        pt.FirstName,
+                                        pt.LastName,
+                                        pt.UserEmail,
+                                        pt.UserPhoneNumber,
+                                        pt.UserState,
+                                        pt.UserZipCode,
+                                        pt.UserCardNumber,
+                                        pt.UserCardExpiration,
+                                        pt.UserCardCVV,
+                                        ph.UserPaymentPaid
                                         
                                         
                                     }).ToList();

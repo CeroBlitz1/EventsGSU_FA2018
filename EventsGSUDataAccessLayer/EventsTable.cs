@@ -18,17 +18,17 @@ namespace EventsGSUDataAccessLayer
         public EventsTable()
         {
             this.EventDetails = new HashSet<EventDetail>();
-            this.PaymentTables = new HashSet<PaymentTable>();
+            this.PaymentHistoryTables = new HashSet<PaymentHistoryTable>();
             this.TicketsTables = new HashSet<TicketsTable>();
         }
     
         public int EventID { get; set; }
         public string EventLocation { get; set; }
-        public DateTime EventDate { get; set; }
+        public System.DateTime EventDate { get; set; }
         public string EventType { get; set; }
         public string EventImage { get; set; }
         public string EventTitle { get; set; }
-        public int UserID { get; set; }
+        public Nullable<int> UserID { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
@@ -36,7 +36,7 @@ namespace EventsGSUDataAccessLayer
         public virtual ICollection<EventDetail> EventDetails { get; set; }
         public virtual UserTable UserTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PaymentTable> PaymentTables { get; set; }
+        public virtual ICollection<PaymentHistoryTable> PaymentHistoryTables { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TicketsTable> TicketsTables { get; set; }
     }

@@ -119,6 +119,11 @@ namespace EventsGSUBusinessLibrary.Controllers
         {
             return new Admin().GetUserHistoryadmin(model);
         }
+        [Route("GetCardDetails")]
+        public List<PaymentModel> GetCardDetails(int UserID)
+        {
+            return new Payment().GetCardDetails(UserID);
+        }
 
         [HttpPost]
         public void UploadFile()
@@ -174,8 +179,8 @@ namespace EventsGSUBusinessLibrary.Controllers
                     g.EventsTables.Add(et);
 
                     tt.TicketImage = TicketImage;
-                    tt.TicketPrice = TicketPrice;
-                    tt.TicketQuantity = TicketQuantity;
+                    tt.TicketPrice = Convert.ToInt16(TicketPrice);
+                    tt.TicketQuantity = Convert.ToInt16(TicketQuantity);
                     tt.UserID = Convert.ToInt16(UserID);
                     tt.EventID = et.EventID;
                     g.TicketsTables.Add(tt);
@@ -212,6 +217,7 @@ namespace EventsGSUBusinessLibrary.Controllers
                 var s = "";
             }
         }
+        
 
 
     }

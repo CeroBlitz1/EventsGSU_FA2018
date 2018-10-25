@@ -30,6 +30,7 @@ namespace EventsGSUDataAccessLayer
         public virtual DbSet<PaymentHistoryTable> PaymentHistoryTables { get; set; }
         public virtual DbSet<PaymentTable> PaymentTables { get; set; }
         public virtual DbSet<RoleTable> RoleTables { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TicketsTable> TicketsTables { get; set; }
         public virtual DbSet<UserTable> UserTables { get; set; }
     }

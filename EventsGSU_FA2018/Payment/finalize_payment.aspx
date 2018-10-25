@@ -58,7 +58,9 @@
                 <td style="height: 20px"></td>
                 <td style="height: 20px"></td>
                 <td style="height: 20px">
-                    <div>$</div><div id="ticketAmount"></div><div id="indexTicketid"></div>
+                    <div>$</div>
+                    <div id="ticketAmount"></div>
+                    <div id="indexTicketid"></div>
                     <%--<asp:Label ID="Label_amount" runat="server" Text="Amunt_label"></asp:Label>--%>
                 </td>
             </tr>
@@ -73,6 +75,22 @@
                 <td></td>
             </tr>
         </table>
+        <div class="well  ">
+            
+                
+                        <img src="../Content/cancel.png" />
+              
+                        <div  id="CardNumber">1</div>
+              
+                        <div id="CardExpiration">1</div>
+               
+                        <div id="FirstName" class="">1</div>
+              
+                        <div id="LastName" class="">1</div>
+               
+                        <div id="CardCVV" class="">1</div>
+           
+        </div>
     </div>
     <div class="col-md-10 col-md-offset-1">
         <div class="well">
@@ -110,6 +128,13 @@
                         <td>Card CVV</td>
                         <td>
                             <input type="password" id="txtCVV" placeholder="Please enter Card CVV" />
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td>Card Expiration</td>
+                        <td>
+                            <input type="date" id="txtCardDate" />
                         </td>
                     </tr>
                     <tr>
@@ -204,6 +229,7 @@
                 $(document).ready(function () {
 
                     GetEventDetails();
+                    GetCardDetails();
 
 
 
@@ -217,7 +243,7 @@
                     }
                     debugger;
                     console.log($.urlParam('eventID'));
-                    
+
 
 
 
@@ -251,6 +277,7 @@
                         $('#ticketAmount').text(response[0].TicketPrice);
                         $('#indexTicketid').text(response[0].TicketID);
 
+
                     },
                     error: function (error) {
                         $('#ErrorText').text(error.responseText);
@@ -262,7 +289,9 @@
                 });
 
             }
+
             var output = {};
+            debugger;
             function getCookies() {
                 var userCookie = document.cookie;// "referer=example.com/post?id=22;bcomID=8075; subreturn=example&fuzzy=true&ct=null&autobounce=true; JSESSIONID=6D20570E1EB; mbox=session";
 
@@ -271,6 +300,7 @@
                     output[pair[0]] = pair.splice(1).join('=');
                 });
             }
+            debugger;
 
             $('#btnPayment').click(function () {
 
@@ -294,6 +324,7 @@
                         usercardnumber: $('#txtCardNumber').val(),
                         usercardcvv: $('#txtCVV').val(),
                         useraddress: $('#txtAddress').val(),
+                        usercardexpiration: $('#txtCardDate').val(),
                         userzipcode: $('#txtzip').val(),
                         userstate: $('#txtstate').val(),
                         userpaymentpaid: $('#ticketAmount').text(),
@@ -301,8 +332,10 @@
                         ticketid: $('#indexTicketid').text(),
                         userid: uID,
                         usertypeid: utID
+
                     },
                     success: function (s) {
+
                         $('#successmodal').modal(s);
 
                     },
@@ -315,6 +348,42 @@
                 });
 
             });
+            function GetCardDetails() {
+
+                getCookies()
+                {
+                    var uID = output["UserID"];
+                };
+                $.ajax({
+                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/GetCardDetails?UserID=' + uID,
+                    method: 'GET',
+                    data: {
+                        //EventLocation: "",
+                        //EventImage: ""
+                    },
+
+
+                    success: function (details) {
+                        debugger;
+
+                        $('#CardNumber').text(details[0].UserCardNumber);
+                        $('#CardExpiration').text(details[0].UserCardExpiration);
+                        $('#FirstName').text(details[0].FirstName);
+                        $('#LastName').text(details[0].LastName);
+                        $('#CardCVV').text(details[0].UserCardCVV);
+
+
+                    },
+                    error: function (error) {
+                        $('#ErrorText').text(error.responseText);
+                        $('#error').show('fade');
+
+
+                    }
+
+                });
+
+            }
         });
     </script>
 </asp:Content>

@@ -38,6 +38,10 @@
           <Property Name="UserTypeID" Type="varchar" MaxLength="3" Nullable="false" />
           <Property Name="UserID" Type="int" />
           <Property Name="PaymentID" Type="int" />
+          <Property Name="TicketsPurchased" Type="int" />
+          <Property Name="UserPaymentPaid" Type="nvarchar(max)" />
+          <Property Name="TicketID" Type="int" />
+          <Property Name="EventID" Type="int" />
         </EntityType>
         <EntityType Name="PaymentTable">
           <Key>
@@ -54,13 +58,9 @@
           <Property Name="UserAddress" Type="nvarchar(max)" />
           <Property Name="UserZipCode" Type="nvarchar(max)" />
           <Property Name="UserState" Type="nvarchar" MaxLength="50" />
-          <Property Name="UserPaymentPaid" Type="nvarchar(max)" />
-          <Property Name="UserTypeID" Type="int" />
-          <Property Name="TicketID" Type="int" />
-          <Property Name="UserID" Type="int" />
-          <Property Name="EventID" Type="int" />
           <Property Name="CreatedDate" Type="date" />
           <Property Name="ModifiedDate" Type="date" />
+          <Property Name="UserID" Type="int" />
         </EntityType>
         <EntityType Name="RoleTable">
           <Key>
@@ -70,18 +70,30 @@
           <Property Name="UsterTypeCode" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="UserTypeDescription" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="TicketsTable">
           <Key>
             <PropertyRef Name="TicketID" />
           </Key>
           <Property Name="TicketID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TicketQuantity" Type="nvarchar(max)" />
-          <Property Name="TicketPrice" Type="nvarchar(max)" />
+          <Property Name="TicketQuantity" Type="int" />
+          <Property Name="TicketPrice" Type="int" />
           <Property Name="EventID" Type="int" />
           <Property Name="UserID" Type="int" />
           <Property Name="TicketImage" Type="nvarchar(max)" />
           <Property Name="CreatedDate" Type="date" />
           <Property Name="ModfiedDate" Type="date" />
+          <Property Name="MaxTickets" Type="int" />
+          <Property Name="TicketsRemaining" Type="int" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="UserTable">
           <Key>
@@ -133,6 +145,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PaymentHistoryTable_EventsTable">
+          <End Role="EventsTable" Type="Self.EventsTable" Multiplicity="0..1" />
+          <End Role="PaymentHistoryTable" Type="Self.PaymentHistoryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventsTable">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="PaymentHistoryTable">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PaymentHistoryTable_PaymentTable">
           <End Role="PaymentTable" Type="Self.PaymentTable" Multiplicity="0..1" />
           <End Role="PaymentHistoryTable" Type="Self.PaymentHistoryTable" Multiplicity="*" />
@@ -145,6 +169,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PaymentHistoryTable_TicketsTable">
+          <End Role="TicketsTable" Type="Self.TicketsTable" Multiplicity="0..1" />
+          <End Role="PaymentHistoryTable" Type="Self.PaymentHistoryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketsTable">
+              <PropertyRef Name="TicketID" />
+            </Principal>
+            <Dependent Role="PaymentHistoryTable">
+              <PropertyRef Name="TicketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PaymentHistoryTable_UserTable">
           <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
           <End Role="PaymentHistoryTable" Type="Self.PaymentHistoryTable" Multiplicity="*" />
@@ -154,30 +190,6 @@
             </Principal>
             <Dependent Role="PaymentHistoryTable">
               <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PaymentTable_EventsTable">
-          <End Role="EventsTable" Type="Self.EventsTable" Multiplicity="0..1" />
-          <End Role="PaymentTable" Type="Self.PaymentTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EventsTable">
-              <PropertyRef Name="EventID" />
-            </Principal>
-            <Dependent Role="PaymentTable">
-              <PropertyRef Name="EventID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PaymentTable_TicketsTable">
-          <End Role="TicketsTable" Type="Self.TicketsTable" Multiplicity="0..1" />
-          <End Role="PaymentTable" Type="Self.PaymentTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TicketsTable">
-              <PropertyRef Name="TicketID" />
-            </Principal>
-            <Dependent Role="PaymentTable">
-              <PropertyRef Name="TicketID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -223,6 +235,7 @@
           <EntitySet Name="PaymentHistoryTable" EntityType="Self.PaymentHistoryTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentTable" EntityType="Self.PaymentTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoleTable" EntityType="Self.RoleTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TicketsTable" EntityType="Self.TicketsTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_EventDetails_EventsTable" Association="Self.FK_EventDetails_EventsTable">
@@ -237,21 +250,21 @@
             <End Role="UserTable" EntitySet="UserTable" />
             <End Role="EventsTable" EntitySet="EventsTable" />
           </AssociationSet>
+          <AssociationSet Name="FK_PaymentHistoryTable_EventsTable" Association="Self.FK_PaymentHistoryTable_EventsTable">
+            <End Role="EventsTable" EntitySet="EventsTable" />
+            <End Role="PaymentHistoryTable" EntitySet="PaymentHistoryTable" />
+          </AssociationSet>
           <AssociationSet Name="FK_PaymentHistoryTable_PaymentTable" Association="Self.FK_PaymentHistoryTable_PaymentTable">
             <End Role="PaymentTable" EntitySet="PaymentTable" />
+            <End Role="PaymentHistoryTable" EntitySet="PaymentHistoryTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentHistoryTable_TicketsTable" Association="Self.FK_PaymentHistoryTable_TicketsTable">
+            <End Role="TicketsTable" EntitySet="TicketsTable" />
             <End Role="PaymentHistoryTable" EntitySet="PaymentHistoryTable" />
           </AssociationSet>
           <AssociationSet Name="FK_PaymentHistoryTable_UserTable" Association="Self.FK_PaymentHistoryTable_UserTable">
             <End Role="UserTable" EntitySet="UserTable" />
             <End Role="PaymentHistoryTable" EntitySet="PaymentHistoryTable" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PaymentTable_EventsTable" Association="Self.FK_PaymentTable_EventsTable">
-            <End Role="EventsTable" EntitySet="EventsTable" />
-            <End Role="PaymentTable" EntitySet="PaymentTable" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PaymentTable_TicketsTable" Association="Self.FK_PaymentTable_TicketsTable">
-            <End Role="TicketsTable" EntitySet="TicketsTable" />
-            <End Role="PaymentTable" EntitySet="PaymentTable" />
           </AssociationSet>
           <AssociationSet Name="FK_PaymentTable_UserTable" Association="Self.FK_PaymentTable_UserTable">
             <End Role="UserTable" EntitySet="UserTable" />
@@ -299,7 +312,7 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="EventDetails" Relationship="Self.FK_EventDetails_EventsTable" FromRole="EventsTable" ToRole="EventDetails" />
           <NavigationProperty Name="UserTable" Relationship="Self.FK_EventsTable_UserTable" FromRole="EventsTable" ToRole="UserTable" />
-          <NavigationProperty Name="PaymentTables" Relationship="Self.FK_PaymentTable_EventsTable" FromRole="EventsTable" ToRole="PaymentTable" />
+          <NavigationProperty Name="PaymentHistoryTables" Relationship="Self.FK_PaymentHistoryTable_EventsTable" FromRole="EventsTable" ToRole="PaymentHistoryTable" />
           <NavigationProperty Name="TicketsTables" Relationship="Self.FK_TicketsTable_EventsTable" FromRole="EventsTable" ToRole="TicketsTable" />
         </EntityType>
         <EntityType Name="PaymentHistoryTable">
@@ -310,7 +323,13 @@
           <Property Name="UserTypeID" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UserID" Type="Int32" />
           <Property Name="PaymentID" Type="Int32" />
+          <Property Name="TicketsPurchased" Type="Int32" />
+          <Property Name="UserPaymentPaid" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TicketID" Type="Int32" />
+          <Property Name="EventID" Type="Int32" />
+          <NavigationProperty Name="EventsTable" Relationship="Self.FK_PaymentHistoryTable_EventsTable" FromRole="PaymentHistoryTable" ToRole="EventsTable" />
           <NavigationProperty Name="PaymentTable" Relationship="Self.FK_PaymentHistoryTable_PaymentTable" FromRole="PaymentHistoryTable" ToRole="PaymentTable" />
+          <NavigationProperty Name="TicketsTable" Relationship="Self.FK_PaymentHistoryTable_TicketsTable" FromRole="PaymentHistoryTable" ToRole="TicketsTable" />
           <NavigationProperty Name="UserTable" Relationship="Self.FK_PaymentHistoryTable_UserTable" FromRole="PaymentHistoryTable" ToRole="UserTable" />
         </EntityType>
         <EntityType Name="PaymentTable">
@@ -328,16 +347,10 @@
           <Property Name="UserAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UserZipCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UserState" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserPaymentPaid" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UserTypeID" Type="Int32" />
-          <Property Name="TicketID" Type="Int32" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="EventID" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Precision="0" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="EventsTable" Relationship="Self.FK_PaymentTable_EventsTable" FromRole="PaymentTable" ToRole="EventsTable" />
+          <Property Name="UserID" Type="Int32" />
           <NavigationProperty Name="PaymentHistoryTables" Relationship="Self.FK_PaymentHistoryTable_PaymentTable" FromRole="PaymentTable" ToRole="PaymentHistoryTable" />
-          <NavigationProperty Name="TicketsTable" Relationship="Self.FK_PaymentTable_TicketsTable" FromRole="PaymentTable" ToRole="TicketsTable" />
           <NavigationProperty Name="UserTable" Relationship="Self.FK_PaymentTable_UserTable" FromRole="PaymentTable" ToRole="UserTable" />
         </EntityType>
         <EntityType Name="RoleTable">
@@ -349,20 +362,32 @@
           <Property Name="UserTypeDescription" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="UserTables" Relationship="Self.FK_UserTable_RoleTable" FromRole="RoleTable" ToRole="UserTable" />
         </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="TicketsTable">
           <Key>
             <PropertyRef Name="TicketID" />
           </Key>
           <Property Name="TicketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TicketQuantity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TicketPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TicketQuantity" Type="Int32" />
+          <Property Name="TicketPrice" Type="Int32" />
           <Property Name="EventID" Type="Int32" />
           <Property Name="UserID" Type="Int32" />
           <Property Name="TicketImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="0" />
           <Property Name="ModfiedDate" Type="DateTime" Precision="0" />
+          <Property Name="MaxTickets" Type="Int32" />
+          <Property Name="TicketsRemaining" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="EventsTable" Relationship="Self.FK_TicketsTable_EventsTable" FromRole="TicketsTable" ToRole="EventsTable" />
-          <NavigationProperty Name="PaymentTables" Relationship="Self.FK_PaymentTable_TicketsTable" FromRole="TicketsTable" ToRole="PaymentTable" />
+          <NavigationProperty Name="PaymentHistoryTables" Relationship="Self.FK_PaymentHistoryTable_TicketsTable" FromRole="TicketsTable" ToRole="PaymentHistoryTable" />
         </EntityType>
         <EntityType Name="UserTable">
           <Key>
@@ -419,14 +444,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PaymentTable_EventsTable">
+        <Association Name="FK_PaymentHistoryTable_EventsTable">
           <End Role="EventsTable" Type="Self.EventsTable" Multiplicity="0..1" />
-          <End Role="PaymentTable" Type="Self.PaymentTable" Multiplicity="*" />
+          <End Role="PaymentHistoryTable" Type="Self.PaymentHistoryTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EventsTable">
               <PropertyRef Name="EventID" />
             </Principal>
-            <Dependent Role="PaymentTable">
+            <Dependent Role="PaymentHistoryTable">
               <PropertyRef Name="EventID" />
             </Dependent>
           </ReferentialConstraint>
@@ -455,6 +480,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PaymentHistoryTable_TicketsTable">
+          <End Role="TicketsTable" Type="Self.TicketsTable" Multiplicity="0..1" />
+          <End Role="PaymentHistoryTable" Type="Self.PaymentHistoryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketsTable">
+              <PropertyRef Name="TicketID" />
+            </Principal>
+            <Dependent Role="PaymentHistoryTable">
+              <PropertyRef Name="TicketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PaymentHistoryTable_UserTable">
           <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
           <End Role="PaymentHistoryTable" Type="Self.PaymentHistoryTable" Multiplicity="*" />
@@ -464,18 +501,6 @@
             </Principal>
             <Dependent Role="PaymentHistoryTable">
               <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PaymentTable_TicketsTable">
-          <End Role="TicketsTable" Type="Self.TicketsTable" Multiplicity="0..1" />
-          <End Role="PaymentTable" Type="Self.PaymentTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TicketsTable">
-              <PropertyRef Name="TicketID" />
-            </Principal>
-            <Dependent Role="PaymentTable">
-              <PropertyRef Name="TicketID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -509,6 +534,7 @@
           <EntitySet Name="PaymentHistoryTables" EntityType="Self.PaymentHistoryTable" />
           <EntitySet Name="PaymentTables" EntityType="Self.PaymentTable" />
           <EntitySet Name="RoleTables" EntityType="Self.RoleTable" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TicketsTables" EntityType="Self.TicketsTable" />
           <EntitySet Name="UserTables" EntityType="Self.UserTable" />
           <AssociationSet Name="FK_EventDetails_EventsTable" Association="Self.FK_EventDetails_EventsTable">
@@ -523,9 +549,9 @@
             <End Role="UserTable" EntitySet="UserTables" />
             <End Role="EventsTable" EntitySet="EventsTables" />
           </AssociationSet>
-          <AssociationSet Name="FK_PaymentTable_EventsTable" Association="Self.FK_PaymentTable_EventsTable">
+          <AssociationSet Name="FK_PaymentHistoryTable_EventsTable" Association="Self.FK_PaymentHistoryTable_EventsTable">
             <End Role="EventsTable" EntitySet="EventsTables" />
-            <End Role="PaymentTable" EntitySet="PaymentTables" />
+            <End Role="PaymentHistoryTable" EntitySet="PaymentHistoryTables" />
           </AssociationSet>
           <AssociationSet Name="FK_TicketsTable_EventsTable" Association="Self.FK_TicketsTable_EventsTable">
             <End Role="EventsTable" EntitySet="EventsTables" />
@@ -535,13 +561,13 @@
             <End Role="PaymentTable" EntitySet="PaymentTables" />
             <End Role="PaymentHistoryTable" EntitySet="PaymentHistoryTables" />
           </AssociationSet>
+          <AssociationSet Name="FK_PaymentHistoryTable_TicketsTable" Association="Self.FK_PaymentHistoryTable_TicketsTable">
+            <End Role="TicketsTable" EntitySet="TicketsTables" />
+            <End Role="PaymentHistoryTable" EntitySet="PaymentHistoryTables" />
+          </AssociationSet>
           <AssociationSet Name="FK_PaymentHistoryTable_UserTable" Association="Self.FK_PaymentHistoryTable_UserTable">
             <End Role="UserTable" EntitySet="UserTables" />
             <End Role="PaymentHistoryTable" EntitySet="PaymentHistoryTables" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PaymentTable_TicketsTable" Association="Self.FK_PaymentTable_TicketsTable">
-            <End Role="TicketsTable" EntitySet="TicketsTables" />
-            <End Role="PaymentTable" EntitySet="PaymentTables" />
           </AssociationSet>
           <AssociationSet Name="FK_PaymentTable_UserTable" Association="Self.FK_PaymentTable_UserTable">
             <End Role="UserTable" EntitySet="UserTables" />
@@ -592,6 +618,10 @@
                 <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="TicketsPurchased" ColumnName="TicketsPurchased" />
+                <ScalarProperty Name="UserPaymentPaid" ColumnName="UserPaymentPaid" />
+                <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -609,13 +639,9 @@
                 <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
                 <ScalarProperty Name="UserZipCode" ColumnName="UserZipCode" />
                 <ScalarProperty Name="UserState" ColumnName="UserState" />
-                <ScalarProperty Name="UserPaymentPaid" ColumnName="UserPaymentPaid" />
-                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
-                <ScalarProperty Name="TicketID" ColumnName="TicketID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="EventID" ColumnName="EventID" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -625,6 +651,17 @@
                 <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
                 <ScalarProperty Name="UsterTypeCode" ColumnName="UsterTypeCode" />
                 <ScalarProperty Name="UserTypeDescription" ColumnName="UserTypeDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="GsuEventsDBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -639,6 +676,8 @@
                 <ScalarProperty Name="TicketImage" ColumnName="TicketImage" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ModfiedDate" ColumnName="ModfiedDate" />
+                <ScalarProperty Name="MaxTickets" ColumnName="MaxTickets" />
+                <ScalarProperty Name="TicketsRemaining" ColumnName="TicketsRemaining" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -10,7 +10,7 @@ namespace EventsGSUDataAccessLayer
 {
     public class Users
     {
-        GsuEventsDBEntities g = new GsuEventsDBEntities();
+        GsuEventsDBEntities Gsu = new GsuEventsDBEntities();
         public UserModel SaveUsers(UserModel model)
         {
 
@@ -23,7 +23,7 @@ namespace EventsGSUDataAccessLayer
             };
             try
             {
-                var usr = g.UserTables.Where(s => s.UserName == model.UserName).FirstOrDefault();
+                var usr = Gsu.UserTables.Where(s => s.UserName == model.UserName).FirstOrDefault();
                 
                     var usersObj = new UserTable();
 
@@ -35,11 +35,11 @@ namespace EventsGSUDataAccessLayer
                     usersObj.UserTypeID = 1;
                     usersObj.CreatedDate = DateTime.Now;
                     usersObj.ModifiedDate = DateTime.Now;
-                    g.UserTables.Add(usersObj);
+                    Gsu.UserTables.Add(usersObj);
 
                 if (usr == null)
                 {
-                    g.SaveChanges();
+                    Gsu.SaveChanges();
                     um.UFlag = true;
                 }
                 else
@@ -123,7 +123,7 @@ namespace EventsGSUDataAccessLayer
             };
             try
             {
-                var usr = g.UserTables.Where(s => s.UserName == model.UserName).FirstOrDefault();
+                var usr = Gsu.UserTables.Where(s => s.UserName == model.UserName).FirstOrDefault();
 
                 if (usr != null && usr.UserPassword == model.UserPassword)
                 {

@@ -16,27 +16,34 @@ namespace EventsGSUDataAccessLayer.DataAccess
             try
             {
                 var paymentObj = new PaymentTable();
-                var eventobject = new EventsTable();
-                var TicketObj = new TicketsTable();
+                var paymentHobj = new PaymentHistoryTable();
 
                 paymentObj.FirstName = model.FirstName;
                 paymentObj.LastName = model.LastName;
                 paymentObj.UserEmail = model.UserEmail;
                 paymentObj.UserPhoneNumber = model.UserPhoneNumber;
                 paymentObj.UserCardNumber = model.UserCardNumber;
-                paymentObj.UserCardExpiration = model.UserCardExpiration;
+                paymentObj.UserCardExpiration =Convert.ToDateTime(model.UserCardExpiration);
+                paymentObj.UserID = model.UserID;
                 paymentObj.UserCardCVV = model.UserCardCVV;
                 paymentObj.UserAddress = model.UserAddress;
                 paymentObj.UserZipCode = model.UserZipCode;
                 paymentObj.UserState = model.UserState;
-                paymentObj.UserPaymentPaid = model.UserPaymentPaid;
-                paymentObj.UserID = model.UserID;
-                paymentObj.UserTypeID = model.UserTypeID;
-                paymentObj.EventID = model.EventID;
-                paymentObj.TicketID = model.TicketID;
+                paymentHobj.UserPaymentPaid = model.UserPaymentPaid;
+                paymentHobj.UserID = model.UserID;
+                paymentHobj.UserTypeID = model.UserTypeID.ToString();
+                paymentHobj.EventID = model.EventID;
+                paymentHobj.TicketID = model.TicketID;
+                paymentHobj.TicketsPurchased = 1;
 
                 g.PaymentTables.Add(paymentObj);
+                g.PaymentHistoryTables.Add(paymentHobj);
                 g.SaveChanges();
+
+                paymentObj.PaymentID = paymentHobj.PaymentID;
+                g.SaveChanges();
+
+                
 
                 retVal = true;
             }
@@ -46,6 +53,46 @@ namespace EventsGSUDataAccessLayer.DataAccess
             }
             return retVal;
         }
+
+        public List<PaymentModel> GetCardDetails(int? UserID)
+        {
+            var CardDetailsList = new List<PaymentModel>();
+
+            try
+            {
+                var getCardDetailsObject = (from pt in g.PaymentTables
+                                         join ut in g.UserTables on pt.UserID equals ut.UserID
+                                         where pt.UserID == UserID
+                                         select new
+                                         {
+                                             pt.FirstName,
+                                             pt.LastName,
+                                             pt.UserCardNumber,
+                                             pt.UserCardCVV,
+                                             pt.UserCardExpiration,
+                                         }
+                                                                           
+                                         ).ToList();
+                foreach (var item in getCardDetailsObject)
+                {
+                    var cardetailsobject = new PaymentModel();
+
+                    cardetailsobject.FirstName = item.FirstName;
+                    cardetailsobject.LastName = item.LastName;
+                    cardetailsobject.UserCardNumber = item.UserCardNumber;
+                    cardetailsobject.UserCardCVV = item.UserCardCVV;
+                    cardetailsobject.UserCardExpiration = item.UserCardExpiration;
+                    CardDetailsList.Add(cardetailsobject);
+                }
+            }
+            catch(Exception ex)
+            {
+                string d = ex.Message;
+            }
+            return CardDetailsList;
+        }
+
+        
         //    public List<PaymentModel> GetPaymentById(int? UserID)
         //    {
         //        var eventdetailslist = new List<EventDetailsModel>();

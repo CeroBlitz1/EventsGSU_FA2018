@@ -31,18 +31,12 @@ namespace EventsGSUDataAccessLayer
         public string UserAddress { get; set; }
         public string UserZipCode { get; set; }
         public string UserState { get; set; }
-        public string UserPaymentPaid { get; set; }
-        public Nullable<int> UserTypeID { get; set; }
-        public Nullable<int> TicketID { get; set; }
-        public Nullable<int> UserID { get; set; }
-        public Nullable<int> EventID { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public Nullable<int> UserID { get; set; }
     
-        public virtual EventsTable EventsTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PaymentHistoryTable> PaymentHistoryTables { get; set; }
-        public virtual TicketsTable TicketsTable { get; set; }
         public virtual UserTable UserTable { get; set; }
     }
 }
