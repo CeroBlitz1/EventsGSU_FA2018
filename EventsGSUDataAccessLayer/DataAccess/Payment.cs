@@ -9,7 +9,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
 {
     public class Payment
     {
-        GsuEventsDBEntities g = new GsuEventsDBEntities();
+        GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
         public bool SavePayment(PaymentModel model)
         {
             var retVal = false;
@@ -92,7 +92,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
             return CardDetailsList;
         }
 
-        
+
         //    public List<PaymentModel> GetPaymentById(int? UserID)
         //    {
         //        var eventdetailslist = new List<EventDetailsModel>();
@@ -181,5 +181,44 @@ namespace EventsGSUDataAccessLayer.DataAccess
         //        }
         //        return eventdetailslist;
         //    }
+        public List<PaymentModel> GetUserDetails(int? UserID)
+        {
+            var UserhistoryDetailsList = new List<PaymentModel>();
+            try
+            {
+                var getUserHistoryDetailsObject = (from pt in g.PaymentTables
+                                            join ph in g.PaymentHistoryTables on pt.UserID equals ph.UserID
+                                            join et in g.EventsTables on ph.EventID equals et.EventID
+                                            where pt.UserID == UserID
+                                            select new
+                                            {
+                                                pt.FirstName,
+                                                pt.LastName,
+                                                pt.UserEmail,
+                                                ph.TicketsPurchased,
+                                                pt.UserCardExpiration,
+                                                et.EventTitle
+                                            }
+
+                                        ).ToList();
+                foreach (var item in getUserHistoryDetailsObject)
+                {
+                    var userdetailsobject = new PaymentModel();
+
+                    userdetailsobject.FirstName = item.FirstName;
+                    userdetailsobject.LastName = item.LastName;
+                    userdetailsobject.UserEmail = item.UserEmail;
+                    userdetailsobject.TicketsPurchased = item.TicketsPurchased;
+                    userdetailsobject.UserCardExpiration = item.UserCardExpiration;
+                    userdetailsobject.EventTitle = item.EventTitle;
+                    UserhistoryDetailsList.Add(userdetailsobject);
+                }
+            }
+            catch(Exception ex)
+            {
+                string d = ex.Message;
+            }
+            return UserhistoryDetailsList;
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace EventsGSUDataAccessLayer
 {
     public class Users
     {
-        GsuEventsDBEntities Gsu = new GsuEventsDBEntities();
+        GsuEventsDBEntities1 Gsu = new GsuEventsDBEntities1();
         public UserModel SaveUsers(UserModel model)
         {
 

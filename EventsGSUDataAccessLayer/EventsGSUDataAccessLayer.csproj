@@ -55,6 +55,9 @@
     <Compile Include="EventDetail.cs">
       <DependentUpon>GsuEventsDBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="EventsSearch.cs">
+      <DependentUpon>GsuEventsDBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="EventsTable.cs">
       <DependentUpon>GsuEventsDBEntities.tt</DependentUpon>
     </Compile>
@@ -77,6 +80,7 @@
     <Compile Include="Models\EventDetailsModel.cs" />
     <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\PaymentModel.cs" />
+    <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Models\TicketModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="PaymentHistoryTable.cs">

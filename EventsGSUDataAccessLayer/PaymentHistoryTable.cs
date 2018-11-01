@@ -18,7 +18,7 @@ namespace EventsGSUDataAccessLayer
         public string UserTypeID { get; set; }
         public Nullable<int> UserID { get; set; }
         public int PaymentID { get; set; }
-        public Nullable<int> TicketsPurchased { get; set; }
+        public int TicketsPurchased { get; set; }
         public string UserPaymentPaid { get; set; }
         public Nullable<int> TicketID { get; set; }
         public Nullable<int> EventID { get; set; }

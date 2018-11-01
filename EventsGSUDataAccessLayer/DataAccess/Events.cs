@@ -10,11 +10,11 @@ namespace EventsGSUDataAccessLayer.DataAccess
 {
     public class Events
     {
-        GsuEventsDBEntities g = new GsuEventsDBEntities();
+        GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
 
-        public bool SaveEvents(EventModel  model)
+        public bool SaveEvents(EventModel model)
         {
-            
+
             var retVal = false;
             try
             {
@@ -25,7 +25,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
 
                 //userObj.EventID
                 et.EventID = model.EventID;
-                et.EventLocation =model.EventLocation;
+                et.EventLocation = model.EventLocation;
                 et.EventDate = model.EventDate;
                 et.EventType = model.EventType;
                 et.EventImage = model.EventImage;
@@ -50,11 +50,11 @@ namespace EventsGSUDataAccessLayer.DataAccess
 
                 g.EventsTables.Add(et);
 
-                
+
                 g.TicketsTables.Add(tt);
                 g.SaveChanges();
 
-                
+
 
                 g.EventDetails.Add(ed);
                 g.SaveChanges();
@@ -115,20 +115,20 @@ namespace EventsGSUDataAccessLayer.DataAccess
 
 
                 var GetDetailsidObj = (from e in g.EventsTables
-                            join edd in g.EventDetails on e.EventID equals edd.EventID
-                            join tt in g.TicketsTables on e.EventID equals tt.EventID
+                                       join edd in g.EventDetails on e.EventID equals edd.EventID
+                                       join tt in g.TicketsTables on e.EventID equals tt.EventID
 
-                            where e.EventID == eventID
-                            select new
-                            {
-                                e.EventImage,
-                                e.EventTitle,
-                                e.EventDate,
-                                e.EventID,
-                                edd.EventsDescription,
-                                tt.TicketID,
-                                tt.TicketPrice
-                            }
+                                       where e.EventID == eventID
+                                       select new
+                                       {
+                                           e.EventImage,
+                                           e.EventTitle,
+                                           e.EventDate,
+                                           e.EventID,
+                                           edd.EventsDescription,
+                                           tt.TicketID,
+                                           tt.TicketPrice
+                                       }
                              ).ToList();
 
 
@@ -183,21 +183,23 @@ namespace EventsGSUDataAccessLayer.DataAccess
             }
             return eventdetailslist;
         }
-         public List<EventModel> GetAllEvents(EventModel model)
+        public List<EventModel> GetAllEvents(EventModel model)
         {
             var getalleventslist = new List<EventModel>();
             try
             {
-                var geteventsObj = (from e in g.EventsTables select new {
-                    e.EventID,
-                    e.EventImage,
-                    e.EventLocation,
-                    e.EventDate,
-                    e.EventType,
-                    e.EventTitle
-                }).ToList();
+                var geteventsObj = (from e in g.EventsTables
+                                    select new
+                                    {
+                                        e.EventID,
+                                        e.EventImage,
+                                        e.EventLocation,
+                                        e.EventDate,
+                                        e.EventType,
+                                        e.EventTitle
+                                    }).ToList();
 
-                foreach(var item in geteventsObj)
+                foreach (var item in geteventsObj)
                 {
                     var getalleventsobj = new EventModel();
 
@@ -210,7 +212,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
                     getalleventslist.Add(getalleventsobj);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string d = ex.Message;
             }
@@ -262,9 +264,267 @@ namespace EventsGSUDataAccessLayer.DataAccess
             }
             return eventObj;
         }
+        #region Commented
+        //public List<EventsTable> SearchEvents(string query = "")
+        //{
+        //    var getalleventslist = new List<EventsTable>();
+        //    try
+        //    {
+        //        //g.Configuration.ProxyCreationEnabled = false;
+        //        //var geteventsObj = (from e in g.EventsTables
+        //        //                    .Where(et => et.EventTitle.Contains(query))
+        //        //                    select new
+        //        //                    {
+        //        //                        e.EventID,
+        //        //                        e.EventTitle
+        //        //                    }).ToList();
+        //        //foreach (var item in geteventsObj)
+        //        //{
+        //        //    var getalleventsobj = new SearchModel();
 
+
+        //        //    getalleventsobj.EventTitle = item.EventTitle;
+        //        //    getalleventslist.Add(getalleventsobj);
+        //        //}
+        //        //getalleventslist = String.IsNullOrEmpty(query) ? g.EventsTables.ToList() :
+        //        //g.EventsTables.Where(p => p.EventTitle.Contains(query)).ToList();
+
+
+
+        //        //if (String.IsNullOrEmpty(query))
+        //        //{
+        //        //    getalleventslist = g.EventsTables.Select(t=>t.EventTitle).ToList();
+
+        //        //}
+        //        //else
+        //        //{
+        //        //    getalleventslist = g.EventsTables.Where(p => p.EventTitle.Contains(query)).Select(t => t.EventTitle).ToList();
+        //        //}
+        //        if (String.IsNullOrEmpty(query))
+        //        {
+        //            getalleventslist = g.EventsTables.ToList();
+
+        //        }
+        //        else
+        //        {
+        //            getalleventslist = g.EventsTables.Where(p => p.EventTitle.Contains(query)).ToList();
+        //        }
+
+        //    }
+
+
+        //    catch (Exception ex)
+        //    {
+        //        string d = ex.Message;
+        //    }
+        //    return getalleventslist;
+        //}
+        #endregion
+
+
+        /*
+         * index page dynamic table populate
+         * serach result page
+         * serch controller
+         * fix jistry tble ui
+         * */
+        public List<SearchModel> SearchEvents(string query = "")
+        {
+            var getAllEventsList = new List<SearchModel>();
+            try
+            {
+                #region commented
+                //g.Configuration.ProxyCreationEnabled = false;
+                //var geteventsObj = (from e in g.EventsTables
+                //                    .Where(et => et.EventTitle.Contains(query))
+                //                    select new
+                //                    {
+                //                        e.EventID,
+                //                        e.EventTitle
+                //                    }).ToList();
+                //foreach (var item in geteventsObj)
+                //{
+                //    var getalleventsobj = new SearchModel();
+
+
+                //    getalleventsobj.EventTitle = item.EventTitle;
+                //    getalleventslist.Add(getalleventsobj);
+                //}
+                //getalleventslist = String.IsNullOrEmpty(query) ? g.EventsTables.ToList() :
+                //g.EventsTables.Where(p => p.EventTitle.Contains(query)).ToList();
+
+
+
+                //if (String.IsNullOrEmpty(query))
+                //{
+                //    getalleventslist = g.EventsTables.Select(t=>t.EventTitle).ToList();
+
+                //}
+                //else
+                //{
+                //    getalleventslist = g.EventsTables.Where(p => p.EventTitle.Contains(query)).Select(t => t.EventTitle).ToList();
+                //}
+                #endregion
+
+                if (String.IsNullOrEmpty(query))
+                {
+                    var geteventsObj = (from e in g.EventsTables
+                                        select new
+                                        {
+                                            e.EventID,
+
+                                            e.EventTitle
+                                        }).ToList();
+                    foreach (var item in geteventsObj)
+                    {
+                        var searchModelObj = new SearchModel();
+
+
+                        searchModelObj.EventId = item.EventID;
+                        searchModelObj.EventTitle = item.EventTitle;
+
+                        getAllEventsList.Add(searchModelObj);
+                    }
+
+                }
+                else
+                {
+
+                    var geteventsObj = (from e in g.EventsTables
+                                                .Where(et => et.EventTitle.Contains(query))
+                                        select new
+                                        {
+                                            e.EventID,
+
+                                            e.EventTitle
+                                        }).ToList();
+                    foreach (var item in geteventsObj)
+                    {
+                        var searchModelObj = new SearchModel();
+
+
+                        searchModelObj.EventId = item.EventID;
+                        searchModelObj.EventTitle = item.EventTitle;
+
+                        getAllEventsList.Add(searchModelObj);
+                    }
+                }
+
+            }
+
+
+            catch (Exception ex)
+            {
+                string d = ex.Message;
+            }
+            return getAllEventsList;
+        }
+        public List<EventModel> SearchEventsResults(string query = "")
+        {
+            var getAllEventsList = new List<EventModel>();
+            try
+            {
+                #region commented
+                //g.Configuration.ProxyCreationEnabled = false;
+                //var geteventsObj = (from e in g.EventsTables
+                //                    .Where(et => et.EventTitle.Contains(query))
+                //                    select new
+                //                    {
+                //                        e.EventID,
+                //                        e.EventTitle
+                //                    }).ToList();
+                //foreach (var item in geteventsObj)
+                //{
+                //    var getalleventsobj = new SearchModel();
+
+
+                //    getalleventsobj.EventTitle = item.EventTitle;
+                //    getalleventslist.Add(getalleventsobj);
+                //}
+                //getalleventslist = String.IsNullOrEmpty(query) ? g.EventsTables.ToList() :
+                //g.EventsTables.Where(p => p.EventTitle.Contains(query)).ToList();
+
+
+
+                //if (String.IsNullOrEmpty(query))
+                //{
+                //    getalleventslist = g.EventsTables.Select(t=>t.EventTitle).ToList();
+
+                //}
+                //else
+                //{
+                //    getalleventslist = g.EventsTables.Where(p => p.EventTitle.Contains(query)).Select(t => t.EventTitle).ToList();
+                //}
+                #endregion
+
+                if (String.IsNullOrEmpty(query))
+                {
+                    var geteventsObj = (from e in g.EventsTables
+                                       
+                                       select new
+                                       {
+                                           e.EventImage,
+                                           e.EventTitle,
+                                           e.EventDate,
+                                           e.EventID,
+                                           e.EventLocation
+                                       }
+                             ).ToList();
+                    foreach (var item in geteventsObj)
+                    {
+                        var searchModelObj = new EventModel();
+
+
+                        searchModelObj.EventID = item.EventID;
+                        searchModelObj.EventTitle = item.EventTitle;
+                        searchModelObj.EventDate = item.EventDate;
+                        searchModelObj.EventLocation = item.EventLocation;
+                        searchModelObj.EventImage = item.EventImage;
+
+                        
+
+                        getAllEventsList.Add(searchModelObj);
+                    }
+
+                }
+                else
+                {
+
+                    var geteventsObj = (from e in g.EventsTables
+
+                                                .Where(et => et.EventTitle.Contains(query))
+                                        select new
+                                        {
+                                            e.EventImage,
+                                            e.EventTitle,
+                                            e.EventDate,
+                                            e.EventID,
+                                            e.EventLocation
+                                        }).ToList();
+                    foreach (var item in geteventsObj)
+                    {
+                        var searchModelObj = new EventModel();
+
+
+                        searchModelObj.EventID = item.EventID;
+                        searchModelObj.EventTitle = item.EventTitle;
+                        searchModelObj.EventDate = item.EventDate;
+                        searchModelObj.EventLocation = item.EventLocation;
+                        searchModelObj.EventImage = item.EventImage;
+
+                        getAllEventsList.Add(searchModelObj);
+                    }
+                }
+
+            }
+
+
+            catch (Exception ex)
+            {
+                string d = ex.Message;
+            }
+            return getAllEventsList;
+        }
     }
-      
- 
 
 }

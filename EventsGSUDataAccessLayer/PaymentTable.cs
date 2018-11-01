@@ -26,7 +26,7 @@ namespace EventsGSUDataAccessLayer
         public string UserEmail { get; set; }
         public string UserPhoneNumber { get; set; }
         public string UserCardNumber { get; set; }
-        public DateTime UserCardExpiration { get; set; }
+        public System.DateTime UserCardExpiration { get; set; }
         public int UserCardCVV { get; set; }
         public string UserAddress { get; set; }
         public string UserZipCode { get; set; }

@@ -66,6 +66,12 @@ namespace EventsGSUBusinessLibrary.Controllers
         {
             return new Events().GetAllEvents(model); 
         }
+        [Route("GetSearchEvents")]
+        public List<SearchModel> GetSearchEvents(string query = "")
+        {
+            return new Events().SearchEvents(query);
+        }
+
 
         //[Route("GetEvents")]
         //public EventModel GetEvents(EventModel model)
@@ -124,6 +130,11 @@ namespace EventsGSUBusinessLibrary.Controllers
         {
             return new Payment().GetCardDetails(UserID);
         }
+        [Route("GetUserDetails")]
+        public List<PaymentModel> GetUserDetails(int UserID)
+        {
+            return new Payment().GetUserDetails(UserID);
+        }
 
         [HttpPost]
         public void UploadFile()
@@ -145,7 +156,7 @@ namespace EventsGSUBusinessLibrary.Controllers
                     //Dictionary<string, Dictionary<string, string>> jsonDictionary = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(HttpContext.Current.Request.Params["h"].ToString());
                     Dictionary<string, string> jsonDictionary = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(HttpContext.Current.Request.Params["h"].ToString());
 
-                    GsuEventsDBEntities g = new GsuEventsDBEntities();
+                    GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
 
 
                     var EventLocation = jsonDictionary["eventlocation"];

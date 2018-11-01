@@ -49,7 +49,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="Index.aspx" ><img src="Site Images/GSUlogo.png" alt="Logo" style="width:40px;" /></a>
+                    <a class="navbar-brand" runat="server" href="Index.aspx" ><img src="SiteImages/GSUlogo.png" alt="Logo" style="width:40px;" /></a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -57,6 +57,8 @@
                         <li><a runat="server" href="~/Events/OrganizeEvent">Organize Events</a></li>
                         <li><a runat="server" href="~/Account/Login.aspx">Login</a></li>
                         <li><a runat="server" href="~/Account/Registration.aspx">Sign up</a></li>
+                        <li><a runat="server" href="~/Account/User_history_details.aspx">User Details</a></li><%--This is temporary--%>
+                        <li><a runat="server" href="~/Account/ManageTicket.aspx">Tickets</a></li><%--This is temporary--%>
                     </ul>
                     
                 </div>
@@ -74,6 +76,7 @@
                     <li><a runat="server" href="~/About.aspx">About</a></li>
                     <li><a runat="server" href="~/Contact.aspx">Contact us</a></li>
                     <li><a runat="server" href="~/Contact.aspx">Help?</a></li>
+                    
                         
                 </ul>
             </footer>

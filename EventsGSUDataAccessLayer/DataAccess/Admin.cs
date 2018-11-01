@@ -10,7 +10,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
 {
     public class Admin
     {
-        GsuEventsDBEntities g = new GsuEventsDBEntities();
+        GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
 
         public List<AdminModel> GetPaymentHistoryadmin(AdminModel model)
         {

@@ -22,7 +22,9 @@ namespace EventsGSUDataAccessLayer.Models
         public string UserPaymentPaid { get; set; }
         public int UserTypeID { get; set; }
         public int UserID { get; set; }
+        public int TicketsPurchased { get; set; }
         public int TicketID { get; set; }
         public int EventID { get; set; }
+        public string EventTitle { get; set; }
     }
 }

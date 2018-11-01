@@ -109,6 +109,27 @@
           <Property Name="CreatedDate" Type="date" />
           <Property Name="ModifiedDate" Type="date" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GsuEventsDB.dbo.EventsSearch' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EventsSearch">
+          <Key>
+            <PropertyRef Name="EventID" />
+            <PropertyRef Name="EventLocation" />
+            <PropertyRef Name="EventDate" />
+            <PropertyRef Name="EventType" />
+            <PropertyRef Name="EventImage" />
+          </Key>
+          <Property Name="SearchTags" Type="nvarchar(max)" />
+          <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventLocation" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EventDate" Type="date" Nullable="false" />
+          <Property Name="EventType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EventImage" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EventTitle" Type="nvarchar(max)" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="ModifiedDate" Type="date" />
+        </EntityType>
         <Association Name="FK_EventDetails_EventsTable">
           <End Role="EventsTable" Type="Self.EventsTable" Multiplicity="0..1" />
           <End Role="EventDetails" Type="Self.EventDetails" Multiplicity="*" />
@@ -238,6 +259,20 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TicketsTable" EntityType="Self.TicketsTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventsSearch" EntityType="Self.EventsSearch" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EventsSearch].[SearchTags] AS [SearchTags], 
+    [EventsSearch].[EventID] AS [EventID], 
+    [EventsSearch].[EventLocation] AS [EventLocation], 
+    [EventsSearch].[EventDate] AS [EventDate], 
+    [EventsSearch].[EventType] AS [EventType], 
+    [EventsSearch].[EventImage] AS [EventImage], 
+    [EventsSearch].[EventTitle] AS [EventTitle], 
+    [EventsSearch].[UserID] AS [UserID], 
+    [EventsSearch].[CreatedDate] AS [CreatedDate], 
+    [EventsSearch].[ModifiedDate] AS [ModifiedDate]
+    FROM [dbo].[EventsSearch] AS [EventsSearch]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_EventDetails_EventsTable" Association="Self.FK_EventDetails_EventsTable">
             <End Role="EventsTable" EntitySet="EventsTable" />
             <End Role="EventDetails" EntitySet="EventDetails" />
@@ -408,6 +443,25 @@
           <NavigationProperty Name="PaymentTables" Relationship="Self.FK_PaymentTable_UserTable" FromRole="UserTable" ToRole="PaymentTable" />
           <NavigationProperty Name="RoleTable" Relationship="Self.FK_UserTable_RoleTable" FromRole="UserTable" ToRole="RoleTable" />
         </EntityType>
+        <EntityType Name="EventsSearch">
+          <Key>
+            <PropertyRef Name="EventID" />
+            <PropertyRef Name="EventLocation" />
+            <PropertyRef Name="EventDate" />
+            <PropertyRef Name="EventType" />
+            <PropertyRef Name="EventImage" />
+          </Key>
+          <Property Name="SearchTags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EventType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EventImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EventTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+        </EntityType>
         <Association Name="FK_EventDetails_EventsTable">
           <End Role="EventsTable" Type="Self.EventsTable" Multiplicity="0..1" />
           <End Role="EventDetails" Type="Self.EventDetail" Multiplicity="*" />
@@ -528,7 +582,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="GsuEventsDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="GsuEventsDBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="EventDetails" EntityType="Self.EventDetail" />
           <EntitySet Name="EventsTables" EntityType="Self.EventsTable" />
           <EntitySet Name="PaymentHistoryTables" EntityType="Self.PaymentHistoryTable" />
@@ -537,6 +591,7 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TicketsTables" EntityType="Self.TicketsTable" />
           <EntitySet Name="UserTables" EntityType="Self.UserTable" />
+          <EntitySet Name="EventsSearches" EntityType="Self.EventsSearch" />
           <AssociationSet Name="FK_EventDetails_EventsTable" Association="Self.FK_EventDetails_EventsTable">
             <End Role="EventsTable" EntitySet="EventsTables" />
             <End Role="EventDetails" EntitySet="EventDetails" />
@@ -583,7 +638,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="GsuEventsDBModelStoreContainer" CdmEntityContainer="GsuEventsDBEntities">
+        <EntityContainerMapping StorageEntityContainer="GsuEventsDBModelStoreContainer" CdmEntityContainer="GsuEventsDBEntities1">
           <EntitySetMapping Name="EventDetails">
             <EntityTypeMapping TypeName="GsuEventsDBModel.EventDetail">
               <MappingFragment StoreEntitySet="EventDetails">
@@ -691,6 +746,22 @@
                 <ScalarProperty Name="UserPhoneNumber" ColumnName="UserPhoneNumber" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventsSearches">
+            <EntityTypeMapping TypeName="GsuEventsDBModel.EventsSearch">
+              <MappingFragment StoreEntitySet="EventsSearch">
+                <ScalarProperty Name="SearchTags" ColumnName="SearchTags" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="EventLocation" ColumnName="EventLocation" />
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+                <ScalarProperty Name="EventImage" ColumnName="EventImage" />
+                <ScalarProperty Name="EventTitle" ColumnName="EventTitle" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
               </MappingFragment>

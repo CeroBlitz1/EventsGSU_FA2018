@@ -13,10 +13,10 @@ namespace EventsGSUDataAccessLayer
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class GsuEventsDBEntities : DbContext
+    public partial class GsuEventsDBEntities1 : DbContext
     {
-        public GsuEventsDBEntities()
-            : base("name=GsuEventsDBEntities")
+        public GsuEventsDBEntities1()
+            : base("name=GsuEventsDBEntities1")
         {
         }
     
@@ -33,5 +33,6 @@ namespace EventsGSUDataAccessLayer
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TicketsTable> TicketsTables { get; set; }
         public virtual DbSet<UserTable> UserTables { get; set; }
+        public virtual DbSet<EventsSearch> EventsSearches { get; set; }
     }
 }
