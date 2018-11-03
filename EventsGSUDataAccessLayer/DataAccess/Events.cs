@@ -419,7 +419,9 @@ namespace EventsGSUDataAccessLayer.DataAccess
             }
             return getAllEventsList;
         }
-        public List<EventModel> SearchEventsResults(string query = "")
+
+
+        public List<EventModel> SearchResults(string query = "")
         {
             var getAllEventsList = new List<EventModel>();
             try

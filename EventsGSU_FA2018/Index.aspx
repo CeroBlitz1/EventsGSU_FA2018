@@ -18,7 +18,7 @@
             <td>
                 <div class="ui-widget">
                     <input type="text" id="Event" placeholder="Search for a product" required />
-                    <input type="button" value="Search" id="submit" />
+                    <input type="button" value="Search" id="Search" />
                     <input type="hidden" id ="Id" />
                 </div>
 
@@ -194,7 +194,7 @@
 
 
                         ////serach////////////////////////////////////
-
+                        
                         //$(function () {
 
                         //    $("#Event").autocomplete({

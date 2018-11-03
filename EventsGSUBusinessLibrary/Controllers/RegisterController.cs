@@ -72,6 +72,12 @@ namespace EventsGSUBusinessLibrary.Controllers
             return new Events().SearchEvents(query);
         }
 
+        [Route("GetSearchEventsResults")]
+        public List<EventModel> GetSearchEventresults(string query="")
+        {
+            return new Events().SearchResults(query);
+        }
+
 
         //[Route("GetEvents")]
         //public EventModel GetEvents(EventModel model)
