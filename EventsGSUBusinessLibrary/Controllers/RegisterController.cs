@@ -196,7 +196,7 @@ namespace EventsGSUBusinessLibrary.Controllers
                     g.EventsTables.Add(et);
 
                     tt.TicketImage = TicketImage;
-                    tt.TicketPrice = Convert.ToInt16(TicketPrice);
+                    tt.TicketPrice = Convert.ToInt32(TicketPrice);
                     tt.TicketQuantity = Convert.ToInt16(TicketQuantity);
                     tt.UserID = Convert.ToInt16(UserID);
                     tt.EventID = et.EventID;

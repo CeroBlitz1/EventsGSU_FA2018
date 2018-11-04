@@ -105,7 +105,7 @@
                     <tr class="Success">
 
                         <td colspan="3">
-                            <input id="btnCreateEvent" class="btn btn-success" type="button" value="Create Event" />
+                            <%--<input id="btnCreateEvent" class="btn btn-success" type="button" value="Create Event" />--%>
                         </td>
                     </tr>
                 </tbody>
