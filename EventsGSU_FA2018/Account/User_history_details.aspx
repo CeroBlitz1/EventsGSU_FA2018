@@ -46,6 +46,7 @@
                 pair = pair.split(/\s*=\s*/);
                 output[pair[0]] = pair.splice(1).join('=');
                 uID = output["UserID"];
+                
             });
         }
         $('#btnLoadEvents').click(function () {
@@ -66,10 +67,12 @@
                 //},
                 success: function (response) {
                     debugger;
-                    //$('#datadiv').html('');
-                    //$('#datadiv').show();
+                    {
+                        //$('#datadiv').html('');
+                        //$('#datadiv').show();
+                    }
                     $('#datadiv').removeClass('hidden');
-                    //var row = "";
+                    { //var row = "";
                     //$.each(response, function (index, value) {
                     //    debugger;
                     //    row += '<tr><td>' + value.FirstName + '</td><td>'
@@ -91,6 +94,7 @@
                     //});
 
                     //$('#tbldata').html(row);
+                        }
                     writetable(response);
 
 
@@ -105,22 +109,21 @@
         });
 
         function writetable(data) {
-        //debugger;
         var tableOutline = '<tr><td>';
 
         for (var i = 0; i < data.length; i++) {
 
-            //tableOutline = tableOutline + '<tr id="row_' + data[i].ARPT_IDENT_CD + '"onclick="getprjIdentNbr(this,' + "'" + data[i].ARPT_IDENT_CD + "'," + data[i].ARPT_ID + ')"class = "' + "" + '" "><td>';
-            //tableOutline = tableOutline + '<a>'
-            //    + data[i].ARPT_IDENT_CD + '</a></td><td>'
-            //    + data[i].MUN_NM + '</td><td>'
-            //    + data[i].ProjectRegion + '</td><td>'
-            //    + data[i].DIST_CD + '</td><td>'
-            //    + data[i].ARPT_PROJ_PFX_CD + '</td><td>'
-            //    + data[i].ARPT_NPIAS_IND + '</td><td>'
-            //    + data[i].ARPT_VEND_NBR_CD
-            //    + '</td></tr>';
-
+            {  //tableOutline = tableOutline + '<tr id="row_' + data[i].ARPT_IDENT_CD + '"onclick="getprjIdentNbr(this,' + "'" + data[i].ARPT_IDENT_CD + "'," + data[i].ARPT_ID + ')"class = "' + "" + '" "><td>';
+                //tableOutline = tableOutline + '<a>'
+                //    + data[i].ARPT_IDENT_CD + '</a></td><td>'
+                //    + data[i].MUN_NM + '</td><td>'
+                //    + data[i].ProjectRegion + '</td><td>'
+                //    + data[i].DIST_CD + '</td><td>'
+                //    + data[i].ARPT_PROJ_PFX_CD + '</td><td>'
+                //    + data[i].ARPT_NPIAS_IND + '</td><td>'
+                //    + data[i].ARPT_VEND_NBR_CD
+                //    + '</td></tr>';
+            }
             
             tableOutline = tableOutline 
                 + data[i].FirstName + '</td><td>'

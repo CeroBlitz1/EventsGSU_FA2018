@@ -12,19 +12,19 @@
         </tr>
         <tr>
             <td>
+                 &nbsp;&nbsp;&nbsp;&nbsp;
+                <br />
+                <br />
+                <br />
                 <div class="ui-widget">
-                    <input type="text" id="Event" placeholder="Search for a product" required />
-                    <input type="submit" value="Go" id="submit" />
+                    <input type="text" id="Event" placeholder="Search for an Event" required />
+                    <input type="button" value="Search" id="Search" class="btn btn -success" />
                     <input type="hidden" id="Id" />
                 </div>
 
                 <%--<label for="Location">Location: </label>
                 <input id="Location" />--%>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <br />
-                <br />
-                <br />
-                <input type="button" id="SearchButton" class="btn btn-success" value="Search" />
+               
             </td>
         </tr>
         <tr>
@@ -90,63 +90,63 @@
                                 window.location.href = "http://localhost/EventsGSU_FA2018/Events/Event.aspx?eventID=" + eventID;
                             }); */
                         }
+                        {
+                            ////serach////////////////////////////////////
 
-                        ////serach////////////////////////////////////
+                            //$(function () {
 
-                        //$(function () {
+                            //    $("#Event").autocomplete({
+                            //        source: function (request, response) {
+                            //            jQuery.get($('#Event').val(), {
+                            //                query: request.term
+                            //            }, function (data) {
+                            //                // assuming data is a JavaScript array such as
+                            //                // ["one@abc.de", "onf@abc.de","ong@abc.de"]
+                            //                // and not a string
 
-                        //    $("#Event").autocomplete({
-                        //        source: function (request, response) {
-                        //            jQuery.get($('#Event').val(), {
-                        //                query: request.term
-                        //            }, function (data) {
-                        //                // assuming data is a JavaScript array such as
-                        //                // ["one@abc.de", "onf@abc.de","ong@abc.de"]
-                        //                // and not a string
+                            //                var valresponse = [];
+                            //                debugger;
 
-                        //                var valresponse = [];
-                        //                debugger;
+                            //                $.ajax({
+                            //                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/getsearchevents',
+                            //                    method: 'GET',
+                            //                    data: {
 
-                        //                $.ajax({
-                        //                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/getsearchevents',
-                        //                    method: 'GET',
-                        //                    data: {
+                            //                    },
+                            //                    success: function (response) {
 
-                        //                    },
-                        //                    success: function (response) {
+                            //                        $.each(response, function (index, value) {
+                            //                            debugger;
+                            //                            valresponse.push(value.EventTitle)
+                            //                        });
+                            //                        //var availableTags = valresponse;
+                            //                        //$('#Event').autocomplete({
+                            //                        //    source: availableTags
+                            //                        //});
 
-                        //                        $.each(response, function (index, value) {
-                        //                            debugger;
-                        //                            valresponse.push(value.EventTitle)
-                        //                        });
-                        //                        //var availableTags = valresponse;
-                        //                        //$('#Event').autocomplete({
-                        //                        //    source: availableTags
-                        //                        //});
+                            //                    },
+                            //                    error: function (error) {
+                            //                        $('#ErrorText').text(error.responseText);
+                            //                        $('#error').show('fade');
+                            //                    }
 
-                        //                    },
-                        //                    error: function (error) {
-                        //                        $('#ErrorText').text(error.responseText);
-                        //                        $('#error').show('fade');
-                        //                    }
-
-                        //                });
-
-
-
-
-                        //                response(valresponse);
-                        //            });
-                        //        },
-                        //        minLength: 2
-                        //    });
-
-                        //});
+                            //                });
 
 
 
 
+                            //                response(valresponse);
+                            //            });
+                            //        },
+                            //        minLength: 2
+                            //    });
 
+                            //});
+
+
+
+
+                        }
 
 
                         ////serach////////////////////////////////////
@@ -185,78 +185,85 @@
                             minLength: 1
                         });
 
+                        {
+                            //$(function () {
+                            //    var availableTags = [];
+                            //    var valresponse = [];
+                            //    $.ajax({
+                            //        url: 'http://localhost/EventsGSUBusinessLibrary/api/register/getsearchevents',
+                            //        method: 'GET',
+                            //        data: {
 
-                        //$(function () {
-                        //    var availableTags = [];
-                        //    var valresponse = [];
-                        //    $.ajax({
-                        //        url: 'http://localhost/EventsGSUBusinessLibrary/api/register/getsearchevents',
-                        //        method: 'GET',
-                        //        data: {
+                            //        },
+                            //        success: function (response) {
 
-                        //        },
-                        //        success: function (response) {
+                            //            $.each(response, function (index, value) {
+                            //                //debugger;
+                            //                valresponse.push(value.EventTitle)
+                            //            });
+                            //            debugger;
+                            //            availableTags = valresponse;
+                            //            //var availableTags = valresponse;
+                            //            $('#Event').autocomplete({
+                            //                source: availableTags
+                            //            });
 
-                        //            $.each(response, function (index, value) {
-                        //                //debugger;
-                        //                valresponse.push(value.EventTitle)
-                        //            });
-                        //            debugger;
-                        //            availableTags = valresponse;
-                        //            //var availableTags = valresponse;
-                        //            $('#Event').autocomplete({
-                        //                source: availableTags
-                        //            });
+                            //        },
+                            //        error: function (error) {
+                            //            $('#ErrorText').text(error.responseText);
+                            //            $('#error').show('fade');
+                            //        }
 
-                        //        },
-                        //        error: function (error) {
-                        //            $('#ErrorText').text(error.responseText);
-                        //            $('#error').show('fade');
-                        //        }
+                            //    });
 
-                        //    });
+                            //    $("#Event").autocomplete({
+                            //        source: availableTags
+                            //    });
+                            //});
 
-                        //    $("#Event").autocomplete({
-                        //        source: availableTags
-                        //    });
-                        //});
-
-                        //////////////////---------------------
-
-
+                            //////////////////---------------------
 
 
 
 
 
-                        //$.ajax({
-                        //    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/userLogin',
-                        //    method: 'POST',
-                        //    data: {
-                        //        username: $('#txtUserName').val(),
-                        //        userpassword: $('#txtPassword').val(),
-                        //    },
-                        //    success: function (response) {
-                        //        if (response.UFlag) {
-                        //            window.location.href = "http://localhost/EventsGSU_FA2018/Events/Event.aspx";
-                        //        }
-                        //        else {
-                        //            $('#ErrorText').text(response.UMessage);
-                        //            $('#error').show('fade');
-                        //        }
-                        //        //$('#successmodal').text(response.UserEmail);
-                        //        //$("#error").show('fade');
-
-                        //    },
-                        //    error: function (error) {
-                        //        $('#ErrorText').text(error.responseText);
-                        //        $('#error').show('fade');
-
-                        //    }
-
-                        //});
 
 
+                            //$.ajax({
+                            //    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/userLogin',
+                            //    method: 'POST',
+                            //    data: {
+                            //        username: $('#txtUserName').val(),
+                            //        userpassword: $('#txtPassword').val(),
+                            //    },
+                            //    success: function (response) {
+                            //        if (response.UFlag) {
+                            //            window.location.href = "http://localhost/EventsGSU_FA2018/Events/Event.aspx";
+                            //        }
+                            //        else {
+                            //            $('#ErrorText').text(response.UMessage);
+                            //            $('#error').show('fade');
+                            //        }
+                            //        //$('#successmodal').text(response.UserEmail);
+                            //        //$("#error").show('fade');
+
+                            //    },
+                            //    error: function (error) {
+                            //        $('#ErrorText').text(error.responseText);
+                            //        $('#error').show('fade');
+
+                            //    }
+
+                            //});
+                        }
+
+                        $('#Search').click(function () {
+                            
+
+                            var SearchQuery = document.getElementById("Event").value;
+                            window.location.href = "http://localhost/EventsGSU_FA2018/Events/Search_results.aspx?SearchQuery=" + SearchQuery;
+
+                        });
                     });
                 }
             }
@@ -267,134 +274,134 @@
 
 
 
+        {
+            ////$(function () {
+            ////    var availableTags = [];               
+            ////    var valresponse = [];
+            ////    $.ajax({
+            ////        url: 'http://localhost/EventsGSUBusinessLibrary/api/register/getsearchevents',
+            ////        method: 'GET',
+            ////        data: {
 
-        ////$(function () {
-        ////    var availableTags = [];               
-        ////    var valresponse = [];
-        ////    $.ajax({
-        ////        url: 'http://localhost/EventsGSUBusinessLibrary/api/register/getsearchevents',
-        ////        method: 'GET',
-        ////        data: {
+            ////        },
+            ////        success: function (response) {
 
-        ////        },
-        ////        success: function (response) {
+            ////            $.each(response, function (index, value) {
+            ////                //debugger;
+            ////                valresponse.push(value.EventTitle)
+            ////            });
 
-        ////            $.each(response, function (index, value) {
-        ////                //debugger;
-        ////                valresponse.push(value.EventTitle)
-        ////            });
+            ////            availableTags = valresponse;
+            ////            //var availableTags = valresponse;
+            ////            $('#Event').autocomplete({
+            ////                source: availableTags
+            ////            });
 
-        ////            availableTags = valresponse;
-        ////            //var availableTags = valresponse;
-        ////            $('#Event').autocomplete({
-        ////                source: availableTags
-        ////            });
+            ////        },
+            ////        error: function (error) {
+            ////            $('#ErrorText').text(error.responseText);
+            ////            $('#error').show('fade');
+            ////        }
 
-        ////        },
-        ////        error: function (error) {
-        ////            $('#ErrorText').text(error.responseText);
-        ////            $('#error').show('fade');
-        ////        }
+            ////    });
 
-        ////    });
-
-        ////        $("#Event").autocomplete({
-        ////            source: availableTags
-        ////        });
-        ////    });
-
-
-
-        //$(function () {
-
-        //       $("#Event").autocomplete({
-        //           source: function (request, response) {
-        //               jQuery.get($('#Event').val(), {
-        //                   query: request.term
-        //               }, function (data) {
-        //                   // assuming data is a JavaScript array such as
-        //                   // ["one@abc.de", "onf@abc.de","ong@abc.de"]
-        //                   // and not a string
-
-        //                   var valresponse = [];
-        //                   debugger;
-
-        //                   $.ajax({
-        //                       url: 'http://localhost/EventsGSUBusinessLibrary/api/register/getsearchevents',
-        //                       method: 'GET',
-        //                       data: {
-
-        //                       },
-        //                       success: function (response) {
-
-        //                           $.each(response, function (index, value) {
-        //                               debugger;
-        //                               valresponse.push(value.EventTitle)
-        //                           });
-        //                           //var availableTags = valresponse;
-        //                           //$('#Event').autocomplete({
-        //                           //    source: availableTags
-        //                           //});
-
-        //                       },
-        //                       error: function (error) {
-        //                           $('#ErrorText').text(error.responseText);
-        //                           $('#error').show('fade');
-        //                       }
-
-        //                   });
+            ////        $("#Event").autocomplete({
+            ////            source: availableTags
+            ////        });
+            ////    });
 
 
 
+            //$(function () {
 
-        //                   response(valresponse);
-        //               });
-        //           },
-        //           minLength: 2
-        //       });
+            //       $("#Event").autocomplete({
+            //           source: function (request, response) {
+            //               jQuery.get($('#Event').val(), {
+            //                   query: request.term
+            //               }, function (data) {
+            //                   // assuming data is a JavaScript array such as
+            //                   // ["one@abc.de", "onf@abc.de","ong@abc.de"]
+            //                   // and not a string
 
-        //   });
+            //                   var valresponse = [];
+            //                   debugger;
 
+            //                   $.ajax({
+            //                       url: 'http://localhost/EventsGSUBusinessLibrary/api/register/getsearchevents',
+            //                       method: 'GET',
+            //                       data: {
 
+            //                       },
+            //                       success: function (response) {
 
-        //$(function () {
+            //                           $.each(response, function (index, value) {
+            //                               debugger;
+            //                               valresponse.push(value.EventTitle)
+            //                           });
+            //                           //var availableTags = valresponse;
+            //                           //$('#Event').autocomplete({
+            //                           //    source: availableTags
+            //                           //});
 
+            //                       },
+            //                       error: function (error) {
+            //                           $('#ErrorText').text(error.responseText);
+            //                           $('#error').show('fade');
+            //                       }
 
-        //    var availableTags = [
-        //        "ActionScript",
-        //        "AppleScript",
-        //        "Asp",
-        //        "BASIC",
-        //        "C",
-        //        "C++",
-        //        "Clojure",
-        //        "COBOL",
-        //        "ColdFusion",
-        //        "Erlang",
-        //        "Fortran",
-        //        "Groovy",
-        //        "Haskell",
-        //        "Java",
-        //        "JavaScript",
-        //        "Lisp",
-        //        "Perl",
-        //        "PHP",
-        //        "Python",
-        //        "Ruby",
-        //        "Scala",
-        //        "Scheme"
-        //    ];
+            //                   });
 
 
 
 
+            //                   response(valresponse);
+            //               });
+            //           },
+            //           minLength: 2
+            //       });
 
-        //    $("#Event").autocomplete({
-        //        source: availableTags
-        //    });
-        //});
-        /////////////////////////////////////////////
+            //   });
+        }
 
+        {
+            //$(function () {
+
+
+            //    var availableTags = [
+            //        "ActionScript",
+            //        "AppleScript",
+            //        "Asp",
+            //        "BASIC",
+            //        "C",
+            //        "C++",
+            //        "Clojure",
+            //        "COBOL",
+            //        "ColdFusion",
+            //        "Erlang",
+            //        "Fortran",
+            //        "Groovy",
+            //        "Haskell",
+            //        "Java",
+            //        "JavaScript",
+            //        "Lisp",
+            //        "Perl",
+            //        "PHP",
+            //        "Python",
+            //        "Ruby",
+            //        "Scala",
+            //        "Scheme"
+            //    ];
+
+
+
+
+
+            //    $("#Event").autocomplete({
+            //        source: availableTags
+            //    });
+            //});
+            /////////////////////////////////////////////
+        }
         function GetEvents() {
 
             //debugger;
@@ -410,7 +417,7 @@
                     writetable(response);
 
                     debugger;
-                    /*
+                    {/*
                     $('#indexImage1')[0].src = 'http://localhost/EventsGSU_FA2018/' + response[0].EventImage;
                     $('#indexImage1')[0].src = 'http://localhost/EventsGSUBusinessLibrary/' + 'UploadedFiles/img4.jpg';
                     $('#event1Date').text(response[0].EventDate);
@@ -422,7 +429,7 @@
                     var firstItemImageEle = document.getElementById("indexImage1");
                     firstItemImageEle.setAttribute("data-eventID", response[0].EventID);
                     $('#indexEventID').data('eventId', response[0].EventID);
-                     */
+                     */}
                 
 
                     if (response.EFlag) {
@@ -450,9 +457,8 @@
                 for (var i = 0; i < data.length; i++) {
                     tableOutline = tableOutline +
                         '<a href="' + 'http://localhost/EventsGSU_FA2018/Events/Event.aspx?eventID=' +
-                        data[i].EventID + '"><div style = "width: 250px; display: inline-block; padding: 20px" class="col-md-4 eventblock" > <div id="indexEventID'+ i +'">' +
-                        data[i].EventID + '</div><div><img id="indexImage'+ i +'" src="' +
-                        'http://localhost/EventsGSUBusinessLibrary/' + 'UploadedFiles/img4.jpg' + '" style="width: 210px"></div><div id="event'+ i +'Date">' +
+                        data[i].EventID + '"><div style = "width: 250px; display: inline-block; padding: 20px" class="col-md-4 eventblock" > <div id="indexEventID'+ i +'"></div><div><img id="indexImage' + i + '" src="' +
+                        'http://localhost/EventsGSUBusinessLibrary/' + data[i].EventImage + '" style="width: 210px"></div><div id="event' + i + 'Date">' +
                         data[i].EventDate + '</div><div id="event'+ i +'Location">' +
                         data[i].EventLocation + '</div><div id="event'+ i +'Title">' +
                         data[i].EventTitle + '</div></div></a>';
@@ -463,21 +469,21 @@
         }
         function GetSearchEvents() {
 
-
-            //jQuery("input.suggest-user").autocomplete({
-            //    source: function (request, response) {
-            //        jQuery.get("usernames.action", {
-            //            query: request.term
-            //        }, function (data) {
-            //            // assuming data is a JavaScript array such as
-            //            // ["one@abc.de", "onf@abc.de","ong@abc.de"]
-            //            // and not a string
-            //            response(data);
-            //        });
-            //    },
-            //    minLength: 3
-            //});
-
+            {
+                //jQuery("input.suggest-user").autocomplete({
+                //    source: function (request, response) {
+                //        jQuery.get("usernames.action", {
+                //            query: request.term
+                //        }, function (data) {
+                //            // assuming data is a JavaScript array such as
+                //            // ["one@abc.de", "onf@abc.de","ong@abc.de"]
+                //            // and not a string
+                //            response(data);
+                //        });
+                //    },
+                //    minLength: 3
+                //});
+            }
 
             $.ajax({
                 url: 'http://localhost/EventsGSUBusinessLibrary/api/register/getsearchevents',

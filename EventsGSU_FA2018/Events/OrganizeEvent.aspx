@@ -142,7 +142,7 @@
     <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
     <script type="text/javascript">
-        //$(function () {
+        { //$(function () {
         //    $("#fileimg").fileupload({
         //        'uploader': '../Uploadify/uploader.swf',
         //        'cancelImg': '../Uploadify/cancel.png',
@@ -154,46 +154,48 @@
         //        'multi': true,
         //        'auto': true
         //    });
+            }
         $(document).ready(function () {
-            //$('#Close').click(function () {
+            {  //$('#Close').click(function () {
 
-            //    $('#error').hide('fade');
-            //});
-            //$('#btnCreateEvent').click(function () {
+                //    $('#error').hide('fade');
+                //});
+                //$('#btnCreateEvent').click(function () {
 
-            //    debugger;
-            //    $.ajax({
-            //        url: 'http://localhost/EventsGSUBusinessLibrary/api/register/CreateEvent',
-            //        method: 'POST',
-            //        data: {
-            //            eventtitle: $('#txtTitle').val(),
-            //            eventdate: $('#EventDate').val(),
-            //            eventlocation: $('#txtEventLocation').val(),
-            //            eventimage: $('#fileUpload').val(),
-            //            eventtype: $('#txtEventType').val(),
-            //            ticketimage: $('#imgTicket').val(),
-            //            ticketprice: $('#txtTicketPrice').val(),
-            //            ticketquantity: $('#TicketQuantity').val(),
-            //            eventsdescription: $('#txtEventDesc').val(),
-            //            //userID: $('#globalUserId').val()
-            //        },
-            //        success: function (s) {
-            //            //$('#successmodal').modal(s);
-            //            alert("Event Created");
+                //    debugger;
+                //    $.ajax({
+                //        url: 'http://localhost/EventsGSUBusinessLibrary/api/register/CreateEvent',
+                //        method: 'POST',
+                //        data: {
+                //            eventtitle: $('#txtTitle').val(),
+                //            eventdate: $('#EventDate').val(),
+                //            eventlocation: $('#txtEventLocation').val(),
+                //            eventimage: $('#fileUpload').val(),
+                //            eventtype: $('#txtEventType').val(),
+                //            ticketimage: $('#imgTicket').val(),
+                //            ticketprice: $('#txtTicketPrice').val(),
+                //            ticketquantity: $('#TicketQuantity').val(),
+                //            eventsdescription: $('#txtEventDesc').val(),
+                //            //userID: $('#globalUserId').val()
+                //        },
+                //        success: function (s) {
+                //            //$('#successmodal').modal(s);
+                //            alert("Event Created");
 
-            //        },
-            //        error: function (jqXHR) {
-            //            $('#ErrorText').text(jqXHR.responseText);
-            //            $('#error').show('fade');
+                //        },
+                //        error: function (jqXHR) {
+                //            $('#ErrorText').text(jqXHR.responseText);
+                //            $('#error').show('fade');
 
-            //        }
+                //        }
 
-            //    });
+                //    });
 
-            //});
+                //});
 
 
-            //////////////////////////
+                //////////////////////////
+            }
             var output = {};
             function getCookies() {
                  var userCookie = document.cookie;// "referer=example.com/post?id=22;bcomID=8075; subreturn=example&fuzzy=true&ct=null&autobounce=true; JSESSIONID=6D20570E1EB; mbox=session";

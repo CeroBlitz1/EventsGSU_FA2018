@@ -71,9 +71,9 @@ namespace EventsGSUBusinessLibrary.Controllers
         {
             return new Events().SearchEvents(query);
         }
-
-        [Route("GetSearchEventsResults")]
-        public List<EventModel> GetSearchEventresults(string query="")
+        [HttpGet]
+        [Route("GetResults")]
+        public List<EventModel> GetResults(string query="")
         {
             return new Events().SearchResults(query);
         }
@@ -140,6 +140,16 @@ namespace EventsGSUBusinessLibrary.Controllers
         public List<PaymentModel> GetUserDetails(int UserID)
         {
             return new Payment().GetUserDetails(UserID);
+        }
+        [Route("GetEventByUserID")]
+        public List<EventModel> GetEventByUserID(int UserID)
+        {
+            return new Events().EventsByUserID(UserID);
+        }
+        [Route ("GetTicktsByEventID")]
+        public List<EventModel>GetTicktsByEventID(int? eventID)
+        {
+            return new Events().TicktesByEventID(eventID);
         }
 
         [HttpPost]

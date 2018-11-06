@@ -527,6 +527,77 @@ namespace EventsGSUDataAccessLayer.DataAccess
             }
             return getAllEventsList;
         }
+        public List<EventModel> EventsByUserID(int UserID)
+        {
+            var getalleventslist = new List<EventModel>();
+            try
+            {
+                var geteventsObj = (from e in g.EventsTables
+                                    where e.UserID == UserID
+                                    select new
+                                    {
+                                        e.EventID,
+                                        e.EventImage,
+                                        e.EventTitle,
+                                        e.EventDate,
+                                        e.EventLocation,
+                                        
+                                    }).ToList();
+
+                foreach (var item in geteventsObj)
+                {
+                    var getalleventsobj = new EventModel();
+
+                    getalleventsobj.EventID = item.EventID;
+                    getalleventsobj.EventTitle = item.EventTitle;
+                    getalleventsobj.EventImage = item.EventImage;
+                    getalleventsobj.EventDate = item.EventDate;
+                    getalleventsobj.EventLocation = item.EventLocation;
+                    getalleventslist.Add(getalleventsobj);
+                }
+
+            }
+            catch(Exception ex)
+            {
+                string d = ex.Message;
+            }
+            return getalleventslist;
+        }
+        public List<EventModel> TicktesByEventID(int? eventID)
+        {
+            var getalleventslist = new List<EventModel>();
+            try
+            {
+                //join edd in g.EventDetails on e.EventID equals edd.EventID
+                var geteventsObj = (from ph in g.PaymentHistoryTables
+                                    join pt in g.PaymentTables on ph.UserID equals pt.UserID
+                                    where ph.EventID == eventID
+                                    select new
+                                    {
+                                        pt.FirstName,
+                                        pt.LastName,
+                                        ph.TicketsPurchased,
+                                        
+
+                                    }).ToList();
+
+                foreach (var item in geteventsObj)
+                {
+                    var getalleventsobj = new EventModel();
+
+                    getalleventsobj.FirstName = item.FirstName;
+                    getalleventsobj.LastName = item.LastName;
+                    getalleventsobj.TicketsPurchased = item.TicketsPurchased;
+                    getalleventslist.Add(getalleventsobj);
+                }
+
+            }
+            catch(Exception ex)
+            {
+                string d = ex.Message;
+            }
+            return getalleventslist;
+        }
     }
 
 }

@@ -220,5 +220,45 @@ namespace EventsGSUDataAccessLayer.DataAccess
             }
             return UserhistoryDetailsList;
         }
+
+        public List<UserModel> UpdateUserTypeCode(int? UserID)
+        {
+            var UserModelList = new List<UserModel>();
+            try
+            {
+                var getUserTypeObject = (from ut in g.UserTables
+                                                   where ut.UserID == UserID
+                                                   select new
+                                                   {
+                                                       ut.UserTypeID
+                                                   }
+
+                                                       ).ToList();
+                foreach (var item in getUserTypeObject)
+                {
+                    var userdetailsobject = new PaymentModel();
+
+                    userdetailsobject.UserTypeID = 2;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                string d = ex.Message;
+            }
+            return UserModelList;
+
+            //List<Person> results = (from p in Context.Persons
+            //                        where .... // add where condition here
+            //            select p).ToList();
+
+            //foreach (Person p in results)
+            //{
+            //    p.is_default = false;
+            //}
+
+            //Context.SaveChanges();
+
+        }
     }
 }

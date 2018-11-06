@@ -142,12 +142,12 @@
     <Content Include="About.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\ManageTicket.aspx" />
+    <Content Include="Account\Manage_Tickets_events.aspx" />
     <Content Include="Account\MyProfile.aspx" />
     <Content Include="Account\Organizer_registration.aspx" />
     <Content Include="Account\Registration.aspx" />
     <Content Include="Account\User_history_details.aspx" />
     <Content Include="Admin\admin_user_management.aspx" />
-    <Content Include="Autocomplete.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -207,6 +207,7 @@
     <Content Include="Events\AllEvents.aspx" />
     <Content Include="Events\Event.aspx" />
     <Content Include="Events\OrganizeEvent.aspx" />
+    <Content Include="Events\Search_results.aspx" />
     <Content Include="Events\user_manage_event.aspx" />
     <Content Include="Index.aspx" />
     <Content Include="favicon.ico" />
@@ -304,6 +305,13 @@
     <Compile Include="Account\ManageTicket.aspx.designer.cs">
       <DependentUpon>ManageTicket.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account\Manage_Tickets_events.aspx.cs">
+      <DependentUpon>Manage_Tickets_events.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Manage_Tickets_events.aspx.designer.cs">
+      <DependentUpon>Manage_Tickets_events.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\MyProfile.aspx.cs">
       <DependentUpon>MyProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -338,13 +346,6 @@
     </Compile>
     <Compile Include="Admin\admin_user_management.aspx.designer.cs">
       <DependentUpon>admin_user_management.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Autocomplete.aspx.cs">
-      <DependentUpon>Autocomplete.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Autocomplete.aspx.designer.cs">
-      <DependentUpon>Autocomplete.aspx</DependentUpon>
     </Compile>
     <Compile Include="BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
@@ -389,6 +390,13 @@
     </Compile>
     <Compile Include="Events\OrganizeEvent.aspx.designer.cs">
       <DependentUpon>OrganizeEvent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Events\Search_results.aspx.cs">
+      <DependentUpon>Search_results.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Events\Search_results.aspx.designer.cs">
+      <DependentUpon>Search_results.aspx</DependentUpon>
     </Compile>
     <Compile Include="Events\user_manage_event.aspx.cs">
       <DependentUpon>user_manage_event.aspx</DependentUpon>

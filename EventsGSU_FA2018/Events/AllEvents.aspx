@@ -178,37 +178,37 @@
 
 
 
-            $('#indexImage1').click(function () {
+            //$('#indexImage1').click(function () {
 
 
-                //alert("I am here");
-                var clickItemImageEle = document.getElementById("indexImage1");
-                var eventID = clickItemImageEle.getAttribute("data-eventID");
+            //    //alert("I am here");
+            //    var clickItemImageEle = document.getElementById("indexImage1");
+            //    var eventID = clickItemImageEle.getAttribute("data-eventID");
 
 
 
-                window.location.href = "http://localhost/EventsGSU_FA2018/Events/Event.aspx?eventID=" + eventID;
-            });
-            $('#indexImage2').click(function () {
+            //    window.location.href = "http://localhost/EventsGSU_FA2018/Events/Event.aspx?eventID=" + eventID;
+            //});
+            //$('#indexImage2').click(function () {
 
 
-                //alert("I am here");
-                var clickItemImageEle = document.getElementById("indexImage2");
-                var eventID = clickItemImageEle.getAttribute("data-eventID");
+            //    //alert("I am here");
+            //    var clickItemImageEle = document.getElementById("indexImage2");
+            //    var eventID = clickItemImageEle.getAttribute("data-eventID");
 
 
-                window.location.href = "http://localhost/EventsGSU_FA2018/Events/Event.aspx?eventID=" + eventID;
-            });
-            $('#indexImage3').click(function () {
+            //    window.location.href = "http://localhost/EventsGSU_FA2018/Events/Event.aspx?eventID=" + eventID;
+            //});
+            //$('#indexImage3').click(function () {
 
 
-                //alert("I am here");
-                var clickItemImageEle = document.getElementById("indexImage3");
-                var eventID = clickItemImageEle.getAttribute("data-eventID");
+            //    //alert("I am here");
+            //    var clickItemImageEle = document.getElementById("indexImage3");
+            //    var eventID = clickItemImageEle.getAttribute("data-eventID");
 
 
-                window.location.href = "http://localhost/EventsGSU_FA2018/Events/Event.aspx?eventID=" + eventID;
-            });
+            //    window.location.href = "http://localhost/EventsGSU_FA2018/Events/Event.aspx?eventID=" + eventID;
+            //});
 
 
             //$.ajax({

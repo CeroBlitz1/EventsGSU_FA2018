@@ -21,5 +21,8 @@ namespace EventsGSUDataAccessLayer.Models
         public string TicketImage { get; set; }
         public bool EFlag { get; set; }
         public string EventsDescription { get; set; }
+        public int TicketsPurchased { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }
