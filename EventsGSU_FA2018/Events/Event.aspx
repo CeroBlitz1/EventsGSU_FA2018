@@ -95,7 +95,7 @@
                 var queryParams = getQueryParams();
 
                 $.ajax({
-                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/getdetailsbyid?eventId=' + queryParams.eventID,
+                    url: 'http://eventsgsubusinesslibrary.somee.com/api/register/getdetailsbyid?eventId=' + queryParams.eventID,
                     method: 'GET',
                     data: {
                         EventLocation: "",
@@ -106,7 +106,7 @@
                     success: function (response) {
                         debugger;
 
-                        $('#indexImage1')[0].src = 'http://localhost/EventsGSUBusinessLibrary/' + response[0].EventImage;
+                        $('#indexImage1')[0].src = 'http://eventsgsubusinesslibrary.somee.com/' + response[0].EventImage;
                         $('#event1Date').text(response[0].EventDate);
                         $('#event1Location').text(response[0].EventLocation);
                         $('#event1Title').text(response[0].EventTitle);

@@ -58,7 +58,7 @@
             //var uID = output["UserID"];
             
             $.ajax({
-                url: 'http://localhost/EventsGSUBusinessLibrary/api/register/GetUserDetails?UserID=' + uID,
+                url: 'http://eventsgsubusinesslibrary.somee.com/api/register/GetUserDetails?UserID=' + uID,
                 method: 'GET',
                 //data: {
                 //    //EventLocation: "",

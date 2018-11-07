@@ -83,7 +83,7 @@
 
 
                 //$.ajax({
-                //    url: 'http://localhost/EventsGSUBusinessLibrary/api/account/Register',
+                //    url: 'http://eventsgsubusinesslibrary.somee.com/api/account/Register',
                 //    method: 'POST',
                 //    data: {
                 //        username: $('#txtUserName').val()
@@ -104,7 +104,7 @@
 
 
                 $.ajax({
-                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/register',
+                    url: 'http://eventsgsubusinesslibrary.somee.com/api/register/register',
                     method: 'POST',
                     data: {
                         username: $('#txtUserName').val(),

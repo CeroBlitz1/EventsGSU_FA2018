@@ -210,7 +210,7 @@
                         //                debugger;
 
                         //                $.ajax({
-                        //                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/getsearchevents',
+                        //                    url: 'http://eventsgsubusinesslibrary.somee.com/api/register/getsearchevents',
                         //                    method: 'GET',
                         //                    data: {
 
@@ -261,7 +261,7 @@
                         $('#Event').autocomplete({
                             source: function (request, response) {
                                 $.ajax({
-                                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/getsearchevents',
+                                    url: 'http://eventsgsubusinesslibrary.somee.com/api/register/getsearchevents',
                                     data: { query: request.term },
                                     dataType: 'json',
                                     type: 'GET',
@@ -292,7 +292,7 @@
                         //    var availableTags = [];
                         //    var valresponse = [];
                         //    $.ajax({
-                        //        url: 'http://localhost/EventsGSUBusinessLibrary/api/register/getsearchevents',
+                        //        url: 'http://eventsgsubusinesslibrary.somee.com/api/register/getsearchevents',
                         //        method: 'GET',
                         //        data: {
 
@@ -332,7 +332,7 @@
 
 
                         //$.ajax({
-                        //    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/userLogin',
+                        //    url: 'http://eventsgsubusinesslibrary.somee.com/api/register/userLogin',
                         //    method: 'POST',
                         //    data: {
                         //        username: $('#txtUserName').val(),
@@ -374,7 +374,7 @@
         ////    var availableTags = [];               
         ////    var valresponse = [];
         ////    $.ajax({
-        ////        url: 'http://localhost/EventsGSUBusinessLibrary/api/register/getsearchevents',
+        ////        url: 'http://eventsgsubusinesslibrary.somee.com/api/register/getsearchevents',
         ////        method: 'GET',
         ////        data: {
 
@@ -422,7 +422,7 @@
         //                   debugger;
 
         //                   $.ajax({
-        //                       url: 'http://localhost/EventsGSUBusinessLibrary/api/register/getsearchevents',
+        //                       url: 'http://eventsgsubusinesslibrary.somee.com/api/register/getsearchevents',
         //                       method: 'GET',
         //                       data: {
 
@@ -502,7 +502,7 @@
             debugger;
 
             $.ajax({
-                url: 'http://localhost/EventsGSUBusinessLibrary/api/register/getEvents',
+                url: 'http://eventsgsubusinesslibrary.somee.com/api/register/getEvents',
                 method: 'GET',
                 data: {
                     EventLocation: "",
@@ -512,7 +512,7 @@
                     //debugger;
 
                     //$('#indexImage1')[0].src = 'http://localhost/EventsGSU_FA2018/' + response[0].EventImage;
-                    $('#indexImage1')[0].src = 'http://localhost/EventsGSUBusinessLibrary/' + response[0].EventImage;
+                    $('#indexImage1')[0].src = 'http://eventsgsubusinesslibrary.somee.com/' + response[0].EventImage;
                     $('#event1Date').text(response[0].EventDate);
                     $('#event1Location').text(response[0].EventLocation);
                     $('#event1Title').text(response[0].EventTitle);
@@ -522,7 +522,7 @@
                     $('#indexEventID').data('eventId', response[0].EventID);
 
 
-                    $('#indexImage2')[0].src = 'http://localhost/EventsGSUBusinessLibrary/' + response[1].EventImage;
+                    $('#indexImage2')[0].src = 'http://eventsgsubusinesslibrary.somee.com/' + response[1].EventImage;
                     $('#event2Date').text(response[1].EventDate);
                     $('#event2Location').text(response[1].EventLocation);
                     $('#event2Title').text(response[1].EventTitle);
@@ -531,7 +531,7 @@
                     firstItemImageEle.setAttribute("data-eventID", response[1].EventID);
                     $('#indexEventID1').data('eventId', response[1].EventID);
 
-                    $('#indexImage3')[0].src = 'http://localhost/EventsGSUBusinessLibrary/' + response[2].EventImage;
+                    $('#indexImage3')[0].src = 'http://eventsgsubusinesslibrary.somee.com/' + response[2].EventImage;
                     $('#event3Date').text(response[2].EventDate);
                     $('#event3Location').text(response[2].EventLocation);
                     $('#event3Title').text(response[2].EventTitle);
@@ -579,7 +579,7 @@
 
 
             $.ajax({
-                url: 'http://localhost/EventsGSUBusinessLibrary/api/register/getsearchevents',
+                url: 'http://eventsgsubusinesslibrary.somee.com/api/register/getsearchevents',
                 method: 'GET',
                 data: {
 

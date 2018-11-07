@@ -163,7 +163,7 @@
 
             //    debugger;
             //    $.ajax({
-            //        url: 'http://localhost/EventsGSUBusinessLibrary/api/register/CreateEvent',
+            //        url: 'http://eventsgsubusinesslibrary.somee.com/api/register/CreateEvent',
             //        method: 'POST',
             //        data: {
             //            eventtitle: $('#txtTitle').val(),
@@ -268,7 +268,7 @@
                 var ajaxRequest = $.ajax({
                     type: "POST",
                     //url: "/api/fileupload/uploadfile",
-                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/UploadFile',
+                    url: 'http://eventsgsubusinesslibrary.somee.com/api/register/UploadFile',
                     contentType: false,
                     processData: false,
                     data: data
@@ -281,7 +281,7 @@
 
                 //$.ajax({
                 //    type: 'post',
-                //    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/UploadFile&b=2',
+                //    url: 'http://eventsgsubusinesslibrary.somee.com/api/register/UploadFile&b=2',
                 //    data: data,
                 //    dataType: 'json',
                 //    contentType: false,

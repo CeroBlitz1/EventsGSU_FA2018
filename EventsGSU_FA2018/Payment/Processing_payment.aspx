@@ -88,7 +88,7 @@
                 var queryParams = getQueryParams();
 
                 $.ajax({
-                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/getdetailsbyid?eventID=' + queryParams.eventID,
+                    url: 'http://eventsgsubusinesslibrary.somee.com/api/register/getdetailsbyid?eventID=' + queryParams.eventID,
                     method: 'GET',
                     data: {
                         EventLocation: "",
@@ -141,7 +141,7 @@
 
 
                 $.ajax({
-                    url: 'http://localhost/EventsGSUBusinessLibrary/api/payment/paymentv',
+                    url: 'http://eventsgsubusinesslibrary.somee.com/api/payment/paymentv',
                     method: 'POST',
                     data: {
                         firstname: $('#txtFN').val(),
