@@ -12,7 +12,7 @@
                         <img id="indexImage1" src="Images/img1.jpg" style="width: 350px" /></td>
                 </tr>
                 <tr>
-                    <td>
+                    <td>    
                         <div id="event1Date"></div>
                     </td>
                 </tr>

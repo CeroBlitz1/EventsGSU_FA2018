@@ -39,7 +39,7 @@
                     <tr>
                         <td>Event Date</td>
                         <td>
-                            <input type="date" id="EventDate" />
+                            <input type="text" id="EventDate" />
                         </td>
 
                     </tr>
@@ -100,7 +100,7 @@
                     <tr class="Success">
 
                         <td colspan="3">
-                            <input id="btnUploadFile" type="button" class="btn btn-success" value="Create Event" />
+                            <input id="btnUploadFile" type="button" class="btn btn-success" value="Update Event" />
                         </td>
                     </tr>
                 </tbody>
@@ -136,6 +136,7 @@
     <script src="../Scripts/bootstrap.min.js"></script>
     <script src="../Scripts/jquery.cookie-1.4.1.min.js"></script>
     <script src="../Scripts/jquery-ui-1.12.1.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="../Scripts/underscore.min.js"></script>
     <script type="text/javascript">
         function getQueryParams(queryString) {
@@ -152,9 +153,15 @@
                 .object()
                 .value();
         }
+
+        $(function () {
+            $("#EventDate").datepicker();
+        });
+
         $(document).ready(function () {
             $('#btnUploadFile').click(function () {
                 var queryParams = getQueryParams();
+                debugger;
                 $.ajax({
                     url: 'http://localhost/EventsGSUBusinessLibrary/api/register/PostEventDetails?eventId=' + queryParams.eventID,
                     method: 'POST',

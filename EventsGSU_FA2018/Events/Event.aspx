@@ -106,17 +106,17 @@
                     success: function (response) {
                         debugger;
 
-                        $('#indexImage1')[0].src = 'http://localhost/EventsGSU_FA2018/' + response[0].EventImage;
-                        $('#event1Date').text(response[0].EventDate);
-                        $('#event1Location').text(response[0].EventLocation);
-                        $('#event1Title').text(response[0].EventTitle);
-                        $('#indexEventID').text(response[0].EventID);
-                        $('#Indexdescription').text(response[0].EventsDescription);
-                        $('#btnpayment').text(response[0].TicketPrice);
-                        $('#indexEventID').val(response[0].EventID);
+                        $('#indexImage1')[0].src = 'http://localhost/EventsGSUBusinessLibrary/' + response.EventImage;
+                        $('#event1Date').text(response.EventDate);
+                        $('#event1Location').text(response.EventLocation);
+                        $('#event1Title').text(response.EventTitle);
+                        $('#indexEventID').text(response.EventID);
+                        $('#Indexdescription').text(response.EventsDescription);
+                        $('#btnpayment').text(response.TicketPrice);
+                        $('#indexEventID').val(response.EventID);
                         var firstItemImageEle = document.getElementById("indexEventID");
-                        firstItemImageEle.setAttribute("data-eventID", response[0].EventID); 
-                        $('#indexEventID').data('eventId', response[0].EventID);
+                        firstItemImageEle.setAttribute("data-eventID", response.EventID); 
+                        $('#indexEventID').data('eventId', response.EventID);
 
                         $('#btnpayment').click(function () {
 

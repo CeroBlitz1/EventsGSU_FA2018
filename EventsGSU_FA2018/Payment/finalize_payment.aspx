@@ -268,14 +268,14 @@
                     success: function (response) {
                         debugger;
 
-                        $('#indexImage1')[0].src = 'http://localhost/EventsGSU_FA2018/' + response[0].EventImage;
-                        $('#event1Date').text(response[0].EventDate);
-                        $('#event1Location').text(response[0].EventLocation);
-                        $('#event1Title').text(response[0].EventTitle);
-                        $('#indexEventID').text(response[0].EventID);
-                        $('#eventDesc').text(response[0].EventsDescription);
-                        $('#ticketAmount').text(response[0].TicketPrice);
-                        $('#indexTicketid').text(response[0].TicketID);
+                        $('#indexImage1')[0].src = 'http://localhost/EventsGSUBusinessLibrary/' + response.EventImage;
+                        $('#event1Date').text(response.EventDate);
+                        $('#event1Location').text(response.EventLocation);
+                        $('#event1Title').text(response.EventTitle);
+                        $('#indexEventID').text(response.EventID);
+                        $('#eventDesc').text(response.EventsDescription);
+                        $('#ticketAmount').text(response.TicketPrice);
+                        $('#indexTicketid').text(response.TicketID);
 
 
                     },

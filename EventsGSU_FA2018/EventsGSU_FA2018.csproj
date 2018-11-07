@@ -232,9 +232,11 @@
     <Content Include="Payment\finalize_payment.aspx" />
     <Content Include="Payment\Organizer_payment.aspx" />
     <Content Include="Payment\Processing_payment.aspx" />
+    <Content Include="ReadMe\Fixes.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\cancel.png" />
+    <Content Include="Scripts\eventData.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -285,6 +287,8 @@
     <Content Include="Images\img3.jpg" />
     <Content Include="SiteImages\processingimage.png" />
     <Content Include="Site.Master" />
+    <Content Include="SQL\IIS_USER_SETUP.sql" />
+    <Content Include="SQL\GsuEventsDBTables1.sql" />
     <Content Include="ViewPurchase.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />

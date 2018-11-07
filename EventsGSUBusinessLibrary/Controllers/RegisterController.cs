@@ -57,10 +57,19 @@ namespace EventsGSUBusinessLibrary.Controllers
         }
 
         [Route("GetDetailsById")]
-        public List<EventDetailsModel> GetDetailsById(int? eventID)
+        public EventDetailsModel GetDetailsById(int? eventID)
         {
             return new Events().GetDetailsById(eventID);
         }
+
+
+        //[Route("GetDetailsById")]
+        //public List<EventDetailsModel> GetDetailsById(int? eventID)
+        //{
+        //    return new Events().GetDetailsById(eventID);
+        //}
+
+
         [Route("GetAllEvents")]
         public List<EventModel> GetAllEvents(EventModel model)
         {

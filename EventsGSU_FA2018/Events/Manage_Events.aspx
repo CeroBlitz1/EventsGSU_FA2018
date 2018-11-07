@@ -8,10 +8,14 @@
     <script src="../Scripts/jquery.cookie-1.4.1.min.js"></script>
     <script src="../Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="../Scripts/underscore.min.js"></script>
+    <script src="../Scripts/eventData.js"></script>
     <script type="text/javascript">
+        var uID = 0;
+        var utId = 1;
         $(document).ready(function () {
             getCookies();
             GetTicketEvents();
+
         });
 
         function getCookies() {
@@ -21,10 +25,13 @@
                 pair = pair.split(/\s*=\s*/);
                 output[pair[0]] = pair.splice(1).join('=');
                 uID = output["UserID"];
+                utId = output["UserTypeID"];
             });
         }
 
         function GetTicketEvents() {
+            //debugger;
+            var df = utId;
             $.ajax({
                 url: 'http://localhost/EventsGSUBusinessLibrary/api/register/GetEventByUserID?UserID=' + uID,
                 method: 'GET',

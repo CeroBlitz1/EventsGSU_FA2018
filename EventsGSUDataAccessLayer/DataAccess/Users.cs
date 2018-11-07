@@ -119,7 +119,7 @@ namespace EventsGSUDataAccessLayer
             {
                 UMessage = "Success",
                 UFlag = false,
-                ReturnUrl = System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName)
+                ReturnUrl = ""
             };
             try
             {

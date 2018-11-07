@@ -53,11 +53,13 @@ namespace EventsGSUDataAccessLayer.DataAccess
 
 
                 g.TicketsTables.Add(tt);
-                g.SaveChanges();
+                //g.SaveChanges();
 
 
 
                 g.EventDetails.Add(ed);
+
+                
                 g.SaveChanges();
 
 
@@ -79,6 +81,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
             {
                 //var et = g.EventsTables.OrderByDescending(i => i).Take(3).ToList();
                 var et = g.EventsTables.Take(3).ToList();
+                //var et = g.EventsTables.Where(x=>x.IsValid != 0).Take(3).ToList();
                 foreach (var e in et)
                 {
                     var eModel = new EventModel();
@@ -97,9 +100,97 @@ namespace EventsGSUDataAccessLayer.DataAccess
             }
             return eventObj;
         }
-        public List<EventDetailsModel> GetDetailsById(int? eventID)
+        //public List<EventDetailsModel> GetDetailsById(int? eventID)
+        //{
+        //    var eventdetailslist = new List<EventDetailsModel>();
+
+
+
+        //    try
+        //    {
+        //        #region
+        //        //var ed = g.EventDetails.Where(s => s.EventID == eventID).ToList();
+        //        //var et = g.EventsTables.Where(s => s.EventID == eventID).ToList();
+        //        //var tic = g.TicketsTables.Where(s => s.EventID == eventID).ToList();
+        //        #endregion //Old Code //Old code
+
+
+
+
+
+        //        var GetDetailsidObj = (from e in g.EventsTables
+        //                               join edd in g.EventDetails on e.EventID equals edd.EventID
+        //                               join tt in g.TicketsTables on e.EventID equals tt.EventID
+
+        //                               where e.EventID == eventID
+        //                               select new
+        //                               {
+        //                                   e.EventImage,
+        //                                   e.EventTitle,
+        //                                   e.EventDate,
+        //                                   e.EventID,
+        //                                   edd.EventsDescription,
+        //                                   tt.TicketID,
+        //                                   tt.TicketPrice
+        //                               }
+        //                     ).ToList();
+
+
+        //        foreach (var item in GetDetailsidObj)
+        //        {
+        //            var eventdetailsobject = new EventDetailsModel(); // eventObject
+
+        //            eventdetailsobject.EventID = item.EventID;
+        //            eventdetailsobject.EventTitle = item.EventTitle;
+        //            eventdetailsobject.EventImage = item.EventImage;
+        //            eventdetailsobject.TicketID = item.TicketID;
+        //            eventdetailsobject.TicketPrice = item.TicketPrice;
+        //            eventdetailsobject.EventsDescription = item.EventsDescription;
+        //            eventdetailsobject.EventDate = item.EventDate.ToString();
+        //            eventdetailslist.Add(eventdetailsobject);
+        //        }
+        //        //return eventObj2;
+
+
+
+        //        #region
+        //        //foreach (var e in et)
+        //        //{
+        //        //    var eModel = new EventDetailsModel();
+        //        //    eModel.EventImage = e.EventImage;
+        //        //    eModel.EventTitle = e.EventTitle;
+        //        //    eModel.EventDate = e.CreatedDate.ToString();
+        //        //    eModel.EventID = e.EventID;
+        //        //    eventObj.Add(eModel);
+        //        //}
+        //        //foreach (var e in ed)
+        //        //{
+        //        //    var eModel1 = new EventDetailsModel();
+        //        //    eModel1.EventsDescription = e.EventsDescription;
+        //        //    eventObj.Add(eModel1);
+        //        //}
+        //        //foreach (var e in tic)
+        //        //{
+        //        //    var eModel2 = new EventDetailsModel();
+        //        //    eModel2.TicketID = e.TicketID;
+        //        //    eModel2.TicketPrice = e.TicketPrice;
+        //        //    eventObj.Add(eModel2);
+
+        //        //}
+        //        #endregion // Old code
+
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        string d = ex.Message;
+        //    }
+        //    return eventdetailslist;
+        //}
+
+        public EventDetailsModel GetDetailsById(int? eventID)
         {
-            var eventdetailslist = new List<EventDetailsModel>();
+            var eventdetailslist = new EventDetailsModel();
 
 
 
@@ -115,41 +206,39 @@ namespace EventsGSUDataAccessLayer.DataAccess
 
 
 
-                var GetDetailsidObj = (from e in g.EventsTables
+                eventdetailslist = (from e in g.EventsTables
                                        join edd in g.EventDetails on e.EventID equals edd.EventID
                                        join tt in g.TicketsTables on e.EventID equals tt.EventID
 
                                        where e.EventID == eventID
-                                       select new
+                                       select new EventDetailsModel()
                                        {
-                                           e.EventImage,
-                                           e.EventTitle,
-                                           e.EventDate,
-                                           e.EventID,
-                                           edd.EventsDescription,
-                                           tt.TicketID,
-                                           tt.TicketPrice
+                                          EventImage=  e.EventImage,
+                                           EventTitle = e.EventTitle,
+                                           EventDate= e.EventDate.ToString(),
+                                           EventID= e.EventID,
+                                           EventsDescription=edd.EventsDescription,
+                                           TicketID=tt.TicketID,
+                                           TicketPrice=tt.TicketPrice
                                        }
-                             ).ToList();
+                             ).FirstOrDefault();
+                #region Commneted 11 6 2018 8:36
+                //foreach (var item in GetDetailsidObj)
+                //{
+                //    var eventdetailsobject = new EventDetailsModel(); // eventObject
 
-
-                foreach (var item in GetDetailsidObj)
-                {
-                    var eventdetailsobject = new EventDetailsModel(); // eventObject
-
-                    eventdetailsobject.EventID = item.EventID;
-                    eventdetailsobject.EventTitle = item.EventTitle;
-                    eventdetailsobject.EventImage = item.EventImage;
-                    eventdetailsobject.TicketID = item.TicketID;
-                    eventdetailsobject.TicketPrice = item.TicketPrice;
-                    eventdetailsobject.EventsDescription = item.EventsDescription;
-                    eventdetailsobject.EventDate = item.EventDate.ToString();
-                    eventdetailslist.Add(eventdetailsobject);
-                }
+                //    eventdetailsobject.EventID = item.EventID;
+                //    eventdetailsobject.EventTitle = item.EventTitle;
+                //    eventdetailsobject.EventImage = item.EventImage;
+                //    eventdetailsobject.TicketID = item.TicketID;
+                //    eventdetailsobject.TicketPrice = item.TicketPrice;
+                //    eventdetailsobject.EventsDescription = item.EventsDescription;
+                //    eventdetailsobject.EventDate = item.EventDate.ToString();
+                //    eventdetailslist.Add(eventdetailsobject);
+                //}
                 //return eventObj2;
-
-
-
+                #endregion
+                                                          
                 #region
                 //foreach (var e in et)
                 //{
@@ -184,6 +273,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
             }
             return eventdetailslist;
         }
+
         public List<EventModel> GetAllEvents(EventModel model)
         {
             var getalleventslist = new List<EventModel>();
@@ -601,6 +691,16 @@ namespace EventsGSUDataAccessLayer.DataAccess
             }
             return getalleventslist;
         }
+
+        /*
+         for user_mange_event
+         GET method to populate the page
+         public EventDetailsModel GetDetailsById(int? eventID)
+
+            and then use
+             public bool SaveEvents(EventModel model)
+
+             */
         public List<EventModel> UpdateByEventID(int? eventID)
         {
             var getalleventslist = new List<EventModel>();
