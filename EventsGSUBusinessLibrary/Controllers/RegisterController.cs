@@ -151,6 +151,12 @@ namespace EventsGSUBusinessLibrary.Controllers
         {
             return new Events().TicktesByEventID(eventID);
         }
+        [HttpPost]
+        [Route("PostEventDetails")]
+        public List<EventModel>PostEventDetails(int? eventID)
+        {
+            return new Events().UpdateByEventID(eventID);
+        }
 
         [HttpPost]
         public void UploadFile()

@@ -35,6 +35,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
                 tt.TicketImage = model.TicketImage;
                 tt.TicketPrice = model.TicketPrice;
                 tt.TicketQuantity = model.TicketQuantity;
+                tt.MaxTickets = model.MaxTickets;
                 //tt.UserID = model.UserId;
                 tt.EventID = et.EventID;
 
@@ -321,13 +322,15 @@ namespace EventsGSUDataAccessLayer.DataAccess
         //}
         #endregion
 
-
+        #region Notes
         /*
-         * index page dynamic table populate
-         * serach result page
-         * serch controller
-         * fix jistry tble ui
-         * */
+                 * index page dynamic table populate
+                 * serach result page
+                 * serch controller
+                 * fix jistry tble ui
+                 * */
+        #endregion
+
         public List<SearchModel> SearchEvents(string query = "")
         {
             var getAllEventsList = new List<SearchModel>();
@@ -596,6 +599,49 @@ namespace EventsGSUDataAccessLayer.DataAccess
             {
                 string d = ex.Message;
             }
+            return getalleventslist;
+        }
+        public List<EventModel> UpdateByEventID(int? eventID)
+        {
+            var getalleventslist = new List<EventModel>();
+            try
+            {
+                var geteventsObj = (from e in g.EventsTables
+                                    join ed in g.EventDetails on e.EventID equals ed.EventID
+                                    join tt in g.TicketsTables on e.EventID equals tt.EventID
+                                    where e.EventID == eventID
+                                    select new
+                                    {
+                                        e.EventLocation,
+                                        e.EventDate,
+                                        e.EventType,
+                                        e.EventTitle,
+                                        ed.EventsDescription,
+                                        tt.TicketPrice,
+                                    }).ToList();
+                foreach (var item in geteventsObj)
+                {
+                    var getalleventsobj = new EventModel();
+
+                    getalleventsobj.EventLocation = item.EventLocation;
+                    getalleventsobj.EventDate = item.EventDate;
+                    getalleventsobj.EventType = item.EventType;
+                    getalleventsobj.EventTitle = item.EventTitle;
+                    getalleventsobj.EventsDescription = item.EventsDescription;
+                    getalleventsobj.TicketPrice = item.TicketPrice;
+                    getalleventslist.Add(getalleventsobj);
+
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                string d = ex.Message;
+
+            }
+
             return getalleventslist;
         }
     }

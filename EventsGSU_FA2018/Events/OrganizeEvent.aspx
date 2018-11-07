@@ -29,7 +29,11 @@
                     <tr>
                         <td>Event Image</td>
                         <td>
-                            <input type="file" id="fileimg" />
+                            <div>
+                                <label for="fileUpload" />
+                                Select File to Upload:
+                                <input id="fileUpload" type="file" />
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -37,15 +41,7 @@
                         <td>
                             <input type="date" id="EventDate" />
                         </td>
-                        <td>
-                            <div>
-                                <label for="fileUpload" />
-                                Select File to Upload:
-                                <input id="fileUpload" type="file" />
-
-                                <input id="btnUploadFile" type="button" value="Upload File" />
-                            </div>
-                        </td>
+                        
                     </tr>
                     <tr>
                         <td>Event location</td>
@@ -61,15 +57,14 @@
                             <input type="text" id="txtEventDesc" placeholder="Please enter Description" size="700" />
                         </td>
                     </tr>
-                    <thead>
+                    
                         <tr class="Success">
                             <td colspan="3">
                                 <h3>Create your ticket</h3>
                             </td>
 
                         </tr>
-                    </thead>
-                    <tr>
+                    <%--<tr>
 
                         <td>Ticket Type</td>
                         <td>
@@ -77,13 +72,13 @@
                             <input type="text" id="txtTicketType" placeholder="Please enter Type of ticket" size="400" />
                         </td>
 
-                    </tr>
+                    </tr>--%>
                     <tr>
 
                         <td>Ticket Price</td>
                         <td>
 
-                            <input type="text" id="txtTicketPrice" placeholder="Please enter price" size="400" />
+                            <input type="text" id="txtTicketPrice" placeholder="If ticket is free please put 0" size="600"  />
                         </td>
 
                     </tr>
@@ -105,7 +100,7 @@
                     <tr class="Success">
 
                         <td colspan="3">
-                            <%--<input id="btnCreateEvent" class="btn btn-success" type="button" value="Create Event" />--%>
+                            <input id="btnUploadFile" type="button" class="btn btn-success" value="Create Event"/>
                         </td>
                     </tr>
                 </tbody>
@@ -280,25 +275,26 @@
                     console.log(a, b, c);
                 });
 
+                {
+                    //$.ajax({
+                    //    type: 'post',
+                    //    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/UploadFile&b=2',
+                    //    data: data,
+                    //    dataType: 'json',
+                    //    contentType: false,
+                    //    processData: false,
+                    //    success: function (response) {
+                    //        alert('succes!!');
+                    //    },
+                    //    error: function (error) {
+                    //        alert("errror");
+                    //    }
+                    //});
+                    //ajaxRequest.done(function (xhr, textStatus) {
 
-                //$.ajax({
-                //    type: 'post',
-                //    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/UploadFile&b=2',
-                //    data: data,
-                //    dataType: 'json',
-                //    contentType: false,
-                //    processData: false,
-                //    success: function (response) {
-                //        alert('succes!!');
-                //    },
-                //    error: function (error) {
-                //        alert("errror");
-                //    }
-                //});
-                //ajaxRequest.done(function (xhr, textStatus) {
-
-                //    debugger;
-                //});
+                    //    debugger;
+                    //});
+                }
             });
 
 
