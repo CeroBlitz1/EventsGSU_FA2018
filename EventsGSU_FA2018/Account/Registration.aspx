@@ -75,7 +75,8 @@
     <script src="../Scripts/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#Close').click(function(){
+            $('#Close').click(function () {
+                getCookies();
 
                 $('#error').hide('fade');
             });

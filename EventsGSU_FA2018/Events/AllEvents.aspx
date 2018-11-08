@@ -171,7 +171,9 @@
     <script src="../Scripts/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-
+            getCookies();
+            debugger;
+            validateRoles(utId);
             GetEvents();
 
 

@@ -37,7 +37,7 @@
 
     <script src="Scripts/jquery-3.3.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
-    <script src="Scripts/jquery.cookie-1.4.1.min.js"></script>
+    <%--<script src="Scripts/jquery.cookie-1.4.1.min.js"></script>--%>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="Scripts/eventData.js"></script>
@@ -45,18 +45,18 @@
     <%-- <script src="Scripts/jquery-ui-1.12.1.min.js"></script>
                 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">--%>
     <script type="text/javascript">
-        var uID = 0;
-        var utId = 1;
-        function getCookies() {
-            var userCookie = document.cookie;// "referer=example.com/post?id=22;bcomID=8075; subreturn=example&fuzzy=true&ct=null&autobounce=true; JSESSIONID=6D20570E1EB; mbox=session";
-            var output = {};
-            userCookie.split(/\s*;\s*/).forEach(function (pair) {
-                pair = pair.split(/\s*=\s*/);
-                output[pair[0]] = pair.splice(1).join('=');
-                uID = output["UserID"];
-                utId = output["UserTypeID"];//if not found make it 1 else what evever value  comes
-            });
-        }
+        //var uID = 0;
+        //var utId = 0;
+        //function getCookies() {
+        //    var userCookie = document.cookie;// "referer=example.com/post?id=22;bcomID=8075; subreturn=example&fuzzy=true&ct=null&autobounce=true; JSESSIONID=6D20570E1EB; mbox=session";
+        //    var output = {};
+        //    userCookie.split(/\s*;\s*/).forEach(function (pair) {
+        //        pair = pair.split(/\s*=\s*/);
+        //        output[pair[0]] = pair.splice(1).join('=');
+        //        uID = output["UserID"];
+        //        utId = output["UserTypeID"];//if not found make it 1 else what evever value  comes
+        //    });
+        //}
         FindEvent =
             {
                 BindControlEvents: function () {
@@ -64,6 +64,7 @@
                     $(document).ready(function () {
                         debugger;
                         getCookies();
+                        debugger;
                         validateRoles(utId);
                         GetEvents();
                         //GetSearchEvents();

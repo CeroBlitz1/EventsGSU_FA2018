@@ -76,20 +76,20 @@
             </tr>
         </table>
         <div class="well  ">
-            
-                
-                        <img src="../Content/cancel.png" />
-              
-                        <div  id="CardNumber">1</div>
-              
-                        <div id="CardExpiration">1</div>
-               
-                        <div id="FirstName" class="">1</div>
-              
-                        <div id="LastName" class="">1</div>
-               
-                        <div id="CardCVV" class="">1</div>
-           
+
+
+            <img src="../Content/cancel.png" />
+
+            <div id="CardNumber"></div>
+
+            <div id="CardExpiration"></div>
+
+            <div id="FirstName" class=""></div>
+
+            <div id="LastName" class=""></div>
+
+            <div id="CardCVV" class=""></div>
+
         </div>
     </div>
     <div class="col-md-10 col-md-offset-1">
@@ -134,7 +134,7 @@
 
                         <td>Card Expiration</td>
                         <td>
-                            <input type="date" id="txtCardDate" />
+                            <input type="text" id="txtCardDate" value="mm/dd/yy" />
                         </td>
                     </tr>
                     <tr>
@@ -209,7 +209,12 @@
     <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
     <script src="../Scripts/underscore.min.js"></script>
+    <script src="../Scripts/jquery-ui-1.12.1.js"></script>
+    <link href="../Content/themes/base/jquery-ui.css" rel="stylesheet" />
     <script type="text/javascript">
+        $(function () {
+            $("#txtCardDate").datepicker();
+        });
         function getQueryParams(queryString) {
             var query = (queryString || window.location.search).substring(1);
             if (!query) {
@@ -224,7 +229,9 @@
                 .object()
                 .value();
         }
+      
         $(document).ready(function () {
+          
             $(function () {
                 $(document).ready(function () {
 
@@ -301,6 +308,7 @@
                 });
             }
             debugger;
+           
 
             $('#btnPayment').click(function () {
 

@@ -39,9 +39,9 @@
                     <tr>
                         <td>Event Date</td>
                         <td>
-                            <input type="date" id="EventDate" />
+                            <input type="text" id="EventDate" value="mm/dd/yyyy" />
                         </td>
-                        
+
                     </tr>
                     <tr>
                         <td>Event location</td>
@@ -57,13 +57,13 @@
                             <input type="text" id="txtEventDesc" placeholder="Please enter Description" size="700" />
                         </td>
                     </tr>
-                    
-                        <tr class="Success">
-                            <td colspan="3">
-                                <h3>Create your ticket</h3>
-                            </td>
 
-                        </tr>
+                    <tr class="Success">
+                        <td colspan="3">
+                            <h3>Create your ticket</h3>
+                        </td>
+
+                    </tr>
                     <%--<tr>
 
                         <td>Ticket Type</td>
@@ -78,7 +78,7 @@
                         <td>Ticket Price</td>
                         <td>
 
-                            <input type="text" id="txtTicketPrice" placeholder="If ticket is free please put 0" size="600"  />
+                            <input type="text" id="txtTicketPrice" placeholder="If ticket is free please put 0" size="600" />
                         </td>
 
                     </tr>
@@ -100,11 +100,12 @@
                     <tr class="Success">
 
                         <td colspan="3">
-                            <input id="btnUploadFile" type="button" class="btn btn-success" value="Create Event"/>
+                            <input id="btnUploadFile" type="button" class="btn btn-success" value="Create Event" />
                         </td>
                     </tr>
                 </tbody>
             </table>
+
             <div class="modal fade" tabindex="-1" id="successmodal"
                 data-keyboard="false" data-bakcdrop="static">
                 <div class="modal-dialouge modal-sm">
@@ -136,21 +137,29 @@
     <script src="../Scripts/jQuery.FileUpload/jquery.iframe-transport.js"></script> --%>
     <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/jquery-ui-1.12.1.js"></script>
+    <link href="../Content/themes/base/jquery-ui.css" rel="stylesheet" />
     <script type="text/javascript">
+        $(function () {
+            $("#EventDate").datepicker();
+        });
         { //$(function () {
-        //    $("#fileimg").fileupload({
-        //        'uploader': '../Uploadify/uploader.swf',
-        //        'cancelImg': '../Uploadify/cancel.png',
-        //        'buttonText': 'Browse Files',
-        //        'script': '/Home/Index/',
-        //        'folder': 'Images',
-        //        'fileDesc': 'Image Files',
-        //        'fileExt': '*.jpg;*.jpeg;*.gif;*.png',
-        //        'multi': true,
-        //        'auto': true
-        //    });
-            }
+            //    $("#fileimg").fileupload({
+            //        'uploader': '../Uploadify/uploader.swf',
+            //        'cancelImg': '../Uploadify/cancel.png',
+            //        'buttonText': 'Browse Files',
+            //        'script': '/Home/Index/',
+            //        'folder': 'Images',
+            //        'fileDesc': 'Image Files',
+            //        'fileExt': '*.jpg;*.jpeg;*.gif;*.png',
+            //        'multi': true,
+            //        'auto': true
+            //    });
+        }
         $(document).ready(function () {
+            getCookies();
+            debugger;
+            validateRoles(utId);
             {  //$('#Close').click(function () {
 
                 //    $('#error').hide('fade');
@@ -191,15 +200,15 @@
 
                 //////////////////////////
             }
-            var output = {};
-            function getCookies() {
-                 var userCookie = document.cookie;// "referer=example.com/post?id=22;bcomID=8075; subreturn=example&fuzzy=true&ct=null&autobounce=true; JSESSIONID=6D20570E1EB; mbox=session";
-                
-                userCookie.split(/\s*;\s*/).forEach(function (pair) {
-                    pair = pair.split(/\s*=\s*/);
-                    output[pair[0]] = pair.splice(1).join('=');
-                });
-            }
+            //var output = {};
+            //function getCookies() {
+            //    var userCookie = document.cookie;// "referer=example.com/post?id=22;bcomID=8075; subreturn=example&fuzzy=true&ct=null&autobounce=true; JSESSIONID=6D20570E1EB; mbox=session";
+
+            //    userCookie.split(/\s*;\s*/).forEach(function (pair) {
+            //        pair = pair.split(/\s*=\s*/);
+            //        output[pair[0]] = pair.splice(1).join('=');
+            //    });
+            //}
 
             $('#btnUploadFile').on('click', function () {
                 debugger;
@@ -214,7 +223,7 @@
                     data.append("UploadedImage", files[0]);
                 }
 
-               
+
 
 
                 //var userCookie = document.cookie;// "referer=example.com/post?id=22;bcomID=8075; subreturn=example&fuzzy=true&ct=null&autobounce=true; JSESSIONID=6D20570E1EB; mbox=session";
@@ -225,13 +234,13 @@
                 //});
 
                 //var ddd = JSON.stringify(output, null, 4);
-                getCookies()
+                getCookies();
                 {
                     var utID = output["UserTypeID"];
                     var uID = output["UserID"];
                 };
 
-                 debugger;
+                debugger;
 
 
                 var eventData = {

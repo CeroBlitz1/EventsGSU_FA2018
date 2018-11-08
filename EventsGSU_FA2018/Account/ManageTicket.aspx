@@ -43,6 +43,7 @@
         }
         $(document).ready(function () {
             GetTicketDetails();
+            getCookies();
             function GetTicketDetails() {
 
                 var queryParams = getQueryParams();

@@ -12,7 +12,7 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 </head>
@@ -27,6 +27,8 @@
                 <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
                 <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="jquery.cookie-1.4.1.min.js" Assembly="System.Web" Path="~/Scripts/jquery.cookie-1.4.1.min.js" />
+                <asp:ScriptReference Name="eventData.js" Assembly="System" Path="~/Scripts/eventData.js" />
                 <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
                 <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
                 <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
@@ -35,12 +37,27 @@
                 <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <%--<asp:ScriptReference Name="jquery-ui-1.12.1.min.js"  Path="~/Scripts/jquery.cookie-1.4.1.min.js" />--%>
                 <asp:ScriptReference Name="WebFormsBundle" />
                 <%--Site Scripts--%>
             </Scripts>
+
         </asp:ScriptManager>
         <br />
-        
+        <script>
+            var uID = 0;
+            var utId = 0;
+            function getCookies() {
+                var userCookie = document.cookie;// "referer=example.com/post?id=22;bcomID=8075; subreturn=example&fuzzy=true&ct=null&autobounce=true; JSESSIONID=6D20570E1EB; mbox=session";
+                var output = {};
+                userCookie.split(/\s*;\s*/).forEach(function (pair) {
+                    pair = pair.split(/\s*=\s*/);
+                    output[pair[0]] = pair.splice(1).join('=');
+                    uID = output["UserID"];
+                    utId = output["UserTypeID"];//if not found make it 1 else what evever value  comes
+                });
+            }
+        </script>
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -49,44 +66,48 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="Index.aspx" ><img src="SiteImages/GSUlogo.png" alt="Logo" style="width:40px;" /></a>
+                    <a class="navbar-brand" runat="server" href="Index.aspx">
+                        <img src="SiteImages/GSUlogo.png" alt="Logo" style="width: 40px;" /></a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/Events/AllEvents.aspx">Browse Events</a></li>
-                        <li><a runat="server" href="~/Events/OrganizeEvent">Organize Events</a></li>
+                        <li id="Eventli"><a runat="server" href="~/Events/AllEvents.aspx">Browse Events</a></li>
+                        <li id="Organizeli"><a runat="server" href="~/Events/OrganizeEvent">Organize Events</a></li>
                         <li id="loginLi"><a runat="server" href="~/Account/Login.aspx">Login</a></li>
-                        <li><a runat="server" href="~/Account/Registration.aspx">Sign up</a></li>
-                        <li><a runat="server" href="~/Account/User_history_details.aspx">User Details</a></li><%--This is temporary--%>
-<%--                        <li><a runat="server" href="~/Account/ManageTicket.aspx">Tickets</a></li><%--This is temporary--%>
-                        <li><a runat="server" href="~/Account/Manage_Tickets_events.aspx">ManageTickets</a></li>
-                        <li><a runat="server" href="~/Events/Manage_Events.aspx">Manage Events</a></li>
-                       
+                        <li id="Registerli"><a runat="server" href="~/Account/Registration.aspx">Sign up</a></li>
+                        <li id="UserHistoryli"><a runat="server" href="~/Account/User_history_details.aspx">User Details</a>
+                        <li id="Ticketsli"><a runat="server" href="~/Account/Manage_Tickets_events.aspx">ManageTickets</a></li>
+                        <li id="EventManageli"><a runat="server" href="~/Events/Manage_Events.aspx">Manage Events</a></li>
+                        <li id="AdminEMli"><a runat="server" href="~/Admin/admin_event_manage.aspx">Admin Event manage</a></li>
+                        <li id="AdminPayinfli"><a runat="server" href="~/Admin/admin_payment_info.aspx">Admin Payment Manage</a></li>
+                        <li id="AdminUserli"><a runat="server" href="~/Admin/admin_user_management.aspx">Admin User Manage</a></li>
+                        <li id="Myprofileli"><a runat="server" href="~/Account/MyProfile.aspx">My Profile</a></li>
+                        <li id="Logoutli"><a runat="server" href="~/Account/Logout.aspx">Logout</a></li>
+
+
                     </ul>
-                    
+
                 </div>
             </div>
         </div>
-        <div class="container body-content">            
+        <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                
+
                 <ul class="nav navbar-nav">
                     <p>&copy; <%: DateTime.Now.Year %> - GSU Events</p>
                     <li><a runat="server" href="~/About.aspx">About</a></li>
                     <li><a runat="server" href="~/Contact.aspx">Contact us</a></li>
                     <li><a runat="server" href="~/Contact.aspx">Help?</a></li>
-                     <li><a runat="server" href="~/Events/Search_results.aspx">SearchResults</a></li> <%--This is temporary--%>
-                    
-                        
+
+
                 </ul>
             </footer>
         </div>
 
     </form>
-    <input id="globalUserId" type="hidden"/>
+    <input id="globalUserId" type="hidden" />
 </body>
 </html>

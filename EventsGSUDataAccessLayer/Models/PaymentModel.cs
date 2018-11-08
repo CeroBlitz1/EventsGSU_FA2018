@@ -26,5 +26,7 @@ namespace EventsGSUDataAccessLayer.Models
         public int TicketID { get; set; }
         public int EventID { get; set; }
         public string EventTitle { get; set; }
+        public string PMessage { get; set; }
+        public bool PFlag { get; set; }
     }
 }

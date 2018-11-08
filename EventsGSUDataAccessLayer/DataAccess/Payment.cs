@@ -10,9 +10,15 @@ namespace EventsGSUDataAccessLayer.DataAccess
     public class Payment
     {
         GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
-        public bool SavePayment(PaymentModel model)
+        public PaymentModel SavePayment(PaymentModel model)
         {
-            var retVal = false;
+
+            var pm = new PaymentModel
+            {
+                PMessage = "Payment SuccessFul",
+                PFlag = false,
+
+            };
             try
             {
                 var paymentObj = new PaymentTable();
@@ -43,15 +49,15 @@ namespace EventsGSUDataAccessLayer.DataAccess
                 paymentObj.PaymentID = paymentHobj.PaymentID;
                 g.SaveChanges();
 
-                
 
-                retVal = true;
+
+                pm.PFlag = true;
             }
             catch (Exception ex)
             {
                 string d = ex.Message;
             }
-            return retVal;
+            return pm;
         }
 
         public List<PaymentModel> GetCardDetails(int? UserID)

@@ -6,7 +6,7 @@
             <tr>
                 <td>
 
-                    
+
                     <img id="indexImage1" src="" style="width: 350px" /></td>
             </tr>
             <tr>
@@ -26,22 +26,23 @@
                 <td></td>
 
             </tr>
-    
-         </table>
-        </div>
-        <div class="Well">
-            <div class="row">
+
+        </table>
+    </div>
+    <div class="Well">
+        <div class="row">
 
 
-                <div class="column col-xs-9">
-                </div>
-                <div class="column col-xs-3" id="sidebar">
-                    <div id="Indexdescription"></div>
-                    <div id="indexEventID"></div><button id="btnpayment" type="button" class="btn btn-success btn-lg"></button>
-                </div>
+            <div class="column col-xs-9">
             </div>
-
+            <div class="column col-xs-3" id="sidebar">
+                <div id="Indexdescription"></div>
+                <div id="indexEventID"></div>
+                <button id="btnpayment" type="button" class="btn btn-success btn-lg"></button>
+            </div>
         </div>
+
+    </div>
 
     <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
@@ -62,6 +63,9 @@
                 .value();
         }
         $(document).ready(function () {
+            getCookies();
+            debugger;
+            validateRoles(utId);
             $(function () {
                 $(document).ready(function () {
                     //console.log('window.location: ', window.location);
@@ -115,7 +119,7 @@
                         $('#btnpayment').text(response.TicketPrice);
                         $('#indexEventID').val(response.EventID);
                         var firstItemImageEle = document.getElementById("indexEventID");
-                        firstItemImageEle.setAttribute("data-eventID", response.EventID); 
+                        firstItemImageEle.setAttribute("data-eventID", response.EventID);
                         $('#indexEventID').data('eventId', response.EventID);
 
                         $('#btnpayment').click(function () {

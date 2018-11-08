@@ -1,16 +1,72 @@
 ﻿function validateRoles(roleType) {
     debugger;
-    if (roleType == 1)//visitor
+    if (roleType == 0)
+    {
+        $('#AdminUserli').hide();
+
+        $('#AdminPayinfli').hide();
+
+        $('#EventManageli').hide();
+
+        $('#Ticketsli').hide();
+
+        $('#Organizeli').hide();
+
+        $('#UserHistoryli').hide();
+
+        $('#Myprofileli').hide();
+
+        $('#Logoutli').hide();
+
+
+
+    }
+    else if (roleType == 1)//visitor
     {
         $('#loginLi').hide();
+
+        $('#AdminUserli').hide();
+
+        $('#AdminPayinfli').hide();
+
+        $('#EventManageli').hide();
+
+        $('#Ticketsli').hide();
+
+        $('#Registerli').hide();
+
+        $('#AdminEMli').hide();
+
+
     }
     else if (roleType == 2)//organizer
     {
-        var t = '';
+        $('#AdminUserli').hide();
+
+        $('#AdminPayinfli').hide();
+
+        $('#AdminEMli').hide();
+
+        $('#loginLi').hide();
+
+        $('#Registerli').hide();
+
     }
     else if (roleType == 3)//Admin
     {
-        var j = '';
+        $('#loginLi').hide();
+
+        $('#EventManageli').hide();
+
+        $('#Ticketsli').hide();
+
+        $('#Organizeli').hide();
+
+        $('#UserHistoryli').hide();
+
+        $('#Myprofileli').hide();
+
+
     }
     else {
         var d = '';
