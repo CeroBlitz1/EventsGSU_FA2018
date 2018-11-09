@@ -18,6 +18,10 @@ namespace EventsGSUDataAccessLayer.Models
         public int TicketPrice { get; set; }
         public bool EFlag { get; set; }
         public int UserID { get; set; }
+        public string EventType { get; set; }
+        public int TicketQuantity { get; set; }
+        public string EventLocation { get; set; }
+
 
     }
 }

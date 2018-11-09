@@ -12,10 +12,14 @@ namespace EventsGSUDataAccessLayer.DataAccess
     {
         GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
 
-        public bool SaveEvents(EventModel model)
+        public EventModel SaveEvents(EventModel model)
         {
 
-            var retVal = false;
+            var em = new EventModel
+            {
+                EFlag= false,
+                EMessage = "Update Successful"
+            };
             try
             {
                 var et = new EventsTable();
@@ -24,7 +28,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
 
 
                 //userObj.EventID
-                et.EventID = model.EventID;
+                //et.EventID = model.EventID;
                 et.EventLocation = model.EventLocation;
                 et.EventDate = model.EventDate;
                 et.EventType = model.EventType;
@@ -32,14 +36,14 @@ namespace EventsGSUDataAccessLayer.DataAccess
                 et.EventTitle = model.EventTitle;
                 //et.UserID = model.UserId;
 
-                tt.TicketImage = model.TicketImage;
+                //tt.TicketImage = model.TicketImage;
                 tt.TicketPrice = model.TicketPrice;
                 tt.TicketQuantity = model.TicketQuantity;
-                tt.MaxTickets = model.MaxTickets;
+                //tt.MaxTickets = model.MaxTickets;
                 //tt.UserID = model.UserId;
-                tt.EventID = et.EventID;
+                //tt.EventID = et.EventID;
 
-                ed.EventID = et.EventID;
+                //ed.EventID = et.EventID;
                 ed.EventsDescription = model.EventsDescription;
                 //ed.UserID = model.UserId;
 
@@ -50,13 +54,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
 
 
                 g.EventsTables.Add(et);
-
-
                 g.TicketsTables.Add(tt);
-                //g.SaveChanges();
-
-
-
                 g.EventDetails.Add(ed);
 
                 
@@ -64,13 +62,13 @@ namespace EventsGSUDataAccessLayer.DataAccess
 
 
 
-                retVal = true;
+                em.EFlag = true;
             }
             catch (Exception ex)
             {
                 string d = ex.Message;
             }
-            return retVal;
+            return em;
         }
 
         public List<EventModel> GetEvents(EventModel model)
@@ -217,9 +215,13 @@ namespace EventsGSUDataAccessLayer.DataAccess
                                            EventTitle = e.EventTitle,
                                            EventDate= e.EventDate.ToString(),
                                            EventID= e.EventID,
+                                           EventType = e.EventType,
                                            EventsDescription=edd.EventsDescription,
                                            TicketID=tt.TicketID,
-                                           TicketPrice=tt.TicketPrice
+                                           TicketPrice=tt.TicketPrice,
+                                           TicketQuantity = tt.TicketQuantity,
+                                           EventLocation = e.EventLocation,
+                                           
                                        }
                              ).FirstOrDefault();
                 #region Commneted 11 6 2018 8:36
@@ -701,8 +703,9 @@ namespace EventsGSUDataAccessLayer.DataAccess
              public bool SaveEvents(EventModel model)
 
              */
-        public List<EventModel> UpdateByEventID(int? eventID)
+        public List<EventModel> UpdateByEventID(int? eventID, EventModel model)
         {
+            
             var getalleventslist = new List<EventModel>();
             try
             {
@@ -723,13 +726,16 @@ namespace EventsGSUDataAccessLayer.DataAccess
                 {
                     var getalleventsobj = new EventModel();
 
-                    getalleventsobj.EventLocation = item.EventLocation;
-                    getalleventsobj.EventDate = item.EventDate;
-                    getalleventsobj.EventType = item.EventType;
-                    getalleventsobj.EventTitle = item.EventTitle;
-                    getalleventsobj.EventsDescription = item.EventsDescription;
-                    getalleventsobj.TicketPrice = item.TicketPrice;
+                    getalleventsobj.EventLocation = model.EventLocation;
+                    getalleventsobj.EventDate = model.EventDate;
+                    getalleventsobj.EventType = model.EventType;
+                    getalleventsobj.EventTitle = model.EventTitle;
+                    getalleventsobj.EventsDescription = model.EventsDescription;
+                    getalleventsobj.TicketPrice = model.TicketPrice;
                     getalleventslist.Add(getalleventsobj);
+
+                    
+                    g.SaveChanges();
 
                 }
 

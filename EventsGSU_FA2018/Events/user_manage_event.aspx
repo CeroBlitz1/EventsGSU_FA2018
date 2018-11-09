@@ -159,6 +159,7 @@
         });
 
         $(document).ready(function () {
+            GetEventDetails();
             $('#btnUploadFile').click(function () {
                 var queryParams = getQueryParams();
                 debugger;
@@ -184,5 +185,32 @@
                 });
             });
         });
+
+        function GetEventDetails() {
+            var queryParams = getQueryParams();
+            $.ajax({
+                url: 'http://localhost/EventsGSUBusinessLibrary/api/register/GetDetailsById?eventId=' + queryParams.eventID,
+                method: 'GET',
+                data: {
+                   
+                },
+
+                success: function (response) {
+                    $('#EventDate').val(response.EventDate);
+                        $('#txtEventLocation').val(response.EventLocation);
+                        $('#txtTitle').val(response.EventTitle);
+                        $('#txtEventType').val(response.EventType);
+                        $('#txtEventDesc').val(response.EventsDescription);
+                        $('#txtTicketPrice').val(response.TicketPrice);
+                        $('#TicketQuantity').val(response.TicketQuantity);
+                    
+                },
+                error: function (b) {
+                    alert("Problem Updating");
+                }
+
+            });
+
+        }
     </script>
 </asp:Content>

@@ -17,7 +17,7 @@ namespace EventsGSUBusinessLibrary.Controllers
     public class RegisterController : ApiController
     {
         //GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
-
+        
         [Route("Register")]
         public  UserModel Register(UserModel model)
         {
@@ -162,10 +162,16 @@ namespace EventsGSUBusinessLibrary.Controllers
         }
         [HttpPost]
         [Route("PostEventDetails")]
-        public List<EventModel>PostEventDetails(int? eventID)
+        public List<EventModel>PostEventDetails(int? eventID, EventModel model)
         {
-            return new Events().UpdateByEventID(eventID);
+            return new Events().UpdateByEventID(eventID, model);
         }
+        [Route("UpdateEvents")]
+        public EventModel UpdateEvents(EventModel model)
+        {
+            return new Events().SaveEvents(model);
+        }
+
 
         [HttpPost]
         public void UploadFile()
@@ -189,6 +195,7 @@ namespace EventsGSUBusinessLibrary.Controllers
 
                     GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
 
+                    
 
                     var EventLocation = jsonDictionary["eventlocation"];
                     var EventTitle = jsonDictionary["eventtitle"];

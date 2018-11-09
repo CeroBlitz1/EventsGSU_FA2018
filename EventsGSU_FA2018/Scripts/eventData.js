@@ -29,8 +29,6 @@
 
         $('#AdminPayinfli').hide();
 
-        $('#EventManageli').hide();
-
         $('#Ticketsli').hide();
 
         $('#Registerli').hide();
