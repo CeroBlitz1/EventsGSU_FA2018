@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Data.Linq;
 
 namespace EventsGSUDataAccessLayer.DataAccess
 {
@@ -715,15 +716,17 @@ namespace EventsGSUDataAccessLayer.DataAccess
                                     where e.EventID == eventID
                                     select new
                                     {
-                                        e.EventLocation,
-                                        e.EventDate,
-                                        e.EventType,
                                         e.EventTitle,
+                                        e.EventDate,
+                                        e.EventID,
+                                        e.EventType,
                                         ed.EventsDescription,
                                         tt.TicketPrice,
-                                    }).ToList();
-                foreach (var item in geteventsObj)
-                {
+                                        tt.TicketQuantity,
+                                        e.EventLocation,
+                                    }).FirstOrDefault();
+               
+               
                     var getalleventsobj = new EventModel();
 
                     getalleventsobj.EventLocation = model.EventLocation;
@@ -734,11 +737,16 @@ namespace EventsGSUDataAccessLayer.DataAccess
                     getalleventsobj.TicketPrice = model.TicketPrice;
                     getalleventslist.Add(getalleventsobj);
 
+                
+
+
+                g.SaveChanges();
+
+                
                     
-                    g.SaveChanges();
 
-                }
-
+                
+                
 
 
             }
