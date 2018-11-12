@@ -77,6 +77,9 @@
 
                 $('#error').hide('fade');
             });
+             getCookies();
+            debugger;
+            validateRoles(utId);
             $('#btnLogin').click(function () {
 
 

@@ -91,12 +91,12 @@
                         </td>
 
                     </tr>
-                    <tr>
+                    <%--<tr>
                         <td>Ticket Image</td>
                         <td>
                             <input type="file" id="imgTicket" />
                         </td>
-                    </tr>
+                    </tr>--%>
                     <tr class="Success">
 
                         <td colspan="3">
@@ -234,12 +234,7 @@
                 //});
 
                 //var ddd = JSON.stringify(output, null, 4);
-                getCookies();
-                {
-                    var utID = output["UserTypeID"];
-                    var uID = output["UserID"];
-                };
-
+               
                 debugger;
 
 
@@ -248,13 +243,12 @@
                     eventlocation: $('#txtEventLocation').val(),
                     eventimage: 'UploadedFiles/' + files[0].name, //$('#fileimg').val(),
                     eventtype: $('#txtEventType').val(),
-                    ticketimage: $('#imgTicket').val(),
                     ticketprice: $('#txtTicketPrice').val(),
                     ticketquantity: $('#TicketQuantity').val(),
                     eventsdescription: $('#txtEventDesc').val(),
                     eventdate: $('#EventDate').val(),
                     userID: uID,
-                    usertypeid: utID
+                    usertypeid: utId,
 
                 };
 

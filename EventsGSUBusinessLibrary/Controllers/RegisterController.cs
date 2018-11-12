@@ -160,19 +160,13 @@ namespace EventsGSUBusinessLibrary.Controllers
         {
             return new Events().TicktesByEventID(eventID);
         }
-        [HttpPost]
-        [Route("PostEventDetails")]
-        public List<EventModel>PostEventDetails(int? eventID, EventModel model)
-        {
-            return new Events().UpdateByEventID(eventID, model);
-        }
         [Route("UpdateEvents")]
         public EventModel UpdateEvents(EventModel model)
         {
             return new Events().SaveEvents(model);
         }
 
-
+        [Route("UploadFile")]
         [HttpPost]
         public void UploadFile()
         {
@@ -201,7 +195,6 @@ namespace EventsGSUBusinessLibrary.Controllers
                     var EventTitle = jsonDictionary["eventtitle"];
                     var EventImage = jsonDictionary["eventimage"];
                     var EventType = jsonDictionary["eventtype"];
-                    var TicketImage = jsonDictionary["ticketimage"];
                     var TicketPrice = jsonDictionary["ticketprice"];
                     var TicketQuantity = jsonDictionary["ticketquantity"];
                     var EventsDescription = jsonDictionary["eventsdescription"];
@@ -227,9 +220,9 @@ namespace EventsGSUBusinessLibrary.Controllers
 
                     g.EventsTables.Add(et);
 
-                    tt.TicketImage = TicketImage;
+                    tt.TicketImage = "";
                     tt.TicketPrice = Convert.ToInt32(TicketPrice);
-                    tt.TicketQuantity = Convert.ToInt16(TicketQuantity);
+                    tt.TicketQuantity = Convert.ToInt32(TicketQuantity);
                     tt.UserID = Convert.ToInt16(UserID);
                     tt.EventID = et.EventID;
                     g.TicketsTables.Add(tt);
@@ -262,11 +255,104 @@ namespace EventsGSUBusinessLibrary.Controllers
             }
             catch (Exception ex)
             {
-
                 var s = "";
             }
         }
-        
+
+        [HttpPost]
+        [Route ("UpdateFile")]
+        public void UpdateFile()
+        {
+
+            try
+            {
+
+                if (HttpContext.Current.Request.Files.AllKeys.Any())
+                {
+                    // Get the uploaded image from the Files collection
+                    var httpPostedFile = HttpContext.Current.Request.Files["UploadedImage"];
+
+                    //var eventG = HttpContext.Current.Request.Form["g"];
+
+                    //EventModel eventData1 = HttpContext.Current.Request.Form["h"] as EventModel;
+
+                    //var j = JsonConvert.DeserializeObject<List<EventModel>>(HttpContext.Current.Request.Form.Get("h"));
+                    //Dictionary<string, Dictionary<string, string>> jsonDictionary = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(HttpContext.Current.Request.Params["h"].ToString());
+                    Dictionary<string, string> jsonDictionary = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(HttpContext.Current.Request.Params["h"].ToString());
+
+                    GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
+
+                    var EventID = jsonDictionary["eventid"];
+                    var query = g.EventsTables.Where(x => x.EventID == int.Parse(EventID)); 
+
+                    if (query != null)
+                    {
+                        var EventLocation = jsonDictionary["eventlocation"];
+                        var EventTitle = jsonDictionary["eventtitle"];
+                        var EventImage = jsonDictionary["eventimage"];
+                        var EventType = jsonDictionary["eventtype"];
+                        var TicketPrice = jsonDictionary["ticketprice"];
+                        var TicketQuantity = jsonDictionary["ticketquantity"];
+                        var EventsDescription = jsonDictionary["eventsdescription"];
+                        var EventDate = jsonDictionary["eventdate"];
+                        
+
+                        var et = new EventsTable();
+                        var tt = new TicketsTable();
+                        var ed = new EventDetail();
+
+
+
+
+                        ////userObj.EventID
+                        //et.EventID = model.EventID;
+                        et.EventLocation = EventLocation;
+                        et.EventType = EventType;
+                        et.EventImage = EventImage;
+                        et.EventTitle = EventTitle;
+                        et.EventDate = Convert.ToDateTime(EventDate);
+                        et.EventID = Convert.ToInt32(EventID);
+                        g.EventsTables.Attach(et);
+                        g.Entry(et).State = System.Data.Entity.EntityState.Modified;
+
+                        tt.TicketImage = "";
+                        tt.TicketPrice = Convert.ToInt32(TicketPrice);
+                        tt.TicketQuantity = Convert.ToInt32(TicketQuantity);
+                        tt.EventID = et.EventID;
+                        g.TicketsTables.Attach(tt);
+                        g.Entry(tt).State = System.Data.Entity.EntityState.Modified;
+
+                        ed.EventsDescription = EventsDescription;
+                        g.EventDetails.Attach(ed);
+                        g.Entry(ed).State = System.Data.Entity.EntityState.Modified;
+
+                        g.SaveChanges();
+                    }
+
+                    var qr = HttpContext.Current.Request.QueryString["b"];
+
+                    if (httpPostedFile != null)
+                    {
+                        // Validate the uploaded image(optional)
+
+                        // Get the complete file path
+                        var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/UploadedFiles"), httpPostedFile.FileName);
+
+                        // Save the uploaded file to "UploadedFiles" folder
+                        //httpPostedFile.SaveAs("C:\\AH\\Images");
+                        httpPostedFile.SaveAs(fileSavePath);
+
+                        g.SaveChanges();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                var s = "Problem While Updating";
+            }
+        }
+
 
 
     }

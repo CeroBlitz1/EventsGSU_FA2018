@@ -99,6 +99,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
             }
             return eventObj;
         }
+        #region Commented
         //public List<EventDetailsModel> GetDetailsById(int? eventID)
         //{
         //    var eventdetailslist = new List<EventDetailsModel>();
@@ -186,6 +187,8 @@ namespace EventsGSUDataAccessLayer.DataAccess
         //    }
         //    return eventdetailslist;
         //}
+        #endregion
+
 
         public EventDetailsModel GetDetailsById(int? eventID)
         {
@@ -694,70 +697,82 @@ namespace EventsGSUDataAccessLayer.DataAccess
             }
             return getalleventslist;
         }
-
+        #region Notes
         /*
-         for user_mange_event
-         GET method to populate the page
-         public EventDetailsModel GetDetailsById(int? eventID)
+        for user_mange_event
+        GET method to populate the page
+        public EventDetailsModel GetDetailsById(int? eventID)
 
-            and then use
-             public bool SaveEvents(EventModel model)
+           and then use
+            public bool SaveEvents(EventModel model)
 
-             */
-        public List<EventModel> UpdateByEventID(int? eventID, EventModel model)
-        {
-            
-            var getalleventslist = new List<EventModel>();
-            try
-            {
-                var geteventsObj = (from e in g.EventsTables
-                                    join ed in g.EventDetails on e.EventID equals ed.EventID
-                                    join tt in g.TicketsTables on e.EventID equals tt.EventID
-                                    where e.EventID == eventID
-                                    select new
-                                    {
-                                        e.EventTitle,
-                                        e.EventDate,
-                                        e.EventID,
-                                        e.EventType,
-                                        ed.EventsDescription,
-                                        tt.TicketPrice,
-                                        tt.TicketQuantity,
-                                        e.EventLocation,
-                                    }).FirstOrDefault();
-               
-               
-                    var getalleventsobj = new EventModel();
+            */
+        #endregion
+        #region Code commented on 11/10/2018
+        //public EventModel UpdateByEventID(int? eventID, EventModel model)
+        //{
 
-                    getalleventsobj.EventLocation = model.EventLocation;
-                    getalleventsobj.EventDate = model.EventDate;
-                    getalleventsobj.EventType = model.EventType;
-                    getalleventsobj.EventTitle = model.EventTitle;
-                    getalleventsobj.EventsDescription = model.EventsDescription;
-                    getalleventsobj.TicketPrice = model.TicketPrice;
-                    getalleventslist.Add(getalleventsobj);
-
-                
+        //    var em = new EventModel
+        //    {
+        //        EFlag = false,
+        //        EMessage = "Update Successful"
+        //    };
+        //    try
+        //    {
+        //        var et = new EventsTable();
+        //        var tt = new TicketsTable();
+        //        var ed = new EventDetail();
 
 
-                g.SaveChanges();
+        //        //userObj.EventID
+        //        //et.EventID = model.EventID;
+        //        et.EventLocation = model.EventLocation;
+        //        et.EventDate = model.EventDate;
+        //        et.EventType = model.EventType;
+        //        //et.EventImage = model.EventImage;
+        //        et.EventTitle = model.EventTitle;
+        //        //et.UserID = model.UserId;
 
-                
-                    
+        //        //tt.TicketImage = model.TicketImage;
+        //        tt.TicketPrice = model.TicketPrice;
+        //        tt.TicketQuantity = model.TicketQuantity;
+        //        //tt.MaxTickets = model.MaxTickets;
+        //        //tt.UserID = model.UserId;
+        //        //tt.EventID = et.EventID;
 
-                
-                
+        //        //ed.EventID = et.EventID;
+        //        ed.EventsDescription = model.EventsDescription;
+        //        //ed.UserID = model.UserId;
 
 
-            }
-            catch (Exception ex)
-            {
-                string d = ex.Message;
 
-            }
 
-            return getalleventslist;
-        }
+
+
+
+        //        g.EventsTables.Add(et);
+        //        g.Entry(et).State = System.Data.Entity.EntityState.Modified;
+        //        g.TicketsTables.Add(tt);
+        //        g.Entry(tt).State = System.Data.Entity.EntityState.Modified;
+        //        g.EventDetails.Add(ed);
+        //        g.Entry(et).State = System.Data.Entity.EntityState.Modified;
+        //        g.SaveChanges();
+
+
+
+
+
+
+        //        em.EFlag = true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        string d = ex.Message;
+        //    }
+        //    return em;
+        //}
+        #endregion
+
     }
 
 }

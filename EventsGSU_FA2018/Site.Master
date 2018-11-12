@@ -46,7 +46,8 @@
         <br />
         <script>
             var uID = 0;
-            var utId = 0;
+            var utId = parseInt(0);
+            debugger;
             function getCookies() {
                 var userCookie = document.cookie;// "referer=example.com/post?id=22;bcomID=8075; subreturn=example&fuzzy=true&ct=null&autobounce=true; JSESSIONID=6D20570E1EB; mbox=session";
                 var output = {};
@@ -54,7 +55,10 @@
                     pair = pair.split(/\s*=\s*/);
                     output[pair[0]] = pair.splice(1).join('=');
                     uID = output["UserID"];
-                    utId = output["UserTypeID"];//if not found make it 1 else what evever value  comes
+                    if (output["UserTypeID"] != undefined) {
+                            utId = parseInt(output["UserTypeID"]);//if not found make it 1 else what evever value  comes    
+                    }
+                    
                 });
             }
         </script>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="user_manage_event.aspx.cs" Inherits="EventsGSU_FA2018.Events.user_manage_event" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="user_manage_event.aspx.cs" Inherits="EventsGSU_FA2018.Events.user_manage_event" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="col-md-10 col-md-offset-1">
@@ -15,7 +15,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Event Title</td>
+                        <td><span id="EventID"></span> Title</td>
                         <td>
                             <input type="text" id="txtTitle" placeholder="Title" />
                         </td>
@@ -26,7 +26,7 @@
                             <input type="text" id="txtEventType" placeholder="Event Type" />
                         </td>
                     </tr>
-                    <%--<tr>
+                    <tr>
                         <td>Event Image</td>
                         <td>
                             <div>
@@ -35,7 +35,7 @@
                                 <input id="fileUpload" type="file" />
                             </div>
                         </td>
-                    </tr>--%>
+                    </tr>
                     <tr>
                         <td>Event Date</td>
                         <td>
@@ -136,7 +136,7 @@
     <script src="../Scripts/bootstrap.min.js"></script>
     <script src="../Scripts/jquery.cookie-1.4.1.min.js"></script>
     <script src="../Scripts/jquery-ui-1.12.1.min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="../Content/themes/base/jquery-ui.css" rel="stylesheet" />
     <script src="../Scripts/underscore.min.js"></script>
     <script type="text/javascript">
         function getQueryParams(queryString) {
@@ -160,34 +160,74 @@
 
         $(document).ready(function () {
             GetEventDetails();
-            $('#btnUploadFile').click(function () {
-                var queryParams = getQueryParams();
+             getCookies();
+            debugger;
+            validateRoles(utId);
+           $('#btnUploadFile').on('click', function () {
                 debugger;
-                $.ajax({
-                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/PostEventDetails?eventId=' + queryParams.eventID,
-                    method: 'POST',
-                    data: {
-                        eventtitle: $('#txtTitle').val(),
-                        eventdate: $('#EventDate').val(),
-                        eventlocation: $('#txtEventLocation').val(),
-                        eventtype: $('#txtEventType').val(),
-                        ticketprice: $('#txtTicketPrice').val(),
-                        ticketquantity: $('#TicketQuantity').val(),
-                        eventsdescription: $('#txtEventDesc').val(),
-                    },
-                    success: function (a) {
-                        alert("Update Completed");
-                    },
-                    error: function (b) {
-                        alert("Problem Updating");
-                    }
 
+
+                var data = new FormData();
+
+                var files = $("#fileUpload").get(0).files;
+
+                // Add the uploaded image content to the form data collection
+                if (files.length > 0) {
+                    data.append("UploadedImage", files[0]);
+                }
+
+
+
+
+                //var userCookie = document.cookie;// "referer=example.com/post?id=22;bcomID=8075; subreturn=example&fuzzy=true&ct=null&autobounce=true; JSESSIONID=6D20570E1EB; mbox=session";
+                //var output = {};
+                //userCookie.split(/\s*;\s*/).forEach(function (pair) {
+                //    pair = pair.split(/\s*=\s*/);
+                //    output[pair[0]] = pair.splice(1).join('=');
+                //});
+
+                //var ddd = JSON.stringify(output, null, 4);
+              
+                debugger;
+
+
+                var eventData = {
+                    eventtitle: $('#txtTitle').val(),
+                    eventlocation: $('#txtEventLocation').val(),
+                    eventimage: 'UploadedFiles/' + files[0].name, //$('#fileimg').val(),
+                    eventtype: $('#txtEventType').val(),
+                    ticketprice: $('#txtTicketPrice').val(),
+                    ticketquantity: $('#TicketQuantity').val(),
+                    eventsdescription: $('#txtEventDesc').val(),
+                    eventdate: $('#EventDate').val(),
+                    eventid: $('#EventID').val(),
+                    
+
+                };
+                var stringifyEventData = JSON.stringify(eventData);
+               
+                data.append("h", stringifyEventData);
+               
+                var ajaxRequest = $.ajax({
+                    type: "POST",
+                    
+                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/UpdateFile',
+                    contentType: false,
+                    processData: false,
+                    data: data
+                }).done(function (result) {
+                    alert(result);
+                }).fail(function (a, b, c) {
+                    console.log(a, b, c);
                 });
+
+               
             });
         });
 
         function GetEventDetails() {
             var queryParams = getQueryParams();
+            
             $.ajax({
                 url: 'http://localhost/EventsGSUBusinessLibrary/api/register/GetDetailsById?eventId=' + queryParams.eventID,
                 method: 'GET',
@@ -202,7 +242,9 @@
                         $('#txtEventType').val(response.EventType);
                         $('#txtEventDesc').val(response.EventsDescription);
                         $('#txtTicketPrice').val(response.TicketPrice);
-                        $('#TicketQuantity').val(response.TicketQuantity);
+                    $('#TicketQuantity').val(response.TicketQuantity);
+                    $('#EventID').val(response.EventID);
+
                     
                 },
                 error: function (b) {

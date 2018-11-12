@@ -16,7 +16,11 @@
 
         $('#Myprofileli').hide();
 
+        $('#AdminEMli').hide();
+
         $('#Logoutli').hide();
+
+
 
 
 

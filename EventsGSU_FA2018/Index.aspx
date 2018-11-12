@@ -64,8 +64,8 @@
                     $(document).ready(function () {
                         debugger;
                         getCookies();
-                        debugger;
-                        validateRoles(utId);
+                            debugger;
+                           validateRoles(utId);
                         GetEvents();
                         //GetSearchEvents();
 
