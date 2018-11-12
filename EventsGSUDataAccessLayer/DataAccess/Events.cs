@@ -221,6 +221,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
                                            EventID= e.EventID,
                                            EventType = e.EventType,
                                            EventsDescription=edd.EventsDescription,
+                                           EventDetailsID = edd.EventDetailsID,
                                            TicketID=tt.TicketID,
                                            TicketPrice=tt.TicketPrice,
                                            TicketQuantity = tt.TicketQuantity,

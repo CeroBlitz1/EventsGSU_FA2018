@@ -200,6 +200,7 @@ namespace EventsGSUBusinessLibrary.Controllers
                     var EventsDescription = jsonDictionary["eventsdescription"];
                     var EventDate = jsonDictionary["eventdate"];
                     var UserID = jsonDictionary["userID"];
+                    
 
                     var et = new EventsTable();
                     var tt = new TicketsTable();
@@ -295,6 +296,9 @@ namespace EventsGSUBusinessLibrary.Controllers
                         var TicketQuantity = jsonDictionary["ticketquantity"];
                         var EventsDescription = jsonDictionary["eventsdescription"];
                         var EventDate = jsonDictionary["eventdate"];
+                        var UserID = jsonDictionary["userid"];
+                        var TicketID = jsonDictionary["ticketid"];
+                        var EventsDescriptionID = jsonDictionary["eventsdescriptionid"];
                         
 
                         var et = new EventsTable();
@@ -311,18 +315,27 @@ namespace EventsGSUBusinessLibrary.Controllers
                         et.EventImage = EventImage;
                         et.EventTitle = EventTitle;
                         et.EventDate = Convert.ToDateTime(EventDate);
+                        et.UserID = Convert.ToInt32(UserID);
                         et.EventID = Convert.ToInt32(EventID);
                         g.EventsTables.Attach(et);
+
                         g.Entry(et).State = System.Data.Entity.EntityState.Modified;
+                        g.SaveChanges();
 
                         tt.TicketImage = "";
                         tt.TicketPrice = Convert.ToInt32(TicketPrice);
                         tt.TicketQuantity = Convert.ToInt32(TicketQuantity);
-                        tt.EventID = et.EventID;
+                        tt.TicketID = Convert.ToUInt16(TicketID);
+                        tt.UserID = Convert.ToInt32(UserID);
+                        tt.EventID = Convert.ToInt32(EventID); 
                         g.TicketsTables.Attach(tt);
                         g.Entry(tt).State = System.Data.Entity.EntityState.Modified;
+                        g.SaveChanges();
 
                         ed.EventsDescription = EventsDescription;
+                        ed.UserID = Convert.ToInt32(UserID);
+                        ed.EventID = Convert.ToInt32(EventID);
+                        ed.EventDetailsID = Convert.ToInt32(EventsDescriptionID);
                         g.EventDetails.Attach(ed);
                         g.Entry(ed).State = System.Data.Entity.EntityState.Modified;
 

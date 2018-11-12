@@ -53,7 +53,7 @@
                     <tr>
 
                         <td>Event Description</td>
-                        <td>
+                        <td><span id="EventsDescriptionID"></span>
                             <input type="text" id="txtEventDesc" placeholder="Please enter Description" size="700" />
                         </td>
                     </tr>
@@ -77,7 +77,7 @@
 
                         <td>Ticket Price</td>
                         <td>
-
+                            <span id="TicketID"></span>
                             <input type="text" id="txtTicketPrice" placeholder="Please enter price" size="400" />
                         </td>
 
@@ -201,6 +201,9 @@
                     eventsdescription: $('#txtEventDesc').val(),
                     eventdate: $('#EventDate').val(),
                     eventid: $('#EventID').val(),
+                    ticketid: $('#TicketID').val(),
+                    eventsdescriptionid: $('#EventsDescriptionID').val(),
+                    userid: uID,
                     
 
                 };
@@ -244,6 +247,8 @@
                         $('#txtTicketPrice').val(response.TicketPrice);
                     $('#TicketQuantity').val(response.TicketQuantity);
                     $('#EventID').val(response.EventID);
+                    $('#TicketID').val(response.TicketID);
+                    $('#EventsDescriptionID').val(response.EventDetailsID);
 
                     
                 },
