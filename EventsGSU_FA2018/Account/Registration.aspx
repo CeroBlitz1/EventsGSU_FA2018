@@ -77,7 +77,7 @@
         $(document).ready(function () {
              getCookies();
             debugger;
-           validateRoles(utId);
+            validateRoles(utId);
             $('#Close').click(function () {
               
 
