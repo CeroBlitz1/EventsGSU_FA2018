@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="User_history_details.aspx.cs" Inherits="EventsGSU_FA2018.Account.User_history_details" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="User_history_details.aspx.cs" Inherits="EventsGSU_FA2018.Account.User_history_details" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -35,8 +35,9 @@
     <script type="text/javascript">
         var uID = 0;
         $(document).ready(function () {
-            //debugger;
             getCookies();
+            debugger;
+           validateRoles(utId);
         });
        
         //function getCookies() {

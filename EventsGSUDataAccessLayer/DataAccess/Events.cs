@@ -698,6 +698,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
             }
             return getalleventslist;
         }
+
         #region Notes
         /*
         for user_mange_event

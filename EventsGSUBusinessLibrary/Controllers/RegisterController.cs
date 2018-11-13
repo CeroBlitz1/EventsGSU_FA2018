@@ -43,6 +43,22 @@ namespace EventsGSUBusinessLibrary.Controllers
         {
             return new Users().UserLogin(model);
         }
+        [Route ("UpdateProfile")]
+        public UserModel UpdateProfile(UserModel model)
+        {
+            return new Users().UpdateUsers(model);
+        }
+        [Route ("UpdateUserType")]
+        public UserModel UpdateUserType(UserModel model)
+        {
+            return new Payment().UpdateUserTypeCode(model);
+        }
+
+        [Route ("GetUserInfobyID")]
+        public UserModel GetUserInfobyID(int UserID)
+        {
+            return new Users().GetUserInfobyID(UserID);
+        }
 
         [Route("GetEvents")]
         public List<EventModel> GetEvents(EventModel model)
@@ -365,6 +381,11 @@ namespace EventsGSUBusinessLibrary.Controllers
                 var s = "Problem While Updating";
             }
         }
+
+
+
+        
+        
 
 
 

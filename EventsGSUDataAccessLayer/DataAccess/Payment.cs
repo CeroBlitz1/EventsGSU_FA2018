@@ -23,18 +23,34 @@ namespace EventsGSUDataAccessLayer.DataAccess
             {
                 var paymentObj = new PaymentTable();
                 var paymentHobj = new PaymentHistoryTable();
+                var query = g.PaymentTables.Where(x => x.UserCardNumber == model.UserCardNumber);
+                if (query == null)
+                {
+                    paymentObj.FirstName = model.FirstName;
+                    paymentObj.LastName = model.LastName;
+                    paymentObj.UserEmail = model.UserEmail;
+                    paymentObj.UserPhoneNumber = model.UserPhoneNumber;
+                    paymentObj.UserCardNumber = model.UserCardNumber;
+                    paymentObj.UserCardExpiration = Convert.ToDateTime(model.UserCardExpiration);
+                    paymentObj.UserID = model.UserID;
+                    paymentObj.UserCardCVV = model.UserCardCVV;
+                    paymentObj.UserAddress = model.UserAddress;
+                    paymentObj.UserZipCode = model.UserZipCode;
+                    paymentObj.UserState = model.UserState;
 
-                paymentObj.FirstName = model.FirstName;
-                paymentObj.LastName = model.LastName;
-                paymentObj.UserEmail = model.UserEmail;
-                paymentObj.UserPhoneNumber = model.UserPhoneNumber;
-                paymentObj.UserCardNumber = model.UserCardNumber;
-                paymentObj.UserCardExpiration =Convert.ToDateTime(model.UserCardExpiration);
-                paymentObj.UserID = model.UserID;
-                paymentObj.UserCardCVV = model.UserCardCVV;
-                paymentObj.UserAddress = model.UserAddress;
-                paymentObj.UserZipCode = model.UserZipCode;
-                paymentObj.UserState = model.UserState;
+
+                    g.SaveChanges();
+
+                }
+                var querypay = g.PaymentTables.Where(x => x.PaymentID == model.PaymentID);
+                if (querypay != null)
+                {
+                    paymentHobj.PaymentID = model.PaymentID;
+                }
+                else
+                {
+                    paymentHobj.PaymentID = paymentObj.PaymentID;
+                }
                 paymentHobj.UserPaymentPaid = model.UserPaymentPaid;
                 paymentHobj.UserID = model.UserID;
                 paymentHobj.UserTypeID = model.UserTypeID.ToString();
@@ -42,11 +58,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
                 paymentHobj.TicketID = model.TicketID;
                 paymentHobj.TicketsPurchased = 1;
 
-                g.PaymentTables.Add(paymentObj);
                 g.PaymentHistoryTables.Add(paymentHobj);
-                g.SaveChanges();
-
-                paymentObj.PaymentID = paymentHobj.PaymentID;
                 g.SaveChanges();
 
 
@@ -76,6 +88,12 @@ namespace EventsGSUDataAccessLayer.DataAccess
                                              pt.UserCardNumber,
                                              pt.UserCardCVV,
                                              pt.UserCardExpiration,
+                                             pt.UserEmail,
+                                             pt.UserPhoneNumber,
+                                             pt.UserAddress,
+                                             pt.UserZipCode,
+                                             pt.UserState,
+                                             pt.PaymentID,
                                          }
                                                                            
                                          ).ToList();
@@ -88,6 +106,13 @@ namespace EventsGSUDataAccessLayer.DataAccess
                     cardetailsobject.UserCardNumber = item.UserCardNumber;
                     cardetailsobject.UserCardCVV = item.UserCardCVV;
                     cardetailsobject.UserCardExpiration = item.UserCardExpiration;
+                    cardetailsobject.UserEmail = item.UserEmail;
+                    cardetailsobject.UserPhoneNumber = item.UserPhoneNumber;
+                    cardetailsobject.UserAddress = item.UserAddress;
+                    cardetailsobject.UserZipCode = item.UserZipCode;
+                    cardetailsobject.UserState = item.UserState;
+                    cardetailsobject.PaymentID = item.PaymentID;
+
                     CardDetailsList.Add(cardetailsobject);
                 }
             }
@@ -227,44 +252,40 @@ namespace EventsGSUDataAccessLayer.DataAccess
             return UserhistoryDetailsList;
         }
 
-        public List<UserModel> UpdateUserTypeCode(int? UserID)
+        public UserModel UpdateUserTypeCode(UserModel model)
         {
-            var UserModelList = new List<UserModel>();
+            var um = new UserModel
+            {
+                UMessage = "Update Success",
+                UFlag = false,
+            };
             try
             {
-                var getUserTypeObject = (from ut in g.UserTables
-                                                   where ut.UserID == UserID
-                                                   select new
-                                                   {
-                                                       ut.UserTypeID
-                                                   }
+                var usersObj = new UserTable();
 
-                                                       ).ToList();
-                foreach (var item in getUserTypeObject)
-                {
-                    var userdetailsobject = new PaymentModel();
+                usersObj.UserPassword = model.UserPassword;
+                usersObj.UserName = model.UserName;
+                usersObj.UserEmail = model.UserEmail;
+                usersObj.UserPhoneNumber = model.UserPhoneNumber;
+                usersObj.UserTypeID = 2;
+                usersObj.UserID = model.UserID;
+                usersObj.isActive = "Y";
+                usersObj.CreatedDate = DateTime.Now;
+                usersObj.ModifiedDate = DateTime.Now;
 
-                    userdetailsobject.UserTypeID = 2;
-                }
+                g.UserTables.Attach(usersObj);
+                g.Entry(usersObj).State = System.Data.Entity.EntityState.Modified;
+                g.SaveChanges();
+                um.UFlag = true;
 
             }
             catch (Exception ex)
             {
-                string d = ex.Message;
+
+                um.UMessage = ex.Message;
             }
-            return UserModelList;
 
-            //List<Person> results = (from p in Context.Persons
-            //                        where .... // add where condition here
-            //            select p).ToList();
-
-            //foreach (Person p in results)
-            //{
-            //    p.is_default = false;
-            //}
-
-            //Context.SaveChanges();
-
+            return um;
         }
     }
 }

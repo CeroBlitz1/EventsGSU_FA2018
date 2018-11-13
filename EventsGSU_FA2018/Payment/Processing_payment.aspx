@@ -1,33 +1,33 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pay.Master" AutoEventWireup="true" CodeBehind="Processing_payment.aspx.cs" Inherits="EventsGSU_FA2018.Payment.Processing_payment" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-  <table>
-                        <tr>
-                            <td>
+    <table>
+        <tr>
+            <td>
 
-                                <div id="indexEventID"></div>
-                                <img id="indexImage1" src="Images/img1.jpg" style="width: 350px" /></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div id="event1Date"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div id="event1Location"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div id="event1Title"></div>
-                            </td>
-                        </tr>
+                <div id="indexEventID"></div>
+                <img id="indexImage1" src="Images/img1.jpg" style="width: 350px" /></td>
+        </tr>
+        <tr>
+            <td>
+                <div id="event1Date"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="event1Location"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="event1Title"></div>
+            </td>
+        </tr>
 
-                    </table>
+    </table>
     <div>$</div>
-        <div id="ticketAmount"></div>
-        <div id="indexTicketid"></div>
+    <div id="ticketAmount"></div>
+    <div id="indexTicketid"></div>
 
     <table>
         <tr>
@@ -35,10 +35,10 @@
                 <input id="btnPayment" class="btn btn-success" type="button" value="Finalize Payment" />
             </td>
         </tr>
-      
+
     </table>
-      
-     <script src="../Scripts/jquery-3.3.1.min.js"></script>
+
+    <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
     <script src="../Scripts/underscore.min.js"></script>
     <script type="text/javascript">
@@ -60,6 +60,9 @@
             $(function () {
                 $(document).ready(function () {
 
+                    getCookies();
+                    debugger;
+                    validateRoles(utId);
                     GetEventDetails();
 
 
@@ -74,7 +77,7 @@
                     }
                     debugger;
                     console.log($.urlParam('eventID'));
-                    
+
 
 
 

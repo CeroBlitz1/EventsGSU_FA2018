@@ -43,7 +43,9 @@
         }
         $(document).ready(function () {
             GetTicketDetails();
-            getCookies();
+             getCookies();
+            debugger;
+           validateRoles(utId);
             function GetTicketDetails() {
 
                 var queryParams = getQueryParams();

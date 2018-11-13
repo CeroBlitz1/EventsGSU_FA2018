@@ -12,6 +12,8 @@
     <script type="text/javascript">
         $(document).ready(function () {
             getCookies();
+            debugger;
+           validateRoles(utId);
             GetTicketEvents();
         });
 

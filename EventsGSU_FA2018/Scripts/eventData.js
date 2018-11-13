@@ -20,6 +20,7 @@
 
         $('#Logoutli').hide();
 
+        $('#BecomeOrgli').hide();
 
 
 
@@ -32,8 +33,6 @@
         $('#AdminUserli').hide();
 
         $('#AdminPayinfli').hide();
-
-        $('#Ticketsli').hide();
 
         $('#Registerli').hide();
 
@@ -53,6 +52,8 @@
 
         $('#Registerli').hide();
 
+        $('#BecomeOrgli').hide();
+
     }
     else if (roleType == 3)//Admin
     {
@@ -67,6 +68,8 @@
         $('#UserHistoryli').hide();
 
         $('#Myprofileli').hide();
+
+        $('#BecomeOrgli').hide();
 
 
     }

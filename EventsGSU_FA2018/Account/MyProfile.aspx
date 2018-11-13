@@ -1,63 +1,97 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="MyProfile.aspx.cs" Inherits="EventsGSU_FA2018.Account.MyProfile" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyProfile.aspx.cs" Inherits="EventsGSU_FA2018.Account.MyProfile" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div><h1>My Profile</h1>
-        <table class="nav-justified">
-            <tr>
-                <td>Name:</td>
-                <td>
-                    <asp:Label ID="Label_Name" runat="server" Text="Name printed from database"></asp:Label>
-                    /Session</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>Email:</td>
-                <td>
-                    <asp:Label ID="Label_Email" runat="server" Text="Email printed from Database/Session"></asp:Label>
-                </td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>Phone Number:</td>
-                <td>
-                    <asp:Label ID="Label_PhoneNo" runat="server" Text="Phone Number Printer from Database/Session"></asp:Label>
-                </td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-        </table>
-        <table class="nav-justified">
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td style="height: 20px">Name:<br />
-&nbsp;<asp:TextBox ID="TextBox_Profile_Name" runat="server"></asp:TextBox>
-                </td>
-                <td style="height: 20px"></td>
-            </tr>
-            <tr>
-                <td>Email:<br />
-&nbsp;<asp:TextBox ID="TextBox1" runat="server" TextMode="Email"></asp:TextBox>
-                </td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>Phone Number:<br />
-                    <asp:TextBox ID="TextBox_Profile_Number" runat="server" TextMode="Phone"></asp:TextBox>
-                </td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>
-                    <asp:Button ID="Button_profile_Update" runat="server" CssClass="btn-success" Text="Update Profile" />
-                </td>
-            </tr>
-        </table>
-</div>
+    <h1>My Profile</h1>
+    <div class="well">
+        <label>User Name :</label><span id="Name"></span>
+        <br />
+        <label>Email :</label><span id="Email"></span>
+        <br />
+        <label>PhoneNumber :</label><span id="PhoneNumber"></span>
+    </div>
+    <div class="Well">
+        <label>Update User Name :</label><br />
+        <input type="text" id="TxtUserName" />
+        <br />
+        <label>Update Password :</label><br />
+        <input type="password" id="TxtPassword" />
+        <br />
+        <label>Update Email :</label><br />
+        <input type="text" id="TxtEmail" />
+        <br />
+        <label>Update Phone :</label><br />
+        <input type="text" id="TxtPhone" />
+        <br />
+        <br />
+
+        <input type="button" class="btn btn-success" id="btnUpdateProfile" value ="Update Profile" />
+
+
+
+    </div>
+    <div id="error" class="alert alert-danger collapse">
+        <a id="Close" class="close" href="#">&times;</a>
+        <div id="ErrorText"></div>
+    </div>
+    <script src="../Scripts/jquery-3.3.1.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            getCookies();
+            debugger;
+           validateRoles(utId);
+            GetUserDetails();
+
+            $('#btnUpdateProfile').click(function () {
+                $.ajax({
+                    url: 'http://localhost/EventsGSUBusinessLibrary/api//register/UpdateProfile',
+                    method: 'POST',
+                    data:{
+
+                        username: $('#TxtUserName').val(),
+                        useremail: $('#TxtEmail').val(),
+                        userpassword: $('#TxtPassword').val(),
+                        userphonenumber: $('#TxtPhone').val(),
+                        userid: uID,
+                        usertypeid: utId
+                    },
+                    success: function (response) {
+                         $('#ErrorText').text(response.UMessage);
+                             $('#error').show('fade');
+                    },
+                     error: function (jqXHR) {
+                        $('#ErrorText').text(jqXHR.responseText);
+                        $('#error').show('fade');
+
+                    }
+                });
+            });
+
+            
+
+        });
+        function GetUserDetails() {
+            $.ajax({
+                url: 'http://localhost/EventsGSUBusinessLibrary/api/register/GetUserInfobyID?UserID=' + uID,
+                method: 'GET',
+                data: {},
+                success: function (response) {
+                    $('#Name').text(response.UserName);
+                    $('#Email').text(response.UserEmail);
+                    $('#PhoneNumber').text(response.UserPhoneNumber);
+
+                },
+                error: function (error)
+                    {
+                        $('#ErrorText').text(error.responseText);
+                        $('#error').show('fade');
+
+
+                  },
+            });
+        }
+
+    </script>
+
+
 </asp:Content>

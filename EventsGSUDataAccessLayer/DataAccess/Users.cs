@@ -10,7 +10,7 @@ namespace EventsGSUDataAccessLayer
 {
     public class Users
     {
-        GsuEventsDBEntities1 Gsu = new GsuEventsDBEntities1();
+        GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
         public UserModel SaveUsers(UserModel model)
         {
 
@@ -23,7 +23,7 @@ namespace EventsGSUDataAccessLayer
             };
             try
             {
-                var usr = Gsu.UserTables.Where(s => s.UserName == model.UserName).FirstOrDefault();
+                var usr = g.UserTables.Where(s => s.UserName == model.UserName).FirstOrDefault();
                 
                     var usersObj = new UserTable();
 
@@ -35,11 +35,11 @@ namespace EventsGSUDataAccessLayer
                     usersObj.UserTypeID = 1;
                     usersObj.CreatedDate = DateTime.Now;
                     usersObj.ModifiedDate = DateTime.Now;
-                    Gsu.UserTables.Add(usersObj);
+                    g.UserTables.Add(usersObj);
 
                 if (usr == null)
                 {
-                    Gsu.SaveChanges();
+                    g.SaveChanges();
                     um.UFlag = true;
                 }
                 else
@@ -123,7 +123,7 @@ namespace EventsGSUDataAccessLayer
             };
             try
             {
-                var usr = Gsu.UserTables.Where(s => s.UserName == model.UserName).FirstOrDefault();
+                var usr = g.UserTables.Where(s => s.UserName == model.UserName).FirstOrDefault();
 
                 if (usr != null && usr.UserPassword == model.UserPassword)
                 {
@@ -140,6 +140,68 @@ namespace EventsGSUDataAccessLayer
             {
                 um.UMessage = ex.Message;
             }
+            return um;
+        }
+
+        public UserModel GetUserInfobyID(int UserID)
+        {
+            var userdetailslist = new UserModel();
+
+            try
+            {
+                userdetailslist = (from u in g.UserTables
+                                   where u.UserID == UserID
+                                   select new UserModel()
+                                   {
+                                       UserName= u.UserName,
+                                       UserPassword = u.UserPassword,
+                                       UserEmail = u.UserEmail,
+                                       UserPhoneNumber=u.UserPhoneNumber,
+                                   }).FirstOrDefault();
+                                   
+            }
+            catch (Exception ex)
+            {
+
+                string d = ex.Message;
+                
+            }
+            return userdetailslist;
+        }
+
+        public UserModel UpdateUsers(UserModel model)
+        {
+            var um = new UserModel
+            {
+                UMessage = "Update Success",
+                UFlag = false,
+            };
+            try
+            {
+                var usersObj = new UserTable();
+
+                usersObj.UserPassword = model.UserPassword;
+                usersObj.UserName = model.UserName;
+                usersObj.UserEmail = model.UserEmail;
+                usersObj.UserPhoneNumber = model.UserPhoneNumber;
+                usersObj.UserTypeID = model.UserTypeID;
+                usersObj.UserID = model.UserID;
+                usersObj.isActive = "Y";
+                usersObj.CreatedDate = DateTime.Now;
+                usersObj.ModifiedDate = DateTime.Now;
+                
+                g.UserTables.Attach(usersObj);
+                g.Entry(usersObj).State = System.Data.Entity.EntityState.Modified;
+                g.SaveChanges();
+                um.UFlag = true;
+
+            }
+            catch (Exception ex)
+            {
+
+                um.UMessage = ex.Message;
+            }
+
             return um;
         }
 

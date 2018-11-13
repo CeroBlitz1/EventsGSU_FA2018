@@ -33,16 +33,9 @@
         }
         $(document).ready(function () {
             {
-                //$.urlParam = function (name) {
-                //    var results = new RegExp('[\?&]' + name + '=([^&#]*)')
-                //        .exec(window.location.href);
-                //    if (results == null) {
-                //        return 0;
-                //    }
-                //    return results[1] || 0;
-                //}
-                //debugger;
-                //console.log($.urlParam('SearchQuery')); //edit
+               getCookies();
+            debugger;
+           validateRoles(utId);
             }
             var queryParams = getQueryParams();
             GetEvents();

@@ -75,22 +75,6 @@
                 <td></td>
             </tr>
         </table>
-        <div class="well  ">
-
-
-            <img src="../Content/cancel.png" />
-
-            <div id="CardNumber"></div>
-
-            <div id="CardExpiration"></div>
-
-            <div id="FirstName" class=""></div>
-
-            <div id="LastName" class=""></div>
-
-            <div id="CardCVV" class=""></div>
-
-        </div>
     </div>
     <div class="col-md-10 col-md-offset-1">
         <div class="well">
@@ -120,6 +104,7 @@
                     <tr>
                         <td>Card Number</td>
                         <td>
+                            <span id="PaymentID"></span>
                             <input type="text" id="txtCardNumber" placeholder=" Card Number" />
                         </td>
                     </tr>
@@ -272,7 +257,8 @@
                     },
 
 
-                    success: function (response) {
+                    success: function (response)
+                    {
                         debugger;
 
                         $('#indexImage1')[0].src = 'http://localhost/EventsGSUBusinessLibrary/' + response.EventImage;
@@ -283,10 +269,13 @@
                         $('#eventDesc').text(response.EventsDescription);
                         $('#ticketAmount').text(response.TicketPrice);
                         $('#indexTicketid').text(response.TicketID);
+                       
+
 
 
                     },
-                    error: function (error) {
+                    error: function (error)
+                    {
                         $('#ErrorText').text(error.responseText);
                         $('#error').show('fade');
 
@@ -338,13 +327,15 @@
                         userpaymentpaid: $('#ticketAmount').text(),
                         eventid: $('#indexEventID').text(),
                         ticketid: $('#indexTicketid').text(),
+                        paymentid: $('#PaymentID').val(),
                         userid: uID,
                         usertypeid: utID
 
                     },
-                    success: function (s) {
+                    success: function (response) {
 
-                        $('#successmodal').modal(s);
+                        $('#ErrorText').text(response);
+                         $('#error').show('fade');
 
                     },
                     error: function (jqXHR) {
@@ -373,12 +364,17 @@
 
                     success: function (details) {
                         debugger;
-
-                        $('#CardNumber').text(details[0].UserCardNumber);
-                        $('#CardExpiration').text(details[0].UserCardExpiration);
-                        $('#FirstName').text(details[0].FirstName);
-                        $('#LastName').text(details[0].LastName);
-                        $('#CardCVV').text(details[0].UserCardCVV);
+                        $('#txtFN').val(details[0].FirstName);
+                        $('#txtLN').val(details[0].LastName);
+                        $('#txtCardNumber').val(details[0].UserCardNumber);
+                        $('#txtCardDate').val(details[0].UserCardExpiration);
+                        $('#txtCVV').val(details[0].UserCardCVV);
+                        $('#txtEmail').val(details[0].UserEmail);
+                        $('#txtPhNo').val(details[0].UserPhoneNumber);
+                        $('#txtAddress').val(details[0].UserAddress);
+                        $('#txtzip').val(details[0].UserZipCode);
+                        $('#txtstate').val(details[0].UserState);
+                        $('#PaymentID').val(details[0].PaymentID);
 
 
                     },

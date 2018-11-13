@@ -75,8 +75,11 @@
     <script src="../Scripts/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+             getCookies();
+            debugger;
+           validateRoles(utId);
             $('#Close').click(function () {
-                getCookies();
+              
 
                 $('#error').hide('fade');
             });
@@ -111,7 +114,8 @@
                         username: $('#txtUserName').val(),
                         useremail: $('#txtEmail').val(),
                         userpassword: $('#txtPassword').val(),
-                        userphonenumber: $('#txtPhoneNumber').val()
+                        userphonenumber: $('#txtPhoneNumber').val(),
+                       
                     },
                     success: function (response) {
                         //$('#successmodal').modal(s);

@@ -61,6 +61,13 @@
                     
                 });
             }
+            function destroycookies() {
+                $.removeCookie('UserID', { path: '/' });
+                $.removeCookie('UserTypeID', { path: '/' });
+                debugger;
+                window.location.href = "http://localhost/EventsGSU_FA2018/Index";
+            }
+        
         </script>
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -86,7 +93,9 @@
                         <li id="AdminPayinfli"><a runat="server" href="~/Admin/admin_payment_info.aspx">Admin Payment Manage</a></li>
                         <li id="AdminUserli"><a runat="server" href="~/Admin/admin_user_management.aspx">Admin User Manage</a></li>
                         <li id="Myprofileli"><a runat="server" href="~/Account/MyProfile.aspx">My Profile</a></li>
-                        <li id="Logoutli"><a runat="server" href="~/Account/Logout.aspx">Logout</a></li>
+                        <li id="BecomeOrgli"><a runat="server" href="~/Account/Organizer_registration.aspx">Become Organier</a></li>
+                        <li id="Logoutli"><a runat="server" href="~/Account/Logout.aspx" >Logout</a></li>
+                        
 
 
                     </ul>
