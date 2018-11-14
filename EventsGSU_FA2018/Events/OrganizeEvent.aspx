@@ -143,6 +143,8 @@
         $(function () {
             $("#EventDate").datepicker();
         });
+
+        
         { //$(function () {
             //    $("#fileimg").fileupload({
             //        'uploader': '../Uploadify/uploader.swf',

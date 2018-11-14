@@ -118,7 +118,7 @@
                             $.cookie('UserID',response.UserID,{ expires: 2, path: '/' });
                             $.cookie('UserTypeID',response.UserTypeID,{ expires: 2, path: '/' });
                             //
-                            window.location.href = "http://localhost/EventsGSU_FA2018/Index";
+                            window.location.href = "http://localhost/EventsGSU_FA2018/Account/Index";
                         }
                         else
                         {

@@ -211,7 +211,7 @@
     <Content Include="Events\OrganizeEvent.aspx" />
     <Content Include="Events\Search_results.aspx" />
     <Content Include="Events\user_manage_event.aspx" />
-    <Content Include="Index.aspx" />
+    <Content Include="Account\Index.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -235,6 +235,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\cancel.png" />
+    <Content Include="Scripts\defaultTheme.css" />
     <Content Include="Scripts\eventData.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -256,6 +257,7 @@
     <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload-video.js" />
     <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload.js" />
     <Content Include="Scripts\jQuery.FileUpload\jquery.iframe-transport.js" />
+    <Content Include="Scripts\jquery.fixedheadertable.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
@@ -290,7 +292,9 @@
     <Content Include="SQL\GsuEventsDBTables1.sql" />
     <Content Include="ViewPurchase.aspx" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
@@ -423,11 +427,11 @@
     <Compile Include="Events\user_manage_event.aspx.designer.cs">
       <DependentUpon>user_manage_event.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Index.aspx.cs">
+    <Compile Include="Account\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Index.aspx.designer.cs">
+    <Compile Include="Account\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">

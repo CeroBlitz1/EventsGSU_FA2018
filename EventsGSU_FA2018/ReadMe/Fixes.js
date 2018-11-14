@@ -24,7 +24,17 @@ Fixes Completed :
 7.changed colour for the panel
 
 
-
+11/13/2018
+1. visitor remove organize, mange ticker , manageevents, p1
+2.MyProfile diable username text box p3
+3. remove all debbugers
+4. remove all useless libraries
+5. put the goole map--web mapping
+6. save event pop up fix 
+7.  update events pop up
+8. ADD ADMIN FUNCTIONALITY P111
+9. delte events
+10. search by location  and events type and event date
 
 
 */

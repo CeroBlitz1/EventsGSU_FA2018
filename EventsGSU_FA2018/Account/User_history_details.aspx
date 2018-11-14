@@ -32,12 +32,16 @@
     <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
     <script src="../Scripts/underscore.min.js"></script>
+    <%--<script src="../Scripts/jquery.fixedheadertable.min.js"></script>
+    <link href="../Scripts/defaultTheme.css" rel="stylesheet" />--%>
+    <%--http://www.fixedheadertable.com/--%>
     <script type="text/javascript">
         var uID = 0;
         $(document).ready(function () {
             getCookies();
             debugger;
-           validateRoles(utId);
+            validateRoles(utId);
+            $('#tbldata').fixedHeaderTable();
         });
        
         //function getCookies() {

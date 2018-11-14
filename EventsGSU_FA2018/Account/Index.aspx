@@ -507,7 +507,7 @@
 
                 },
                 success: function (response) {
-                    debugger;
+                    //debugger;
 
                     //var valdata = [response]
 
@@ -521,7 +521,7 @@
                     //}
 
                     $.each(response, function (index, value) {
-                        debugger;
+                        //debugger;
                         valresponse.push(value.EventTitle)
                     });
 
