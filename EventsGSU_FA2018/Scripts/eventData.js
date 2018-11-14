@@ -71,6 +71,10 @@
 
         $('#BecomeOrgli').hide();
 
+        $('#Registerli').hide();
+
+        $('#Eventli').hide();
+
 
     }
     else {

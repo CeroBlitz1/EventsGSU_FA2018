@@ -110,30 +110,23 @@
         });
 
         function writetable(data) {
-        var tableOutline = '<tr><td>';
+        var tableOutline = ''
 
         for (var i = 0; i < data.length; i++) {
 
-            {  //tableOutline = tableOutline + '<tr id="row_' + data[i].ARPT_IDENT_CD + '"onclick="getprjIdentNbr(this,' + "'" + data[i].ARPT_IDENT_CD + "'," + data[i].ARPT_ID + ')"class = "' + "" + '" "><td>';
-                //tableOutline = tableOutline + '<a>'
-                //    + data[i].ARPT_IDENT_CD + '</a></td><td>'
-                //    + data[i].MUN_NM + '</td><td>'
-                //    + data[i].ProjectRegion + '</td><td>'
-                //    + data[i].DIST_CD + '</td><td>'
-                //    + data[i].ARPT_PROJ_PFX_CD + '</td><td>'
-                //    + data[i].ARPT_NPIAS_IND + '</td><td>'
-                //    + data[i].ARPT_VEND_NBR_CD
-                //    + '</td></tr>';
-            }
+             var obj =  data[i].TicketsPurchased;
+             var j = JSON.stringify(obj);
             
-            tableOutline = tableOutline 
-                + data[i].FirstName + '</td><td>'
+            tableOutline = tableOutline +
+
+               '<tr><td>' + data[i].FirstName + '</td><td>'
                 + data[i].LastName + '</td><td>'
                 + data[i].UserEmail + '</td><td>'
-                + data[i].TickesPurchased + '</td><td>'
+                + j + '</td><td>'
                 + data[i].UserCardExpiration + '</td><td>'
-                + data[i].EventTitle
-                + '</td></tr>';   
+                + data[i].EventTitle + '</td><td>'
+                + '</td></tr>';
+                
 
 
         }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="admin_event_manage.aspx.cs" Inherits="EventsGSU_FA2018.Events.admin_Event_manage" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="admin_event_manage.aspx.cs" Inherits="EventsGSU_FA2018.Events.admin_Event_manage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Admin Event manage Page</h1>
@@ -33,7 +33,9 @@
     <script src="../Scripts/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-
+            getCookies();
+            debugger;
+            validateRoles(utId);
         });
         $('#btnLoadEvents').click(function () {
             $.ajax({

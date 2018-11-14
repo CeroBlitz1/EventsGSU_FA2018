@@ -256,7 +256,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
         {
             var um = new UserModel
             {
-                UMessage = "Update Success",
+                UMessage = "Update Success.. Please relogin to See changes",
                 UFlag = false,
             };
             try

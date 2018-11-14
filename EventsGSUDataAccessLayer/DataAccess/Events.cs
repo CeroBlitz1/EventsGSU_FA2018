@@ -74,30 +74,58 @@ namespace EventsGSUDataAccessLayer.DataAccess
 
         public List<EventModel> GetEvents(EventModel model)
         {
-            var eventObj = new List<EventModel>();
+            var eventObjList = new List<EventModel>();
 
             try
             {
-                //var et = g.EventsTables.OrderByDescending(i => i).Take(3).ToList();
-                var et = g.EventsTables.Take(3).ToList();
-                //var et = g.EventsTables.Where(x=>x.IsValid != 0).Take(3).ToList();
-                foreach (var e in et)
-                {
-                    var eModel = new EventModel();
-                    eModel.EventImage = e.EventImage;
-                    eModel.EventTitle = e.EventTitle;
-                    eModel.EventDate = e.EventDate;
-                    eModel.EventLocation = e.EventLocation;
-                    eModel.EventID = e.EventID;
+                #region Old Code
+                ////var et = g.EventsTables.OrderByDescending(i => i).Take(3).ToList();
+                //var et = g.EventsTables.Take(3).ToList();
+                ////var et = g.EventsTables.Where(x=>x.IsValid != 0).Take(3).ToList();
+                //foreach (var e in et)
+                //{
+                //    var eModel = new EventModel();
+                //    eModel.EventImage = e.EventImage;
+                //    eModel.EventTitle = e.EventTitle;
+                //    eModel.EventDate = e.EventDate;
+                //    eModel.EventLocation = e.EventLocation;
+                //    eModel.EventID = e.EventID;
 
-                    eventObj.Add(eModel);
+                //    eventObj.Add(eModel);
+                //}
+                #endregion
+
+                var geteventsObject = (from e in g.EventsTables
+
+                                       select new
+
+                                       {
+                                           e.EventID,
+                                           e.EventTitle,
+                                           e.EventDate,
+                                           e.EventLocation,
+                                           e.EventImage,
+                                       }).ToList();
+                foreach (var item in geteventsObject)
+                {
+                    var geteventdetailsobject = new EventModel();
+
+                    geteventdetailsobject.EventID = item.EventID;
+                    geteventdetailsobject.EventDate = item.EventDate;
+                    geteventdetailsobject.EventImage = item.EventImage;
+                    geteventdetailsobject.EventLocation = item.EventLocation;
+                    geteventdetailsobject.EventTitle = item.EventTitle;
+
+                    eventObjList.Add(geteventdetailsobject);
+
                 }
+
             }
             catch (Exception ex)
             {
                 string d = ex.Message;
             }
-            return eventObj;
+            return eventObjList;
         }
         #region Commented
         //public List<EventDetailsModel> GetDetailsById(int? eventID)

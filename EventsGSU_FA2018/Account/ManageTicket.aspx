@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="ManageTicket.aspx.cs" Inherits="EventsGSU_FA2018.Account.ManageTicket" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageTicket.aspx.cs" Inherits="EventsGSU_FA2018.Account.ManageTicket" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Manage Tickets</h1>
@@ -68,26 +68,21 @@
             }
         });
         function writetable(data) {
-        var tableOutline = '<tr><td>';
+        var tableOutline = '';
 
         for (var i = 0; i < data.length; i++) {
 
-            {  //tableOutline = tableOutline + '<tr id="row_' + data[i].ARPT_IDENT_CD + '"onclick="getprjIdentNbr(this,' + "'" + data[i].ARPT_IDENT_CD + "'," + data[i].ARPT_ID + ')"class = "' + "" + '" "><td>';
-                //tableOutline = tableOutline + '<a>'
-                //    + data[i].ARPT_IDENT_CD + '</a></td><td>'
-                //    + data[i].MUN_NM + '</td><td>'
-                //    + data[i].ProjectRegion + '</td><td>'
-                //    + data[i].DIST_CD + '</td><td>'
-                //    + data[i].ARPT_PROJ_PFX_CD + '</td><td>'
-                //    + data[i].ARPT_NPIAS_IND + '</td><td>'
-                //    + data[i].ARPT_VEND_NBR_CD
-                //    + '</td></tr>';
-            }
-            
-            tableOutline = tableOutline 
+
+            var obj = data[i].TicketsPurchased;
+
+            var objjson = JSON.stringify(obj);
+
+            tableOutline = tableOutline +
+                '<tr><td>'
                 + data[i].FirstName + '</td><td>'
                 + data[i].LastName + '</td><td>'
-                + data[i].TickesPurchased + '</td></tr>';  
+                + objjson +
+                '</td></tr>';  
 
 
         }

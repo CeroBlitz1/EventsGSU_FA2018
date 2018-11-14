@@ -27,6 +27,8 @@
 
             </tr>
 
+
+
         </table>
     </div>
     <div class="Well">
@@ -37,8 +39,9 @@
             </div>
             <div class="column col-xs-3" id="sidebar">
                 <div id="Indexdescription"></div>
-                <div id="indexEventID"></div>
-                <button id="btnpayment" type="button" class="btn btn-success btn-lg"></button>
+                <div id="indexEventID" hidden></div>
+                <label>Ticket Price:</label><span id="TicketPrice"></span>
+                <input id="btnpayment" type="button" class="btn btn-success btn-lg" value="Tickets" />
             </div>
         </div>
 
@@ -116,7 +119,7 @@
                         $('#event1Title').text(response.EventTitle);
                         $('#indexEventID').text(response.EventID);
                         $('#Indexdescription').text(response.EventsDescription);
-                        $('#btnpayment').text(response.TicketPrice);
+                        $('#TicketPrice').text(response.TicketPrice);
                         $('#indexEventID').val(response.EventID);
                         var firstItemImageEle = document.getElementById("indexEventID");
                         firstItemImageEle.setAttribute("data-eventID", response.EventID);

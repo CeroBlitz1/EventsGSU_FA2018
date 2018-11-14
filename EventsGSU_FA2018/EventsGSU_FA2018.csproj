@@ -226,12 +226,10 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Home.Master" />
     <Content Include="Pay.Master" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Admin\admin_payment_info.aspx" />
     <Content Include="Payment\finalize_payment.aspx" />
-    <Content Include="Payment\Organizer_payment.aspx" />
     <Content Include="Payment\Processing_payment.aspx" />
     <Content Include="ReadMe\Fixes.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -425,13 +423,6 @@
     <Compile Include="Events\user_manage_event.aspx.designer.cs">
       <DependentUpon>user_manage_event.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Home.Master.cs">
-      <DependentUpon>Home.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Home.Master.designer.cs">
-      <DependentUpon>Home.Master</DependentUpon>
-    </Compile>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -462,13 +453,6 @@
     </Compile>
     <Compile Include="Payment\finalize_payment.aspx.designer.cs">
       <DependentUpon>finalize_payment.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\Organizer_payment.aspx.cs">
-      <DependentUpon>Organizer_payment.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Payment\Organizer_payment.aspx.designer.cs">
-      <DependentUpon>Organizer_payment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Payment\Processing_payment.aspx.cs">
       <DependentUpon>Processing_payment.aspx</DependentUpon>

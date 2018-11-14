@@ -3,12 +3,12 @@
     
 
     <h3>Become an Organizer</h3>
-    <div class="well">
-            <input id="Button_Organizer" value="Become an Organizer"  class="btn btn-primary" />
-        <span id="UserNameSpan" hidden></span>
+    <div class="well" id="Divwell">
+            <%--<input id="Button_Organizer" value="Become an Organizer"  class="btn btn-primary" />--%>
+        <%--<span id="UserNameSpan" hidden></span>
         <span id="PasswordSpan" hidden></span>
         <span id="EmailSpan" hidden></span>
-        <span id="PhoneNumberSpan" hidden></span>
+        <span id="PhoneNumberSpan" hidden></span>--%>
     </div>
     <div id="error" class="alert alert-danger collapse">
         <a id="Close" class="close" href="#">&times;</a>
@@ -19,7 +19,9 @@
             getCookies();
             debugger;
             validateRoles(utId);
+            writebutton();
             GetUserDetails();
+            
 
             $('#Button_Organizer').click(function () {
                 $.ajax({
@@ -66,6 +68,12 @@
 
                   },
             });
+        }
+        function writebutton() {
+            divdata = '<input id="Button_Organizer" value="Become an Organizer"  class="btn btn-primary" />' +
+                '<span id="UserNameSpan" hidden></span>' + '<span id="PasswordSpan" hidden></span>' + '<span id="EmailSpan" hidden></span>' + '<span id="PhoneNumberSpan" hidden></span>'
+            $('#Divwell').append(divdata);
+            $('#Divwell').show
         }
 
 
