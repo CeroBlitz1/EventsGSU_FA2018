@@ -290,6 +290,8 @@
     <Content Include="Images\img1.jpg" />
     <Content Include="Images\img2.jpg" />
     <Content Include="Images\img3.jpg" />
+    <Content Include="SiteImages\img_mouseover3.jpg" />
+    <Content Include="SiteImages\maxresdefault.jpg" />
     <Content Include="SiteImages\processingimage.png" />
     <Content Include="Site.Master" />
     <Content Include="SQL\IIS_USER_SETUP.sql" />

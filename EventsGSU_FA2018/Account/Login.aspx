@@ -78,8 +78,8 @@
                 $('#error').hide('fade');
             });
              getCookies();
-            debugger;
             validateRoles(utId);
+            ValidateUserTypeID();
             $('#btnLogin').click(function () {
 
 
@@ -138,6 +138,23 @@
                 });
                 
             });
+             function ValidateUserTypeID()
+            {
+                if (utId == 1)
+                {
+                   window.location.href = "http://localhost/EventsGSU_FA2018/Account/Index";
+                 }
+                  if (utId == 2)
+                {
+                   window.location.href = "http://localhost/EventsGSU_FA2018/Account/Index";
+                 }
+                  if (utId == 3)
+                {
+                   window.location.href = "http://localhost/EventsGSU_FA2018/Account/Index";
+                }
+            }
+
         });
+
     </script>
 </asp:Content>

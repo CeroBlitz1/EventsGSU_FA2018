@@ -15,7 +15,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><span id="EventID"></span> Title</td>
+                        <td><span id="EventID"></span>Title</td>
                         <td>
                             <input type="text" id="txtTitle" placeholder="Title" />
                         </td>
@@ -46,15 +46,17 @@
                     <tr>
                         <td>Event location</td>
                         <td>
+                            <span id="Longitide"></span>
+                            <span id="Latitude"></span>
                             <input id="pac-input" class="controls" type="text" placeholder="Location">
                             <br />
                             <div id="map" style="width: 100%; height: 400px;"></div>
-                             <div id="infowindow-content">
-                    <img src="" width="16" height="16" id="place-icon">
-                             <span id="place-name" class="title"></span>
-                                 <br>
-                             <span id="place-address"></span>
-                                         </div>
+                            <div id="infowindow-content">
+                                <img src="" width="16" height="16" id="place-icon">
+                                <span id="place-name" class="title"></span>
+                                <br>
+                                <span id="place-address"></span>
+                            </div>
                         </td>
 
                     </tr>
@@ -167,8 +169,8 @@
             $("#EventDate").datepicker();
         });
 
-         function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), { 	
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: 41.881832, lng: -87.623177 },
                 zoom: 13
             });
@@ -232,36 +234,52 @@
                 infowindowContent.children['place-name'].textContent = place.name;
                 infowindowContent.children['place-address'].textContent = address;
                 infowindow.open(map, marker);
+
+                var geocoder = new google.maps.Geocoder();
+                var address = ('place-address');
+
+                geocoder.geocode({ 'address': address }, function (results, status) {
+
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        var latitude = results[0].geometry.location.lat('#Longitide').text;
+                        var longitude = results[0].geometry.location.lng('#Latitude').text;
+                        
+                    }
+                });
             });
+
+            //<span id="Longitide"></span>
+                            //<span id="Latitude"></span>
 
             // Sets a listener on a radio button to change the filter type on Places
             // Autocomplete.
-            function setupClickListener(id, types) {
-                var radioButton = document.getElementById(id);
-                radioButton.addEventListener('click', function () {
-                    autocomplete.setTypes(types);
-                });
-            }
+            //function setupClickListener(id, types) {
+            //    var radioButton = document.getElementById(id);
+            //    radioButton.addEventListener('click', function () {
+            //        autocomplete.setTypes(types);
+            //    });
+            //}
 
-            setupClickListener('changetype-all', []);
-            setupClickListener('changetype-address', ['address']);
-            setupClickListener('changetype-establishment', ['establishment']);
-            setupClickListener('changetype-geocode', ['geocode']);
+            //setupClickListener('changetype-all', []);
+            //setupClickListener('changetype-address', ['address']);
+            //setupClickListener('changetype-establishment', ['establishment']);
+            //setupClickListener('changetype-geocode', ['geocode']);
 
-            document.getElementById('use-strict-bounds')
-                .addEventListener('click', function () {
-                    console.log('Checkbox clicked! New state=' + this.checked);
-                    autocomplete.setOptions({ strictBounds: this.checked });
-                });
+            //document.getElementById('use-strict-bounds')
+            //    .addEventListener('click', function () {
+            //        console.log('Checkbox clicked! New state=' + this.checked);
+            //        autocomplete.setOptions({ strictBounds: this.checked });
+            //    });
+
         }
 
 
         $(document).ready(function () {
             GetEventDetails();
-             getCookies();
+            getCookies();
             debugger;
             validateRoles(utId);
-           $('#btnUploadFile').on('click', function () {
+            $('#btnUploadFile').on('click', function () {
                 debugger;
 
 
@@ -277,8 +295,8 @@
 
 
 
-               
-              
+
+
                 debugger;
 
 
@@ -295,54 +313,54 @@
                     ticketid: $('#TicketID').val(),
                     eventsdescriptionid: $('#EventsDescriptionID').val(),
                     userid: uID,
-                    
+
 
                 };
                 var stringifyEventData = JSON.stringify(eventData);
-               
+
                 data.append("h", stringifyEventData);
-               
+
                 var ajaxRequest = $.ajax({
                     type: "POST",
-                    
+
                     url: 'http://localhost/EventsGSUBusinessLibrary/api/register/UpdateFile',
                     contentType: false,
                     processData: false,
                     data: data
                 }).done(function (result) {
-                   $('#ErrorText').text("Event Update Success");
-                      $('#error').show('fade');
+                    $('#ErrorText').text("Event Update Success");
+                    $('#error').show('fade');
                 }).fail(function (a, b, c) {
                     console.log(a, b, c);
                 });
 
-               
+
             });
         });
 
         function GetEventDetails() {
             var queryParams = getQueryParams();
-            
+
             $.ajax({
                 url: 'http://localhost/EventsGSUBusinessLibrary/api/register/GetDetailsById?eventId=' + queryParams.eventID,
                 method: 'GET',
                 data: {
-                   
+
                 },
 
                 success: function (response) {
                     $('#EventDate').val(response.EventDate);
-                        $('#pac-input').val(response.EventLocation);
-                        $('#txtTitle').val(response.EventTitle);
-                        $('#txtEventType').val(response.EventType);
-                        $('#txtEventDesc').val(response.EventsDescription);
-                        $('#txtTicketPrice').val(response.TicketPrice);
+                    $('#pac-input').val(response.EventLocation);
+                    $('#txtTitle').val(response.EventTitle);
+                    $('#txtEventType').val(response.EventType);
+                    $('#txtEventDesc').val(response.EventsDescription);
+                    $('#txtTicketPrice').val(response.TicketPrice);
                     $('#TicketQuantity').val(response.TicketQuantity);
                     $('#EventID').val(response.EventID);
                     $('#TicketID').val(response.TicketID);
                     $('#EventsDescriptionID').val(response.EventDetailsID);
 
-                    
+
                 },
                 error: function (b) {
                     alert("Problem Updating");
