@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pay.Master" AutoEventWireup="true" CodeBehind="finalize_payment.aspx.cs" Inherits="EventsGSU_FA2018.Payment.finalize_payment" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="finalize_payment.aspx.cs" Inherits="EventsGSU_FA2018.Payment.finalize_payment" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div>
@@ -216,6 +216,10 @@
         }
       
         $(document).ready(function () {
+            getCookies();
+            ValidateUserTypeID();
+            validateRoles(utId);
+            
           
             $(function () {
                 $(document).ready(function () {
@@ -242,6 +246,8 @@
 
                 });
             });
+
+
 
             function GetEventDetails() {
 
@@ -287,27 +293,15 @@
             }
 
             var output = {};
-            debugger;
-            function getCookies() {
-                var userCookie = document.cookie;// "referer=example.com/post?id=22;bcomID=8075; subreturn=example&fuzzy=true&ct=null&autobounce=true; JSESSIONID=6D20570E1EB; mbox=session";
-
-                userCookie.split(/\s*;\s*/).forEach(function (pair) {
-                    pair = pair.split(/\s*=\s*/);
-                    output[pair[0]] = pair.splice(1).join('=');
-                });
-            }
-            debugger;
+           
+            
+            
            
 
             $('#btnPayment').click(function () {
 
-                getCookies()
-                {
-                    var utID = output["UserTypeID"];
-                    var uID = output["UserID"];
-                };
-
-                debugger;
+                
+                
 
 
                 $.ajax({
@@ -329,7 +323,7 @@
                         ticketid: $('#indexTicketid').text(),
                         paymentid: $('#PaymentID').val(),
                         userid: uID,
-                        usertypeid: utID
+                        usertypeid: utId
 
                     },
                     success: function (response) {
@@ -349,10 +343,7 @@
             });
             function GetCardDetails() {
 
-                getCookies()
-                {
-                    var uID = output["UserID"];
-                };
+                
                 $.ajax({
                     url: 'http://localhost/EventsGSUBusinessLibrary/api/register/GetCardDetails?UserID=' + uID,
                     method: 'GET',
@@ -387,6 +378,14 @@
 
                 });
 
+            }
+
+            function ValidateUserTypeID()
+            {
+                if (utId == 0)
+                {
+                   window.location.href = "http://localhost/EventsGSU_FA2018/Account/Login";
+                }
             }
         });
     </script>

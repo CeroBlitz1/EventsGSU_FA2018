@@ -867,8 +867,16 @@ th {
 .glyphicon-registration-mark:before {
   content: "\e195";
 }
+
+map
+{
+    width: 100%;
+    height: 400px;
+    background-color: grey;
+}
+
 .glyphicon-cloud-download:before {
-  content: "\e197";
+    content: "\e197";
 }
 .glyphicon-cloud-upload:before {
   content: "\e198";

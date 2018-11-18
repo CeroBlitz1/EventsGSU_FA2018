@@ -1,11 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyProfile.aspx.cs" Inherits="EventsGSU_FA2018.Account.MyProfile" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Admin_user_Update.aspx.cs" Inherits="EventsGSU_FA2018.Admin.Admin_user_Update" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>My Profile</h1>
+    <h1>User Update Portal</h1>
     <div class="well">
         <label>User Name :</label><span id="Name"></span>
         <br />
-        <label>Email :</label><span id="Email"></span>
+        <label>Email :</label><span id="Email"></span><span id="UserTypeID" ></span>
         <br />
         <label>PhoneNumber :</label><span id="PhoneNumber"></span>
     </div>
@@ -21,6 +20,7 @@
         <br />
         <label>Update Phone :</label><br />
         <input type="text" id="TxtPhone" />
+        <span id="UserID"></span>
         <br />
         <br />
 
@@ -35,7 +35,22 @@
     </div>
     <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/underscore.min.js"></script>
     <script type="text/javascript">
+         function getQueryParams(queryString) {
+            var query = (queryString || window.location.search).substring(1);
+            if (!query) {
+                return false;
+            }
+            return _
+                .chain(query.split('&'))
+                .map(function (params) {
+                    var p = params.split('=');
+                    return [p[0], decodeURIComponent(p[1])];
+                })
+                .object()
+                .value();
+        }
         $(document).ready(function () {
             getCookies();
             debugger;
@@ -52,8 +67,8 @@
                         useremail: $('#TxtEmail').val(),
                         userpassword: $('#TxtPassword').val(),
                         userphonenumber: $('#TxtPhone').val(),
-                        userid: uID,
-                        usertypeid: utId
+                        userid: $('#UserID').val(),
+                        usertypeid: $('#UserTypeID').val()
                     },
                     success: function (response) {
                          $('#ErrorText').text(response.UMessage);
@@ -71,8 +86,9 @@
 
         });
         function GetUserDetails() {
+            var queryParams = getQueryParams();
             $.ajax({
-                url: 'http://localhost/EventsGSUBusinessLibrary/api/register/GetUserInfobyID?UserID=' + uID,
+                url: 'http://localhost/EventsGSUBusinessLibrary/api/admin/GetUserInfobyIDAdmin?UserID=' + queryParams.userID,
                 method: 'GET',
                 data: {},
                 success: function (response) {
@@ -80,6 +96,8 @@
                     $('#TxtUserName').val(response.UserName);
                     $('#Email').text(response.UserEmail);
                     $('#PhoneNumber').text(response.UserPhoneNumber);
+                    $('#UserID').val(response.UserID);
+                    $('#UserTypeID').val(response.UserTypeID);
 
                 },
                 error: function (error)

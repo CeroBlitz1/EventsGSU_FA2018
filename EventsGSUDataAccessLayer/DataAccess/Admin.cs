@@ -12,59 +12,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
     {
         GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
 
-        public List<AdminModel> GetPaymentHistoryadmin(AdminModel model)
-        {
-            var getallPaymentlist = new List<AdminModel>();
-            try
-            {
-                //join tt in g.TicketsTables on e.EventID equals tt.EventID
-                var getpaymentObj = (from pt in g.PaymentTables
-                                     join ph in  g.PaymentHistoryTables on pt.PaymentID equals ph.PaymentID
-
-                                    select new
-                                    {
-                                        pt.PaymentID,
-                                        pt.FirstName,
-                                        pt.LastName,
-                                        pt.UserEmail,
-                                        pt.UserPhoneNumber,
-                                        pt.UserState,
-                                        pt.UserZipCode,
-                                        pt.UserCardNumber,
-                                        pt.UserCardExpiration,
-                                        pt.UserCardCVV,
-                                        ph.UserPaymentPaid
-                                        
-                                        
-                                    }).ToList();
-
-                foreach (var item in getpaymentObj)
-                {
-                    var getallpaymentobj = new AdminModel();
-
-                   getallpaymentobj.PaymentID = item.PaymentID;
-                   getallpaymentobj.FirstName = item.FirstName;
-                   getallpaymentobj.LastName = item.LastName;
-                   getallpaymentobj.UserEmail = item.UserEmail;
-                   getallpaymentobj.UserPhoneNumber = item.UserPhoneNumber;
-                   getallpaymentobj.UserState = item.UserState;
-                   getallpaymentobj.UserZipCode = item.UserZipCode;
-                   getallpaymentobj.UserCardNumber = item.UserCardNumber;
-                   getallpaymentobj.UserCardExpiration = item.UserCardExpiration;
-                   getallpaymentobj.UserCardCVV = item.UserCardCVV;
-                   getallpaymentobj.UserPaymentPaid = item.UserPaymentPaid;
-
-
-
-                    getallPaymentlist.Add(getallpaymentobj);
-                }
-            }
-            catch (Exception ex)
-            {
-                string d = ex.Message;
-            }
-            return getallPaymentlist;
-        }
+       
         public List<AdminModel> GetUserHistoryadmin(AdminModel model)
         {
             var getallUserslist = new List<AdminModel>();
@@ -113,57 +61,212 @@ namespace EventsGSUDataAccessLayer.DataAccess
             }
             return getallUserslist;
         }
-        public List<AdminModel> GetEventHistoryadmin(AdminModel model)
+        public EventDetailsModel GetDetailsById(int? eventID)
         {
-            var getalleventlist = new List<AdminModel>();
+            var eventdetailslist = new EventDetailsModel();
+
+
+
             try
             {
-                var getEventsObj = (from u in g.UserTables
-                                   join et in g.EventsTables on u.UserID equals et.UserID
-                                   join tt in g.TicketsTables on u.UserID equals tt.UserID
-                                   join ed in g.EventDetails on u.UserID equals ed.UserID                                   
-                                   select new
-                                   {
-                                       u.UserID,
-                                       u.UserName,
-                                       u.UserTypeID,
-                                       et.EventID,
-                                       et.EventImage,
-                                       et.EventTitle,
-                                       et.EventType,
-                                       et.EventLocation,
-                                       ed.EventsDescription,
-                                       tt.TicketID,
-                                       tt.TicketImage,
-                                       tt.TicketPrice,
-                                       tt.TicketQuantity,
-                                   }).ToList();
+                
 
-                foreach (var item in getEventsObj)
-                {
-                    var getallEventssobj = new AdminModel();
 
-                    getallEventssobj.UserName = item.UserName;
-                    getallEventssobj.UserID = item.UserID;
-                    getallEventssobj.UserTypeID = item.UserTypeID;
-                    getallEventssobj.EventID = item.EventID;
-                    getallEventssobj.EventImage = item.EventImage;
-                    getallEventssobj.EventTitle = item.EventTitle;
-                    getallEventssobj.EventType = item.EventType;
-                    getallEventssobj.EventsDescription = item.EventsDescription;
-                    getallEventssobj.TicketID = item.TicketID;
-                    getallEventssobj.TicketImage = item.TicketImage;
-                    getallEventssobj.TicketPrice = item.TicketPrice;
-                    getallEventssobj.TicketQuantity = item.TicketQuantity;
 
-                    getalleventlist.Add(getallEventssobj);
-                }
+
+
+                eventdetailslist = (from e in g.EventsTables
+                                    join edd in g.EventDetails on e.EventID equals edd.EventID
+                                    join tt in g.TicketsTables on e.EventID equals tt.EventID
+                                    join ut in g.UserTables on e.UserID equals ut.UserID
+
+                                    where e.EventID == eventID
+                                    select new EventDetailsModel()
+                                    {
+                                        EventImage = e.EventImage,
+                                        EventTitle = e.EventTitle,
+                                        EventDate = e.EventDate.ToString(),
+                                        EventID = e.EventID,
+                                        EventType = e.EventType,
+                                        EventsDescription = edd.EventsDescription,
+                                        EventDetailsID = edd.EventDetailsID,
+                                        TicketID = tt.TicketID,
+                                        TicketPrice = tt.TicketPrice,
+                                        TicketQuantity = tt.TicketQuantity,
+                                        EventLocation = e.EventLocation,
+                                        UserID= ut.UserID,
+                                        
+
+                                    }
+                             ).FirstOrDefault();
+                
+
+                
+
             }
             catch (Exception ex)
             {
                 string d = ex.Message;
             }
-            return getalleventlist;
+            return eventdetailslist;
         }
+        public List<SearchModel> SearchUsers(string query = "")
+        {
+            var getAllEventsList = new List<SearchModel>();
+            try
+            {
+                
+
+                if (String.IsNullOrEmpty(query))
+                {
+                    var geteventsObj = (from u in g.UserTables
+                                        select new
+                                        {
+                                            u.UserID,
+
+                                            u.UserName
+                                        }).ToList();
+                    foreach (var item in geteventsObj)
+                    {
+                        var searchModelObj = new SearchModel();
+
+
+                        searchModelObj.UserID = item.UserID;
+                        searchModelObj.UserName = item.UserName;
+
+                        getAllEventsList.Add(searchModelObj);
+                    }
+
+                }
+                else
+                {
+
+                    var geteventsObj = (from u in g.UserTables
+                                                .Where(un => un.UserName.Contains(query))
+                                        select new
+                                        {
+                                            u.UserID,
+
+                                            u.UserName
+                                        }).ToList();
+                    foreach (var item in geteventsObj)
+                    {
+                        var searchModelObj = new SearchModel();
+
+
+                        searchModelObj.UserID = item.UserID;
+                        searchModelObj.UserName = item.UserName;
+
+                        getAllEventsList.Add(searchModelObj);
+                    }
+                }
+
+            }
+
+
+            catch (Exception ex)
+            {
+                string d = ex.Message;
+            }
+            return getAllEventsList;
+        }
+        public List<UserModel> SearchUserResults(string query = "")
+        {
+            var getallUserList = new List<UserModel>();
+            try
+            {
+                
+
+                if (String.IsNullOrEmpty(query))
+                {
+                    var getUserObj = (from u in g.UserTables
+
+                                        select new
+                                        {
+                                           u.UserName,
+                                           u.UserID,
+                                           u.UserEmail                                                                                              
+                                        }
+                             ).ToList();
+                    foreach (var item in getUserObj)
+                    {
+                        var searchModelObj = new UserModel();
+
+
+                        searchModelObj.UserName = item.UserName;
+                        searchModelObj.UserID = item.UserID;
+                        searchModelObj.UserEmail = item.UserEmail;
+
+
+
+
+
+                        getallUserList.Add(searchModelObj);
+                    }
+
+                }
+                else
+                {
+
+                    var getUserObj = (from u in g.UserTables
+
+                                                .Where(un => un.UserName.Contains(query))
+                                        select new
+                                        {
+                                            u.UserName,
+                                            u.UserID,
+                                            u.UserEmail
+                                        }).ToList();
+                    foreach (var item in getUserObj)
+                    {
+                        var searchModelObj = new UserModel();
+
+
+                        searchModelObj.UserName = item.UserName;
+                        searchModelObj.UserID = item.UserID;
+                        searchModelObj.UserEmail = item.UserEmail;
+
+                        getallUserList.Add(searchModelObj);
+                    }
+                }
+
+            }
+
+
+            catch (Exception ex)
+            {
+                string d = ex.Message;
+            }
+            return getallUserList;
+        }
+        public UserModel GetAdminUserInfobyID(int UserID)
+        {
+            var userdetailslist = new UserModel();
+
+            try
+            {
+                userdetailslist = (from u in g.UserTables
+                                   where u.UserID == UserID
+                                   select new UserModel()
+                                   {
+                                       UserName = u.UserName,
+                                       UserPassword = u.UserPassword,
+                                       UserEmail = u.UserEmail,
+                                       UserPhoneNumber = u.UserPhoneNumber,
+                                       UserTypeID=u.UserTypeID,
+                                       UserID=u.UserID,
+                                   }).FirstOrDefault();
+
+            }
+            catch (Exception ex)
+            {
+
+                string d = ex.Message;
+
+            }
+            return userdetailslist;
+        }
+
+
     }
 }

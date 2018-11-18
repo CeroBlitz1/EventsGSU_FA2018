@@ -46,8 +46,42 @@
                     <tr>
                         <td>Event location</td>
                         <td>
-                            <input type="text" id="txtEventLocation" placeholder="Enter location" />
-                        </td>
+                            <%--<input type="text" id="txtEventLocation" placeholder="Enter location" />--%>
+                            <input id="pac-input" class="controls" type="text" placeholder="Location">
+                            <br />
+                            <div id="map" style="width: 100%; height: 400px;"></div>
+                           <%-- <div id="type-selector" class="pac-controls">
+                               <%-- <input type="radio" name="type" id="changetype-all" checked="checked" >
+                                <label for="changetype-all">All</label>
+
+                                <input type="radio" name="type" id="changetype-establishment">
+                                <label for="changetype-establishment">Establishments</label>
+
+                                <input type="radio" name="type" id="changetype-address">
+                                <label for="changetype-address">Addresses</label>
+
+                                <input type="radio" name="type" id="changetype-geocode">
+                                <label for="changetype-geocode">Geocodes</label>--%>
+                            <%--</div>--%>
+                            <%--<div id="strict-bounds-selector" class="pac-controls">
+                                <input type="checkbox" id="use-strict-bounds" value="">
+                                <label for="use-strict-bounds">Strict Bounds</label>
+                            </div>--%>
+        <%--</div>--%>
+       <%-- <div id="pac-container">
+            <input id="pac-input" type="text"
+                placeholder="Enter a location">
+        </div>
+    </div>
+    <div id="map"></div>--%>
+    <div id="infowindow-content">
+        <img src="" width="16" height="16" id="place-icon">
+        <span id="place-name" class="title"></span>
+        <br>
+        <span id="place-address"></span>
+    </div>
+
+    </td>
 
                     </tr>
                     <tr>
@@ -58,13 +92,13 @@
                         </td>
                     </tr>
 
-                    <tr class="Success">
-                        <td colspan="3">
-                            <h3>Create your ticket</h3>
-                        </td>
+    <tr class="Success">
+        <td colspan="3">
+            <h3>Create your ticket</h3>
+        </td>
 
-                    </tr>
-                    <%--<tr>
+    </tr>
+    <%--<tr>
 
                         <td>Ticket Type</td>
                         <td>
@@ -73,37 +107,38 @@
                         </td>
 
                     </tr>--%>
-                    <tr>
+    <tr>
 
-                        <td>Ticket Price</td>
-                        <td>
+        <td>Ticket Price</td>
+        <td>
 
-                            <input type="text" id="txtTicketPrice" placeholder="If ticket is free please put 0" size="600" />
-                        </td>
+            <input type="text" id="txtTicketPrice" placeholder="If ticket is free please put 0" size="600" />
+        </td>
 
-                    </tr>
-                    <tr>
+    </tr>
+    <tr>
 
-                        <td>Ticket Quantity</td>
-                        <td>
+        <td>Ticket Quantity</td>
+        <td>
 
-                            <input type="number" id="TicketQuantity" />
-                        </td>
+            <input type="number" id="TicketQuantity" />
+        </td>
 
-                    </tr>
-                    <%--<tr>
+    </tr>
+    <%--<tr>
                         <td>Ticket Image</td>
                         <td>
                             <input type="file" id="imgTicket" />
                         </td>
                     </tr>--%>
-                    <tr class="Success">
+    <tr class="Success">
 
-                        <td colspan="3">
-                            <input id="btnUploadFile" type="button" class="btn btn-success" value="Create Event" />
-                        </td>
-                    </tr>
-                </tbody>
+        <td colspan="3">
+            <input id="btnUploadFile" type="button" class="btn btn-success" value="Create Event" />
+            
+        </td>
+    </tr>
+    </tbody>
             </table>
 
             <div class="modal fade" tabindex="-1" id="successmodal"
@@ -127,11 +162,11 @@
                     </div>
                 </div>
             </div>
-            <div id="error" class="alert alert-danger collapse">
-                <a id="Close" class="close" href="#">&times;</a>
-                <div id="ErrorText"></div>
-            </div>
-        </div>
+    <div id="error" class="alert alert-danger collapse">
+        <a id="Close" class="close" href="#">&times;</a>
+        <div id="ErrorText"></div>
+    </div>
+    </div>
     </div>
     <%--  <script src="../Scripts/jQuery.FileUpload/jquery.fileupload.js"></script>
     <script src="../Scripts/jQuery.FileUpload/jquery.iframe-transport.js"></script> --%>
@@ -144,73 +179,102 @@
             $("#EventDate").datepicker();
         });
 
-        
-        { //$(function () {
-            //    $("#fileimg").fileupload({
-            //        'uploader': '../Uploadify/uploader.swf',
-            //        'cancelImg': '../Uploadify/cancel.png',
-            //        'buttonText': 'Browse Files',
-            //        'script': '/Home/Index/',
-            //        'folder': 'Images',
-            //        'fileDesc': 'Image Files',
-            //        'fileExt': '*.jpg;*.jpeg;*.gif;*.png',
-            //        'multi': true,
-            //        'auto': true
-            //    });
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), { 	
+                center: { lat: 41.881832, lng: -87.623177 },
+                zoom: 13
+            });
+            var card = document.getElementById('pac-card');
+            var input = document.getElementById('pac-input');
+            var types = document.getElementById('type-selector');
+            var strictBounds = document.getElementById('strict-bounds-selector');
+
+            map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+
+            var autocomplete = new google.maps.places.Autocomplete(input);
+
+            // Bind the map's bounds (viewport) property to the autocomplete object,
+            // so that the autocomplete requests use the current map bounds for the
+            // bounds option in the request.
+            autocomplete.bindTo('bounds', map);
+
+            // Set the data fields to return when the user selects a place.
+            autocomplete.setFields(
+                ['address_components', 'geometry', 'icon', 'name']);
+
+            var infowindow = new google.maps.InfoWindow();
+            var infowindowContent = document.getElementById('infowindow-content');
+            infowindow.setContent(infowindowContent);
+            var marker = new google.maps.Marker({
+                map: map,
+                anchorPoint: new google.maps.Point(0, -29)
+            });
+
+            autocomplete.addListener('place_changed', function () {
+                infowindow.close();
+                marker.setVisible(false);
+                var place = autocomplete.getPlace();
+                if (!place.geometry) {
+                    // User entered the name of a Place that was not suggested and
+                    // pressed the Enter key, or the Place Details request failed.
+                    window.alert("No details available for input: '" + place.name + "'");
+                    return;
+                }
+
+                // If the place has a geometry, then present it on a map.
+                if (place.geometry.viewport) {
+                    map.fitBounds(place.geometry.viewport);
+                } else {
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(17);  // Why 17? Because it looks good.
+                }
+                marker.setPosition(place.geometry.location);
+                marker.setVisible(true);
+
+                var address = '';
+                if (place.address_components) {
+                    address = [
+                        (place.address_components[0] && place.address_components[0].short_name || ''),
+                        (place.address_components[1] && place.address_components[1].short_name || ''),
+                        (place.address_components[2] && place.address_components[2].short_name || '')
+                    ].join(' ');
+                }
+
+                infowindowContent.children['place-icon'].src = place.icon;
+                infowindowContent.children['place-name'].textContent = place.name;
+                infowindowContent.children['place-address'].textContent = address;
+                infowindow.open(map, marker);
+            });
+
+            // Sets a listener on a radio button to change the filter type on Places
+            // Autocomplete.
+            function setupClickListener(id, types) {
+                var radioButton = document.getElementById(id);
+                radioButton.addEventListener('click', function () {
+                    autocomplete.setTypes(types);
+                });
+            }
+
+            setupClickListener('changetype-all', []);
+            setupClickListener('changetype-address', ['address']);
+            setupClickListener('changetype-establishment', ['establishment']);
+            setupClickListener('changetype-geocode', ['geocode']);
+
+            document.getElementById('use-strict-bounds')
+                .addEventListener('click', function () {
+                    console.log('Checkbox clicked! New state=' + this.checked);
+                    autocomplete.setOptions({ strictBounds: this.checked });
+                });
         }
+
+
+        
         $(document).ready(function () {
             getCookies();
             debugger;
             validateRoles(utId);
-            {  //$('#Close').click(function () {
-
-                //    $('#error').hide('fade');
-                //});
-                //$('#btnCreateEvent').click(function () {
-
-                //    debugger;
-                //    $.ajax({
-                //        url: 'http://localhost/EventsGSUBusinessLibrary/api/register/CreateEvent',
-                //        method: 'POST',
-                //        data: {
-                //            eventtitle: $('#txtTitle').val(),
-                //            eventdate: $('#EventDate').val(),
-                //            eventlocation: $('#txtEventLocation').val(),
-                //            eventimage: $('#fileUpload').val(),
-                //            eventtype: $('#txtEventType').val(),
-                //            ticketimage: $('#imgTicket').val(),
-                //            ticketprice: $('#txtTicketPrice').val(),
-                //            ticketquantity: $('#TicketQuantity').val(),
-                //            eventsdescription: $('#txtEventDesc').val(),
-                //            //userID: $('#globalUserId').val()
-                //        },
-                //        success: function (s) {
-                //            //$('#successmodal').modal(s);
-                //            alert("Event Created");
-
-                //        },
-                //        error: function (jqXHR) {
-                //            $('#ErrorText').text(jqXHR.responseText);
-                //            $('#error').show('fade');
-
-                //        }
-
-                //    });
-
-                //});
 
 
-                //////////////////////////
-            }
-            //var output = {};
-            //function getCookies() {
-            //    var userCookie = document.cookie;// "referer=example.com/post?id=22;bcomID=8075; subreturn=example&fuzzy=true&ct=null&autobounce=true; JSESSIONID=6D20570E1EB; mbox=session";
-
-            //    userCookie.split(/\s*;\s*/).forEach(function (pair) {
-            //        pair = pair.split(/\s*=\s*/);
-            //        output[pair[0]] = pair.splice(1).join('=');
-            //    });
-            //}
 
             $('#btnUploadFile').on('click', function () {
                 debugger;
@@ -220,30 +284,16 @@
 
                 var files = $("#fileUpload").get(0).files;
 
-                // Add the uploaded image content to the form data collection
                 if (files.length > 0) {
                     data.append("UploadedImage", files[0]);
                 }
-
-
-
-
-                //var userCookie = document.cookie;// "referer=example.com/post?id=22;bcomID=8075; subreturn=example&fuzzy=true&ct=null&autobounce=true; JSESSIONID=6D20570E1EB; mbox=session";
-                //var output = {};
-                //userCookie.split(/\s*;\s*/).forEach(function (pair) {
-                //    pair = pair.split(/\s*=\s*/);
-                //    output[pair[0]] = pair.splice(1).join('=');
-                //});
-
-                //var ddd = JSON.stringify(output, null, 4);
-               
                 debugger;
 
 
                 var eventData = {
                     eventtitle: $('#txtTitle').val(),
-                    eventlocation: $('#txtEventLocation').val(),
-                    eventimage: 'UploadedFiles/' + files[0].name, //$('#fileimg').val(),
+                    eventlocation: $('#pac-input').val(),
+                    eventimage: 'UploadedFiles/' + files[0].name,
                     eventtype: $('#txtEventType').val(),
                     ticketprice: $('#txtTicketPrice').val(),
                     ticketquantity: $('#TicketQuantity').val(),
@@ -255,65 +305,30 @@
                 };
 
 
-                //data.append("g", "aa");
-                //var jsonData = {};
-                //jsonData['mm'] = eventData;
+
                 var stringifyEventData = JSON.stringify(eventData);
-                //var stringifyEventData = JSON.stringify(data1);
+
                 data.append("h", stringifyEventData);
-                ///
 
-
-
-
-                // Make Ajax request with the contentType = false, and procesDate = false
                 var ajaxRequest = $.ajax({
                     type: "POST",
-                    //url: "/api/fileupload/uploadfile",
+
                     url: 'http://localhost/EventsGSUBusinessLibrary/api/register/UploadFile',
                     contentType: false,
                     processData: false,
                     data: data
                 }).done(function (result) {
-                    alert(result);
+                    $('#ErrorText').text("Event Created..Check Manage Events");
+                    $('#error').show('fade');
                 }).fail(function (a, b, c) {
                     console.log(a, b, c);
                 });
 
-                {
-                    //$.ajax({
-                    //    type: 'post',
-                    //    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/UploadFile&b=2',
-                    //    data: data,
-                    //    dataType: 'json',
-                    //    contentType: false,
-                    //    processData: false,
-                    //    success: function (response) {
-                    //        alert('succes!!');
-                    //    },
-                    //    error: function (error) {
-                    //        alert("errror");
-                    //    }
-                    //});
-                    //ajaxRequest.done(function (xhr, textStatus) {
-
-                    //    debugger;
-                    //});
-                }
             });
 
-
-
-            ////////////////////
-
-
         });
-
-
-
-
-
-
-        //});
     </script>
+    <%--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5DYAiJfNYAB1cYERKrZxU1YzceKhFYr0&libraries=places"></script>--%>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA85gagPRPBJuLwVVlXc_a-TBvGyfD3d90&callback=initMap&libraries=places" async defer
+        type="text/javascript"></script>
 </asp:Content>

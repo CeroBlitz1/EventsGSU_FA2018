@@ -42,7 +42,7 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header" style="color : rgba(181, 225, 219, 0.71)">
-                    <a class="navbar-brand" runat="server" href="Index.aspx" ><img src="Site Images/GSUlogo.png" alt="Logo" style="width:40px;" /></a>
+                    <a class="navbar-brand" runat="server" href="~/Account/Index.aspx" ><img src="Site Images/GSUlogo.png" alt="Logo" style="width:40px;" /></a>
                 </div>
             </div>
         </div>

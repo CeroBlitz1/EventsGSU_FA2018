@@ -11,7 +11,7 @@ namespace EventsGSU_FA2018
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            #region Restrict the User to Copy & Paste the URL in Browser address bar
+           
 
             var urlRef = Request.Url.AbsoluteUri;
             if (urlRef == "http://localhost/EventsGSU_FA2018/Index" ||
@@ -33,7 +33,7 @@ namespace EventsGSU_FA2018
                 Logout();
             }
 
-            #endregion
+            
         }
 
         protected void Logout()

@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Event.aspx.cs" Inherits="EventsGSU_FA2018.Events.Event" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
     <div class="well">
         <table>
             <tr>
@@ -30,7 +31,9 @@
 
 
         </table>
+
     </div>
+    <div id="map" style="width: 100%; height: 400px;"></div>
     <div class="Well">
         <div class="row">
 
@@ -75,16 +78,16 @@
                     //console.log('window.location.search: ', window.location.search);
 
                     //var urlParams = new URLSearchParams(window.location.search);
-                    $.urlParam = function (name) {
-                        var results = new RegExp('[\?&]' + name + '=([^&#]*)')
-                            .exec(window.location.href);
-                        if (results == null) {
-                            return 0;
-                        }
-                        return results[1] || 0;
-                    }
-                    debugger;
-                    console.log($.urlParam('eventID')); //edit
+                    //$.urlParam = function (name) {
+                    //    var results = new RegExp('[\?&]' + name + '=([^&#]*)')
+                    //        .exec(window.location.href);
+                    //    if (results == null) {
+                    //        return 0;
+                    //    }
+                    //    return results[1] || 0;
+                    //}
+                    //debugger;
+                    //console.log($.urlParam('eventID')); //edit
 
 
                     //var queryParams = getQueryParams();
@@ -147,8 +150,22 @@
                 });
 
             }
+
+            
+           
         });
+        window.initMap = function ()
+        {
+             var mapProp = {
+                    center: new google.maps.LatLng(41.881832, -87.623177),
+                    zoom: 5,
+                };
+                var map = new google.maps.Map(document.getElementById("map"), mapProp);
+        }
 
     </script>
+      <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5DYAiJfNYAB1cYERKrZxU1YzceKhFYr0&callback=initMap" async defer
+    type="text/javascript"></script>
+  
 </asp:Content>
 

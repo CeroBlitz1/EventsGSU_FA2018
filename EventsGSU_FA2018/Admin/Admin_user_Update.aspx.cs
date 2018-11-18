@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace EventsGSU_FA2018
+namespace EventsGSU_FA2018.Admin
 {
-    public partial class ViewPurchase : System.Web.UI.Page
+    public partial class Admin_user_Update : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

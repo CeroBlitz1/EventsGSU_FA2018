@@ -5,74 +5,73 @@
     <h3>This Page is for Admin only</h3>
     <div class="col-md-10 col-md-offset-1">
         <div class="well">
-            <input type="button" id="btnLoadEvents" class="btn btn-success" value="Get all Events" />
+            <div class="ui-widget">
+                    <input type="text" id="Event" placeholder="Search for an Event" required />
+                    <input type="button" value="Search" id="Search" class="btn btn -success" />
+                    <input type="hidden" id="Id" />
+                </div>
         </div>
-        <div class="well hidden" id="datadiv">
-            <table class=" table table-bordered" id="tbldata">
-                <thead>
-                    <tr>
-                        <th>UserID</th>
-                        <th>UserName</th>
-                        <th>UserTypeID</th>
-                        <th>EventID</th>
-                        <th>EventImage</th>
-                        <th>EventTitle</th>
-                        <th>EventType</th>
-                        <th>EventLocation</th>
-                        <th>EventsDescription</th>
-                        <th>TicketID</th>
-                        <th>TicketImage</th>
-                        <th>TicketPrice</th>
-                        <th>TicketQuantity</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
+        
     </div>
     <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="../Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="../Scripts/eventData.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script type="text/javascript">
-        $(document).ready(function () {
-            getCookies();
-            debugger;
-            validateRoles(utId);
-        });
-        $('#btnLoadEvents').click(function () {
-            $.ajax({
-                url: 'http://localhost/EventsGSUBusinessLibrary/api/register/GetEventHistoryadmin',
-                method: 'GET',
-                data: {
-                    EventLocation: "",
-                    EventImage: ""
-                },
-                success: function (response) {
-                    $('#datadiv').removeClass('hidden')
-                    $.each(response, function (index, value) {
-                        var row = $('<tr><td>' + value.UserID + '</td><td>'
-                            + value.UserName + '</td><td>'
-                            + value.UserTypeID + '</td><td>'
-                            + value.EventID + '</td><td>'
-                            + value.EventImage + '</td><td>'
-                            + value.EventTitle + '</td><td>'
-                            + value.EventType + '</td><td>'
-                            + value.EventLocation + '</td><td>'
-                            + value.EventsDescription + '</td><td>'
-                            + value.TicketID + '</td><td>'
-                            + value.TicketImage + '</td><td>'
-                            + value.TicketPrice + '</td><td>'
-                            + value.TicketQuantity + '</td><td>'
-                        );
+       FindEvent =
+            {
+                BindControlEvents: function () {
 
+                    $(document).ready(function () {
+                        debugger;
+                        getCookies();
+                            debugger;
+                           validateRoles(utId);
+                        
+
+                        $('#Event').autocomplete({
+                            source: function (request, response) {
+                                $.ajax({
+                                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/getsearchevents',
+                                    data: { query: request.term },
+                                    dataType: 'json',
+                                    type: 'GET',
+                                    success: function (data) {
+                                        debugger;
+                                        response($.map(data, function (item) {
+                                            return {
+                                                label: item.EventTitle,
+                                                value: item.EventID
+                                            }
+                                        }));
+                                    },
+                                    error: function (err) {
+                                        debugger;
+                                    }
+                                })
+                            },
+                            select: function (event, ui) {
+                                $('#Event').val(ui.item.label);
+                                $('#Id').val(ui.item.value);
+                                return false;
+                            },
+                            minLength: 1
+                        });
+                        $('#Search').click(function () {
+                            
+                            var SearchQuery = document.getElementById("Event").value;
+                            window.location.href = "http://localhost/EventsGSU_FA2018/Admin/Admin_search_event.aspx?SearchQuery=" + SearchQuery;
+
+                        });
                     });
-
-
-                },
-                error: function (error) {
-                    $('#ErrorText').text(error.responseText);
-                    $('#error').show('fade');
-
                 }
-            });
+            }
+         $(function () {
+            FindEvent.BindControlEvents();
         });
+       
+
     </script>
 </asp:Content>
