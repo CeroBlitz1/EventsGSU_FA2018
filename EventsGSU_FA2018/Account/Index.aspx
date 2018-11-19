@@ -17,7 +17,8 @@
                 <br />
                 <br />
                 <div class="ui-widget">
-                    <input type="text" id="Event" placeholder="Search for an Event" required />
+                    <input type="text" id="Event" placeholder="Search for an Event" />
+                    <input type="text" id="Eventtype" placeholder="Search with Type" />
                     <input type="button" value="Search" id="Search" class="btn btn -success" />
                     <input type="hidden" id="Id" />
                 </div>
@@ -84,10 +85,49 @@
                             },
                             minLength: 1
                         });
+                        $('#Eventtype').autocomplete({
+                            source: function (request, response) {
+                                $.ajax({
+                                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/GetEventTypes',
+                                    data: { query: request.term },
+                                    dataType: 'json',
+                                    type: 'GET',
+                                    success: function (data) {
+                                        debugger;
+                                        response($.map(data, function (item) {
+                                            return {
+                                                label: item.EventType,
+                                                value: item.EventTypeID
+                                            }
+                                        }));
+                                    },
+                                    error: function (err) {
+                                        debugger;
+                                    }
+                                })
+                            },
+                            select: function (event, ui) {
+                                $('#Eventtype').val(ui.item.label);
+                                $('#Id').val(ui.item.value);
+                                return false;
+                            },
+                            minLength: 0
+                        });
                         $('#Search').click(function () {
                             
                             var SearchQuery = document.getElementById("Event").value;
-                            window.location.href = "http://localhost/EventsGSU_FA2018/Events/Search_results.aspx?SearchQuery=" + SearchQuery;
+                            if (SearchQuery)
+                            {
+                                window.location.href = "http://localhost/EventsGSU_FA2018/Events/Search_results.aspx?SearchQuery=" + SearchQuery;
+
+                            }
+                            
+                            var SearchQuery1 = document.getElementById("Eventtype").value;
+                            if (SearchQuery1)
+                            {
+                                 window.location.href = "http://localhost/EventsGSU_FA2018/Events/Search_results.aspx?SearchQuery=" + SearchQuery1;
+                            }
+                           
 
                         });
                     });

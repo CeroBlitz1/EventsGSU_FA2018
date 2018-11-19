@@ -37,7 +37,11 @@ namespace EventsGSUBusinessLibrary.Controllers
         {
             return new Admin().GetAdminUserInfobyID(UserID);
         }
-
+        [Route("GetSearchEmail")]
+        public List<AdminModel> GetSearchEmail(string query = "")
+        {
+            return new Admin().SearchEmail(query);
+        }
 
     }
 

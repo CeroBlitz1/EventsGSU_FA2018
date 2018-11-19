@@ -31,6 +31,7 @@ namespace EventsGSUDataAccessLayer
         public Nullable<int> UserID { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public int isDelete { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EventDetail> EventDetails { get; set; }

@@ -13,10 +13,10 @@ namespace EventsGSUDataAccessLayer
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class GsuEventsDBEntities3 : DbContext
+    public partial class GsuEventsDBEntities2 : DbContext
     {
-        public GsuEventsDBEntities3()
-            : base("name=GsuEventsDBEntities3")
+        public GsuEventsDBEntities2()
+            : base("name=GsuEventsDBEntities2")
         {
         }
     

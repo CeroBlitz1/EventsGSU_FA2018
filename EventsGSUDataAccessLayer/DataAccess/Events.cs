@@ -11,7 +11,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
 {
     public class Events
     {
-        GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
+        GsuEventsDBEntities3 g = new GsuEventsDBEntities3();
 
         public EventModel SaveEvents(EventModel model)
         {
@@ -96,9 +96,9 @@ namespace EventsGSUDataAccessLayer.DataAccess
                 #endregion
 
                 var geteventsObject = (from e in g.EventsTables
-
+                                       where e.isDelete == 0
                                        select new
-
+                                       
                                        {
                                            e.EventID,
                                            e.EventTitle,
@@ -622,7 +622,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
 
                     var geteventsObj = (from e in g.EventsTables
 
-                                                .Where(et => et.EventTitle.Contains(query))
+                                                .Where(et => et.EventTitle.Contains(query) || et.EventType.Contains(query))
                                         select new
                                         {
                                             e.EventImage,
@@ -661,7 +661,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
             try
             {
                 var geteventsObj = (from e in g.EventsTables
-                                    where e.UserID == UserID
+                                    where e.UserID == UserID && e.isDelete == 0
                                     select new
                                     {
                                         e.EventID,
@@ -699,7 +699,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
                 //join edd in g.EventDetails on e.EventID equals edd.EventID
                 var geteventsObj = (from ph in g.PaymentHistoryTables
                                     join pt in g.PaymentTables on ph.UserID equals pt.UserID
-                                    where ph.EventID == eventID
+                                    where ph.EventID == eventID && ph.isDelete == 0
                                     select new
                                     {
                                         pt.FirstName,
@@ -802,6 +802,69 @@ namespace EventsGSUDataAccessLayer.DataAccess
         //    return em;
         //}
         #endregion
+        public List<AdminModel> GetEventType(string query = "")
+        {
+            var getAllEventsList = new List<AdminModel>();
+            try
+            {
+
+
+                if (String.IsNullOrEmpty(query))
+                {
+                    var geteventsObj = (from e in g.EventTypes
+                                        select new
+                                        {
+                                            e.EventTypes,
+                                            e.EventTypeID,
+                                        }).ToList();
+                    foreach (var item in geteventsObj)
+                    {
+                        var searchModelObj = new AdminModel();
+
+
+                        searchModelObj.EventType = item.EventTypes;
+                        searchModelObj.EventTypeID = item.EventTypeID;
+
+
+
+                        getAllEventsList.Add(searchModelObj);
+                    }
+
+                }
+                else
+                {
+
+                    var geteventsObj = (from e in g.EventTypes
+                                                .Where(et => et.EventTypes.Contains(query))
+                                        select new
+                                        {
+                                            e.EventTypes,
+                                            e.EventTypeID,
+
+                                        }).ToList();
+                    foreach (var item in geteventsObj)
+                    {
+                        var searchModelObj = new AdminModel();
+
+
+                        searchModelObj.EventType = item.EventTypes;
+                        searchModelObj.EventTypeID = item.EventTypeID;
+                        
+
+
+                        getAllEventsList.Add(searchModelObj);
+                    }
+                }
+
+            }
+
+
+            catch (Exception ex)
+            {
+                string d = ex.Message;
+            }
+            return getAllEventsList;
+        }
 
     }
 

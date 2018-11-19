@@ -17,6 +17,7 @@ namespace EventsGSUDataAccessLayer.Models
         public string UMessage { get; set; }
         public bool UFlag { get; set; }
         public string ReturnUrl { get; set; }
+        public int isDelete { get; set; }
 
     }
 }

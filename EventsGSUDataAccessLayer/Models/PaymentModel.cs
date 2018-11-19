@@ -28,5 +28,6 @@ namespace EventsGSUDataAccessLayer.Models
         public string EventTitle { get; set; }
         public string PMessage { get; set; }
         public bool PFlag { get; set; }
+        public int isDelete { get; set; }
     }
 }

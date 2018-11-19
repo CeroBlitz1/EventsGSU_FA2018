@@ -16,76 +16,31 @@ namespace EventsGSUBusinessLibrary.Controllers
    [RoutePrefix("api/register")]
     public class RegisterController : ApiController
     {
-        //GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
-        
         [Route("Register")]
         public  UserModel Register(UserModel model)
         {
             return new Users().SaveUsers(model);
         }
-        //[Route("UserLogin")]
-        //public bool UserLogin(UserModel model)
-        //{
-        //    var retVal = false;
-        //    try
-        //    {
-        //        retVal = new Users().UserLogin(model);
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        var val = ex.Message;
-        //    }
-        //    return retVal;
-        //}
-        [Route("UserLogin")]
-        public UserModel UserLogin(UserModel model)
-        {
-            return new Users().UserLogin(model);
-        }
-        [Route ("UpdateProfile")]
-        public UserModel UpdateProfile(UserModel model)
-        {
-            return new Users().UpdateUsers(model);
-        }
-        [Route ("UpdateUserType")]
-        public UserModel UpdateUserType(UserModel model)
-        {
-            return new Payment().UpdateUserTypeCode(model);
-        }
-
         [Route ("GetUserInfobyID")]
         public UserModel GetUserInfobyID(int UserID)
         {
             return new Users().GetUserInfobyID(UserID);
         }
-
         [Route("GetEvents")]
         public List<EventModel> GetEvents(EventModel model)
         {
             return new Events().GetEvents(model);
         }
-
         [Route("GetEventDetails")]
         public List<EventDetailsModel> GetEventDetails(EventDetailsModel model)
         {
             return new Events().GetEventDetails(model);
         }
-
         [Route("GetDetailsById")]
         public EventDetailsModel GetDetailsById(int? eventID)
         {
             return new Events().GetDetailsById(eventID);
         }
-
-
-        //[Route("GetDetailsById")]
-        //public List<EventDetailsModel> GetDetailsById(int? eventID)
-        //{
-        //    return new Events().GetDetailsById(eventID);
-        //}
-
-
         [Route("GetAllEvents")]
         public List<EventModel> GetAllEvents(EventModel model)
         {
@@ -102,14 +57,6 @@ namespace EventsGSUBusinessLibrary.Controllers
         {
             return new Events().SearchResults(query);
         }
-
-
-        //[Route("GetEvents")]
-        //public EventModel GetEvents(EventModel model)
-        //{
-        //    return new EventModel();
-        //}
-
         [Route("CreateEvent")]
         public string CreateEvent(EventModel model)       
         {
@@ -128,26 +75,6 @@ namespace EventsGSUBusinessLibrary.Controllers
             }
             return retVal;
         }
-
-        //public string EventRegister(EventModel model)
-        //{
-        //    var Val = "";
-        //    try
-        //    {
-        //        var uval = new Events().SaveUsers(model);
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        Val = ex.Message;
-        //    }
-        //    return Val; ;
-        //}
-
-       
-
-        [Route("GetEventHistoryadmin")]
-        
         [Route("GetUserHistoryadmin")]
         public List<AdminModel> GetUserHistoryadmin(AdminModel model)
         {
@@ -173,6 +100,32 @@ namespace EventsGSUBusinessLibrary.Controllers
         {
             return new Events().TicktesByEventID(eventID);
         }
+        [Route("GetEventTypes")]
+        public List<AdminModel> GetEventTypes(string query = "")
+        {
+            return new Events().GetEventType(query);
+        }
+        ////////////////////////////////////////////////////Post Methods//////////////////////////////////////////////////////////
+
+        [Route("UserLogin")]
+        public UserModel UserLogin(UserModel model)
+        {
+            return new Users().UserLogin(model);
+        }
+
+
+        [Route("UpdateProfile")]
+        public UserModel UpdateProfile(UserModel model)
+        {
+            return new Users().UpdateUsers(model);
+        }
+
+        [Route("UpdateUserType")]
+        public UserModel UpdateUserType(UserModel model)
+        {
+            return new Payment().UpdateUserTypeCode(model);
+        }
+
         [Route("UpdateEvents")]
         public EventModel UpdateEvents(EventModel model)
         {
@@ -200,7 +153,7 @@ namespace EventsGSUBusinessLibrary.Controllers
                     //Dictionary<string, Dictionary<string, string>> jsonDictionary = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(HttpContext.Current.Request.Params["h"].ToString());
                     Dictionary<string, string> jsonDictionary = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(HttpContext.Current.Request.Params["h"].ToString());
 
-                    GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
+                    GsuEventsDBEntities3 g = new GsuEventsDBEntities3();
 
                     
 
@@ -234,7 +187,7 @@ namespace EventsGSUBusinessLibrary.Controllers
 
                     g.EventsTables.Add(et);
 
-                    tt.TicketImage = "";
+                   
                     tt.TicketPrice = Convert.ToInt32(TicketPrice);
                     tt.TicketQuantity = Convert.ToInt32(TicketQuantity);
                     tt.UserID = Convert.ToInt16(UserID);
@@ -295,7 +248,7 @@ namespace EventsGSUBusinessLibrary.Controllers
                     //Dictionary<string, Dictionary<string, string>> jsonDictionary = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(HttpContext.Current.Request.Params["h"].ToString());
                     Dictionary<string, string> jsonDictionary = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(HttpContext.Current.Request.Params["h"].ToString());
 
-                    GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
+                    GsuEventsDBEntities3 g = new GsuEventsDBEntities3();
 
                     var EventID = jsonDictionary["eventid"];
                     var query = g.EventsTables.Where(x => x.EventID == int.Parse(EventID)); 
@@ -331,17 +284,19 @@ namespace EventsGSUBusinessLibrary.Controllers
                         et.EventDate = Convert.ToDateTime(EventDate);
                         et.UserID = Convert.ToInt32(UserID);
                         et.EventID = Convert.ToInt32(EventID);
+                        et.isDelete = 0;
                         g.EventsTables.Attach(et);
 
                         g.Entry(et).State = System.Data.Entity.EntityState.Modified;
                         g.SaveChanges();
 
-                        tt.TicketImage = "";
+                        
                         tt.TicketPrice = Convert.ToInt32(TicketPrice);
                         tt.TicketQuantity = Convert.ToInt32(TicketQuantity);
                         tt.TicketID = Convert.ToUInt16(TicketID);
                         tt.UserID = Convert.ToInt32(UserID);
-                        tt.EventID = Convert.ToInt32(EventID); 
+                        tt.EventID = Convert.ToInt32(EventID);
+                        tt.isDelete = 0;
                         g.TicketsTables.Attach(tt);
                         g.Entry(tt).State = System.Data.Entity.EntityState.Modified;
                         g.SaveChanges();
@@ -350,6 +305,7 @@ namespace EventsGSUBusinessLibrary.Controllers
                         ed.UserID = Convert.ToInt32(UserID);
                         ed.EventID = Convert.ToInt32(EventID);
                         ed.EventDetailsID = Convert.ToInt32(EventsDescriptionID);
+                        ed.isDelete = 0;
                         g.EventDetails.Attach(ed);
                         g.Entry(ed).State = System.Data.Entity.EntityState.Modified;
 
@@ -401,7 +357,7 @@ namespace EventsGSUBusinessLibrary.Controllers
                     //Dictionary<string, Dictionary<string, string>> jsonDictionary = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(HttpContext.Current.Request.Params["h"].ToString());
                     Dictionary<string, string> jsonDictionary = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(HttpContext.Current.Request.Params["h"].ToString());
 
-                    GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
+                    GsuEventsDBEntities3 g = new GsuEventsDBEntities3();
 
                     var EventID = jsonDictionary["eventid"];
                     var query = g.EventsTables.Where(x => x.EventID == int.Parse(EventID));
@@ -437,17 +393,19 @@ namespace EventsGSUBusinessLibrary.Controllers
                         et.EventDate = Convert.ToDateTime(EventDate);
                         et.UserID = Convert.ToInt32(UserID);
                         et.EventID = Convert.ToInt32(EventID);
+                        et.isDelete = 0;
                         g.EventsTables.Attach(et);
 
                         g.Entry(et).State = System.Data.Entity.EntityState.Modified;
                         g.SaveChanges();
 
-                        tt.TicketImage = "";
+                        
                         tt.TicketPrice = Convert.ToInt32(TicketPrice);
                         tt.TicketQuantity = Convert.ToInt32(TicketQuantity);
                         tt.TicketID = Convert.ToUInt16(TicketID);
                         tt.UserID = Convert.ToInt32(UserID);
                         tt.EventID = Convert.ToInt32(EventID);
+                        tt.isDelete = 0;
                         g.TicketsTables.Attach(tt);
                         g.Entry(tt).State = System.Data.Entity.EntityState.Modified;
                         g.SaveChanges();
@@ -456,6 +414,7 @@ namespace EventsGSUBusinessLibrary.Controllers
                         ed.UserID = Convert.ToInt32(UserID);
                         ed.EventID = Convert.ToInt32(EventID);
                         ed.EventDetailsID = Convert.ToInt32(EventsDescriptionID);
+                        ed.isDelete = 0;
                         g.EventDetails.Attach(ed);
                         g.Entry(ed).State = System.Data.Entity.EntityState.Modified;
 

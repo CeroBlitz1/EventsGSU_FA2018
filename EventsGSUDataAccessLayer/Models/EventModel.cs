@@ -26,5 +26,6 @@ namespace EventsGSUDataAccessLayer.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int MaxTickets { get; set; }
+        public int isDelete { get; set; }
     }
 }

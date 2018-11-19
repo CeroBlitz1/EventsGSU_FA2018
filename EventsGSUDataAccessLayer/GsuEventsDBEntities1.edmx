@@ -15,7 +15,7 @@
           <Property Name="CreatedDate" Type="date" />
           <Property Name="ModifiedDate" Type="date" />
           <Property Name="EventID" Type="int" />
-          <Property Name="isDelete" Type="int" />
+          <Property Name="isDelete" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="EventsTable">
           <Key>
@@ -30,7 +30,7 @@
           <Property Name="UserID" Type="int" />
           <Property Name="CreatedDate" Type="date" />
           <Property Name="ModifiedDate" Type="date" />
-          <Property Name="isDelete" Type="int" />
+          <Property Name="isDelete" Type="char" MaxLength="1" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'GsuEventsDB.dbo.EventType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -53,7 +53,7 @@ warning 6002: The table/view 'GsuEventsDB.dbo.EventType' does not have a primary
           <Property Name="UserPaymentPaid" Type="nvarchar(max)" />
           <Property Name="TicketID" Type="int" />
           <Property Name="EventID" Type="int" />
-          <Property Name="isDelete" Type="int" />
+          <Property Name="isDelete" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="PaymentTable">
           <Key>
@@ -73,7 +73,7 @@ warning 6002: The table/view 'GsuEventsDB.dbo.EventType' does not have a primary
           <Property Name="CreatedDate" Type="date" />
           <Property Name="ModifiedDate" Type="date" />
           <Property Name="UserID" Type="int" />
-          <Property Name="isDelete" Type="int" />
+          <Property Name="isDelete" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="RoleTable">
           <Key>
@@ -96,7 +96,7 @@ warning 6002: The table/view 'GsuEventsDB.dbo.EventType' does not have a primary
           <Property Name="ModfiedDate" Type="date" />
           <Property Name="TicketsPurchased" Type="int" />
           <Property Name="TicketsRemining" Type="int" StoreGeneratedPattern="Computed" />
-          <Property Name="isDelete" Type="int" />
+          <Property Name="isDelete" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="UserTable">
           <Key>
@@ -111,7 +111,7 @@ warning 6002: The table/view 'GsuEventsDB.dbo.EventType' does not have a primary
           <Property Name="UserTypeID" Type="int" />
           <Property Name="CreatedDate" Type="date" />
           <Property Name="ModifiedDate" Type="date" />
-          <Property Name="isDelete" Type="int" />
+          <Property Name="isDelete" Type="char" MaxLength="1" />
         </EntityType>
         <Association Name="FK_EventDetails_EventsTable">
           <End Role="EventsTable" Type="Self.EventsTable" Multiplicity="0..1" />
@@ -303,7 +303,7 @@ warning 6002: The table/view 'GsuEventsDB.dbo.EventType' does not have a primary
           <Property Name="CreatedDate" Type="DateTime" Precision="0" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
           <Property Name="EventID" Type="Int32" />
-          <Property Name="isDelete" Type="Int32" />
+          <Property Name="isDelete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="EventsTable" Relationship="Self.FK_EventDetails_EventsTable" FromRole="EventDetails" ToRole="EventsTable" />
           <NavigationProperty Name="UserTable" Relationship="Self.FK_EventDetails_UserTable" FromRole="EventDetails" ToRole="UserTable" />
         </EntityType>
@@ -320,7 +320,7 @@ warning 6002: The table/view 'GsuEventsDB.dbo.EventType' does not have a primary
           <Property Name="UserID" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Precision="0" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
-          <Property Name="isDelete" Type="Int32" />
+          <Property Name="isDelete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="EventDetails" Relationship="Self.FK_EventDetails_EventsTable" FromRole="EventsTable" ToRole="EventDetails" />
           <NavigationProperty Name="UserTable" Relationship="Self.FK_EventsTable_UserTable" FromRole="EventsTable" ToRole="UserTable" />
           <NavigationProperty Name="PaymentHistoryTables" Relationship="Self.FK_PaymentHistoryTable_EventsTable" FromRole="EventsTable" ToRole="PaymentHistoryTable" />
@@ -338,7 +338,7 @@ warning 6002: The table/view 'GsuEventsDB.dbo.EventType' does not have a primary
           <Property Name="UserPaymentPaid" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TicketID" Type="Int32" />
           <Property Name="EventID" Type="Int32" />
-          <Property Name="isDelete" Type="Int32" />
+          <Property Name="isDelete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="EventsTable" Relationship="Self.FK_PaymentHistoryTable_EventsTable" FromRole="PaymentHistoryTable" ToRole="EventsTable" />
           <NavigationProperty Name="PaymentTable" Relationship="Self.FK_PaymentHistoryTable_PaymentTable" FromRole="PaymentHistoryTable" ToRole="PaymentTable" />
           <NavigationProperty Name="TicketsTable" Relationship="Self.FK_PaymentHistoryTable_TicketsTable" FromRole="PaymentHistoryTable" ToRole="TicketsTable" />
@@ -362,7 +362,7 @@ warning 6002: The table/view 'GsuEventsDB.dbo.EventType' does not have a primary
           <Property Name="CreatedDate" Type="DateTime" Precision="0" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
           <Property Name="UserID" Type="Int32" />
-          <Property Name="isDelete" Type="Int32" />
+          <Property Name="isDelete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="PaymentHistoryTables" Relationship="Self.FK_PaymentHistoryTable_PaymentTable" FromRole="PaymentTable" ToRole="PaymentHistoryTable" />
           <NavigationProperty Name="UserTable" Relationship="Self.FK_PaymentTable_UserTable" FromRole="PaymentTable" ToRole="UserTable" />
         </EntityType>
@@ -388,7 +388,7 @@ warning 6002: The table/view 'GsuEventsDB.dbo.EventType' does not have a primary
           <Property Name="ModfiedDate" Type="DateTime" Precision="0" />
           <Property Name="TicketsPurchased" Type="Int32" />
           <Property Name="TicketsRemining" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="isDelete" Type="Int32" />
+          <Property Name="isDelete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="EventsTable" Relationship="Self.FK_TicketsTable_EventsTable" FromRole="TicketsTable" ToRole="EventsTable" />
           <NavigationProperty Name="PaymentHistoryTables" Relationship="Self.FK_PaymentHistoryTable_TicketsTable" FromRole="TicketsTable" ToRole="PaymentHistoryTable" />
         </EntityType>
@@ -405,7 +405,7 @@ warning 6002: The table/view 'GsuEventsDB.dbo.EventType' does not have a primary
           <Property Name="UserTypeID" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Precision="0" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
-          <Property Name="isDelete" Type="Int32" />
+          <Property Name="isDelete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="EventDetails" Relationship="Self.FK_EventDetails_UserTable" FromRole="UserTable" ToRole="EventDetails" />
           <NavigationProperty Name="EventsTables" Relationship="Self.FK_EventsTable_UserTable" FromRole="UserTable" ToRole="EventsTable" />
           <NavigationProperty Name="PaymentHistoryTables" Relationship="Self.FK_PaymentHistoryTable_UserTable" FromRole="UserTable" ToRole="PaymentHistoryTable" />
@@ -539,7 +539,7 @@ warning 6002: The table/view 'GsuEventsDB.dbo.EventType' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="GsuEventsDBEntities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="GsuEventsDBEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="EventDetails" EntityType="Self.EventDetail" />
           <EntitySet Name="EventsTables" EntityType="Self.EventsTable" />
           <EntitySet Name="PaymentHistoryTables" EntityType="Self.PaymentHistoryTable" />
@@ -594,7 +594,7 @@ warning 6002: The table/view 'GsuEventsDB.dbo.EventType' does not have a primary
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="GsuEventsDBModelStoreContainer" CdmEntityContainer="GsuEventsDBEntities3">
+        <EntityContainerMapping StorageEntityContainer="GsuEventsDBModelStoreContainer" CdmEntityContainer="GsuEventsDBEntities2">
           <EntitySetMapping Name="EventDetails">
             <EntityTypeMapping TypeName="GsuEventsDBModel.EventDetail">
               <MappingFragment StoreEntitySet="EventDetails">

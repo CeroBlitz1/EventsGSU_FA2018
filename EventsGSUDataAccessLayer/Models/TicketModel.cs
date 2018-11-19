@@ -13,5 +13,6 @@ namespace EventsGSUDataAccessLayer.Models
         public int TicketPrice { get; set; }
         public int EventID { get; set; }
         public string TicketImage { get; set; }
+        public int isDelete { get; set; }
     }
 }

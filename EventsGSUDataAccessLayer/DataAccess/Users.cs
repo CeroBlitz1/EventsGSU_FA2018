@@ -10,7 +10,7 @@ namespace EventsGSUDataAccessLayer
 {
     public class Users
     {
-        GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
+        GsuEventsDBEntities3 g = new GsuEventsDBEntities3();
         public UserModel SaveUsers(UserModel model)
         {
 
@@ -23,7 +23,7 @@ namespace EventsGSUDataAccessLayer
             };
             try
             {
-                var usr = g.UserTables.Where(s => s.UserName == model.UserName).FirstOrDefault();
+                var usr = g.UserTables.Where(s => s.UserName == model.UserName ).FirstOrDefault();
                 
                     var usersObj = new UserTable();
 
@@ -33,6 +33,7 @@ namespace EventsGSUDataAccessLayer
                     usersObj.UserPhoneNumber = model.UserPhoneNumber;
                     usersObj.isActive = "Y";
                     usersObj.UserTypeID = 1;
+                    usersObj.isDelete = 0;
                     usersObj.CreatedDate = DateTime.Now;
                     usersObj.ModifiedDate = DateTime.Now;
                     g.UserTables.Add(usersObj);
@@ -58,59 +59,7 @@ namespace EventsGSUDataAccessLayer
 
 
 
-        //public bool SaveUsers()
-        //var usersObj = new UserTable();
-
-        //usersObj.UserPassword = model.UserPassword;
-        //usersObj.UserName = model.UserName;
-        //usersObj.UserEmail = model.UserEmail;
-        //usersObj.UserPhoneNumber = model.UserPhoneNumber;
-        //usersObj.isActive = "Y";
-        //usersObj.UserTypeID = 1;
-        //usersObj.CreatedDate = DateTime.Now;
-        //usersObj.ModifiedDate = DateTime.Now;
-        //g.UserTables.Add(usersObj);
-
-        //g.SaveChanges();
-        //Um.UMessage = "Success";
-        //Uflag = true;
-        //{
-        //    var retVal = false;
-        //    try
-        //    {
-
-
-        //        retVal = true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        string d = ex.Message;
-        //    }
-        //    return retVal;
-        //}
-
-
-        //GsuEventsDBEntities g = new GsuEventsDBEntities();
-        //public bool UserLogin(UserModel model)
-        //{
-        //    var retVal = false;
-        //    try
-        //    {
-
-        //        var usr = g.UserTables.Where(s => s.UserName == model.UserName).FirstOrDefault();
-
-        //        if (usr != null && usr.UserPassword == model.UserPassword)
-        //        {
-        //            retVal = true;
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        string d = ex.Message;
-        //    }
-        //    return retVal;
-        //}
+        
 
 
         public UserModel UserLogin(UserModel model)
@@ -129,7 +78,13 @@ namespace EventsGSUDataAccessLayer
                 {
                     um.UserTypeID = usr.UserTypeID;
                     um.UserID = usr.UserID;
+                    um.isDelete = usr.isDelete;
                     um.UFlag = true;
+                } 
+                if(um.isDelete == 1)
+                {
+                    um.UMessage = "ID Deleted Contact Admin";
+                    um.UFlag = false;
                 }
                 else
                 {

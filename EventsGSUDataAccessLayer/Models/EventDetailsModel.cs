@@ -22,6 +22,7 @@ namespace EventsGSUDataAccessLayer.Models
         public int TicketQuantity { get; set; }
         public string EventLocation { get; set; }
         public int UserTypeID { get; set; }
+        public int isDelete { get; set; }
 
 
     }

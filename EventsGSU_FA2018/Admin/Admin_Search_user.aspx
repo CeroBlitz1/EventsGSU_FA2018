@@ -7,7 +7,7 @@
                         <th>User Name</th>
                         <th>UserID</th>
                         <th>Email</th>
-                        
+                        <th>IsDeleted</th>
                     </tr>
                 </thead>
             </table>
@@ -70,7 +70,8 @@
                '<tr><td><a href="'+ 'http://localhost/EventsGSU_FA2018/admin/Admin_user_Update.aspx?userID=' + data[i].UserID + '">'
                 + data[i].UserName + '</td></a><td>'
                 + data[i].UserID + '</td><td>'
-                + data[i].UserEmail + '</td><td></a>'
+                + data[i].UserEmail + '</td><td>'
+                + data[i].isDelete + '</td><td></a>'
                 
                 + '</td></tr>';
                     }

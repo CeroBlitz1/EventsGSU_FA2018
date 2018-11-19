@@ -149,6 +149,7 @@
     <Content Include="Account\Registration.aspx" />
     <Content Include="Account\User_history_details.aspx" />
     <Content Include="Admin\Admin_Event_manage_Page.aspx" />
+    <Content Include="Admin\Admin_Search_emailResults.aspx" />
     <Content Include="Admin\Admin_search_event.aspx" />
     <Content Include="Admin\Admin_Search_user.aspx" />
     <Content Include="Admin\admin_user_management.aspx" />
@@ -292,6 +293,8 @@
     <Content Include="Images\img3.jpg" />
     <Content Include="SiteImages\img_mouseover3.jpg" />
     <Content Include="SiteImages\maxresdefault.jpg" />
+    <Content Include="SiteImages\pexels-photo-988873.jpg" />
+    <Content Include="SiteImages\pexels-photo.jpg" />
     <Content Include="SiteImages\processingimage.png" />
     <Content Include="Site.Master" />
     <Content Include="SQL\IIS_USER_SETUP.sql" />
@@ -366,6 +369,13 @@
     </Compile>
     <Compile Include="Admin\Admin_Event_manage_Page.aspx.designer.cs">
       <DependentUpon>Admin_Event_manage_Page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Admin_Search_emailResults.aspx.cs">
+      <DependentUpon>Admin_Search_emailResults.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Admin_Search_emailResults.aspx.designer.cs">
+      <DependentUpon>Admin_Search_emailResults.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Admin_search_event.aspx.cs">
       <DependentUpon>Admin_search_event.aspx</DependentUpon>

@@ -9,7 +9,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
 {
     public class Payment
     {
-        GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
+        GsuEventsDBEntities3 g = new GsuEventsDBEntities3();
         public PaymentModel SavePayment(PaymentModel model)
         {
 
@@ -37,6 +37,8 @@ namespace EventsGSUDataAccessLayer.DataAccess
                     paymentObj.UserAddress = model.UserAddress;
                     paymentObj.UserZipCode = model.UserZipCode;
                     paymentObj.UserState = model.UserState;
+                    paymentHobj.isDelete = 0;
+                    paymentObj.isDelete = 0;
 
 
                     g.SaveChanges();
@@ -80,7 +82,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
             {
                 var getCardDetailsObject = (from pt in g.PaymentTables
                                          join ut in g.UserTables on pt.UserID equals ut.UserID
-                                         where pt.UserID == UserID
+                                         where pt.UserID == UserID && pt.isDelete==0
                                          select new
                                          {
                                              pt.FirstName,
@@ -220,7 +222,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
                 var getUserHistoryDetailsObject = (from pt in g.PaymentTables
                                             join ph in g.PaymentHistoryTables on pt.UserID equals ph.UserID
                                             join et in g.EventsTables on ph.EventID equals et.EventID
-                                            where pt.UserID == UserID
+                                            where pt.UserID == UserID && pt.isDelete == 0
                                             select new
                                             {
                                                 pt.FirstName,
@@ -272,6 +274,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
                 usersObj.isActive = "Y";
                 usersObj.CreatedDate = DateTime.Now;
                 usersObj.ModifiedDate = DateTime.Now;
+                usersObj.isDelete = 0;
 
                 g.UserTables.Attach(usersObj);
                 g.Entry(usersObj).State = System.Data.Entity.EntityState.Modified;

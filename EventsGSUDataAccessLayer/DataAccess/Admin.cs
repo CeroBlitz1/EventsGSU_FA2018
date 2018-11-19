@@ -10,7 +10,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
 {
     public class Admin
     {
-        GsuEventsDBEntities1 g = new GsuEventsDBEntities1();
+        GsuEventsDBEntities3 g = new GsuEventsDBEntities3();
 
        
         public List<AdminModel> GetUserHistoryadmin(AdminModel model)
@@ -255,6 +255,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
                                        UserPhoneNumber = u.UserPhoneNumber,
                                        UserTypeID=u.UserTypeID,
                                        UserID=u.UserID,
+                                       isDelete = u.isDelete,
                                    }).FirstOrDefault();
 
             }
@@ -266,7 +267,67 @@ namespace EventsGSUDataAccessLayer.DataAccess
             }
             return userdetailslist;
         }
+        public List<AdminModel> SearchEmail(string query = "")
+        {
+            var getAllEventsList = new List<AdminModel>();
+            try
+            {
 
+
+                if (String.IsNullOrEmpty(query))
+                {
+                    var geteventsObj = (from p in g.PaymentTables
+                                        select new
+                                        {
+                                           p.UserEmail,
+                                           p.PaymentID,
+                                        }).ToList();
+                    foreach (var item in geteventsObj)
+                    {
+                        var searchModelObj = new AdminModel();
+
+
+                        searchModelObj.UserEmail = item.UserEmail;
+                        searchModelObj.PaymentID = item.PaymentID;
+
+
+                        getAllEventsList.Add(searchModelObj);
+                    }
+
+                }
+                else
+                {
+
+                    var geteventsObj = (from p in g.PaymentTables
+                                                .Where(ue => ue.UserEmail.Contains(query))
+                                        select new
+                                        {
+                                            p.UserEmail,
+                                            p.PaymentID,
+
+                                        }).ToList();
+                    foreach (var item in geteventsObj)
+                    {
+                        var searchModelObj = new AdminModel();
+
+
+                        searchModelObj.UserEmail = item.UserEmail;
+                        searchModelObj.PaymentID = item.PaymentID;
+                        
+
+                        getAllEventsList.Add(searchModelObj);
+                    }
+                }
+
+            }
+
+
+            catch (Exception ex)
+            {
+                string d = ex.Message;
+            }
+            return getAllEventsList;
+        }
 
     }
 }

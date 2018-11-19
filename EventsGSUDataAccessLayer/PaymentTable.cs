@@ -26,7 +26,7 @@ namespace EventsGSUDataAccessLayer
         public string UserEmail { get; set; }
         public string UserPhoneNumber { get; set; }
         public string UserCardNumber { get; set; }
-        public System.DateTime UserCardExpiration { get; set; }
+        public DateTime UserCardExpiration { get; set; }
         public int UserCardCVV { get; set; }
         public string UserAddress { get; set; }
         public string UserZipCode { get; set; }
@@ -34,6 +34,7 @@ namespace EventsGSUDataAccessLayer
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> UserID { get; set; }
+        public int isDelete { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PaymentHistoryTable> PaymentHistoryTables { get; set; }

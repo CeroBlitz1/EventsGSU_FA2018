@@ -56,10 +56,10 @@
     <Compile Include="EventDetail.cs">
       <DependentUpon>GsuEventsDBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="EventsSearch.cs">
+    <Compile Include="EventsTable.cs">
       <DependentUpon>GsuEventsDBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="EventsTable.cs">
+    <Compile Include="EventType.cs">
       <DependentUpon>GsuEventsDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GsuEventsDBEntities.Context.cs">
@@ -93,9 +93,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataAccess\Users.cs" />
     <Compile Include="RoleTable.cs">
-      <DependentUpon>GsuEventsDBEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
       <DependentUpon>GsuEventsDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TicketsTable.cs">

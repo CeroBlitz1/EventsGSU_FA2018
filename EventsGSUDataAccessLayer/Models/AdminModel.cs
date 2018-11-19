@@ -43,7 +43,8 @@ namespace EventsGSUDataAccessLayer.Models
         public bool UFlag { get; set; }
         public string ReturnUrl { get; set; }
         public string isActive { get; set; }
-
+        public int isDelete { get; set; }
+        public int EventTypeID { get; set; }
     }
 }
 
