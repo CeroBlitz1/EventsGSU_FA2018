@@ -5,7 +5,7 @@
     <div class="col-md-10 col-md-offset-1">
         <div class="well">
             <div class="ui-widget">
-                    <input type="text" id="Event" placeholder="Search for Email" required />
+                    <input type="text" id="Event" placeholder="Search for Email"  />
                     <input type="button" value="Search" id="Search" class="btn btn -success" />
                     <input type="hidden" id="Id" />
                 </div>

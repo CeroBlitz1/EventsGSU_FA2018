@@ -17,19 +17,16 @@ namespace EventsGSUBusinessLibrary.Controllers
     {
         GsuEventsDBEntities3 g = new GsuEventsDBEntities3();
         [Route("PaymentV")]
-        public string PaymentV(PaymentModel model)
+        public PaymentModel PaymentV(PaymentModel model)
         {
-            var retVal = "Fail";
-            try
-            {
-                var rVal = new Payment().SavePayment(model);
-                retVal = "Success";
-            }
-            catch (Exception ex)
-            {
-                retVal = ex.Message;
-            }
-            return retVal;
+            return new Payment().SavePayment(model);
         }
+        [Route("PaymentWithcard")]
+        public PaymentModel PaymentWithcard(PaymentModel model)
+        {
+            return new Payment().SavePaymentWithcard(model);
+        }
+       
     }
+
 }

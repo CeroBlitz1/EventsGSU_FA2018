@@ -1,18 +1,18 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Admin_Search_user.aspx.cs" Inherits="EventsGSU_FA2018.Admin.Admin_Search_user" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Admin_ticket_History.aspx.cs" Inherits="EventsGSU_FA2018.Admin.Admin_ticket_History" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    
     <h1>User Search results</h1>
-    <div class="well">
     <table class=" table table-bordered" id="tbldata">
                 <thead>
                     <tr>
-                        
+                        <th>Event Title</th>
                         <th>UserID</th>
-                        <th>Email</th>
+                        <th>Payment Paid</th>
+                        <th>TicketsTurchased</th>
                         <th>IsDeleted</th>
                     </tr>
                 </thead>
             </table>
-        </div>
     <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
     <script src="../Scripts/jquery.cookie-1.4.1.min.js"></script>
@@ -45,7 +45,7 @@
 
             function GetEvents() {
                 $.ajax({
-                    url: 'http://localhost/EventsGSUBusinessLibrary/api/admin/GetEmailResults?query=' + queryParams.SearchQuery,
+                    url: 'http://localhost/EventsGSUBusinessLibrary/api/admin/GetAdminPurchaseInfobyID?UserID=' + queryParams.userID,
                     method: 'GET',
                     data: {
                     },
@@ -68,9 +68,12 @@
 
                     for (var i = 0; i < data.length; i++) {
                         tableOutline = tableOutline +
-               '<tr><td><a href="'+ 'http://localhost/EventsGSU_FA2018/admin/Admin_ticket_History.aspx?userID=' + data[i].UserID + '">'
-                + data[i].UserID + '</td></a><td>'
-                + data[i].UserEmail + '</td><td>'
+                            
+               '<tr><td><a href="'+ 'http://localhost/EventsGSU_FA2018/admin/Admin_Ticket_manage_History.aspx?userID=' + data[i].UserID + '">'
+                + data[i].EventTitle + '</td></a><td>'
+                + data[i].UserID + '</td><td>'
+                + data[i].UserPaymentPaid + '</td><td>'
+                + data[i].TicketsPurchased + '</td><td>'
                 + data[i].isDelete + '</td><td></a>'
                 
                 + '</td></tr>';
@@ -83,5 +86,4 @@
         });
 
     </script>
-
 </asp:Content>

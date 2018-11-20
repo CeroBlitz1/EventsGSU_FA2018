@@ -128,7 +128,7 @@
                                  window.location.href = "http://localhost/EventsGSU_FA2018/Events/Search_results.aspx?SearchQuery=" + SearchQuery1;
                             }
                            
-
+                            
                         });
                     });
                 }

@@ -7,7 +7,7 @@
                <thead>
                    <tr class="Success">
                        <td colspan="3">
-                           Registration Page
+                           <h1>Registration Page</h1>
                        </td>
 
                    </tr>
@@ -22,7 +22,7 @@
                    <tr>
                        <td>Email</td>
                        <td>
-                           <input type="text" id="txtEmail" placeholder="Email" />
+                           <input type="Email" id="txtEmail" placeholder="Email" />
                        </td>
                    </tr>
                    <tr>
@@ -34,12 +34,12 @@
                    <tr>
                        <td>Phone Number</td>
                        <td>
-                           <input type="text" id="txtPhoneNumber" placeholder="Phone Number" />
+                           <input type="tel" id="txtPhoneNumber" placeholder="Phone Number"   />
                        </td>
                    </tr>
                    <tr class="Success">
                        <td colspan="3">
-                           <input id="btnRegister" class="btn btn-success" type="button" value="Register" />
+                           <input id="btnRegister" class="btn btn-success" type="submit" value="Register" />
                        </td>
                    </tr>
                </tbody>

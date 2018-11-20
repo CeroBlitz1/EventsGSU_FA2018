@@ -46,42 +46,19 @@
                     <tr>
                         <td>Event location</td>
                         <td>
-                            <%--<input type="text" id="txtEventLocation" placeholder="Enter location" />--%>
+
                             <input id="pac-input" class="controls" type="text" placeholder="Location">
                             <br />
                             <div id="map" style="width: 100%; height: 400px;"></div>
-                           <%-- <div id="type-selector" class="pac-controls">
-                               <%-- <input type="radio" name="type" id="changetype-all" checked="checked" >
-                                <label for="changetype-all">All</label>
 
-                                <input type="radio" name="type" id="changetype-establishment">
-                                <label for="changetype-establishment">Establishments</label>
+                            <div id="infowindow-content">
+                                <img src="" width="16" height="16" id="place-icon">
+                                <span id="place-name" class="title"></span>
+                                <br>
+                                <span id="place-address"></span>
+                            </div>
 
-                                <input type="radio" name="type" id="changetype-address">
-                                <label for="changetype-address">Addresses</label>
-
-                                <input type="radio" name="type" id="changetype-geocode">
-                                <label for="changetype-geocode">Geocodes</label>--%>
-                            <%--</div>--%>
-                            <%--<div id="strict-bounds-selector" class="pac-controls">
-                                <input type="checkbox" id="use-strict-bounds" value="">
-                                <label for="use-strict-bounds">Strict Bounds</label>
-                            </div>--%>
-        <%--</div>--%>
-       <%-- <div id="pac-container">
-            <input id="pac-input" type="text"
-                placeholder="Enter a location">
-        </div>
-    </div>
-    <div id="map"></div>--%>
-    <div id="infowindow-content">
-        <img src="" width="16" height="16" id="place-icon">
-        <span id="place-name" class="title"></span>
-        <br>
-        <span id="place-address"></span>
-    </div>
-
-    </td>
+                        </td>
 
                     </tr>
                     <tr>
@@ -92,13 +69,13 @@
                         </td>
                     </tr>
 
-    <tr class="Success">
-        <td colspan="3">
-            <h3>Create your ticket</h3>
-        </td>
+                    <tr class="Success">
+                        <td colspan="3">
+                            <h3>Create your ticket</h3>
+                        </td>
 
-    </tr>
-    <%--<tr>
+                    </tr>
+                    <%--<tr>
 
                         <td>Ticket Type</td>
                         <td>
@@ -107,38 +84,38 @@
                         </td>
 
                     </tr>--%>
-    <tr>
+                    <tr>
 
-        <td>Ticket Price</td>
-        <td>
+                        <td>Ticket Price</td>
+                        <td>
 
-            <input type="text" id="txtTicketPrice" placeholder="If ticket is free please put 0" size="600" />
-        </td>
+                            <input type="text" id="txtTicketPrice" placeholder="If ticket is free please put 0" size="600" />
+                        </td>
 
-    </tr>
-    <tr>
+                    </tr>
+                    <tr>
 
-        <td>Ticket Quantity</td>
-        <td>
+                        <td>Ticket Quantity</td>
+                        <td>
 
-            <input type="number" id="TicketQuantity" />
-        </td>
+                            <input type="number" id="TicketQuantity" />
+                        </td>
 
-    </tr>
-    <%--<tr>
+                    </tr>
+                    <%--<tr>
                         <td>Ticket Image</td>
                         <td>
                             <input type="file" id="imgTicket" />
                         </td>
                     </tr>--%>
-    <tr class="Success">
+                    <tr class="Success">
 
-        <td colspan="3">
-            <input id="btnUploadFile" type="button" class="btn btn-success" value="Create Event" />
-            
-        </td>
-    </tr>
-    </tbody>
+                        <td colspan="3">
+                            <input id="btnUploadFile" type="button" class="btn btn-success" value="Create Event" />
+
+                        </td>
+                    </tr>
+                </tbody>
             </table>
 
             <div class="modal fade" tabindex="-1" id="successmodal"
@@ -162,11 +139,11 @@
                     </div>
                 </div>
             </div>
-    <div id="error" class="alert alert-danger collapse">
-        <a id="Close" class="close" href="#">&times;</a>
-        <div id="ErrorText"></div>
-    </div>
-    </div>
+            <div id="error" class="alert alert-danger collapse">
+                <a id="Close" class="close" href="#">&times;</a>
+                <div id="ErrorText"></div>
+            </div>
+        </div>
     </div>
     <%--  <script src="../Scripts/jQuery.FileUpload/jquery.fileupload.js"></script>
     <script src="../Scripts/jQuery.FileUpload/jquery.iframe-transport.js"></script> --%>
@@ -180,7 +157,7 @@
         });
 
         function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), { 	
+            var map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: 41.881832, lng: -87.623177 },
                 zoom: 13
             });
@@ -246,29 +223,48 @@
                 infowindow.open(map, marker);
             });
 
-            // Sets a listener on a radio button to change the filter type on Places
-            // Autocomplete.
-            function setupClickListener(id, types) {
-                var radioButton = document.getElementById(id);
-                radioButton.addEventListener('click', function () {
-                    autocomplete.setTypes(types);
-                });
-            }
+             var geocoder = new google.maps.Geocoder();
+                var address = ('place-address');
 
-            setupClickListener('changetype-all', []);
-            setupClickListener('changetype-address', ['address']);
-            setupClickListener('changetype-establishment', ['establishment']);
-            setupClickListener('changetype-geocode', ['geocode']);
+                geocoder.geocode({ 'address': address }, function (results, status) {
 
-            document.getElementById('use-strict-bounds')
-                .addEventListener('click', function () {
-                    console.log('Checkbox clicked! New state=' + this.checked);
-                    autocomplete.setOptions({ strictBounds: this.checked });
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        var latitude = results[0].geometry.location.lat('#Longitide').text;
+                        var longitude = results[0].geometry.location.lng('#Latitude').text;
+                        
+                    }
                 });
+           
         }
+        $('#txtEventType').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/GetEventTypes',
+                    data: { query: request.term },
+                    dataType: 'json',
+                    type: 'GET',
+                    success: function (data) {
+                        debugger;
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.EventType,
+                                value: item.EventTypeID
+                            }
+                        }));
+                    },
+                    error: function (err) {
+                        debugger;
+                    }
+                })
+            },
+            select: function (event, ui) {
+                $('#txtEventType').val(ui.item.label);
+                $('#Id').val(ui.item.value);
+                return false;
+            },
+            minLength: 0
+        });
 
-
-        
         $(document).ready(function () {
             getCookies();
             debugger;
@@ -320,6 +316,7 @@
                 }).done(function (result) {
                     $('#ErrorText').text("Event Created..Check Manage Events");
                     $('#error').show('fade');
+                    window.location.href = "http://localhost/EventsGSU_FA2018/Events/Manage_Events";
                 }).fail(function (a, b, c) {
                     console.log(a, b, c);
                 });
@@ -328,7 +325,7 @@
 
         });
     </script>
-    <%--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5DYAiJfNYAB1cYERKrZxU1YzceKhFYr0&libraries=places"></script>--%>
+   
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA85gagPRPBJuLwVVlXc_a-TBvGyfD3d90&callback=initMap&libraries=places" async defer
         type="text/javascript"></script>
 </asp:Content>

@@ -33,7 +33,15 @@
         </table>
 
     </div>
-    <div id="map" style="width: 100%; height: 400px;"></div>
+    <input id="pac-input" class="controls" type="text" placeholder="Location" >
+                            <br />
+                            <div id="map" style="width: 100%; height: 400px;"></div>
+                            <div id="infowindow-content">
+                                <img src="" width="16" height="16" id="place-icon">
+                                <span id="place-name" class="title"></span>
+                                <br>
+                                <span id="place-address"></span>
+                            </div>
     <div class="Well">
         <div class="row">
 
@@ -68,31 +76,82 @@
                 .object()
                 .value();
         }
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 41.881832, lng: -87.623177 },
+                zoom: 13
+            });
+            var card = document.getElementById('pac-card');
+            var input = document.getElementById('pac-input');
+            var types = document.getElementById('type-selector');
+            var strictBounds = document.getElementById('strict-bounds-selector');
+
+            map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+
+            var autocomplete = new google.maps.places.Autocomplete(input);
+
+            // Bind the map's bounds (viewport) property to the autocomplete object,
+            // so that the autocomplete requests use the current map bounds for the
+            // bounds option in the request.
+            autocomplete.bindTo('bounds', map);
+
+            // Set the data fields to return when the user selects a place.
+            autocomplete.setFields(
+                ['address_components', 'geometry', 'icon', 'name']);
+
+            var infowindow = new google.maps.InfoWindow();
+            var infowindowContent = document.getElementById('infowindow-content');
+            infowindow.setContent(infowindowContent);
+            var marker = new google.maps.Marker({
+                map: map,
+                anchorPoint: new google.maps.Point(0, -29)
+            });
+
+            autocomplete.addListener('place_changed', function () {
+                infowindow.close();
+                marker.setVisible(false);
+                var place = autocomplete.getPlace();
+                if (!place.geometry) {
+                   
+                    window.alert("No details available for input: '" + place.name + "'");
+                    return;
+                }
+
+                
+                if (place.geometry.viewport) {
+                    map.fitBounds(place.geometry.viewport);
+                } else {
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(17);  
+                }
+                marker.setPosition(place.geometry.location);
+                marker.setVisible(true);
+
+                var address = '';
+                if (place.address_components) {
+                    address = [
+                        (place.address_components[0] && place.address_components[0].short_name || ''),
+                        (place.address_components[1] && place.address_components[1].short_name || ''),
+                        (place.address_components[2] && place.address_components[2].short_name || '')
+                    ].join(' ');
+                }
+
+                infowindowContent.children['place-icon'].src = place.icon;
+                infowindowContent.children['place-name'].textContent = place.name;
+                infowindowContent.children['place-address'].textContent = address;
+                infowindow.open(map, marker);
+            });
+            
+
+        }
         $(document).ready(function () {
             getCookies();
-            debugger;
+           
             validateRoles(utId);
+
             $(function () {
                 $(document).ready(function () {
-                    //console.log('window.location: ', window.location);
-                    //console.log('window.location.search: ', window.location.search);
-
-                    //var urlParams = new URLSearchParams(window.location.search);
-                    //$.urlParam = function (name) {
-                    //    var results = new RegExp('[\?&]' + name + '=([^&#]*)')
-                    //        .exec(window.location.href);
-                    //    if (results == null) {
-                    //        return 0;
-                    //    }
-                    //    return results[1] || 0;
-                    //}
-                    //debugger;
-                    //console.log($.urlParam('eventID')); //edit
-
-
-                    //var queryParams = getQueryParams();
-                    //console.log('queryParams: ', queryParams);
-
+                   
                 });
             });
 
@@ -119,6 +178,7 @@
                         $('#indexImage1')[0].src = 'http://localhost/EventsGSUBusinessLibrary/' + response.EventImage;
                         $('#event1Date').text(response.EventDate);
                         $('#event1Location').text(response.EventLocation);
+                        $('#pac-input').val(response.EventLocation);
                         $('#event1Title').text(response.EventTitle);
                         $('#indexEventID').text(response.EventID);
                         $('#Indexdescription').text(response.EventsDescription);
@@ -154,18 +214,11 @@
             
            
         });
-        window.initMap = function ()
-        {
-             var mapProp = {
-                    center: new google.maps.LatLng(41.881832, -87.623177),
-                    zoom: 5,
-                };
-                var map = new google.maps.Map(document.getElementById("map"), mapProp);
-        }
+        
 
     </script>
-      <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5DYAiJfNYAB1cYERKrZxU1YzceKhFYr0&callback=initMap" async defer
-    type="text/javascript"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA85gagPRPBJuLwVVlXc_a-TBvGyfD3d90&callback=initMap&libraries=places" async defer
+        type="text/javascript"></script>
   
 </asp:Content>
 

@@ -42,6 +42,21 @@ namespace EventsGSUBusinessLibrary.Controllers
         {
             return new Admin().SearchEmail(query);
         }
+        [Route("GetEmailResults")]
+        public List<AdminModel> GetEmailResults(string query = "")
+        {
+            return new Admin().SearchEmailResults(query);
+        }
+        [Route("GetAdminPurchaseInfobyID")]
+        public List<AdminModel> GetAdminPurchaseInfobyID(int UserID)
+        {
+            return new Admin().GetAdminPurchaseInfobyID(UserID);
+        }
+        [Route("GetPurchaseListAdmin")]
+        public AdminModel GetPurchaseListAdmin(int UserID)
+        {
+            return new Admin().GetPurchaseList(UserID);
+        }
 
     }
 

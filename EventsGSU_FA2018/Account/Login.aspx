@@ -65,6 +65,7 @@
                <a id="Close" class="close" href="#">&times;</a>
                <div id="ErrorText"></div>
            </div>
+           <a href="Registration.aspx">Register or Signup</a><br />
            <asp:Label ID="lblmsg" runat="server" CssClass="alert-danger"></asp:Label>
        </div>
    </div>

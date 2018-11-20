@@ -36,8 +36,6 @@
 
         $('#Registerli').hide();
 
-        $('#UserHistoryli').hide();
-
         $('#AdminEMli').hide();
 
         $('#Ticketsli').hide();

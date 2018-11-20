@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EventsGSU_FA2018.Payment {
+namespace EventsGSU_FA2018.Admin {
     
     
-    public partial class Admin_payment {
+    public partial class Admin_user_Update {
     }
 }

@@ -45,7 +45,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
                     getallUsersobj.UserID = item.UserID;
                     getallUsersobj.UserName = item.UserName;
                     getallUsersobj.UserPassword = item.UserPassword;
-                    getallUsersobj.UserTypeID = item.UserTypeID;
+                    getallUsersobj.UserTypeID = item.UserTypeID.ToString();
                     getallUsersobj.UserPhoneNumber = item.UserPhoneNumber;
                     getallUsersobj.isActive = item.isActive;
 
@@ -327,6 +327,150 @@ namespace EventsGSUDataAccessLayer.DataAccess
                 string d = ex.Message;
             }
             return getAllEventsList;
+        }
+        public List<AdminModel> SearchEmailResults(string query = "")
+        {
+            var getallUserList = new List<AdminModel>();
+            try
+            {
+
+
+                if (String.IsNullOrEmpty(query))
+                {
+                    var getUserObj = (from pt in g.PaymentTables
+
+                                      select new
+                                      {
+                                          pt.UserEmail,
+                                          pt.UserID,
+                                          pt.isDelete,
+                                      }
+                             ).ToList();
+                    foreach (var item in getUserObj)
+                    {
+                        var searchModelObj = new AdminModel();
+
+
+                        searchModelObj.UserEmail = item.UserEmail;
+                        searchModelObj.UserID = item.UserID;
+                        searchModelObj.isDelete = item.isDelete;
+
+
+
+
+
+                        getallUserList.Add(searchModelObj);
+                    }
+
+                }
+                else
+                {
+
+                    var getUserObj = (from pt in g.PaymentTables
+
+                                                .Where(ue => ue.UserEmail.Contains(query))
+                                      select new
+                                      {
+                                          pt.UserEmail,
+                                          pt.UserID,
+                                          pt.isDelete,
+                                      }).ToList();
+                    foreach (var item in getUserObj)
+                    {
+                        var searchModelObj = new AdminModel();
+
+
+                        searchModelObj.UserEmail = item.UserEmail;
+                        searchModelObj.UserID = item.UserID;
+                        searchModelObj.isDelete = item.isDelete;
+
+                        getallUserList.Add(searchModelObj);
+                    }
+                }
+
+            }
+
+
+            catch (Exception ex)
+            {
+                string d = ex.Message;
+            }
+            return getallUserList;
+        }
+        public List<AdminModel> GetAdminPurchaseInfobyID(int UserID)
+        {
+            var UserhistoryDetailsList = new List<AdminModel>();
+            try
+            {
+                var getUserHistoryDetailsObject = (from pht in g.PaymentHistoryTables
+                                                   
+                                                   join et in g.EventsTables on pht.EventID equals et.EventID
+                                                   where pht.UserID == UserID
+                                                   select new
+                                                   {
+                                                       pht.TicketsPurchased,
+                                                       pht.UserPaymentPaid,
+                                                       pht.UserID,
+                                                       et.EventTitle,
+                                                       pht.isDelete
+                                                   }
+
+                                        ).Distinct().ToList();
+                foreach (var item in getUserHistoryDetailsObject)
+                {
+                    var userdetailsobject = new AdminModel();
+
+                    userdetailsobject.TicketsPurchased = item.TicketsPurchased;
+                    userdetailsobject.UserPaymentPaid = item.UserPaymentPaid;
+                    userdetailsobject.UserID = item.UserID;
+                    userdetailsobject.EventTitle = item.EventTitle;
+                    userdetailsobject.isDelete = item.isDelete;
+                    UserhistoryDetailsList.Add(userdetailsobject);
+                }
+            }
+            catch (Exception ex)
+            {
+                string d = ex.Message;
+            }
+            return UserhistoryDetailsList;
+        }
+
+        public AdminModel GetPurchaseList(int UserID)
+        {
+            var eventdetailslist = new AdminModel();
+
+
+
+            try
+            {
+                
+                eventdetailslist = (from pht in g.PaymentHistoryTables
+                                    join et in g.EventsTables on pht.EventID equals et.EventID
+                                   
+
+                                    where pht.UserID == UserID
+                                    select new AdminModel()
+                                    {
+                                        EventTitle = et.EventTitle,
+                                        TicketsPurchased=pht.TicketsPurchased,
+                                        UserID=pht.UserID,
+                                        UserPaymentPaid=pht.UserPaymentPaid,
+                                        isDelete=pht.isDelete,
+                                        TicketID=pht.TicketID,
+                                        PaymentHistoryID= pht.PaymentHistoryID,
+                                        UserTypeID=pht.UserTypeID,
+                                        EventID=pht.EventID,
+                                        PaymentID=pht.PaymentID
+                                    }
+                             ).FirstOrDefault();
+        
+
+            }
+            catch (Exception ex)
+            {
+                string d = ex.Message;
+            }
+            return eventdetailslist;
         }
 
     }

@@ -76,10 +76,8 @@
             </tr>
         </table>
         <input type="number" id="Numberticket" style="width: auto"  value="1" /><span id ="TicketMultiplier" hidden></span><br />
-        <div class="well">
-            <input type="button" value="If you have a Card Already Click here" class="btn-success" style="width: auto" id="CardButton" />
-
-        </div>
+        <br />
+       
     </div>
 
     <div class="col-md-10 col-md-offset-1">
@@ -98,74 +96,74 @@
                     <tr>
                         <td>First Name</td>
                         <td>
-                            <input type="text" id="txtFN" placeholder="First Name" />
+                            <input type="text" id="txtFN" placeholder="First Name" disabled/>
                         </td>
                     </tr>
                     <tr>
                         <td>Last name</td>
                         <td>
-                            <input type="text" id="txtLN" placeholder="Last Name" />
+                            <input type="text" id="txtLN" placeholder="Last Name"disabled />
                         </td>
                     </tr>
                     <tr>
                         <td>Card Number</td>
                         <td>
                             <span id="PaymentID"></span>
-                            <input type="text" id="txtCardNumber" placeholder=" Card Number" />
+                            <input type="text" id="txtCardNumber" placeholder=" Card Number" disabled />
                         </td>
                     </tr>
                     <tr>
 
                         <td>Card CVV</td>
                         <td>
-                            <input type="password" id="txtCVV" placeholder="Please enter Card CVV" />
+                            <input type="password" id="txtCVV" placeholder="Please enter Card CVV" disabled/>
                         </td>
                     </tr>
                     <tr>
 
                         <td>Card Expiration</td>
                         <td>
-                            <input type="text" id="txtCardDate" value="mm/dd/yy" />
+                            <input type="text" id="txtCardDate" value="mm/dd/yy"disabled />
                         </td>
                     </tr>
                     <tr>
                         <td>Email</td>
                         <td>
-                            <input type="email" id="txtEmail" placeholder="Email" />
+                            <input type="email" id="txtEmail" placeholder="Email"disabled />
                         </td>
                     </tr>
                     <tr>
                         <td>Phone Number</td>
                         <td>
-                            <input type="tel" id="txtPhNo" placeholder="Enter Phone number" />
+                            <input type="text" id="txtPhNo" placeholder="Enter Phone number"disabled />
                         </td>
 
                     </tr>
                     <tr>
                         <td>Address</td>
                         <td>
-                            <input type="text" id="txtAddress" placeholder="Please Enter Address" />
+                            <input type="text" id="txtAddress" placeholder="Please Enter Address"disabled />
                         </td>
 
                     </tr>
                     <tr>
                         <td>Zip code</td>
                         <td>
-                            <input type="text" id="txtzip" placeholder="Please Enter zipcode" />
+                            <input type="text" id="txtzip" placeholder="Please Enter zipcode"disabled />
                         </td>
 
                     </tr>
                     <tr>
                         <td>State</td>
                         <td>
-                            <input type="text" id="txtstate" placeholder="Please Enter state" />
+                            <input type="text" id="txtstate" placeholder="Please Enter state"disabled />
                         </td>
 
                     </tr>
                     <tr class="Success">
 
                         <td colspan="3">
-                            <input id="btnPayment" class="btn btn-success" type="submit" value="Finalize Payment" />
+                            <input id="btnPayment" class="btn btn-success" type="button" value="Finalize Payment" />
                         </td>
                     </tr>
                 </tbody>
@@ -231,25 +229,7 @@
                 $(document).ready(function () {
 
                     GetEventDetails();
-                    
-
-
-
-                    $.urlParam = function (name) {
-                        var results = new RegExp('[\?&]' + name + '=([^&#]*)')
-                            .exec(window.location.href);
-                        if (results == null) {
-                            return 0;
-                        }
-                        return results[1] || 0;
-                    }
-                    debugger;
-                    console.log($.urlParam('eventID'));
-
-
-
-
-
+                    GetCardDetails();
                 });
             });
 
@@ -281,11 +261,9 @@
                         $('#ticketAmount').text(response.TicketPrice);
                         $('#TicketMultiplier').val(response.TicketPrice);
                         $('#indexTicketid').val(response.TicketID);
-                        var firstItemImageEle = document.getElementById("indexEventID");
-                        firstItemImageEle.setAttribute("data-eventID", response.EventID);
-
-
-
+                        
+                        
+                       
 
 
 
@@ -301,12 +279,7 @@
 
             }
 
-            $('#CardButton').click(function () {
-                var clickItemImageEle = document.getElementById("indexEventID");
-                var eventID = clickItemImageEle.getAttribute("data-eventID");
-
-                window.location.href = "http://localhost/EventsGSU_FA2018/Payment/Finalize_payment_card.aspx?eventID=" + eventID;
-            });
+            
 
 
 
@@ -319,7 +292,7 @@
 
 
                 $.ajax({
-                    url: 'http://localhost/EventsGSUBusinessLibrary/api/payment/paymentv',
+                    url: 'http://localhost/EventsGSUBusinessLibrary/api/payment/PaymentWithcard',
                     method: 'POST',
                     data: {
                         firstname: $('#txtFN').val(),
@@ -335,6 +308,7 @@
                         userpaymentpaid: $('#ticketAmount').text(),
                         eventid: $('#indexEventID').val(),
                         ticketid: $('#indexTicketid').val(),
+                        paymentid: $('#PaymentID').val(),
                         ticketspurchased: $('#Numberticket').val(),
                         userid: uID,
                         usertypeid: utId
@@ -344,7 +318,6 @@
 
                         $('#ErrorText').text(response.PMessage);
                         $('#error').show('fade');
-                        alert("Payment Success")
 
                     },
                     error: function (jqXHR) {
@@ -356,14 +329,46 @@
                 });
 
             });
-            //function MultiplyByHidden() {
-            //    debugger;
-            //    var value1 = parseFloat(document.getElementById("#Numberticket").value)
-            //     var value2 = parseFloat(document.getElementById("#ticketAmount").value)
-            //     var total = value1 * value2
-            //     document.getElementById("#ticketAmount").value = total
-            //}
-            $(function () {
+
+            function GetCardDetails() {
+
+
+                $.ajax({
+                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/GetCardDetails?UserID=' + uID,
+                    method: 'GET',
+                    data: {
+                        //EventLocation: "",
+                        //EventImage: ""
+                    },
+
+
+                    success: function (details) {
+                        debugger;
+                        $('#txtFN').val(details[0].FirstName);
+                        $('#txtLN').val(details[0].LastName);
+                        $('#txtCardNumber').val(details[0].UserCardNumber);
+                        $('#txtCardDate').val(details[0].UserCardExpiration);
+                        $('#txtCVV').val(details[0].UserCardCVV);
+                        $('#txtEmail').val(details[0].UserEmail);
+                        $('#txtPhNo').val(details[0].UserPhoneNumber);
+                        $('#txtAddress').val(details[0].UserAddress);
+                        $('#txtzip').val(details[0].UserZipCode);
+                        $('#txtstate').val(details[0].UserState);
+                        $('#PaymentID').val(details[0].PaymentID);
+
+
+                    },
+                    error: function (error) {
+                        $('#ErrorText').text(error.responseText);
+                        $('#error').show('fade');
+
+
+                    }
+
+                });
+
+            }
+             $(function () {
                 debugger;
                 $("#Numberticket").on("input", function () {
                         var value1 = parseFloat($("#Numberticket").val());
@@ -371,8 +376,6 @@
                           $("#ticketAmount").text(value1 * value2);
                 });
             });
-
-
 
             function ValidateUserTypeID() {
                 if (utId == 0) {

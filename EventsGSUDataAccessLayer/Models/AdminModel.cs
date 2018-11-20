@@ -9,6 +9,7 @@ namespace EventsGSUDataAccessLayer.Models
 {
     public class AdminModel
     {
+        public int TicketsPurchased { get; set; }
         public int EventDetailsID { get; set; }
         public string EventsDescription { get; set; }
         public int EventID { get; set; }
@@ -38,13 +39,14 @@ namespace EventsGSUDataAccessLayer.Models
         public string UserTypeCode { get; set; }
         public string UserPassword { get; set; }
         public string UserName { get; set; }
-        public int? UserTypeID { get; set; }
+        public string UserTypeID { get; set; }
         public string UMessage { get; set; }
         public bool UFlag { get; set; }
         public string ReturnUrl { get; set; }
         public string isActive { get; set; }
         public int isDelete { get; set; }
         public int EventTypeID { get; set; }
+        public int PaymentHistoryID { get; set; }
     }
 }
 
