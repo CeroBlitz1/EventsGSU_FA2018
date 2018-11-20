@@ -108,9 +108,10 @@
                     </tr>--%>
                     <tr class="Success">
 
-                        <td colspan="3">
-                            <input id="btnUploadFile" type="button" class="btn btn-success" value="Update Event" />
-                            <span class="ui-helper-clearfix">If you want to update the Event Please choose the image</span>
+                        <td colspan="2">
+                            <input id="btnUploadFile" type="button" class="btn btn-success" value="Update Event" />&nbsp;
+                           <input type="button" id="DeleteEvent" class="btn btn-danger" value="DeleteEvent" /> <br />
+&nbsp;<span class="ui-helper-clearfix">If you want to update the Event Please choose the image</span>
                         </td>
                     </tr>
                 </tbody>
@@ -304,7 +305,7 @@
 
                 var eventData = {
                     eventtitle: $('#txtTitle').val(),
-                    eventlocation: $('#txtEventLocation').val(),
+                    eventlocation: $('#pac-input').val(),
                     eventimage: 'UploadedFiles/' + files[0].name, //$('#fileimg').val(),
                     eventtype: $('#txtEventType').val(),
                     ticketprice: $('#txtTicketPrice').val(),
@@ -327,6 +328,65 @@
                     type: "POST",
                     
                     url: 'http://localhost/EventsGSUBusinessLibrary/api/register/AdminUpdateFile',
+                    contentType: false,
+                    processData: false,
+                    data: data
+                }).done(function (result) {
+                   $('#ErrorText').text("Event Update Success");
+                      $('#error').show('fade');
+                }).fail(function (a, b, c) {
+                    console.log(a, b, c);
+                });
+
+               
+            });
+
+            $('#DeleteEvent').on('click', function () {
+                debugger;
+
+
+                var data = new FormData();
+
+                var files = $("#fileUpload").get(0).files;
+
+                // Add the uploaded image content to the form data collection
+                if (files.length > 0) {
+                    data.append("UploadedImage", files[0]);
+                }
+
+
+
+
+               
+              
+                debugger;
+
+
+                var eventData = {
+                    eventtitle: $('#txtTitle').val(),
+                    eventlocation: $('#pac-input').val(),
+                    eventimage: 'UploadedFiles/' + files[0].name, //$('#fileimg').val(),
+                    eventtype: $('#txtEventType').val(),
+                    ticketprice: $('#txtTicketPrice').val(),
+                    ticketquantity: $('#TicketQuantity').val(),
+                    eventsdescription: $('#txtEventDesc').val(),
+                    eventdate: $('#EventDate').val(),
+                    eventid: $('#EventID').val(),
+                    ticketid: $('#TicketID').val(),
+                    eventsdescriptionid: $('#EventsDescriptionID').val(),
+                    userid: $('#UserID').val(),
+                   
+                    
+
+                };
+                var stringifyEventData = JSON.stringify(eventData);
+               
+                data.append("h", stringifyEventData);
+               
+                var ajaxRequest = $.ajax({
+                    type: "POST",
+                    
+                    url: 'http://localhost/EventsGSUBusinessLibrary/api/Delete/DeleteEvent',
                     contentType: false,
                     processData: false,
                     data: data

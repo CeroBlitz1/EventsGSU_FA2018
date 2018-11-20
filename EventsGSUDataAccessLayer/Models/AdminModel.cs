@@ -47,6 +47,7 @@ namespace EventsGSUDataAccessLayer.Models
         public int isDelete { get; set; }
         public int EventTypeID { get; set; }
         public int PaymentHistoryID { get; set; }
+
     }
 }
 

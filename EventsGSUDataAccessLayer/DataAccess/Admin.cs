@@ -80,7 +80,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
                                     join tt in g.TicketsTables on e.EventID equals tt.EventID
                                     join ut in g.UserTables on e.UserID equals ut.UserID
 
-                                    where e.EventID == eventID
+                                    where e.EventID == eventID && e.isDelete==0
                                     select new EventDetailsModel()
                                     {
                                         EventImage = e.EventImage,
@@ -246,7 +246,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
             try
             {
                 userdetailslist = (from u in g.UserTables
-                                   where u.UserID == UserID
+                                   where u.UserID == UserID && u.isDelete==0
                                    select new UserModel()
                                    {
                                        UserName = u.UserName,

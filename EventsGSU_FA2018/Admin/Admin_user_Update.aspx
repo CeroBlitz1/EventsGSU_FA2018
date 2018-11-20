@@ -28,6 +28,8 @@
 
 
 
+    <input type="button" class="btn btn-danger" value="Delete User" id="DeleteUser" />
+
     </div>
     <div id="error" class="alert alert-danger collapse">
         <a id="Close" class="close" href="#">&times;</a>
@@ -57,6 +59,8 @@
            validateRoles(utId);
             GetUserDetails();
 
+            //DeleteProfile
+
             $('#btnUpdateProfile').click(function () {
                 $.ajax({
                     url: 'http://localhost/EventsGSUBusinessLibrary/api//register/UpdateProfile',
@@ -82,6 +86,30 @@
                 });
             });
 
+             $('#DeleteUser').click(function () {
+                $.ajax({
+                    url: 'http://localhost/EventsGSUBusinessLibrary/api/delete/DeleteProfile',
+                    method: 'POST',
+                    data:{
+
+                        username: $('#TxtUserName').val(),
+                        useremail: $('#TxtEmail').val(),
+                        userpassword: $('#TxtPassword').val(),
+                        userphonenumber: $('#TxtPhone').val(),
+                        userid: $('#UserID').val(),
+                        usertypeid: $('#UserTypeID').val()
+                    },
+                    success: function (response) {
+                         $('#ErrorText').text(response.UMessage);
+                             $('#error').show('fade');
+                    },
+                     error: function (jqXHR) {
+                        $('#ErrorText').text(jqXHR.responseText);
+                        $('#error').show('fade');
+
+                    }
+                });
+            });
             
 
         });

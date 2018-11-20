@@ -262,5 +262,41 @@ namespace EventsGSUDataAccessLayer.DataAccess
 
             return um;
         }
+
+        public AdminModel DeletePayment(AdminModel model)
+        {
+            var um = new AdminModel
+            {
+                UMessage = "Update Success",
+                UFlag = false,
+            };
+            try
+            {
+                var usersObj = new PaymentHistoryTable();
+
+                usersObj.PaymentHistoryID = model.PaymentHistoryID;
+                usersObj.UserTypeID = model.UserTypeID;
+                usersObj.UserID = model.UserID;
+                usersObj.PaymentID = model.PaymentID;
+                usersObj.TicketsPurchased = model.TicketsPurchased;
+                usersObj.UserPaymentPaid = model.UserPaymentPaid;
+                usersObj.TicketID =model.TicketID;
+                usersObj.EventID = model.EventID;
+                usersObj.isDelete = 1;
+
+                g.PaymentHistoryTables.Attach(usersObj);
+                g.Entry(usersObj).State = System.Data.Entity.EntityState.Modified;
+                g.SaveChanges();
+                um.UFlag = true;
+
+            }
+            catch (Exception ex)
+            {
+
+                um.UMessage = ex.Message;
+            }
+
+            return um;
+        }
     }
 }

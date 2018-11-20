@@ -105,7 +105,7 @@ namespace EventsGSUDataAccessLayer
             try
             {
                 userdetailslist = (from u in g.UserTables
-                                   where u.UserID == UserID
+                                   where u.UserID == UserID && u.isDelete==0
                                    select new UserModel()
                                    {
                                        UserName= u.UserName,
@@ -144,7 +144,45 @@ namespace EventsGSUDataAccessLayer
                 usersObj.isActive = "Y";
                 usersObj.CreatedDate = DateTime.Now;
                 usersObj.ModifiedDate = DateTime.Now;
+                usersObj.isDelete = 0;
                 
+                g.UserTables.Attach(usersObj);
+                g.Entry(usersObj).State = System.Data.Entity.EntityState.Modified;
+                g.SaveChanges();
+                um.UFlag = true;
+
+            }
+            catch (Exception ex)
+            {
+
+                um.UMessage = ex.Message;
+            }
+
+            return um;
+        }
+
+        public UserModel DeleteUsers(UserModel model)
+        {
+            var um = new UserModel
+            {
+                UMessage = "Update Success",
+                UFlag = false,
+            };
+            try
+            {
+                var usersObj = new UserTable();
+
+                usersObj.UserPassword = model.UserPassword;
+                usersObj.UserName = model.UserName;
+                usersObj.UserEmail = model.UserEmail;
+                usersObj.UserPhoneNumber = model.UserPhoneNumber;
+                usersObj.UserTypeID = model.UserTypeID;
+                usersObj.UserID = model.UserID;
+                usersObj.isActive = "Y";
+                usersObj.CreatedDate = DateTime.Now;
+                usersObj.ModifiedDate = DateTime.Now;
+                usersObj.isDelete = 1;
+
                 g.UserTables.Attach(usersObj);
                 g.Entry(usersObj).State = System.Data.Entity.EntityState.Modified;
                 g.SaveChanges();

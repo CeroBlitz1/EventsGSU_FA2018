@@ -55,18 +55,23 @@
            validateRoles(utId);
             GetUserDetails();
 
-            $('#btnUpdateProfile').click(function () {
+            $('#Delete').click(function () {
                 $.ajax({
-                    url: 'http://localhost/EventsGSUBusinessLibrary/api//register/UpdateProfile',
+                    url: 'http://localhost/EventsGSUBusinessLibrary/api/Delete/Deletepayment',
                     method: 'POST',
-                    data:{
-
-                        username: $('#TxtUserName').val(),
-                        useremail: $('#TxtEmail').val(),
-                        userpassword: $('#TxtPassword').val(),
-                        userphonenumber: $('#TxtPhone').val(),
+                    data: {
+     
+                        ticketspurchased: $('#TicketsPurchased').val(),
                         userid: $('#UserID').val(),
-                        usertypeid: $('#UserTypeID').val()
+                        userpaymentpaid: $('#PaymentPaid').val(),
+                        ticketid: $('#TicketID').val(),
+                        paymenthistoryid: $('#PayemntHistoryID').val(),
+                        usertypeid: $('#UserTypeID').val(),
+                        eventid: $('#EventID').val(),
+                        paymentid: $('#PaymentID').val(),
+                        isdelete: $('#IsDelete').val()
+
+
                     },
                     success: function (response) {
                          $('#ErrorText').text(response.UMessage);
@@ -95,11 +100,11 @@
                     $('#UserID').val(response.UserID);
                     $('#PaymentPaid').val(response.UserPaymentPaid);
                     $('#IsDelete').val(response.isDelete);
-                    $('#TicketID').text(response.TicketID);
-                    $('#PayemntHistoryID').text(response.PaymentHistoryID);
-                    $('#UserTypeID').text(response.UserTypeID);
-                    $('#EventID').text(response.EventID);
-                    $('#PaymentID').text(response.PaymentID);
+                    $('#TicketID').val(response.TicketID);
+                    $('#PayemntHistoryID').val(response.PaymentHistoryID);
+                    $('#UserTypeID').val(response.UserTypeID);
+                    $('#EventID').val(response.EventID);
+                    $('#PaymentID').val(response.PaymentID);
 
                     
 

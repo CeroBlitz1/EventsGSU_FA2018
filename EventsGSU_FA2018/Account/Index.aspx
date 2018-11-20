@@ -7,7 +7,7 @@
     <table class="nav-justified">
         <tr>
             <td>
-                <%--<asp:ImageButton ID="ImageButton1" runat="server" Height="96px" Width="1241px" ImageUrl="~/SiteImages/GSUlogo.png" />--%>
+                
             </td>
         </tr>
         <tr>
@@ -23,14 +23,15 @@
                     <input type="hidden" id="Id" />
                 </div>
 
-                <%--<label for="Location">Location: </label>
-                <input id="Location" />--%>
+               
                
             </td>
         </tr>
+        
         <tr>
+           
             <td id="tbldata">
-                <div ></div>
+               
                 
             </td>
         </tr>
@@ -200,6 +201,6 @@
             FindEvent.BindControlEvents();
         });
     </script>
-
+    
 
 </asp:Content>
