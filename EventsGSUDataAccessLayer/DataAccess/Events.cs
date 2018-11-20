@@ -165,6 +165,8 @@ namespace EventsGSUDataAccessLayer.DataAccess
                                            TicketQuantity = tt.TicketQuantity,
                                            EventLocation = e.EventLocation,
                                            
+                                           
+                                           
                                        }
                              ).FirstOrDefault();
                 #region Commneted 11 6 2018 8:36
@@ -641,6 +643,49 @@ namespace EventsGSUDataAccessLayer.DataAccess
             return getAllEventsList;
         }
 
+        
+        public List<EventModel> GetEventbyType(string EventType)
+        {
+            var getAllEventsList = new List<EventModel>();
+
+            try
+            {
+                var geteventsobject = (from e in g.EventsTables
+                                       where e.EventType == EventType && e.isDelete == 0
+                                       select new
+                                       {
+                                           e.EventID,
+                                           e.EventTitle,
+                                           e.EventDate,
+                                           e.EventLocation,
+                                           e.EventImage,
+
+                                       }
+                                           ).Take(3).ToList();
+                foreach (var item in geteventsobject)
+                {
+                    var geteventdetailsobject = new EventModel();
+
+                    geteventdetailsobject.EventID = item.EventID;
+                    geteventdetailsobject.EventDate = item.EventDate;
+                    geteventdetailsobject.EventImage = item.EventImage;
+                    geteventdetailsobject.EventLocation = item.EventLocation;
+                    geteventdetailsobject.EventTitle = item.EventTitle;
+
+                    getAllEventsList.Add(geteventdetailsobject);
+
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                string d = ex.Message;
+            }
+            return getAllEventsList;
+        }
     }
 
 }

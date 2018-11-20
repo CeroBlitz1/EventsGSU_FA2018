@@ -139,7 +139,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
+    <Content Include="Account\About.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Logout.aspx" />
     <Content Include="Account\ManageTicket.aspx" />
@@ -156,7 +156,7 @@
     <Content Include="Admin\Admin_Ticket_manage_History.aspx" />
     <Content Include="Admin\admin_user_management.aspx" />
     <Content Include="Admin\Admin_user_Update.aspx" />
-    <Content Include="Contact.aspx" />
+    <Content Include="Account\Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -233,7 +233,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Pay.Master" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Admin\admin_payment_info.aspx" />
     <Content Include="Payment\finalize_payment.aspx" />
@@ -422,19 +421,19 @@
       <DependentUpon>Admin_user_Update.aspx</DependentUpon>
     </Compile>
     <Compile Include="BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
+    <Compile Include="Account\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="About.aspx.designer.cs">
+    <Compile Include="Account\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Contact.aspx.cs">
+    <Compile Include="Account\Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
+    <Compile Include="Account\Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\admin_event_manage.aspx.cs">
@@ -503,13 +502,6 @@
     <Compile Include="Admin\admin_payment_info.aspx.designer.cs">
       <DependentUpon>admin_payment_info.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pay.Master.cs">
-      <DependentUpon>Pay.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pay.Master.designer.cs">
-      <DependentUpon>Pay.Master</DependentUpon>
-    </Compile>
     <Compile Include="Payment\finalize_payment.aspx.cs">
       <DependentUpon>finalize_payment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -539,13 +531,6 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
-    <Compile Include="Admin.Master.cs">
-      <DependentUpon>Admin.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin.Master.designer.cs">
-      <DependentUpon>Admin.Master</DependentUpon>
-    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -561,7 +546,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-    <Content Include="Admin.Master" />
     <Content Include="Scripts\underscore.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

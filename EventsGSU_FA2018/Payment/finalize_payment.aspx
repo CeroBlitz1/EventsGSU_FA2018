@@ -165,7 +165,7 @@
                     <tr class="Success">
 
                         <td colspan="3">
-                            <input id="btnPayment" class="btn btn-success" type="submit" value="Finalize Payment" />
+                            <input id="btnPayment" class="btn btn-success" type="button" value="Finalize Payment" />
                         </td>
                     </tr>
                 </tbody>

@@ -39,7 +39,7 @@
                    </tr>
                    <tr class="Success">
                        <td colspan="3">
-                           <input id="btnRegister" class="btn btn-success" type="submit" value="Register" />
+                           <input id="btnRegister" class="btn btn-success" type="button" value="Register" />
                        </td>
                    </tr>
                </tbody>

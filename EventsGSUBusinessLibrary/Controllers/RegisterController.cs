@@ -105,6 +105,11 @@ namespace EventsGSUBusinessLibrary.Controllers
         {
             return new Events().GetEventType(query);
         }
+        [Route("GetEventByTypes")]
+        public List<EventModel>GetEventByTypes(string EventType)
+        {
+            return new Events().GetEventbyType(EventType);
+        }
         ////////////////////////////////////////////////////Post Methods//////////////////////////////////////////////////////////
 
         [Route("UserLogin")]
