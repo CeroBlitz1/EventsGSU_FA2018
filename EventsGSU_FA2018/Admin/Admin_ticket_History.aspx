@@ -69,7 +69,7 @@
                     for (var i = 0; i < data.length; i++) {
                         tableOutline = tableOutline +
                             
-               '<tr><td><a href="'+ 'http://localhost/EventsGSU_FA2018/admin/Admin_Ticket_manage_History.aspx?userID=' + data[i].UserID + '">'
+               '<tr><td><a href="'+ 'http://localhost/EventsGSU_FA2018/admin/Admin_Ticket_manage_History.aspx?userID=' + data[i].UserID +'&EventTitle='+data[i].EventTitle+'">'
                 + data[i].EventTitle + '</td></a><td>'
                 + data[i].UserID + '</td><td>'
                 + data[i].UserPaymentPaid + '</td><td>'

@@ -28,7 +28,7 @@
                    <tr>
                        <td>Password</td>
                        <td>
-                           <input type="password" id="txtPassword" placeholder="Password" />
+                           <input type="password" id="txtPassword" placeholder="Password" required />
                        </td>
                    </tr>
                    <tr>
@@ -76,7 +76,6 @@
     <script type="text/javascript">
         $(document).ready(function () {
              getCookies();
-            debugger;
             validateRoles(utId);
             $('#Close').click(function () {
               
@@ -85,59 +84,63 @@
             });
             $('#btnRegister').click(function () {
 
+                
 
-                //$.ajax({
-                //    url: 'http://localhost/EventsGSUBusinessLibrary/api/account/Register',
-                //    method: 'POST',
-                //    data: {
-                //        username: $('#txtUserName').val()
-                //        email: $('#txtEmail').val(),
-                //        password: $('#txtPassword').val(),
-                //        confirmPassword: $('#txtConfirmPassword').val()
-                //    },
-                //    success: function () {
-                //         $('#successmodal').modal(PopOut_Show);
-                //    },
-                //    error: function (jqXHR) {
-                //        $('#ErrorText').text(jqXHR.responseText);
-                //        $('#error').show('fade');
+               if (($('#txtUserName').val() && $('#txtEmail').val() && $('#txtPassword').val() && $('#txtPhoneNumber').val()) == "")
+                    {
+                        $('#ErrorText').text("Please Enter all the Credentials");
+                   $('#error').show('fade');
+                   alert("Please Enter all the Credentials");
 
-                //    }
-                   
-                //});
-
-
-                $.ajax({
-                    url: 'http://localhost/EventsGSUBusinessLibrary/api/register/register',
-                    method: 'POST',
-                    data: {
-                        username: $('#txtUserName').val(),
-                        useremail: $('#txtEmail').val(),
-                        userpassword: $('#txtPassword').val(),
-                        userphonenumber: $('#txtPhoneNumber').val(),
-                       
-                    },
-                    success: function (response) {
-                        //$('#successmodal').modal(s);
-                        if (response.UFlag) {
-                            $('#ErrorText').text(response.UMessage);
-                             $('#error').show('fade');
-                            //window.location.href = "http://localhost/EventsGSU_FA2018/Account/login.aspx";
-                        }
-                        else
-                        {
-                            $('#ErrorText').text(response.UMessage);
-                            $('#error').show('fade');
-                        }
-                        
-                    },
-                    error: function (jqXHR) {
-                        $('#ErrorText').text(jqXHR.responseText);
-                        $('#error').show('fade');
-
+                        return;
+                         
                     }
-                   
+
+
+
+                    $.ajax({
+                        url: 'http://localhost/EventsGSUBusinessLibrary/api/register/register',
+                        method: 'POST',
+                        data: {
+                            username: $('#txtUserName').val(),
+                            useremail: $('#txtEmail').val(),
+                            userpassword: $('#txtPassword').val(),
+                            userphonenumber: $('#txtPhoneNumber').val(),
+
+
+                        },
+                        success: function (response) {
+                          
+
+
+                            if (response.UFlag) {
+                                window.location.href = "http://localhost/EventsGSU_FA2018/Account/login.aspx";
+                                 alert("Registration success");
+                            }
+                            else {
+                                $('#ErrorText').text(response.UMessage);
+                                $('#error').show('fade');
+                            }
+                           
+                        },
+                        error: function (jqXHR) {
+                            $('#ErrorText').text(jqXHR.responseText);
+                            $('#error').show('fade');
+
+                        }
+
+                        
+
                 });
+                //function CheckValidForm() {
+                //    if (($('#txtUserName').val() && $('#txtEmail').val() && $('#txtPassword').val() && $('#txtPhoneNumber').val()) == "")
+                //    {
+                //        $('#ErrorText').text("Fail");
+                //        $('#error').show('fade');
+                //        return;
+                         
+                //    }
+                //}
                 
             });
         });

@@ -23,12 +23,12 @@ namespace EventsGSUDataAccessLayer
         public int TicketID { get; set; }
         public int TicketQuantity { get; set; }
         public int TicketPrice { get; set; }
-        public Nullable<int> EventID { get; set; }
-        public Nullable<int> UserID { get; set; }
+        public int EventID { get; set; }
+        public int UserID { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> ModfiedDate { get; set; }
-        public Nullable<int> TicketsPurchased { get; set; }
-        public Nullable<int> TicketsRemining { get; set; }
+        public int TicketsPurchased { get; set; }
+        public int TicketsRemining { get; set; }
         public int isDelete { get; set; }
     
         public virtual EventsTable EventsTable { get; set; }

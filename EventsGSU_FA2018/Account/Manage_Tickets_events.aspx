@@ -9,6 +9,7 @@
     <script src="../Scripts/jquery.cookie-1.4.1.min.js"></script>
     <script src="../Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="../Scripts/underscore.min.js"></script>
+    <link href="../Content/EventStyle.css" rel="stylesheet" />
     <script type="text/javascript">
         $(document).ready(function () {
             getCookies();
@@ -59,7 +60,7 @@
 
                 for (var i = 0; i < data.length; i++) {
                     tableOutline = tableOutline +
-                        '<a href="' + 'http://localhost/EventsGSU_FA2018/Account/ManageTicket.aspx?eventID=' +
+                        '<a class = "eventblock" href="' + 'http://localhost/EventsGSU_FA2018/Account/ManageTicket.aspx?eventID=' +
                         data[i].EventID + '"><div style = "width: 250px; display: inline-block; padding: 20px" class="col-md-4 eventblock" > <div id="indexEventID' + i + '"></div><div><img id="indexImage' + i + '" src="' +
                         'http://localhost/EventsGSUBusinessLibrary/' + data[i].EventImage + '" style="width: 210px"></div><div id="event' + i + 'Date">' +
                         data[i].EventDate + '</div><div id="event' + i + 'Location">' +

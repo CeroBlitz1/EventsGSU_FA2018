@@ -20,7 +20,7 @@ namespace EventsGSUDataAccessLayer
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> EventID { get; set; }
-        public int isDelete { get; set; }
+        public Nullable<int> isDelete { get; set; }
     
         public virtual EventsTable EventsTable { get; set; }
         public virtual UserTable UserTable { get; set; }

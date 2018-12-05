@@ -44,6 +44,7 @@
     <script src="../Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="../Scripts/eventData.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="../Content/EventStyle.css" rel="stylesheet" />
     <%-- <script src="Scripts/jquery-ui-1.12.1.min.js"></script>
                 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">--%>
     <script type="text/javascript">
@@ -186,8 +187,8 @@
                 
                 for (var i = 0; i < data.length; i++) {
                     tableOutline = tableOutline +
-                        '<a href="' + 'http://localhost/EventsGSU_FA2018/Events/Event.aspx?eventID=' +
-                        data[i].EventID + '"><div style = "width: 250px; display: inline-block; padding: 20px" class="col-md-4 eventblock" > <div id="indexEventID'+ i +'"></div><div><img id="indexImage' + i + '" src="' +
+                        '<a class = "eventblock" href="' + 'http://localhost/EventsGSU_FA2018/Events/Event.aspx?eventID=' +
+                        data[i].EventID + '"><div style = "width: 180px; display: inline-block; padding: 20px" class="col-md-4 eventblock" > <div id="indexEventID'+ i +'"></div><div><img id="indexImage' + i + '" src="' +
                         'http://localhost/EventsGSUBusinessLibrary/' + data[i].EventImage + '" style="width: 100px"></div><div id="event' + i + 'Date">' +
                         data[i].EventDate + '</div><div id="event'+ i +'Location">' +
                         data[i].EventLocation + '</div><div id="event'+ i +'Title">' +

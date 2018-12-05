@@ -13,11 +13,15 @@
                 </thead>
             </table>
         </div>
-    <script src="../Scripts/jquery-3.3.1.min.js"></script>
+    <%--<script src="../Scripts/jquery-3.3.1.min.js"></script>--%>
     <script src="../Scripts/bootstrap.min.js"></script>
     <script src="../Scripts/jquery.cookie-1.4.1.min.js"></script>
     <script src="../Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="../Scripts/underscore.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <link href="../Content/themes/defaultTheme.css" rel="stylesheet" />
+    <script src="../Scripts/jquery.fixedheadertable.min.js"></script>
+
 
     <script type="text/javascript">
         function getQueryParams(queryString) {
@@ -37,12 +41,12 @@
         $(document).ready(function () {
             {
                getCookies();
-            debugger;
            validateRoles(utId);
             }
             var queryParams = getQueryParams();
             GetEvents();
 
+            
             function GetEvents() {
                 $.ajax({
                     url: 'http://localhost/EventsGSUBusinessLibrary/api/admin/GetEmailResults?query=' + queryParams.SearchQuery,
@@ -51,6 +55,7 @@
                     },
                     success: function (response) {
                         writetable(response);
+                        $('#tbldata').fixedHeaderTable({ footer: true, cloneHeadToFoot: false, altClass: 'odd', autoShow: true });
                         $('#successmodal').text(response.UserEmail);
                         $("#error").show('fade');
                     },

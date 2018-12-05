@@ -13,13 +13,13 @@
         <input type="text" id="TxtUserName" disabled />
         <br />
         <label>Update Password :</label><br />
-        <input type="password" id="TxtPassword"  />
+        <input type="password" id="TxtPassword" disabled  />
         <br />
         <label>Update Email :</label><br />
-        <input type="email" id="TxtEmail"  />
+        <input type="email" id="TxtEmail" disabled />
         <br />
         <label>Update Phone :</label><br />
-        <input type="text" id="TxtPhone" />
+        <input type="text" id="TxtPhone" disabled/>
         <span id="UserID"></span>
         <br />
         <br />
@@ -122,8 +122,11 @@
                 success: function (response) {
                     $('#Name').text(response.UserName);
                     $('#TxtUserName').val(response.UserName);
+                    $('#TxtPassword').val(response.UserPassword);
                     $('#Email').text(response.UserEmail);
+                    $('#TxtEmail').val(response.UserEmail);
                     $('#PhoneNumber').text(response.UserPhoneNumber);
+                    $('#TxtPhone').val(response.UserPhoneNumber);
                     $('#UserID').val(response.UserID);
                     $('#UserTypeID').val(response.UserTypeID);
 

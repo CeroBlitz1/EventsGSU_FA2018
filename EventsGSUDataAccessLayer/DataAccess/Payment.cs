@@ -15,7 +15,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
         {
             var pm = new PaymentModel
             {
-                PMessage = "Payment SuccessFul",
+                PMessage="Payment Success",
                 PFlag = false,
 
             };
@@ -36,7 +36,14 @@ namespace EventsGSUDataAccessLayer.DataAccess
                 paymentObj.UserZipCode = model.UserZipCode;
                 paymentObj.UserState = model.UserState;
                 paymentObj.isDelete = 0;
-                if( model.UserCardNumber== null )
+                var ema = new System.Net.Mail.MailAddress(model.UserEmail);
+                if(ema == null)
+                {
+                    pm.PMessage = "Please Check Email Address";
+                    pm.PFlag = false;
+                    
+                }
+                if ( model.UserCardNumber== null )
                 {
                     pm.PMessage = "Fail";
                     pm.PFlag = false;
@@ -76,9 +83,10 @@ namespace EventsGSUDataAccessLayer.DataAccess
             }
             catch (Exception ex)
             {
-
+              
                 string d = ex.Message;
-            }
+                pm.PMessage = d;
+              }
             return pm;
         }
         
@@ -194,7 +202,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
                 var getUserHistoryDetailsObject = (from pt in g.PaymentTables
                                                    join ph in g.PaymentHistoryTables on pt.UserID equals ph.UserID
                                                    join et in g.EventsTables on ph.EventID equals et.EventID
-                                                   where pt.UserID == UserID && pt.isDelete == 0
+                                                   where ph.UserID == UserID && ph.isDelete == 0
                                                    select new
                                                    {
                                                        pt.FirstName,

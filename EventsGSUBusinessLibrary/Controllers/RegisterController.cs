@@ -75,11 +75,6 @@ namespace EventsGSUBusinessLibrary.Controllers
             }
             return retVal;
         }
-        [Route("GetUserHistoryadmin")]
-        public List<AdminModel> GetUserHistoryadmin(AdminModel model)
-        {
-            return new Admin().GetUserHistoryadmin(model);
-        }
         [Route("GetCardDetails")]
         public List<PaymentModel> GetCardDetails(int UserID)
         {

@@ -13,54 +13,6 @@ namespace EventsGSUDataAccessLayer.DataAccess
         GsuEventsDBEntities3 g = new GsuEventsDBEntities3();
 
        
-        public List<AdminModel> GetUserHistoryadmin(AdminModel model)
-        {
-            var getallUserslist = new List<AdminModel>();
-            try
-            {
-                var getusersObj = (from u in g.UserTables
-                                   join et in g.EventsTables on u.UserID equals et.UserID
-                                   join ph in g.PaymentHistoryTables on u.UserID equals ph.UserID
-                                     select new
-                                     {
-                                         u.UserEmail,
-                                         u.UserID,
-                                         u.UserName,
-                                         u.UserTypeID,
-                                         u.UserPhoneNumber,
-                                         u.UserPassword,
-                                         u.isActive,
-
-
-
-
-
-                                     }).ToList();
-
-                foreach (var item in getusersObj)
-                {
-                    var getallUsersobj = new AdminModel();
-
-                    getallUsersobj.UserEmail = item.UserEmail;
-                    getallUsersobj.UserID = item.UserID;
-                    getallUsersobj.UserName = item.UserName;
-                    getallUsersobj.UserPassword = item.UserPassword;
-                    getallUsersobj.UserTypeID = item.UserTypeID.ToString();
-                    getallUsersobj.UserPhoneNumber = item.UserPhoneNumber;
-                    getallUsersobj.isActive = item.isActive;
-
-
-
-
-                    getallUserslist.Add(getallUsersobj);
-                }
-            }
-            catch (Exception ex)
-            {
-                string d = ex.Message;
-            }
-            return getallUserslist;
-        }
         public EventDetailsModel GetDetailsById(int? eventID)
         {
             var eventdetailslist = new EventDetailsModel();
@@ -143,6 +95,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
 
                     var geteventsObj = (from u in g.UserTables
                                                 .Where(un => un.UserName.Contains(query))
+                                        where u.isDelete == 0
                                         select new
                                         {
                                             u.UserID,
@@ -435,7 +388,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
             return UserhistoryDetailsList;
         }
 
-        public AdminModel GetPurchaseList(int UserID)
+        public AdminModel GetPurchaseList(int UserID, string EventTitle)
         {
             var eventdetailslist = new AdminModel();
 
@@ -448,7 +401,7 @@ namespace EventsGSUDataAccessLayer.DataAccess
                                     join et in g.EventsTables on pht.EventID equals et.EventID
                                    
 
-                                    where pht.UserID == UserID
+                                    where pht.UserID == UserID && et.EventTitle == EventTitle
                                     select new AdminModel()
                                     {
                                         EventTitle = et.EventTitle,

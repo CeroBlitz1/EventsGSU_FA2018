@@ -53,9 +53,9 @@ namespace EventsGSUBusinessLibrary.Controllers
             return new Admin().GetAdminPurchaseInfobyID(UserID);
         }
         [Route("GetPurchaseListAdmin")]
-        public AdminModel GetPurchaseListAdmin(int UserID)
+        public AdminModel GetPurchaseListAdmin(int UserID, string EventTitle)
         {
-            return new Admin().GetPurchaseList(UserID);
+            return new Admin().GetPurchaseList(UserID,EventTitle);
         }
 
     }

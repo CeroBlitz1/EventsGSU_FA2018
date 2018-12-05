@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 <td>
-                    <div id="EventType" hidden></div>
+                    <div id="EventType" hidden>dom-attr-ticket</div>
                     <div id="event1Title"></div>
                 </td>
                 <td></td>

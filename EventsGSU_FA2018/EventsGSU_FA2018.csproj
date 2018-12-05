@@ -169,6 +169,7 @@
     <Content Include="Content\jQuery.FileUpload\img\progressbar.gif" />
     <Content Include="Content\main.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\EventStyle.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -210,6 +211,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\themes\defaultTheme.css" />
     <Content Include="Content\util.css" />
     <Content Include="Admin\admin_event_manage.aspx" />
     <Content Include="Events\AllEvents.aspx" />
@@ -263,6 +265,7 @@
     <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload-video.js" />
     <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload.js" />
     <Content Include="Scripts\jQuery.FileUpload\jquery.iframe-transport.js" />
+    <Content Include="Scripts\jquery.fixedheadertable.js" />
     <Content Include="Scripts\jquery.fixedheadertable.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\underscore.js" />

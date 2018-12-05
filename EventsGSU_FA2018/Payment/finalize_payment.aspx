@@ -83,6 +83,7 @@
     </div>
 
     <div class="col-md-10 col-md-offset-1">
+        <span>This information will be printed on the ticket</span>
         <div class="well">
             <table class="table table-bordered">
 
@@ -344,7 +345,7 @@
 
                         $('#ErrorText').text(response.PMessage);
                         $('#error').show('fade');
-                        alert("Payment Success")
+                       
 
                     },
                     error: function (jqXHR) {

@@ -38,6 +38,20 @@ namespace EventsGSUDataAccessLayer
                     usersObj.ModifiedDate = DateTime.Now;
                     g.UserTables.Add(usersObj);
 
+                var ema = new System.Net.Mail.MailAddress(model.UserEmail);
+                if (model.UserPassword.Length < 6)
+                {
+                    um.UMessage = "Password Should be at least 6 Characters long";
+                    um.UFlag = false;
+                    return um;
+                }
+                if(ema == null)
+                {
+                    um.UMessage = "Please Check you Email";
+                    um.UFlag = false;
+                    return um;
+                }
+                
                 if (usr == null)
                 {
                     g.SaveChanges();

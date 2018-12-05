@@ -66,7 +66,6 @@
 
                     for (var i = 0; i < data.length; i++) {
                         tableOutline = tableOutline +
-                            //'<a href="' + 'http://localhost/EventsGSU_FA2018/admin/Admin_user_Update.aspx?userID=' + data[i].UserID + 
                '<tr><td><a href="'+ 'http://localhost/EventsGSU_FA2018/admin/Admin_user_Update.aspx?userID=' + data[i].UserID + '">'
                 + data[i].UserName + '</td></a><td>'
                 + data[i].UserID + '</td><td>'
